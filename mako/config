@@ -1,0 +1,27 @@
+anchor=top-center
+sort=-time
+layer=overlay
+background-color=#4b5162
+width=420
+height=500
+padding=10
+border-size=0
+border-color=#285577
+border-radius=5
+font=JetBrains Mono 13
+icons=1
+icon-path=/usr/share/icons/Papirus
+max-icon-size=64
+default-timeout=5000
+ignore-timeout=1
+
+margin=12
+padding=12
+
+[urgency=high]
+border-color=#bf616a
+default-timeout=0
+
+[category=mpd]
+default-timeout=2000
+group-by=category

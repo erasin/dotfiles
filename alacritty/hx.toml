@@ -1,0 +1,41 @@
+[general]
+import = [
+  "~/.config/alacritty/themes/oneDark.toml",
+]
+
+# https://alacritty.org/config-alacritty.html
+
+[env]
+TERM = "xterm-256color"
+
+[mouse]
+hide_when_typing = true
+
+[window]
+decorations = "none"
+dynamic_padding = true
+dynamic_title = true
+# blur = true
+dimensions = {  columns = 100, lines = 42 }
+padding = {  x = 2, y = 0 }
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[font]
+normal = { family = "JetBrains Mono" }
+size = 13.0
+glyph_offset = { x = 0, y = 1 }
+offset = { x = 0, y = 2 }
+
+# [macos] 字体兼容处理
+# 0.11.0 dev 去除了 `font.use_thin_strokes` 读取系统 AppleFontSmoothing 设定
+# ```sh
+# defaults write -g AppleFontSmoothing -int 0
+# ```
+# 或者使用`org.alacritty` 替换 `-g` ，仅修改 alacritty 本身的设置 
+# **参数:**
+# 0. 禁用字体平滑
+# 1. 启用浅字体平滑
+# 2. 启用默认中等平滑
+# 3. 启用强平滑。

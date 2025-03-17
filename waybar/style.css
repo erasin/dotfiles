@@ -1,0 +1,135 @@
+/* Keyframes */
+@keyframes blink-critical {
+  to {
+    /*color: @white;*/
+    /* background-color: @critical; */
+    background-color: transparent;
+  }
+}
+
+/* Colors (gruvbox) */
+@define-color black rgba(0, 0, 0, 0.6);
+@define-color white #ebdbb2;
+
+/* Reset all styles */
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  padding-left: 2pt;
+  padding-right: 2pt;
+  box-shadow: none;
+  text-shadow: none;
+  font-size: 10pt;
+  color: @white;
+}
+
+/* The whole bar */
+#waybar {
+  font-family: "Symbols Nerd Font Mono", "JetBrains Mono Medium", "HarmonyOS Sans SC";
+  background: transparent;
+}
+
+/* .modules-left {} */
+
+/* left */
+#custom-arch,
+#custom-files,
+#custom-window-close,
+#window,
+
+/* middle */
+#custom-media-toggle,
+#custom-media,
+#custom-media-next,
+
+/* right */
+#pulseaudio,
+#bluetooth,
+#network,
+#memory,
+#cpu,
+#battery,
+#keyboard-state,
+#cpu,
+#language,
+#custom-gsconnect,
+#custom-clipboard,
+#custom-unmount,
+#clock,
+#custom-logout {
+  padding-left: 5pt;
+  padding-right: 5pt;
+  background: @black;
+  color: @white;
+}
+
+
+/* left */
+#workspaces,
+#taskbar,
+#custom-weather,
+/* middle */
+#custom-notification,
+/* right */
+#tray {
+  margin-right: 2pt;
+  margin-left: 2pt;
+  padding-left: 5pt;
+  padding-right: 5pt;
+  border-radius: 0 0 8pt 8pt;
+  background: @black;
+  color: @white;
+}
+
+
+button.active {
+  padding-left: 4pt;
+  padding-right: 4pt;
+  border-bottom: 1pt @white solid;
+}
+
+button:hover {
+  color: black;
+}
+
+/* .modules-right {} */
+
+#keyboard-state label.locked {
+  color: red;
+}
+
+#tray menu {
+  padding: 5px;
+  background: @black;
+  color: @white;
+}
+
+
+/* start */
+#custom-arch,
+#custom-window-close,
+#custom-media-toggle,
+#pulseaudio,
+#custom-clipboard,
+#clock.date {
+  margin-left: 2pt;
+  border-radius: 0 0 0 8pt;
+}
+
+/* end */
+#custom-files,
+#window,
+#custom-media-next,
+#language,
+#custom-unmount,
+#custom-logout {
+  margin-right: 2pt;
+  border-radius: 0 0 8pt 0;
+}
+
+#custom-space {
+  padding-left: 5pt;
+}

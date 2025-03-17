@@ -1,0 +1,80 @@
+[general]
+import = [
+  "~/.config/alacritty/themes/oneDark.toml",
+  "~/.config/alacritty/keymaps/tmux_keymap.toml",
+]
+
+[debug]
+log_level = "Warn"
+
+[env]
+TERM = "xterm-256color"
+
+[mouse]
+hide_when_typing = true
+bindings = [{ mouse = "Right", mods = "Control", action = "Paste" }]
+
+# [shell]
+# args = ["-l", "-c", "tmux attach || tmux"]
+# program = "/bin/bash"
+
+[window]
+decorations = "none"
+dynamic_padding = true
+dynamic_title = true
+dimensions = { columns = 162, lines = 42 }
+padding = { x = 2, y = 0 }
+# opacity = 0.95
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[font]
+# ~/.config/fontconfig/font.conf
+size = 13.0
+
+# normal = { family = "MapleMono" }
+# normal = { family = "Cascadia Code" }
+# normal = { family = "JetBrains Mono" }
+# normal = { family = "Fire Code" }
+
+# normal = { family = "NerdMono"}
+normal = { family = "MapleNerd"}
+# 使用 fontconfigs 支持多种字体
+# /etc/fonts/fonts.conf 或者 ~/.config/fontconfig/fonts.conf 
+# 添加字体后，使用 fc-cache -fv 刷新字体，fc-list 或者 fc-match 检查字体
+#
+# <match target="pattern">
+#     <test qual="any" name="family">
+#         <string>NerdMono</string>
+#     </test>
+#     <edit name="family" mode="assign" binding="same">
+#         <string>JetBrains Mono</string>
+#         <string>Symbols Nerd Font Mono</string>
+#         <string>HarmonyOS Sans SC</string>
+#         <string>monospace</string>
+#     </edit>
+# </match>
+#
+# <match target="pattern">
+#     <test qual="any" name="family">
+#         <string>MapleNerd</string>
+#     </test>
+#     <edit name="family" mode="assign" binding="same">
+#         <string>MapleMono</string>
+#         <string>Symbols Nerd Font Mono</string>
+#     </edit>
+# </match>
+
+# glyph_offset = { x = 0, y = 1 }
+# offset = { x = 0, y = 2 }
+
+[keyboard]
+bindings = [
+  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+  { key = "M", mods = "Control|Shift", action = "ToggleViMode" },
+  { key = "-", mods = "Control", action = "DecreaseFontSize" },
+  { key = "=", mods = "Control", action = "IncreaseFontSize" },
+  { key = "0", mods = "Control|Shift", action = "ResetFontSize" },
+]
+

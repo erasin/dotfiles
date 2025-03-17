@@ -1,0 +1,25 @@
+# One Light
+
+[colors.primary]
+background = '0xfafafa'
+foreground = '0x2a2b33'
+
+[colors.normal]
+black = '0x000000'
+red = '0xde3d35'
+green = '0x3e953a'
+yellow = '0xa06600'
+blue = '0x2f5af3'
+magenta = '0xa00095'
+cyan = '0x3e953a'
+white = '0xbbbbbb'
+
+[colors.bright]
+black = '0x000000'
+red = '0xde3d35'
+green = '0x3e953a'
+yellow = '0xa06600'
+blue = '0x2f5af3'
+magenta = '0xa00095'
+cyan = '0x3e953a'
+white = '0xffffff'

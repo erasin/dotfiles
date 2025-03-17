@@ -1,0 +1,7 @@
+[[language]]
+name = "bash"
+file-types = ["sh", "tmux.conf"]
+
+[[language]]
+name = "yaml"
+indent = { tab-width = 4, unit = "\t" }

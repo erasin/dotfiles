@@ -1,0 +1,49 @@
+## 使用 `xxd -psd` 来获取键盘输入的值
+## 或者参照 <https://en.wikipedia.org/wiki/ASCII>
+# | ^a / C-a  | 01
+# | ^b / C-b  | 02
+# | esc       | 1b
+# | hjkl      | 68 6a 6b 6c
+# | HJKL      | 48 4a 4b 4c
+
+# 参考 Tmux配置  # https://github.com/gpakosz/.tmux
+# 使用 ^a 替代 ^b , 服务器兼容
+# leader = ^a
+# - { key: S, mods: ALt, chars: "\x01s" } # leader s  
+
+[keyboard]
+bindings = [
+  # { key = "LBracket", mods = "Alt",         chars = "\u0001[" }, # 选择模式
+  # 在 linux 下 , Super 与系统按键冲突, Alt 按键部分与 helix 冲突
+  # 使用 C-a
+  { key = "T",        mods = "Super",         chars = "\u0001c" }, # <C-a c>  new window 新建窗口 
+  # { key = "W",        mods = "Super",         chars = "\u0001x" }, # <C-a w> 窗口列表
+  # { key = "M",        mods = "Super",         chars = "\u0001w" }, # <C-a m> 
+  # { key = "M",        mods = "Super|Shift",   chars = "\u0001m\u001B" }, # <C-a m>  pane 最大化
+  # { key = "Tab",      mods = "Super",         chars = "\u0001\t\u001B" },  
+  # { key = "j",        mods = "Super",         chars = "\u0001\b\u001B" }, # <C-a C-h>  window 上一个
+  # { key = "k",        mods = "Super",         chars = "\u0001\f\u001B" }, # <C-a C-l>window 下一个
+  # { key = "d",        mods = "Super",         chars = "\u0001-" }, # 水平 pane
+  # { key = "D",        mods = "Super|Shift",   chars = "\u0001_" }, # 垂直 pane
+  # { key = "h",        mods = "Super|Control", chars = "\u0001h\u001B" }, # 向左切换 pane
+  # { key = "j",        mods = "Super|Control", chars = "\u0001j\u001B" }, # 向下切换 pane
+  # { key = "k",        mods = "Super|Control", chars = "\u0001k\u001B" }, # 向上切换 pane
+  # { key = "l",        mods = "Super|Control", chars = "\u0001l\u001B" }, # 向右切换 pane
+  # { key = "H",        mods = "Super|Shift",   chars = "\u0001H\u001B" },
+  # { key = "J",        mods = "Super|Shift",   chars = "\u0001J\u001B" },
+  # { key = "K",        mods = "Super|Shift",   chars = "\u0001K\u001B" },
+  # { key = "L",        mods = "Super|Shift",   chars = "\u0001L\u001B" },
+
+  { key = "Key1",     mods = "Alt",         chars = "\u00011\u001B" },
+  { key = "Key2",     mods = "Alt",         chars = "\u00012\u001B" },
+  { key = "Key3",     mods = "Alt",         chars = "\u00013\u001B" },
+  { key = "Key4",     mods = "Alt",         chars = "\u00014\u001B" },
+  { key = "Key5",     mods = "Alt",         chars = "\u00015\u001B" },
+  { key = "Key6",     mods = "Alt",         chars = "\u00016\u001B" },
+  { key = "Key7",     mods = "Alt",         chars = "\u00017\u001B" },
+  { key = "Key8",     mods = "Alt",         chars = "\u00018\u001B" },
+  { key = "Key9",     mods = "Alt",         chars = "\u00019\u001B" },
+
+]
+
+

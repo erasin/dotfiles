@@ -1,0 +1,393 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
+  "modules-left": [
+    "custom/arch",
+    "custom/files",
+    "niri/workspaces",
+    "wlr/taskbar",
+    "custom/window-close",
+    "niri/window"
+  ],
+  "modules-center": [
+    // "mpris",
+    "custom/media-toggle",
+    "custom/media",
+    "custom/media-next",
+    "custom/notification"
+  ],
+  "modules-right": [
+    "custom/weather",
+    "pulseaudio",
+    "bluetooth",
+    "network",
+    "keyboard-state",
+    "memory",
+    "cpu",
+    // "battery",
+    "niri/language",
+    "custom/clipboard",
+    "custom/gsconnect",
+    "custom/unmount",
+    "tray",
+    "clock#date",
+    "clock#time",
+    "custom/logout"
+  ],
+  "custom/arch": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "niri msg action spawn -- fuzzel"
+  },
+  "custom/files": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "niri msg action spawn -- nautilus"
+  },
+  "custom/weather": {
+    "format": "{} {alt}",
+    "return-type": "json",
+    "exec": "wayinfo weather --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt 2> /dev/null",
+    "exec-if": "which wayinfo",
+    "on-click": "niri msg action spawn -- gnome-weather"
+  },
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "DEFAULT: {status_icon} <i>{dynamic}</i>",
+    "player-icons": {
+      "default": "▶",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": "⏸"
+    },
+    // "ignored-players": [
+    //   "firefox"
+    // ]
+  },
+  "custom/media-toggle": {
+    "format": "{}",
+    "tooltip-format": "播放/暂停",
+    "return-type": "text",
+    "interval": 5,
+    "exec": "wayinfo player status-icon",
+    "on-click": "wayinfo player toggle"
+  },
+  "custom/media": {
+    "format": "{}",
+    "return-type": "text",
+    "max-length": 85,
+    "interval": 5,
+    "exec": "wayinfo player title"
+    // "on-click": "niri msg action spawn -- eww open --toggle music"
+  },
+  "custom/media-next": {
+    "format": "󰒭",
+    "tooltip-format": "下一曲",
+    "return-type": "text",
+    "interval": 5,
+    "exec": "wayinfo player status",
+    "on-click": "wayinfo player next"
+  },
+  "custom/lyric": {
+    "exec": "waylrc",
+    "return-type": "json",
+    "escape": true
+  },
+  "cava": {
+    //        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+    "framerate": 30,
+    "autosens": 1,
+    "sensitivity": 100,
+    "bars": 14,
+    "lower_cutoff_freq": 50,
+    "higher_cutoff_freq": 10000,
+    "method": "pulse",
+    "source": "auto",
+    "stereo": true,
+    "reverse": false,
+    "bar_delimiter": 0,
+    "monstercat": false,
+    "waves": false,
+    "noise_reduction": 0.77,
+    "input_delay": 2,
+    "format-icons": [
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
+    ],
+    "actions": {
+      "on-click-right": "mode"
+    }
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "tooltip-format": "{title} | {app_id}",
+    "icon-size": 24,
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "on-click-right": "minimize"
+  },
+  // Install python-pydbus ydotool gsconnect(AUR)
+  // then 'sudo usermod -aG input $USER' AND REBOOT
+  "custom/gsconnect": {
+    "format": "{alt}󱘖",
+    // "min-length": 30,
+    // "align": 0.2,
+    "format-alt": "{alt}-{types}",
+    "tooltip": false,
+    "interval": 10,
+    "return-type": "json",
+    "escape": true,
+    "exec": "$HOME/.config/waybar/scripts/gsconnect-status.py",
+    "on-click-right": "/usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/gsconnect-preferences"
+  },
+  // Install fuzzel
+  "custom/unmount": {
+    "format": "{}  ",
+    "interval": 10,
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/unmount.sh",
+    "on-click": "$HOME/.config/waybar/scripts/unmount.sh unmount",
+    "signal": 10
+  },
+  // Install cliphist wl-clipboard libnotify fuzzel
+  "custom/clipboard": {
+    "format": "{}  ",
+    "tooltip-format": "{}",
+    "tooltip": false,
+    "on-click": "$HOME/.config/waybar/scripts/clipboard.sh",
+    "on-click-middle": "$HOME/.config/waybar/scripts/clipboard.sh wipe"
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format-time": "{H}:{M:02}",
+    "format": "{icon} {capacity}% ({time})",
+    "format-charging": " {capacity}% ({time})",
+    "format-charging-full": " {capacity}%",
+    "format-full": "{icon} {capacity}%",
+    "format-alt": "{icon} {power}W",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip": false
+  },
+  "clock#time": {
+    "interval": 10,
+    "format": "{:%H:%M}",
+    "on-click": "niri msg action spawn -- gnome-calendar",
+    "tooltip": false
+  },
+  "clock#date": {
+    "interval": 20,
+    "format": "{:%Y-%m-%d}",
+    "format-alt": "Week {:%V of the %Y}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-click-middle": "shift_reset",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "cpu": {
+    "interval": 10,
+    // "tooltip": false,
+    "format": " {usage}%",
+    "format-alt": " {load}",
+    "on-click": "niri msg action spawn -- gnome-system-monitor",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+  "memory": {
+    "interval": 5,
+    "format": "󰍛 {used:0.1f}G",
+    "format-alt": "󰍛 {used:0.1f}G/{total:0.1f}G",
+    "tooltip-format": "{percentage}%",
+    "on-click": "niri msg action spawn -- gnome-system-monitor",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+  "network": {
+    "interval": 5,
+    "format-wifi": "",
+    "format-ethernet": "󰱓",
+    "format-disconnected": "󰅛 No connection",
+    "format-alt": "󰩠 {ipaddr}/{cidr}",
+    "tooltip-format-wifi": " {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz",
+    "tooltip-format-ethernet": "󰱓 {ifname}\nIP: {ipaddr}",
+    "on-click-right": "niri msg action spawn -- nm-connection-editor"
+  },
+  "custom/logout": {
+    "format": "",
+    "tooltip": false,
+    // "on-click": "niri msg action spawn -- eww open --toggle powermenu""menu": "on-click",
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+    "menu-actions": {
+      "shutdown": "shutdown",
+      "reboot": "reboot",
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hibernate"
+    }
+  },
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      // Named workspaces
+      "def": "󰹑",
+      "dev": "",
+      "writer": "",
+      // Icons by state
+      "active": "",
+      "default": ""
+    }
+  },
+  // 关闭按钮
+  "custom/window-close": {
+    "format": "󰅙",
+    "tooltip": false,
+    "on-click": "bash $HOME/.config/waybar/scripts/niri-close-focused-window.sh "
+  },
+  // 标题
+  "niri/window": {
+    "format": "{app_id} {title}",
+    "icon": true,
+    "on-click": "bash $HOME/.config/niri/scripts/switch-window.sh"
+  },
+  // keyboard layout
+  "niri/language": {
+    "format": "{}",
+    "format-en": "EN",
+    "format-zh": "中"
+  },
+  // Install blueman pulseaudio-bluetooth
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "󰂲",
+    "format-connected": " {num_connections} ",
+    // "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "niri msg action spawn -- blueman-manager"
+  },
+  // Install pavucontrol pipewire-media-session pulseaudio pulseaudio-alsa
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": "󰋐",
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": " ",
+      "headset": " ",
+      "phone": "",
+      "portable": "󰓃",
+      "car": "󱓭",
+      "default": [
+        "▁󰓃",
+        "▂󰓃",
+        "▃󰓃",
+        "▄󰓃",
+        "▅󰓃",
+        "▆󰓃",
+        "▇󰓃",
+        "█󰓃"
+      ]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "tooltip": false
+  },
+  "temperature": {
+    "critical-threshold": 90,
+    "interval": 5,
+    "format": "{icon} {temperatureC}°",
+    "format-critical": "  {temperatureC}°C {icon}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip": false
+  },
+  "keyboard-state": {
+    "numlock": false,
+    "capslock": true,
+    "scrollock": true,
+    // "format": "{name} {icon}",
+    "format": {
+      "numlock": " {icon}",
+      "capslock": "󰘲 {icon}",
+      "scrollock": " {icon}"
+    },
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 5
+  }
+}

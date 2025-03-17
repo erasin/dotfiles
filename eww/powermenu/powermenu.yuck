@@ -1,0 +1,44 @@
+(defwidget powermenu []
+     (box :class "powermenu"
+          :orientation "h"
+          :space-evenly "false"
+          (lock-power-restart)))
+
+
+(defwidget lock-power-restart []
+	(box :class "powermenu"
+		 :orientation "h"
+		 :spacing 20
+    (eventbox :cursor "pointer"
+		(button :class "powermenu lock" 
+				:onclick "niri msg action spawn -- swaylock"
+				:tooltip "Lock session"
+				(label :show-truncated false :text "󰌾")))
+    (eventbox :cursor "pointer"
+		(button :class "powermenu exit" 
+				:onclick "niri msg action quit" 
+				:tooltip "Logout"
+				(label :show-truncated false :text "")))
+    (eventbox :cursor "pointer"
+		(button :class "powermenu reboot" 
+				:onclick "systemctl reboot"
+				:tooltip "Restart"
+				(label :show-truncated false :text "")))
+    (eventbox :cursor "pointer"
+		(button :class "powermenu shutdown" 
+				:onclick "systemctl poweroff"
+				:tooltip "Shutdown"
+				(label :show-truncated false :text "⏻")))     
+  )
+)
+
+;; Power Menu ;;
+(defwindow powermenu
+    :monitor 0
+		:monitor_focused true
+    :geometry (geometry :x "0%"
+                        :y "0%"
+                        :anchor "center center")
+    :wm-ignore false
+    (powermenu))
+    

@@ -1,0 +1,10 @@
+[Unit]
+Description=aria2 Daemon
+
+[Service]
+Type=simple
+# remove -D when use systemd
+ExecStart=/usr/bin/aria2c --conf-path=/home/erasin/.config/aria2/aria2.conf
+
+[Install]
+WantedBy=default.target
