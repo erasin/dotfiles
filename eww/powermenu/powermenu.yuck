@@ -11,7 +11,7 @@
 		 :spacing 20
     (eventbox :cursor "pointer"
 		(button :class "powermenu lock" 
-				:onclick "niri msg action spawn -- swaylock"
+				:onclick "niri msg action spawn -- hyprlock"
 				:tooltip "Lock session"
 				(label :show-truncated false :text "󰌾")))
     (eventbox :cursor "pointer"

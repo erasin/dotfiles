@@ -1,4 +1,8 @@
 
+## lock
+
+- hyprlock
+- swaylock
 
 ## bar
 
@@ -113,4 +117,5 @@ chrome
 
 --enable-features=UseOzonePlatform
 --ozone-platform=wayland
+
 

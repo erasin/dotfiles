@@ -61,7 +61,7 @@
     },
     "status-icons": {
       "paused": "⏸"
-    },
+    }
     // "ignored-players": [
     //   "firefox"
     // ]
@@ -279,6 +279,7 @@
     "menu": "on-click",
     "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
     "menu-actions": {
+      "lock": "niri msg action spawn -- hyprlock",
       "shutdown": "shutdown",
       "reboot": "reboot",
       "suspend": "systemctl suspend",

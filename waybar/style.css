@@ -101,12 +101,6 @@ button:hover {
   color: red;
 }
 
-#tray menu {
-  padding: 5px;
-  background: @black;
-  color: @white;
-}
-
 
 /* start */
 #custom-arch,
@@ -132,4 +126,63 @@ button:hover {
 
 #custom-space {
   padding-left: 5pt;
+}
+
+/* 托盘图标默认状态 */
+#tray>.passive {
+  background-color: transparent;
+  padding: 3px;
+}
+
+/* 托盘图标激活状态 */
+#tray>.active {
+  /* 激活时背景色 */
+  border-radius: 5px;
+}
+
+/* 托盘需要注意（如通知）状态 */
+#tray>.needs-attention {
+  background-color: #f38ba8;
+  /* 需要注意时背景色 */
+  border-radius: 5px;
+  padding: 3px;
+}
+
+/* 托盘图标的悬浮状态 */
+#tray>.passive:hover,
+#tray>.active:hover,
+#tray>.needs-attention:hover {
+  border-radius: 5px;
+  background-color: black;
+}
+
+/* 托盘弹出菜单的背景和阴影 */
+#tray menu {
+  background-color: rgba(30, 30, 46, 0.95);
+  border: 1px solid rgba(200, 200, 200, 0.2);
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* 托盘菜单的项目样式 */
+#tray menuitem {
+  padding: 8px 12px;
+  color: #cdd6f4;
+}
+
+#tray menuitem:hover {
+  background-color: #89b4fa;
+  color: #1e1e2e;
+  border-radius: 5px;
+}
+
+menu {
+  border-radius: 15px;
+  background: #161320;
+  color: #B5E8E0;
+}
+
+menuitem {
+  border-radius: 15px;
+  padding: 8px 12px;
 }
