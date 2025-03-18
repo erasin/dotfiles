@@ -1,0 +1,703 @@
+[use-grammars]
+only = [
+  # 
+  "rust",
+  "rustfmt",
+  "c",
+  "cpp",
+  "java",
+  # 
+  "go",
+  "gomod",
+  "gowork",
+  "gotmpl",
+  # 
+  "python",
+  "bash",
+  "lua",
+  "scheme",
+  "tsq",
+  "query",
+  "sql",
+  # 
+  "php",
+  "php-only",
+  # 
+  "html",
+  "css",
+  "scss",
+  "javascript",
+  "jsdoc",
+  "typescript",
+  "jsx",
+  "vue",
+  "svelte",
+  "tsx",
+  #
+  "dart",
+  "kotlin",
+  "groovy",
+  # 
+  "json",
+  "jsonc",
+  "json5",
+  "toml",
+  "yaml",
+  "xml",
+  "ini",
+  "kdl",
+  "ron",
+  # 
+  "gdscript",
+  "godot-resource",
+  "glsl",
+  "wgsl",
+  "gdshader",
+  # 
+  "git-config",
+  "git-commit",
+  "git-ignore",
+  "git-rebase",
+  "git-attributes",
+  "sshclientconfig",
+  # 
+  "hosts",
+  "env",
+  "make",
+  # 
+  "comment",
+  "diff",
+  "regex",
+  "rstml",
+  "protobuf",
+  # 
+  "latex",
+  "typst",
+  "markdown",
+  "markdown_inline",
+  "task",
+  "todotxt",
+  "mail",
+  # 
+  "log",
+  "glicol",
+  # 
+  "dot",
+  "hurl",
+  "http",
+  "po",
+  "fluent",
+  "pest",
+  "beancount",
+  "slint",
+  #
+  "yuck",
+]
+
+# ollama [lsp-ai](https://github.com/SilasMarvin/lsp-ai)
+[language-server.lsp-ai]
+command = "lsp-ai"
+
+[language-server.lsp-ai.config.memory]
+file_store = {}
+
+[language-server.lsp-ai.config.models.model1]
+type = "ollama"
+model = "deepseek-r1:8b"
+
+[language-server.lsp-ai.config.completion]
+model = "model1"
+
+[language-server.lsp-ai.config.completion.parameters]
+max_tokens = 32
+max_context = 1024
+
+[[language-server.lsp-ai.config.chat]]
+trigger = "!C"
+action_display_name = "Chat"
+model = "model1"
+
+[language-server.lsp-ai.config.chat.parameters]
+max_context = 4096
+max_tokens = 1024
+# system = "You are a code assistant chatbot. The user will ask you for assistance coding and you will do you best to answer succinctly and accurately"
+system = "你是一个代码助理聊天机器人。用户会要求您协助编码，您将尽最大努力简洁准确地回答。"
+
+
+# 使用 https://github.com/rosarp/llm-lsp/ 对接AI，自动补全
+# 使用前需要执行 `llm-lsp generate-config` 初始化 `~/.config/llm-lsp/` 的配置
+[language-server.llm-lsp]
+command = "llm-lsp"
+args = ["server", "-p", "codeium"]
+
+# ----- rust ----
+# [language-server.rust-analyzer.config]
+# cargo.features = "all"
+# checkOnSave.features = "all"
+
+# ------ snippets lsp -----
+# https://github.com/erasin/hx-lsp 
+# ./snippets
+[language-server.hx-lsp]
+command = "hx-lsp"
+
+# ------ typos lsp ------
+# https://github.com/tekumara/typos-lsp
+# https://github.com/crate-ci/typos
+# Add _typos.toml enable
+[language-server.typos-lsp]
+command = "typos-lsp"
+config.diagnosticSeverity = "Warning"
+
+
+[language-server.cspell]
+command = "cspell-lsp"
+args = ["--stdio", "--dictionary", "/home/erasin/.config/cspell/dict.txt"]
+
+# ---------- rust -----
+[language-server.rust-analyzer.config]
+inlayHints.bindingModeHints.enable = false
+inlayHints.closingBraceHints.minLines = 10
+inlayHints.closureReturnTypeHints.enable = "with_block"
+inlayHints.discriminantHints.enable = "fieldless"
+inlayHints.lifetimeElisionHints.enable = "skip_trivial"
+inlayHints.typeHints.hideClosureInitialization = false
+cargo.features = "all"
+
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp", "llm-lsp", "cspell"]
+
+[language.debugger]
+name = "lldb-dap"
+transport = "stdio"
+command = "lldb-vscode"
+
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+completion = [{ name = "binary", completion = "filename" }]
+args = { program = "{0}", initCommands = [
+  "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py",
+] }
+
+# ---------- golang ----------------
+[[language]]
+name = "go"
+language-servers = [
+  "gopls",
+  "golangci-lint-lsp",
+  "hx-lsp",
+  "typos-lsp",
+  "llm-lsp",
+]
+
+# ----------- godot4 -------------
+[language-server.godot]
+command = "nc"
+args = ["127.0.0.1", "6005"]
+
+[[language]]
+name = "gdscript"
+language-servers = [
+  { name = "godot", except-features = [
+    "color-provider",
+  ] },
+  "hx-lsp",
+  "typos-lsp",
+  "llm-lsp",
+]
+
+[language.debugger]
+name = "lldb-vscode"
+transport = "stdio"
+command = "lldb-vscode"
+
+# [[language.debugger.templates]]
+# name = "binary"
+# request = "launch"
+# completion = [ { name = "binary", completion = "filename" } ]
+# args = { program = "{0}", initCommands = [ "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py" ] }
+
+[[language.debugger.templates]]
+name = "gdbserver attach"
+request = "attach"
+completion = [
+  { name = "lldb connect url", default = "connect://127.0.0.1:6007" },
+  { name = "file", completion = "filename" },
+  "pid",
+]
+args = { attachCommands = [
+  "platform select remote-gdb-server",
+  "platform connect {0}",
+  "file {1}",
+  "attach {2}",
+] }
+
+[[language]]
+name = "godot-resource"
+scope = "source.tscn"
+file-types = ["tscn", "tres", "godot", "gdextension", "import"]
+
+# [language.debugger]
+# name ="gdscript"
+# https://ask.godotengine.org/122563/how-to-get-the-godot-lsp-to-work-with-nvim-lsp
+
+
+[[language]]
+name = "gdshader"
+scope = "source.gdshader"
+injection-regex = "gdshader"
+file-types = ["shader", "gdshader", "gdshaderinc"]
+shebangs = []
+roots = ["project.godot"]
+auto-format = true
+# formatter = { command = "", args = ["-"] }
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 4, unit = "\t" }
+# language-servers = ["gdshader-lsp", "hx-lsp", "typos-lsp"]
+
+[[grammar]]
+name = "gdshader"
+source = { git = "https://github.com/GodOfAvacyn/tree-sitter-gdshader", rev = "ffd9f958df13cae04593781d7d2562295a872455" }
+
+# [language-server.gdshader-lsp]
+# command = "gdshader-lsp"
+
+
+# format slint
+# https://biomejs.dev/guides/editors/third-party-extensions/#helix 
+# https://biomejs.dev/formatter/#options
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
+# ------ emmet support -------------
+[language-server.emmet-language-server]
+# command="emmet-language-server"
+command = "emmet-ls"
+args = ["--stdio"]
+
+# ------ tailwindcss-language-server -------
+
+[language-server.tailwindcss-ls]
+# helix-twcss, use hx-tw replace tailwindcss-language-server
+# command = "hx-tw"
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+# -------- typescript -----------
+[language-server.typescript-language-server.config]
+hostInfo = "helix"
+locale = "zh-CN"
+
+[language-server.typescript-language-server.config.typescript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+# includeInlayVariableTypeHintsWhenTypeMatchesName = true
+
+[language-server.typescript-language-server.config.javascript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+
+# --- svelte ---
+[[language]]
+name = "svelte"
+roots = ["package.json"]
+language-servers = ["svelteserver", "tailwindcss-ls"]
+
+[[language]]
+name = "css"
+file-types = ["css", "scss", "less"]
+language-servers = [
+  "vscode-css-language-server",
+  "biome",
+  "emmet-language-server",
+  "tailwindcss-ls",
+]
+
+
+[[language]]
+name = "json"
+language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
+
+
+[[language]]
+name = "html"
+file-types = ["html", "xhtml"]
+language-servers = [
+  "vscode-html-language-server",
+  "emmet-language-server",
+  "tailwindcss-ls",
+  "hx-lsp",
+  "typos-lsp",
+  "llm-lsp",
+]
+
+[[language]]
+name = "xml"
+language-servers = [ "vscode-html-language-server" ]
+
+[[language]]
+name = "vue"
+language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp", "llm-lsp"]
+
+[[language]]
+name = "tsx"
+language-servers = [
+  # "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  "tailwindcss-ls",
+  "hx-lsp",
+  "typos-lsp",
+  "llm-lsp",
+]
+
+[[language]]
+name = "jsx"
+language-servers = [
+  # "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  "tailwindcss-ls",
+  "hx-lsp",
+  "typos-lsp",
+  "llm-lsp",
+]
+
+[[grammar]]
+name = "jsdoc"
+source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "49fde205b59a1d9792efc21ee0b6d50bbd35ff14" }
+
+[[language]]
+name = "javascript"
+auto-format = true
+language-servers = [
+  # "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  "hx-lsp",
+  "typos-lsp",
+  "llm-lsp",
+]
+
+[[language]]
+name = "typescript"
+auto-format = true
+language-servers = [
+  # "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  "hx-lsp",
+  "typos-lsp",
+  "llm-lsp",
+]
+
+[[language]]
+name = "yaml"
+formatter = { command = 'prettier', args = ["--parser", "yaml"] }
+
+# ----------- php --------------
+[language-server.intelephense.config]
+licenceKey = "/home/erasin/.config/tokens/intelephenser_licence.txt"
+storagePath = "/home/erasin/.config/php/"                             # os.tmpdir()
+globalStoragePath = "/home/erasin/.config/php/"                       # os.homedir()
+# clearCache = false # clean state
+
+[[language]]
+name = "php"
+language-servers = ["intelephense", "typos-lsp", "llm-lsp"]
+
+# ----------- python pyright --------------
+
+# https://github.com/microsoft/pyright
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+# 禁用 diagnostics, format, 使用 ruff-lsp
+except-features = ["diagnostics", "format"]
+
+#  https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+#  为 pyright 在 pyproject.toml 中设置 venv 路径适配 rye 等 venv 
+# ```toml
+#  [tool.pyright]
+#  venvPath = "."
+#  venv = ".venv"
+# ```
+
+[language-server.pyright.config]
+settings.python.analysis = { autoImportCompletions = true, typeCheckingMode = "on", autoSearchPaths = true, useLibraryCodeForTypes = true, diagnosticMode = "openFilesOnly" }
+
+[language-server.pylsp.config]
+pylsp.plugins.rope_autoimport.enabled = true
+
+# https://github.com/mtshiba/pylyzer
+[language-server.pylyzer]
+command = "pylyzer"
+args = ["--server"]
+
+# https://github.com/astral-sh/ruff-lsp
+[language-server.ruff-lsp]
+command = "ruff-lsp"
+args = ["--ignore", "E501", "E402"]
+
+# support ruff check
+# support ruff format
+
+# https://docs.astral.sh/ruff/configuration/
+# use pyproject.toml [tool.ruff]
+
+[[language]]
+name = "python"
+file-types = [
+  "py",
+  "pyi",
+  "py3",
+  "pyw",
+  "ptl",
+  ".pythonstartup",
+  ".pythonrc",
+  "SConstruct",
+  "mel",
+]
+roots = ["pyproject.toml", "pyrightconfig.json"]
+# formatter = { command = "ruff", args = ["format"] }
+language-servers = ["pyright", "ruff-lsp", "hx-lsp", "typos-lsp", "llm-lsp"]
+auto-format = true
+
+# ------------ lua --------------
+
+[[language]]
+name = "lua"
+language-servers = ["lua-language-server", "llm-lsp"]
+
+[language-server.lua-language-server]
+args = ["--locale", "zh-cn"]
+
+# 建议使用 .luarc.json 配置服务器
+
+# https://luals.github.io/wiki/configuration/
+[language-server.lua-language-server.config.Lua.hint]
+enable = true
+arrayIndex = "Enable"
+setType = true
+paramName = "All"
+paramType = true
+await = true
+
+[language-server.lua-language-server.config.Lua.workspace]
+library = [
+  "${3rd}/love2d/library",
+  "${3rd}/busted/library",
+  "${3rd}/Defold/library",
+]
+
+[language-server.lua-language-server.config.Lua.runtime]
+nonstandardSymbol = [
+  "+=",
+  "-=",
+  "*=",
+  "/=",
+  "//=",
+  "%=",
+  "<<=",
+  ">>=",
+  "&=",
+  "|=",
+  "^=",
+]
+
+special = { "import" = "require" }
+
+[[grammar]]
+name = "lua"
+# source = { git = "https://github.com/MunifTanjim/tree-sitter-lua", rev = "9668709211b2e683f27f414454a8b51bf0a6bda1" }
+source = { git = "https://github.com/erasin/tree-sitter-lua", rev = "0158ad30769a3fcf7f40dcaaa94509023ff7fea6" }
+# source = { path = "/home/erasin/Development/project/tree-sitter-lua", rev = "" }
+
+# ----------- git ---------------
+
+[[language]]
+name = "git-commit"
+soft-wrap = { enable = true, wrap-at-text-width = true }
+
+[[language]]
+name = "ini"
+scope = "source.ini"
+file-types = [
+  "ini",
+  # Systemd unit files
+  "service",
+  "automount",
+  "device",
+  "mount",
+  "path",
+  "service",
+  "slice",
+  "socket",
+  "swap",
+  "target",
+  "timer",
+  # Podman quadlets
+  "container",
+  "volume",
+  "kube",
+  "network",
+  { glob = ".editorconfig" },
+  { glob = "rclone.conf" },
+  "properties",
+  "cfg",
+  "directory",
+  "desktop",
+]
+
+
+# --- markdown ----
+[[language]]
+name = "markdown"
+formatter = { command = "prettier", args = ["--parser", "markdown"] }
+language-servers = ["marksman", "markdown-oxide", "hx-lsp", "typos-lsp", "cspell"]
+# 设定 zen-mode-like
+# text-width = 80
+# soft-wrap = { enable = true, wrap-at-text-width = true }
+
+# ---- latex ----
+[[language]]
+name = "latex"
+language-servers = ["texlab"]
+text-width = 80
+soft-wrap = { enable = true, wrap-at-text-width = true }
+
+# # ---- typst ----
+# # https://myriad-dreamin.github.io/tinymist//frontend/helix.html
+# In project .helix/languages.toml setting main file.
+#
+# [language-server.tinymist.config]
+# typstExtraArgs = ["main.typ"]
+# exportPdf = "onType"
+# outputPath = "$root/target/$dir/$name"
+
+[[language]]
+name = "typst"
+language-servers = ["tinymist", "hx-lsp"]
+formatter = { command = "typst", args = ["c"] }
+text-width = 80
+soft-wrap = { enable = true, wrap-at-text-width = true }
+
+# --- glicol ----
+# https://github.com/TenStrings/glicol-lsp
+[language-server.glicol-lsp]
+command = "glicol-lsp"
+
+# https://github.com/chaosprint/glicol
+[[language]]
+name = "glicol"
+scope = "source.glicol"
+injection-regex = "glicol"
+file-types = ["glicol"]
+comment-token = "//"
+indent = { tab-width = 4, unit = "\t" }
+language-servers = ["glicol-lsp"]
+
+[[grammar]]
+name = "glicol"
+source = { git = "https://github.com/TenStrings/tree-sitter-glicol", rev = "da7b171e87462afa6c74ad772742ec485f821072" }
+
+
+[[language]]
+name = "mail"
+scope = "source.eml"
+injection-regex = "mail"
+file-types = ["eml"]
+indent = { tab-width = 4, unit = "\t" }
+
+[[grammar]]
+name = "mail"
+source = { git = "https://github.com/dagle/tree-sitter-mail", rev = "a668550628e9a76bcac4864864dd9d60c91be27f" }
+
+[language-server.beancount-lsp]
+command = "beancount-language-server"
+args = ["--stdio"]
+config.journal_file = "~/.cache/beancount.log"
+
+[[language]]
+name = "beancount"
+language-servers = ["beancount-lsp", "hx-lsp"]
+
+[[grammar]]
+name = "beancount"
+source = { git = "https://github.com/polarmutex/tree-sitter-beancount", rev = "9bc460a05b5f096d69568b5fb36105032ff4ff97" }
+
+[[language]]
+name = "fluent"
+scope = "source.ftl"
+injection-regex = "fluent"
+file-types = ["ftl"]
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "fluent"
+# source = { git = "https://github.com/tree-sitter/tree-sitter-fluent", rev = "858fdd6f1e81992e00d3541bfb31bac9365d7a47" }
+source = { git = "https://github.com/erasin/tree-sitter-fluent", rev = "14ad08028c0287ca8c10ce620377f581e17dddb2" }
+
+[[language]]
+name = "http"
+scope = "source.http"
+injection-regex = "http"
+file-types = ["rest", "http"]
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "http"
+source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "e061995f0caf2fa30f68fa1fdf2c08bcbd4629a8" }
+
+[[language]]
+name = "ron"
+file-types = ["ron", "trickfilm"]
+formatter = { command = 'ronfmt' }
+
+# for rust leptos
+[[language]]
+name = "rstml"
+scope = "scope.rstml"
+file-types = []
+injection-regex = "rstml"
+
+[[grammar]]
+name = "rstml"
+source = { git = "https://github.com/rayliwell/tree-sitter-rstml", subpath = "rstml", rev = "07a8e3b9bda09b648a6ccaca09e15dea3adf956f" }
+
+# --- steel -----
+[language-server.steel-language-server]
+command = "steel-language-server"
+args = []
+
+# [[language]]
+# name = "scheme"
+# language-servers = [ "steel-language-server" ]
+
+
+# # project/.helix/languages.toml
+# [[language]]
+# name = "scheme"
+# language-servers = ["steel"]
+# --- dart ---
+[language-server.dart.config]
+closingLabels = true
+outline = true
+flutterOutline = true
+allowOpenUri = true
+
+[[language]]
+name = "dart"
+language-servers = ["dart", "llm-lsp", "hx-lsp"]

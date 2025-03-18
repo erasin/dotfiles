@@ -1,0 +1,218 @@
+# 使用分支
+# https://github.com/erasin/helix/tree/local-dev
+# https://gitee.com/erasin/helix/tree/local-dev
+# use pr
+# #5768 tree_explore_local https://gitee.com/erasin/helix/tree/tree_explore_local 
+# #6417 inline-diagnostics  https://github.com/helix-editor/helix/pull/6417 
+# #9801 snippet_placeholder  https://github.com/helix-editor/helix/pull/9801
+# #6531 lang-config-open  https://github.com/erasin/helix/lang-config-open
+# #5199 tutor-zh  https://github.com/erasin/helix/tree/tutor-zh
+# #6468 zen mode like https://github.com/helix-editor/helix/discussions/6468 
+# statusline-word-count
+
+
+# ----- test
+
+# X #8675 plugin system use steel scheme
+# X #12369 icons v2
+# #8021 event system
+# #6118 sticky-context
+
+theme = "onedark_local"
+
+# [#2869]
+# icons= "nerd"
+# icons= "nerdfonts"
+
+[editor]
+# 真彩支持
+# tty export COLORTERM=truecolor
+true-color = true
+undercurl = true
+auto-completion = true
+# auto-save = false
+auto-info = true
+# cursorcolumn = true # 光标列高亮
+cursorline = true  # 光标 行高亮
+color-modes = true
+idle-timeout = 40
+# mouse = true
+# scrolloff = 5 # 滚动时上下边缘填充行数
+# scroll-lines = 3
+line-number = "relative" # 行号类型 absolute / relative 
+# rulers = [81, 121]   # 标尺
+# text-width = 80  # reflow 自动分割换行, 支持软换行
+# popup-border = "all"
+
+# bufferline = "multiple"  # always | multiple | nerver
+# [editor.gutters]
+# layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+
+#[6147] 
+end-of-line-diagnostics = "hint"
+
+#[local-dev:commandline] hide commandline
+commandline = false
+
+[editor.soft-wrap]
+enable = true
+# max-wrap = 20 
+# max-indent-retain = 40
+# wrap-indicator = "↪ "
+# wrap-at-text-width = true # zen-mode center View.inner_area
+
+# [#2869]
+# [editor.icons]
+# bufferline = true
+# picker = true
+# statusline = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.lsp]
+# 服务器语言信息提示 
+display-messages = true
+display-progress-messages = true
+# 内联提示
+display-inlay-hints = true
+
+# [6417] inline diagnostic
+[editor.inline-diagnostics]
+cursor-line = "hint"
+# DiagnosticFilter : disable, hint, info, waring, error
+
+# all / none
+[editor.whitespace.render]
+# space = "all"
+tab = "all"
+# newline = "all"
+
+[editor.indent-guides]
+render = true
+character = "╎" # Some characters that work well: "▏", "╎", "┆", "┊"
+skip-levels = 0
+
+# 状态栏定义
+[editor.statusline]
+# [#2869] file-type-icon
+left = [
+  "mode",
+  "spinner",
+  "version-control",
+  "read-only-indicator",
+  # "file-type-icon",
+  "file-name",
+  "file-modification-indicator",
+]
+center = ["diagnostics", "workspace-diagnostics"]
+right = [
+  "register",
+  "selections",
+  "primary-selection-length",
+  "file-encoding",
+  "file-line-ending",
+  'word-count', #[] statusline-word-count
+  "position",
+  "position-percentage",
+  "file-type",
+]
+separator = "│"
+
+mode.normal = "󰫻 "
+mode.insert = "󰫲 "
+mode.select = "󰬃 "
+
+# [#5768]
+# s-e 切换显示
+# s-E 切换并追溯到当前文件所在位置 
+# [editor.explorer]
+# position = "left"
+# column-width = 22
+
+# [#6118]
+# [editor.sticky-context]
+# enable = true
+# # indicator = true
+# max-lines = 10
+
+# [#12369] icons v2
+[editor.icons.vcs]
+enabled = true
+
+[editor.icons.mime]
+enabled = true
+php = ""
+gd = ""
+gdshader = ""
+godot = ""
+
+[editor.icons.diagnostic]
+error = ""
+warning = ""
+info = ""
+hint = ""
+
+[editor.icons.lsp]
+enabled = true
+
+[keys.normal]
+# W = "@miw"
+# smart tab
+tab = "move_parent_node_end"
+S-tab = "move_parent_node_start"
+
+# "C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to bash ~/.config/helix/scripts/hx-sh 'cargo run'"}
+"C-r" = { s = ":write", r = ":reload", c = ":config-reload", "t" = ":pipe-to bash ~/.config/helix/scripts/hx-sh 'cargo run'"}
+"C-s" = ":write"
+"C-j" = "save_selection"
+# "C-z" = "normal_mode"                  # replace suspend
+"A-/" = "toggle_comments"
+"\\" = ":reflow"                                         # |
+"X" = "extend_line_above"
+"Z" = { "Z" = [":quit"] }
+"z" = { "o" = [":toggle soft-wrap.wrap-at-text-width"] }
+
+# 输入法切换
+"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
+# 插入模式，恢复输入法
+i = ["insert_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+I = [
+  "insert_at_line_start",
+  ":pipe-to bash ~/.config/helix/scripts/ime-switch 1",
+]
+# use `li` or remap `after insert`
+a = [
+  "move_char_right",
+  "insert_mode",
+  ":pipe-to bash ~/.config/helix/scripts/ime-switch 1",
+]
+A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+o = ["open_below", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+
+# space mode
+[keys.normal.space]
+"x" = ":buffer-close"
+"w" = { r = ":reload", c = ":config-reload" }
+"." = "file_picker_in_current_buffer_directory"
+"n" = "signature_help"
+# "o" = "diagnostics_popup"
+
+[keys.insert]
+# smart tab
+S-tab = "move_parent_node_start"
+"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
+
+# tab 默认为 "tab" = smart_tab
+# tab 输入 \t 为 "S-tab" = insert_tab
+
+# Return/Enter keep insert at center with zen mode
+# 保持插入模式下书写的时候保持在屏幕中间, 可以设定在项目中 for markdown
+# "ret" = ["insert_newline", 'align_view_center']
+
+[keys.select]
+tab = "extend_parent_node_end"
+S-tab = "extend_parent_node_start"
