@@ -1,94 +1,116 @@
 #!/bin/bash
 
-# Set up caching to avoid tons of reqs to server
-cachedir=$HOME/.cache/rbn
-cachefile=${0##*/}-temp
+# 默认参数
+CITY=""
+API_KEY=""
+KEY_FILE=""
+DAY=1
+WAYBAR=false
 
-[ "$1" == "reload" ] && find "$cachedir" -name "$cachefile" -delete
+# 天气图标映射
+weather_icon() {
+    case "$1" in
+        "晴") echo "󰖙" ;;
+        "少云") echo "󰖐" ;;
+        "晴间多云") echo "󰖕" ;;
+        "多云") echo "󰼯" ;;
+        "阴") echo "󰼰" ;;
+        "有风"|"平静"|"微风"|"和风"|"清风") echo "" ;;
+        "强风/劲风"|"疾风"|"大风") echo "󰖝" ;;
+        "烈风"|"风暴"|"狂爆风") echo "󰼸" ;;
+        "飓风"|"热带风暴"|"龙卷风") echo "󰢘" ;;
+        "霾"|"中度霾"|"重度霾"|"严重霾") echo "󰖑" ;;
+        "阵雨") echo "󰖓" ;;
+        "雷阵雨"|"雷阵雨并伴有冰雹") echo "󰙾" ;;
+        "毛毛雨/细雨"|"雨"|"小雨") echo "󰖒" ;;
+        "中雨"|"大雨"|"小雨-中雨"|"中雨-大雨"|"大雨-暴雨") echo "󰖗" ;;
+        "暴雨"|"大暴雨"|"特大暴雨"|"强阵雨"|"强雷阵雨"|"极端降雨") echo "󰖖" ;;
+        "雨雪天气"|"雨夹雪"|"阵雨夹雪"|"冻雨") echo "󰙿" ;;
+        "阵雪") echo "󰼴" ;;
+        "雪"|"小雪"|"中雪"|"小雪-中雪") echo "󰖘" ;;
+        "大雪"|"暴雪"|"中雪-大雪"|"大雪-暴雪") echo "󰼶" ;;
+        "浮尘"|"扬沙"|"沙尘暴"|"强沙尘暴") echo "" ;;
+        "雾"|"浓雾"|"强浓雾"|"轻雾"|"大雾"|"特强浓雾") echo "󰖑" ;;
+        "热") echo "󰖙" ;;
+        "冷") echo "" ;;
+        *) echo "$1" ;;
+    esac
+}
 
-[ ! -d "$cachedir" ] && mkdir -p "$cachedir"
-[ ! -f "$cachedir"/"$cachefile" ] && touch "$cachedir"/"$cachefile"
+# 解析命令行参数
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -c|--city)
+            CITY="$2"
+            shift 2
+            ;;
+        -k|--key)
+            API_KEY="$2"
+            shift 2
+            ;;
+        --key-file)
+            KEY_FILE="$2"
+            shift 2
+            ;;
+        -d|--day)
+            DAY="$2"
+            shift 2
+            ;;
+        --waybar)
+            WAYBAR=true
+            shift
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
 
-cacheage=$(($(date +%s) - $(stat -c '%Y' "$cachedir/$cachefile")))
-if [ "$cacheage" -gt 1740 ] || [ ! -s "$cachedir"/"$cachefile" ]; then
-    ifconfigco="$(curl -sS ifconfig.co/json)"
-    city="$(echo "$ifconfigco" | jq --raw-output ".city")"
-    code="$(echo "$ifconfigco" | jq --raw-output ".country_iso")"
-     lat="$(echo "$ifconfigco" | jq ".latitude")"
-     lon="$(echo "$ifconfigco" | jq ".longitude")"
-    location=$city", "$code
-
-    echo "$location" > "$cachedir"/"$cachefile"
-
-    data=$(curl -s "https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=$lat&lon=$lon")
-  { echo "$data" | jq ".properties.timeseries.[0].data.instant.details.air_temperature";
-    echo "$data" | jq --raw-output ".properties.timeseries.[0].data.next_1_hours.summary.symbol_code" | cut -d"_" -f1;
-    echo "$data" | jq ".properties.timeseries.[0].data.instant.details.relative_humidity";
-    echo "$data" | jq ".properties.timeseries.[0].data.instant.details.wind_from_direction";
-    echo "$data" | jq ".properties.timeseries.[0].data.instant.details.wind_speed"; } >> "$cachedir"/"$cachefile"
+# 获取 API Key
+if [[ -z "$API_KEY" ]]; then
+    if [[ -n "$KEY_FILE" && -f "$KEY_FILE" ]]; then
+        API_KEY=$(cat "$KEY_FILE" | tr -d '\n')
+    fi
 fi
 
-mapfile -t weather < <(cat "$cachedir"/"$cachefile")
+if [[ -z "$API_KEY" || -z "$CITY" ]]; then
+    echo "API key 和 city 不能为空"
+    exit 1
+fi
 
-[ -z "${weather[2]}" ] && { echo -e "{\"text\":\"Error retreaving weather info\", \"class\": \"weather\", \"tooltip\": \"\"}" ; exit 1; }
+# 调用高德 API
+URL="https://restapi.amap.com/v3/weather/weatherInfo?key=${API_KEY}&city=${CITY}&extensions=all&output=json"
+RESPONSE=$(curl -s "$URL")
 
-case ${weather[2]} in
-"fair" | "clearsky" | "clear" | "sunny")
-    icon=" "
-    ;;
-"partlycloudy" | "cloudy" | "overcast")
-    icon="  "
-    ;;
-"mist" | "fog")
-    icon=" "
-    ;;
-"lightrain" | "rain")
-    icon=" "
-    ;;
-"lightrainshowers")
-    icon="🌦 "
-    ;;
-"heavyrain" | "rainshowers")
-    icon=" "
-    ;;
-"snow" | "lightsnow" | "lightsleet")
-    icon=" "
-    ;;
-"blowingsnow")
-    icon=" "
-    ;;
-"heavysnow" | "blizzard")
-    icon=" "
-    ;;
-*)
-    icon=" "
-    ;;
-esac
+# 检查 API 响应状态
+STATUS=$(echo "$RESPONSE" | jq -r '.status')
+if [[ "$STATUS" != "1" ]]; then
+    echo "获取天气数据失败"
+    exit 1
+fi
 
-directions=(N ↘NNW ↘NW WNW W ↗WSW ↗SW SSW S ↖SSE ↖SE ESE E ↙ENE ↙NE NNE N)
-sectors=(348.75 326.25 303.75 281.25 258.75 236.25 213.75 191.25 168.75 146.25 123.75 101.25 78.75 56.25 33.75 11.25 -11.25)
+# 提取天气数据
+DATE=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].date")
+WEEK=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].week")
+WEATHER=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].dayweather")
+TEMP=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].daytemp")
+WIND=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].daywind")
+POWER=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].daypower")
 
-for index in ${!directions[*]}
-do
-    if [ "${weather[4]%.*}" -eq "${sectors[$index]%.*}" ] && [ "${weather[4]#*.}" \> "${sectors[$index]#*.}" ] || [ "${weather[4]%.*}" -gt "${sectors[$index]%.*}" ]; then
-        wind_dir=${directions[$index]}
-        break
-    fi
-done
+# 获取天气图标
+ICON=$(weather_icon "$WEATHER")
 
-beaufort_scale=(" Hurricane-force" " Violent storm" " Storm" " Strong gale" " Gale" "! High wind"  "! Strong breeze" "  Fresh breeze" "  Moderate breeze" "  Gentle breeze"  "  Light breeze" "  Light air" "  Calm")
-sectors=(32.6 28.4 24.4 20.7 17.1 13.8 10.7 7.9 5.4 3.3 1.5 0.2 0)
-
-for index in ${!beaufort_scale[*]}
-do
-    if [ "${weather[5]%.*}" -eq "${sectors[$index]%.*}" ] && [ "${weather[5]#*.}" \> "${sectors[$index]#*.}" ] || [ "${weather[5]%.*}" -gt "${sectors[$index]%.*}" ]; then
-        wind_scale=${beaufort_scale[$index]}
-        break
-    fi
-done
-
-echo -e "{\"text\":\"<big>${wind_scale:0:1} ${wind_dir:0:1} $(printf '%.0f' "${weather[5]}")</big>m/s     <big>${icon}$(printf '%.0f' "${weather[1]}")°</big>\",\
- \"class\": \"weather\", \"tooltip\": \"${weather[0]}, $(stat -c '%z' "$cachedir/$cachefile" | cut -d' ' -f2 | cut -d'.' -f1)\\\n\
-${wind_scale:2}, ${wind_dir} $(printf '%.0f' "${weather[5]}") m/s\\\n\
-Relative humidity: $(printf '%.0f' "${weather[3]}")%\\\n\
-${weather[2]}\"}"
+# 格式化输出
+if $WAYBAR; then
+    # 输出为 Waybar JSON 格式
+    echo "{ \"text\": \"${ICON} ${WEATHER} ${TEMP}󰔄\", \"alt\": \"${WIND} ${POWER}\", \"tooltip\": null, \"class\": \"wayinfo-weather-sun\", \"percentage\": 0 }"
+else
+    # 输出为普通格式
+    echo "日期：$DATE"
+    echo "星期：$WEEK"
+    echo "天气：$WEATHER"
+    echo "温度：$TEMP°C"
+    echo "风向：$WIND"
+    echo "风力：$POWER"
+fi

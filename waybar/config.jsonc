@@ -47,10 +47,9 @@
     "on-click": "niri msg action spawn -- nautilus"
   },
   "custom/weather": {
-    "format": "{} {alt}",
+    "format": "{text} {alt}",
     "return-type": "json",
-    "exec": "wayinfo weather --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt 2> /dev/null",
-    "exec-if": "which wayinfo",
+    "exec": "$HOME/.config/waybar/scripts/weather.sh --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
     "on-click": "niri msg action spawn -- gnome-weather"
   },
   "mpris": {
