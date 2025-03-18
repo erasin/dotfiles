@@ -1,8 +1,8 @@
 
 ## lock
 
-- hyprlock
-- swaylock
+- [hyprlock](https://github.com/hyprwm/hyprlock)
+- [swaylock](https://github.com/swaywm/swaylock)
 
 ## bar
 
@@ -61,7 +61,6 @@ Restart=on-failure
 ```
 
 
-
 ```kdl
 spawn-at-startup "swww img ~/Pictures/wallpaper/a1.jpg"
 ```
@@ -69,20 +68,21 @@ spawn-at-startup "swww img ~/Pictures/wallpaper/a1.jpg"
 
 ## notify 
 
-- swaync 
+- [swaync](https://github.com/catppuccin/swaync) 
 
 ```bash
 ln -s /usr/lib/systemd/user/swaync.service ~/.config/systemd/user/niri.service.wants/
 ```
 
-- mako
+- [mako](https://github.com/emersion/mako)
+
+- [dunst](https://github.com/dunst-project/dunst)
 
 
 ## clip 
 
 - wl-clipboard
 - cliphist 管理器
-
 
 - https://github.com/YaLTeR/niri/wiki/Example-systemd-Setup
 - https://github.com/swaywm/sway/wiki/i3-Migration-Guide
@@ -119,3 +119,10 @@ chrome
 --ozone-platform=wayland
 
 
+## 录制
+
+- [slurp](https://github.com/emersion/slurp) 交互区域抓取
+- [wf-recorder](https://github.com/ammen99/wf-recorder)
+
+
+- [ydotool](https://github.com/ReimuNotMoe/ydotool) 通用命令了自动化

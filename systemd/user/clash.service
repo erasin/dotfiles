@@ -1,0 +1,11 @@
+[Unit]
+Description=Clash daemon, A rule-based proxy in Go.
+After=network-online.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/clash -d /home/erasin/.config/clash
+
+[Install]
+WantedBy=multi-user.target
