@@ -66,17 +66,21 @@ spawn-at-startup "swww img ~/Pictures/wallpaper/a1.jpg"
 ```
 
 
-## notify 
+## notifications
+
+- [mako](https://github.com/emersion/mako)
 
 - [swaync](https://github.com/catppuccin/swaync) 
 
 ```bash
 ln -s /usr/lib/systemd/user/swaync.service ~/.config/systemd/user/niri.service.wants/
 ```
-
-- [mako](https://github.com/emersion/mako)
-
 - [dunst](https://github.com/dunst-project/dunst)
+
+# launcher
+
+- rofi-wayland
+- fuzzel
 
 
 ## clip 
@@ -122,7 +126,15 @@ chrome
 ## 录制
 
 - [slurp](https://github.com/emersion/slurp) 交互区域抓取
-- [wf-recorder](https://github.com/ammen99/wf-recorder)
+- [wl-screenrec](https://github.com/russelltg/wl-screenrec) with gpu
 
+
+
+## color picker
+
+- hyprpicker
+
+
+## other
 
 - [ydotool](https://github.com/ReimuNotMoe/ydotool) 通用命令了自动化

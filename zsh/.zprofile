@@ -28,6 +28,7 @@ if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
 
   # # glfw
   # export XDG_SESSION_TYPE=wayland
+  export XDG_CACHE_HOME="$HOME/.cache"
 
   # AMD GPU
   export HSA_OVERRIDE_GFX_VERSION=10.3.0

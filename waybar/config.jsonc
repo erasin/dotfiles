@@ -15,7 +15,8 @@
     "custom/media-toggle",
     "custom/media",
     "custom/media-next",
-    "custom/notification"
+    "custom/notification",
+    "custom/recorder"
   ],
   "modules-right": [
     "custom/weather",
@@ -165,24 +166,39 @@
     "on-click": "$HOME/.config/waybar/scripts/clipboard.sh",
     "on-click-middle": "$HOME/.config/waybar/scripts/clipboard.sh wipe"
   },
+  // "custom/notification": {
+  //   "tooltip": false,
+  //   "format": "{icon}",
+  //   "format-icons": {
+  //     "notification": "<span foreground='red'><sup></sup></span>",
+  //     "none": "",
+  //     "dnd-notification": "<span foreground='red'><sup></sup></span>",
+  //     "dnd-none": "",
+  //     "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+  //     "inhibited-none": "",
+  //     "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+  //     "dnd-inhibited-none": ""
+  //   },
+  //   "return-type": "json",
+  //   "exec-if": "which swaync-client",
+  //   "exec": "swaync-client -swb",
+  //   "on-click": "swaync-client -t -sw",
+  //   "on-click-right": "swaync-client -d -sw",
+  //   "escape": true
+  // },
   "custom/notification": {
-    "tooltip": false,
+    "tooltip": true,
     "format": "{icon}",
     "format-icons": {
-      "notification": "<span foreground='red'><sup></sup></span>",
-      "none": "",
-      "dnd-notification": "<span foreground='red'><sup></sup></span>",
-      "dnd-none": "",
-      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
-      "inhibited-none": "",
-      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-      "dnd-inhibited-none": ""
+      "notification": "",
+      "none": ""
     },
+    "interval": 1,
     "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
+    "exec-if": "which makoctl",
+    "exec": "$HOME/.config/waybar/scripts/mako-status.sh",
+    "on-click": "makoctl restore",
+    "on-click-right": "makoctl dismiss -a",
     "escape": true
   },
   "battery": {
@@ -283,7 +299,8 @@
       "shutdown": "shutdown",
       "reboot": "reboot",
       "suspend": "systemctl suspend",
-      "hibernate": "systemctl hibernate"
+      // "hibernate": "systemctl hibernate"
+      "logout": ""
     }
   },
   "niri/workspaces": {
@@ -302,13 +319,13 @@
   "custom/window-close": {
     "format": "󰅙",
     "tooltip": false,
-    "on-click": "bash $HOME/.config/waybar/scripts/niri-close-focused-window.sh "
+    "on-click": "$HOME/.config/waybar/scripts/niri-close-focused-window.sh"
   },
   // 标题
   "niri/window": {
     "format": "{app_id} {title}",
     "icon": true,
-    "on-click": "bash $HOME/.config/niri/scripts/switch-window.sh"
+    "on-click": "$HOME/.config/niri/scripts/switch-window.sh"
   },
   // keyboard layout
   "niri/language": {
@@ -390,5 +407,14 @@
   "tray": {
     "icon-size": 21,
     "spacing": 5
+  },
+  "custom/recorder": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/screenrec.sh status",
+    "interval": 1,
+    "on-click": "$HOME/.config/waybar/scripts/screenrec.sh toggle",
+    "on-click-right": "$HOME/.config/waybar/scripts/screenrec.sh select-area",
+    "tooltip": true
   }
 }

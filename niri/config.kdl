@@ -392,12 +392,11 @@ window-rule {
     // block-out-from "screencast"
 }
 
-// 录着遮挡
+// 录遮挡
 // Block out password managers from screencasts.
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
 
     block-out-from "screencast"
 }
@@ -466,10 +465,15 @@ binds {
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
-    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" "&& ~/.config/niri/scripts/wp-vol.sh";
+
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" "&& ~/.config/niri/scripts/wp-vol.sh";
+    }
+    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" "&& ~/.config/niri/scripts/wp-vol.sh"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle" "&& ~/.config/niri/scripts/wp-vol.sh"; }
     XF86AudioPlay        allow-when-locked=true { spawn "wayinfo" "player" "toggle"; }
     XF86AudioPause       allow-when-locked=true { spawn "wayinfo" "player" "toggle"; }
     XF86AudioNext        allow-when-locked=true { spawn "wayinfo" "player" "next"; }

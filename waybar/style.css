@@ -73,6 +73,7 @@
 #custom-weather,
 /* middle */
 #custom-notification,
+/* #custom-recorder, */
 /* right */
 #tray {
   margin-right: 2pt;
@@ -185,4 +186,22 @@ menu {
 menuitem {
   border-radius: 15px;
   padding: 8px 12px;
+}
+
+
+#custom-recorder {
+  margin: 1pt;
+  padding: 2pt 6pt;
+  border-radius: 8pt;
+  font-size: 16px;
+  background: @black;
+  color: @white;
+}
+
+#custom-recorder.recording {
+  color: #ff5555;
+}
+
+#custom-recorder.stopped {
+  color: #999999;
 }
