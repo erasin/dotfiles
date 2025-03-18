@@ -291,3 +291,7 @@ if [[ $(uname) == "Darwin" ]]; then
     alias resetDock='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock'
     # }}}
 fi
+
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+    alias open-folder='niri msg action spawn -- nautilus $(pwd)'
+fi

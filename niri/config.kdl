@@ -4,7 +4,7 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
 
-spawn-at-startup "fcitx5"
+spawn-at-startup "fcitx5 -r"
 // xwayland
 spawn-at-startup "xwayland-satellite"
 
@@ -373,11 +373,6 @@ window-rule {
     open-floating true
     default-floating-position x=32 y=32 relative-to="bottom-right"
 }
-
-// window-rule {
-//     match app-id=""
-// }
-
 
 // 遮挡 
 // Example: block out two password managers from screen capture.

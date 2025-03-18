@@ -30,6 +30,9 @@ if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
   # export XDG_SESSION_TYPE=wayland
   export XDG_CACHE_HOME="$HOME/.cache"
 
+  export WLR_RENDERER=vulkan
+  export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
+
   # AMD GPU
   export HSA_OVERRIDE_GFX_VERSION=10.3.0
   # export HCC_AMDGPU_TARGET="gfx1030"
