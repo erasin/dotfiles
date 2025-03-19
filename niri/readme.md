@@ -1,7 +1,6 @@
 
 ## lock
 
-- [hyprlock](https://github.com/hyprwm/hyprlock)
 - [swaylock](https://github.com/swaywm/swaylock)
 
 ## bar
@@ -133,7 +132,6 @@ chrome
 ## color picker
 
 - hyprpicker
-
 
 ## other
 

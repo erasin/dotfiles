@@ -258,7 +258,7 @@ layout {
 // create eww.services for eww daemon
 // spawn-at-startup "eww daemon"
 // create swww.services for swww-daemon
-spawn-at-startup "swww img ~/Pictures/wallpaper/background.jpg"
+spawn-at-startup "swww img ~/Pictures/wallpaper/zelda5.jpg"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -369,9 +369,10 @@ window-rule {
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"firefox$"# title="^画中画$"
+    match app-id=r#"firefox$"# title="^扩展(.*)"
 
     open-floating true
-    default-floating-position x=32 y=32 relative-to="bottom-right"
+    // default-floating-position x=32 y=32 relative-to="bottom-right"
 }
 
 // 遮挡 
@@ -451,7 +452,7 @@ binds {
     // Mod+T { spawn "alacritty"; }
     Mod+T { spawn "kitty"; }
     Mod+Space { spawn "fuzzel"; }
-    Super+Alt+L { spawn "hyprlock"; }
+    Super+Alt+L { spawn "swaylock"; }
     Mod+E { spawn "nautilus"; }
     Mod+Tab { spawn "~/.config/niri/scripts/switch-window.sh"; }
 

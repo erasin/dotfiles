@@ -293,5 +293,5 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
-    alias open-folder='niri msg action spawn -- nautilus $(pwd)'
+    alias openfolder='niri msg action spawn -- nautilus $(pwd)'
 fi

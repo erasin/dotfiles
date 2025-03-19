@@ -18,6 +18,18 @@
 - alacritty
 - btm
 - choose replace awk
+- bat
+- htop
+- fzf
+- skim
+
+- iproute2
+  - ip
+  - ss
+
+- mpd
+- mpd-mpris
+- ncmpcpp
 
 ## dev
 

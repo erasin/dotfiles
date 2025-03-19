@@ -16,7 +16,6 @@
     "custom/media",
     "custom/media-next",
     "custom/notification",
-    "custom/recorder"
   ],
   "modules-right": [
     "custom/weather",
@@ -32,6 +31,7 @@
     "custom/gsconnect",
     "custom/unmount",
     "tray",
+    "custom/recorder",
     "clock#date",
     "clock#time",
     "custom/logout"
@@ -294,7 +294,7 @@
     "menu": "on-click",
     "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
     "menu-actions": {
-      "lock": "niri msg action spawn -- hyprlock",
+      "lock": "niri msg action spawn -- swaylock",
       "shutdown": "shutdown",
       "reboot": "reboot",
       "suspend": "systemctl suspend",
@@ -318,7 +318,7 @@
   "custom/window-close": {
     "format": "󰅙",
     "tooltip": false,
-    "on-click": "$HOME/.config/waybar/scripts/niri-close-focused-window.sh"
+    "on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action close-window --id {}"
   },
   // 标题
   "niri/window": {
