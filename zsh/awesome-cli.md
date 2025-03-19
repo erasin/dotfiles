@@ -22,6 +22,7 @@
 - htop
 - fzf
 - skim
+- grim
 
 - iproute2
   - ip

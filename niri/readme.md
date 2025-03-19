@@ -126,8 +126,7 @@ chrome
 
 - [slurp](https://github.com/emersion/slurp) 交互区域抓取
 - [wl-screenrec](https://github.com/russelltg/wl-screenrec) with gpu
-
-
+- grim 截屏
 
 ## color picker
 

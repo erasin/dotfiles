@@ -11,11 +11,10 @@
     "niri/window"
   ],
   "modules-center": [
-    // "mpris",
-    "custom/media-toggle",
-    "custom/media",
-    "custom/media-next",
-    "custom/notification",
+    "mpris"
+    // "custom/media-toggle",
+    // "custom/media",
+    // "custom/media-next"
   ],
   "modules-right": [
     "custom/weather",
@@ -31,6 +30,7 @@
     "custom/gsconnect",
     "custom/unmount",
     "tray",
+    "custom/notification",
     "custom/recorder",
     "clock#date",
     "clock#time",
@@ -54,14 +54,27 @@
   },
   "mpris": {
     "format": "{player_icon} {dynamic}",
-    "format-paused": "DEFAULT: {status_icon} <i>{dynamic}</i>",
+    "format-paused": "{player_icon} {status_icon} <i>{dynamic}</i>",
     "player-icons": {
       "default": "▶",
-      "mpv": "🎵"
+      "mpd": "",
+      "mpv": "",
+      "firefox": "󰈹"
     },
     "status-icons": {
       "paused": "⏸"
-    }
+    },
+    "dynamic-len": 10,
+    "dynamic-order": [
+      "title",
+      "artist",
+      "album"
+    ],
+    "dynamic-importance-order": [
+      "title",
+      "artist",
+      "album"
+    ]
     // "ignored-players": [
     //   "firefox"
     // ]
@@ -189,8 +202,8 @@
     "tooltip": true,
     "format": "{icon}",
     "format-icons": {
-      "notification": "",
-      "none": ""
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": ""
     },
     "interval": 1,
     "return-type": "json",
