@@ -38,8 +38,8 @@ size = 13.0
 # normal = { family = "JetBrains Mono" }
 # normal = { family = "Fire Code" }
 
-# normal = { family = "NerdMono"}
-normal = { family = "MapleNerd"}
+normal = { family = "JetNerdMono"}
+# normal = { family = "MapleNerdMono"}
 # 使用 fontconfigs 支持多种字体
 # /etc/fonts/fonts.conf 或者 ~/.config/fontconfig/fonts.conf 
 # 添加字体后，使用 fc-cache -fv 刷新字体，fc-list 或者 fc-match 检查字体
