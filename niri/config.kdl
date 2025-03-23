@@ -4,7 +4,7 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
 // 输入法
-spawn-at-startup "fcitx5 -r"
+spawn-at-startup "fcitx5 -d"
 // xwayland
 spawn-at-startup "xwayland-satellite"
 
@@ -84,7 +84,7 @@ output "DP-3" {
     // off
 
     // Resolution and, optionally, refresh rate of the output.
-    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
+    // The format is "<width>x<height>" or "<idth>x<height>@<refresh rate>".
     // If the refresh rate is omitted, niri will pick the highest refresh rate
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
@@ -116,6 +116,11 @@ output "DP-3" {
 layout {
     // Set gaps around windows in logical pixels.
     gaps 8
+
+    // 单列居中
+    always-center-single-column
+    // 第一个空间留空
+    // empty-workspace-above-first
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -482,8 +487,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    // Mod+T { spawn "alacritty"; }
-    Mod+T hotkey-overlay-title="打开终端" { spawn "kitty"; }
+    Mod+T hotkey-overlay-title="打开终端" { spawn "alacritty"; } // or kitty
     Mod+Space { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="锁屏" { spawn "swaylock"; }
     Mod+E { spawn "nautilus"; }

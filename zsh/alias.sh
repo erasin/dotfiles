@@ -24,8 +24,6 @@ alias goen='export LANGUAGE=en_US;echo "LANGUAGE=en_US";'
 alias goen2='export LANG=en_US.UTF-8;export LANGUAGE=en_US:en;echo "en_US.UTF-8";'
 #}}}
 
-
-
 # alias ze='zellij  -l simple'
 # alias ze='zellij -s O -l simple attach --index 0 --create'
 function ze(){
@@ -170,6 +168,7 @@ function theme-dark() {
     # kitty
     if command -v kitten &> /dev/null; then
         kitten theme "One Half Dark"
+        sd "^text_composition_strategy"  "# text_composition_strategy" ${HOME}/.config/kitty/kitty.conf
     fi
     
     # alacritty
@@ -204,6 +203,7 @@ function theme-light() {
     # kitty
     if command -v kitten &> /dev/null; then
         kitten theme "One Half Light"
+        sd "# text_composition_strategy"  "text_composition_strategy" ${HOME}/.config/kitty/kitty.conf
     fi
     
     # alacritty

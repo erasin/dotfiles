@@ -1,3 +1,4 @@
 # README
 
 - niri
+- waybar

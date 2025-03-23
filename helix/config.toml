@@ -18,7 +18,7 @@
 # #8021 event system
 # #6118 sticky-context
 
-theme = "onedark_local"
+theme = "onelight_local"
 
 # [#2869]
 # icons= "nerd"
@@ -53,6 +53,8 @@ end-of-line-diagnostics = "hint"
 
 #[local-dev:commandline] hide commandline
 commandline = false
+editor-config = true
+
 
 [editor.soft-wrap]
 enable = true

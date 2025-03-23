@@ -1,6 +1,6 @@
 [general]
 import = [
-  "~/.config/alacritty/themes/oneDark.toml",
+  "~/.config/alacritty/themes/oneLight.toml",
   "~/.config/alacritty/keymaps/tmux_keymap.toml",
 ]
 
@@ -46,7 +46,7 @@ normal = { family = "JetNerdMono"}
 #
 # <match target="pattern">
 #     <test qual="any" name="family">
-#         <string>NerdMono</string>
+#         <string>JetNerdMono</string>
 #     </test>
 #     <edit name="family" mode="assign" binding="same">
 #         <string>JetBrains Mono</string>
@@ -58,11 +58,12 @@ normal = { family = "JetNerdMono"}
 #
 # <match target="pattern">
 #     <test qual="any" name="family">
-#         <string>MapleNerd</string>
+#         <string>MapleNerdMono</string>
 #     </test>
 #     <edit name="family" mode="assign" binding="same">
 #         <string>MapleMono</string>
 #         <string>Symbols Nerd Font Mono</string>
+#         <string>HarmonyOS Sans SC</string>
 #     </edit>
 # </match>
 
