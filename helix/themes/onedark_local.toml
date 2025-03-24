@@ -99,7 +99,7 @@ inherits = "onedark"
 "diff.delta.moved" = { fg = "gold" }
 "diff.delta.conflict" = {fg = "blue"}
 
-"ui.background" = { bg = "dark", fg = "white"}
+"ui.background" = { bg = "black" }
 "ui.background.separator" = { bg = "black" }
 
 "ui.cursor" = { fg = "black", bg = "grey-600" }

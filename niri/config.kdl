@@ -407,6 +407,7 @@ window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"firefox$"# title="^画中画$"
     match app-id=r#"firefox$"# title="^扩展(.*)"
+    match app-id=r#"Alacritty$"# title="^file-picker(.*)"
 
     open-floating true
     // default-floating-position x=32 y=32 relative-to="bottom-right"
