@@ -49,7 +49,8 @@
   "custom/weather": {
     "format": "{text} {alt}",
     "return-type": "json",
-    "exec": "$HOME/.config/waybar/scripts/weather.sh --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
+    // "exec": "$HOME/.config/waybar/scripts/weather.sh --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
+    "exec": "wayinfo weather --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
     "on-click": "niri msg action spawn -- gnome-weather"
   },
   "mpris": {

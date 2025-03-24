@@ -1,7 +1,7 @@
 {
 	"run main": {
 		"title": "rust run main",
-		"filter": "fn main",
+		"filter": "",
 		"shell": [
 			"alacritty --hold --working-directory ${TM_DIRECTORY} -e cargo r"
 		],
@@ -9,7 +9,7 @@
 	},
 	"run in tmux": {
 		"title": "tmux:rust run main",
-		"filter": "fn main",
+		"filter": "",
 		"shell": [
 			"tmux split-window -h -c ${WORKSPACE_FOLDER}; tmux send 'cargo r' Enter"
 		],

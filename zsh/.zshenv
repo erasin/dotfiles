@@ -1,5 +1,5 @@
 # ==== BY SELF ===
-export TERM_THEME=light
+export TERM_THEME=dark
 
 # ./.config/environment.d/envvars.conf
 # GTK_IM_MODULE=fcitx

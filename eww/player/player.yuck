@@ -12,7 +12,6 @@
 (defpoll shuffle 			:interval "1s" "wayinfo player shuffle")
 (defpoll loop 				:interval "1s" "wayinfo player loop")
 
-
 ;; Widgets ;;
 
 (defwidget shuffle [color action status]

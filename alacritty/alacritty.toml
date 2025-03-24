@@ -1,6 +1,6 @@
 [general]
 import = [
-  "~/.config/alacritty/themes/oneLight.toml",
+  "~/.config/alacritty/themes/oneDark.toml",
   "~/.config/alacritty/keymaps/tmux_keymap.toml",
 ]
 

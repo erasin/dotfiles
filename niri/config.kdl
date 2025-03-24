@@ -293,7 +293,6 @@ layout {
 // spawn-at-startup "alacritty" "-e" "fish"
 
 // background
-// create eww.services for eww daemon
 // spawn-at-startup "eww daemon"
 // create swww.services for swww-daemon
 spawn-at-startup "swww img ~/Pictures/wallpaper/zelda5.jpg"
