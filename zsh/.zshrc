@@ -50,7 +50,9 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 
 # echo -e "\e]2;New Title\007";sleep 100
 # preexec() { print -Pn "\e]0;${PWD##*/} \a" }
-  
+# 显示最后命令 
+preexec() { print -Pn "\e]0;$1 - zsh\a" }  
+
 if [[ $(uname) == "Linux" ]]; then
   source ${HOME}/.config/broot/launcher/bash/br
   # source /usr/share/nvm/init-nvm.sh

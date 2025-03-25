@@ -11,29 +11,28 @@
     "niri/window"
   ],
   "modules-center": [
-    "mpris"
+    "mpris",
     // "custom/media-toggle",
     // "custom/media",
     // "custom/media-next"
+    "custom/notification"
   ],
   "modules-right": [
     "custom/weather",
     "pulseaudio",
     "bluetooth",
     "network",
-    "keyboard-state",
-    "memory",
     "cpu",
-    // "battery",
+    "memory",
+    "keyboard-state",
+    "custom/temperature",
     "niri/language",
     "custom/clipboard",
     "custom/gsconnect",
     "custom/unmount",
     "tray",
-    "custom/notification",
     "custom/recorder",
-    "clock#date",
-    "clock#time",
+    "clock",
     "custom/logout"
   ],
   "custom/arch": {
@@ -46,12 +45,46 @@
     "tooltip": false,
     "on-click": "niri msg action spawn -- nautilus"
   },
-  "custom/weather": {
-    "format": "{text} {alt}",
-    "return-type": "json",
-    // "exec": "$HOME/.config/waybar/scripts/weather.sh --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
-    "exec": "wayinfo weather --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
-    "on-click": "niri msg action spawn -- gnome-weather"
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      // Named workspaces
+      "def": "󰹑",
+      "dev": "",
+      "writer": "",
+      // Icons by state
+      // "active": "",
+      "default": ""
+    }
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "tooltip-format": "{title} | {app_id}",
+    "icon-size": 24,
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "on-click-right": "minimize"
+  },
+  // 关闭按钮
+  "custom/window-close": {
+    "format": "󰅙",
+    "tooltip": false,
+    "on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action close-window --id {}"
+  },
+  // 标题
+  "niri/window": {
+    "format": "{title}",
+    "max-length": 50,
+    "all-outputs": true,
+    "offscreen-css": true,
+    "offscreen-css-text": "(inactive)",
+    "icon": true,
+    "icons-size": "20",
+    "rewrite": {
+      "(.*) - Mozilla Firefox": "🌎 $1",
+      "(.*) - zsh": " [$1]"
+    },
+    "on-click": "$HOME/.config/niri/scripts/switch-window.sh"
   },
   "mpris": {
     "format": "{player_icon} {dynamic}",
@@ -109,76 +142,6 @@
     "return-type": "json",
     "escape": true
   },
-  "cava": {
-    //        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
-    "framerate": 30,
-    "autosens": 1,
-    "sensitivity": 100,
-    "bars": 14,
-    "lower_cutoff_freq": 50,
-    "higher_cutoff_freq": 10000,
-    "method": "pulse",
-    "source": "auto",
-    "stereo": true,
-    "reverse": false,
-    "bar_delimiter": 0,
-    "monstercat": false,
-    "waves": false,
-    "noise_reduction": 0.77,
-    "input_delay": 2,
-    "format-icons": [
-      "▁",
-      "▂",
-      "▃",
-      "▄",
-      "▅",
-      "▆",
-      "▇",
-      "█"
-    ],
-    "actions": {
-      "on-click-right": "mode"
-    }
-  },
-  "wlr/taskbar": {
-    "format": "{icon}",
-    "tooltip-format": "{title} | {app_id}",
-    "icon-size": 24,
-    "on-click": "activate",
-    "on-click-middle": "close",
-    "on-click-right": "minimize"
-  },
-  // Install python-pydbus ydotool gsconnect(AUR)
-  // then 'sudo usermod -aG input $USER' AND REBOOT
-  "custom/gsconnect": {
-    "format": "{alt}󱘖",
-    // "min-length": 30,
-    // "align": 0.2,
-    "format-alt": "{alt}-{types}",
-    "tooltip": false,
-    "interval": 10,
-    "return-type": "json",
-    "escape": true,
-    "exec": "$HOME/.config/waybar/scripts/gsconnect-status.py",
-    "on-click-right": "/usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/gsconnect-preferences"
-  },
-  // Install fuzzel
-  "custom/unmount": {
-    "format": "{}  ",
-    "interval": 10,
-    "return-type": "json",
-    "exec": "$HOME/.config/waybar/scripts/unmount.sh",
-    "on-click": "$HOME/.config/waybar/scripts/unmount.sh unmount",
-    "signal": 10
-  },
-  // Install cliphist wl-clipboard libnotify fuzzel
-  "custom/clipboard": {
-    "format": "{}  ",
-    "tooltip-format": "{}",
-    "tooltip": false,
-    "on-click": "$HOME/.config/waybar/scripts/clipboard.sh",
-    "on-click-middle": "$HOME/.config/waybar/scripts/clipboard.sh wipe"
-  },
   // "custom/notification": {
   //   "tooltip": false,
   //   "format": "{icon}",
@@ -214,6 +177,71 @@
     "on-click-right": "makoctl dismiss -a",
     "escape": true
   },
+  "custom/weather": {
+    "format": "{text} {alt}",
+    "return-type": "json",
+    // "exec": "$HOME/.config/waybar/scripts/weather.sh --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
+    "exec": "wayinfo weather --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
+    "on-click": "niri msg action spawn -- gnome-weather"
+  },
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": "󰋐",
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": " ",
+      "headset": " ",
+      "phone": "",
+      "portable": "󰓃",
+      "car": "󱓭",
+      "default": [
+        "▁󰓃",
+        "▂󰓃",
+        "▃󰓃",
+        "▄󰓃",
+        "▅󰓃",
+        "▆󰓃",
+        "▇󰓃",
+        "█󰓃"
+      ]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "tooltip": false
+  },
+  // Install blueman pulseaudio-bluetooth
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "󰂲",
+    "format-connected": " {num_connections} ",
+    // "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "niri msg action spawn -- blueman-manager"
+  },
+  "custom/temperature": {
+    "exec": "$HOME/.config/waybar/scripts/temperature.sh",
+    "return-type": "json",
+    "interval": 5,
+    "format": "{icon} {text}°",
+    "format-alt": "{icon} {alt}°",
+    "tooltip": true,
+    // "tooltip-format": "{tooltip}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "max-value": 100
+  },
   "battery": {
     "interval": 10,
     "states": {
@@ -234,40 +262,6 @@
       ""
     ],
     "tooltip": false
-  },
-  "clock#time": {
-    "interval": 10,
-    "format": "{:%H:%M}",
-    "on-click": "niri msg action spawn -- gnome-calendar",
-    "tooltip": false
-  },
-  "clock#date": {
-    "interval": 20,
-    "format": "{:%Y-%m-%d}",
-    "format-alt": "Week {:%V of the %Y}",
-    "tooltip-format": "<big>{:%B %Y}</big>\n<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
-    "calendar": {
-      "mode": "month",
-      "mode-mon-col": 3,
-      "weeks-pos": "right",
-      "on-scroll": 1,
-      "on-click-right": "mode",
-      "format": {
-        "months": "<span color='#ffead3'><b>{}</b></span>",
-        "days": "<span color='#ecc6d9'><b>{}</b></span>",
-        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-      }
-    },
-    "actions": {
-      "on-click-right": "mode",
-      "on-click-forward": "tz_up",
-      "on-click-backward": "tz_down",
-      "on-click-middle": "shift_reset",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
   },
   "cpu": {
     "interval": 10,
@@ -301,107 +295,7 @@
     "tooltip-format-ethernet": "󰱓 {ifname}\nIP: {ipaddr}",
     "on-click-right": "niri msg action spawn -- nm-connection-editor"
   },
-  "custom/logout": {
-    "format": "",
-    "tooltip": false,
-    // "on-click": "niri msg action spawn -- eww open --toggle powermenu""menu": "on-click",
-    "menu": "on-click",
-    "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-    "menu-actions": {
-      "lock": "niri msg action spawn -- swaylock",
-      "shutdown": "shutdown",
-      "reboot": "reboot",
-      "suspend": "systemctl suspend",
-      // "hibernate": "systemctl hibernate"
-      "logout": ""
-    }
-  },
-  "niri/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-      // Named workspaces
-      "def": "󰹑",
-      "dev": "",
-      "writer": "",
-      // Icons by state
-      "active": "",
-      "default": ""
-    }
-  },
-  // 关闭按钮
-  "custom/window-close": {
-    "format": "󰅙",
-    "tooltip": false,
-    "on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action close-window --id {}"
-  },
-  // 标题
-  "niri/window": {
-    "format": "{app_id} {title}",
-    "icon": true,
-    "on-click": "$HOME/.config/niri/scripts/switch-window.sh"
-  },
   // keyboard layout
-  "niri/language": {
-    "format": "{}",
-    "format-en": "EN",
-    "format-zh": "中"
-  },
-  // Install blueman pulseaudio-bluetooth
-  "bluetooth": {
-    "format": " {status}",
-    "format-disabled": "󰂲",
-    "format-connected": " {num_connections} ",
-    // "format-connected": " {device_alias}",
-    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-    // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
-    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-    "on-click": "niri msg action spawn -- blueman-manager"
-  },
-  // Install pavucontrol pipewire-media-session pulseaudio pulseaudio-alsa
-  "pulseaudio": {
-    "scroll-step": 1,
-    "format": "{icon} {volume}%",
-    "format-bluetooth": "{icon} {volume}%",
-    "format-muted": "󰋐",
-    "format-icons": {
-      "headphone": " ",
-      "hands-free": " ",
-      "headset": " ",
-      "phone": "",
-      "portable": "󰓃",
-      "car": "󱓭",
-      "default": [
-        "▁󰓃",
-        "▂󰓃",
-        "▃󰓃",
-        "▄󰓃",
-        "▅󰓃",
-        "▆󰓃",
-        "▇󰓃",
-        "█󰓃"
-      ]
-    },
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-click-right": "pavucontrol",
-    "tooltip": false
-  },
-  "temperature": {
-    "critical-threshold": 90,
-    "interval": 5,
-    "format": "{icon} {temperatureC}°",
-    "format-critical": "  {temperatureC}°C {icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "tooltip": false
-  },
   "keyboard-state": {
     "numlock": false,
     "capslock": true,
@@ -417,6 +311,42 @@
       "unlocked": ""
     }
   },
+  "niri/language": {
+    "format": "{}",
+    "format-en": "EN",
+    "format-zh": "中"
+  },
+  // Install python-pydbus ydotool gsconnect(AUR)
+  // then 'sudo usermod -aG input $USER' AND REBOOT
+  "custom/gsconnect": {
+    "format": "{alt}󱘖",
+    // "min-length": 30,
+    // "align": 0.2,
+    "format-alt": "{alt}-{types}",
+    "tooltip": false,
+    "interval": 10,
+    "return-type": "json",
+    "escape": true,
+    "exec": "$HOME/.config/waybar/scripts/gsconnect-status.py",
+    "on-click-right": "/usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/gsconnect-preferences"
+  },
+  // Install fuzzel
+  "custom/unmount": {
+    "format": "{}  ",
+    "interval": 10,
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/unmount.sh",
+    "on-click": "$HOME/.config/waybar/scripts/unmount.sh unmount",
+    "signal": 10
+  },
+  // Install cliphist wl-clipboard libnotify fuzzel
+  "custom/clipboard": {
+    "format": "{}  ",
+    "tooltip-format": "{}",
+    "tooltip": false,
+    "on-click": "$HOME/.config/waybar/scripts/clipboard.sh",
+    "on-click-middle": "$HOME/.config/waybar/scripts/clipboard.sh wipe"
+  },
   "tray": {
     "icon-size": 21,
     "spacing": 5
@@ -429,5 +359,47 @@
     "on-click": "$HOME/.config/waybar/scripts/screenrec.sh toggle",
     "on-click-right": "$HOME/.config/waybar/scripts/screenrec.sh select-area",
     "tooltip": true
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%H:%M}  ",
+    "format-alt": "{:L%A, %B %d, %Y (%R)}  ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "on-click-right": "niri msg action spawn -- gnome-calendar",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "custom/logout": {
+    "format": "",
+    "tooltip": false,
+    // "on-click": "niri msg action spawn -- eww open --toggle powermenu""menu": "on-click",
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+    "menu-actions": {
+      "lock": "niri msg action spawn -- swaylock",
+      "shutdown": "shutdown",
+      "reboot": "reboot",
+      "suspend": "systemctl suspend",
+      // "hibernate": "systemctl hibernate"
+      "logout": ""
+    }
   }
 }

@@ -8,8 +8,8 @@
 }
 
 /* Colors (gruvbox) */
-@define-color black rgba(0, 0, 0, 0.6);
-@define-color white #ebdbb2;
+/* @define-color black rgba(0, 0, 0, 0.6); */
+/* @define-color white #ebdbb2; */
 
 /* Reset all styles */
 * {
@@ -23,7 +23,7 @@
   box-shadow: none;
   text-shadow: none;
   font-size: 10pt;
-  color: @white;
+  color: white;
 }
 
 /* The whole bar */
@@ -37,93 +37,86 @@
 /* left */
 #custom-arch,
 #custom-files,
+#workspaces,
+#taskbar,
 #custom-window-close,
 #window,
 
 /* middle */
+#mpris,
 #custom-media-toggle,
 #custom-media,
 #custom-media-next,
+#custom-notification,
 
 /* right */
+#custom-weather,
 #pulseaudio,
 #bluetooth,
 #network,
+#keyboard-state,
 #memory,
 #cpu,
 #battery,
-#keyboard-state,
-#cpu,
+#custom-temperature,
 #language,
-#custom-gsconnect,
 #custom-clipboard,
+#custom-gsconnect,
 #custom-unmount,
+#tray,
+#custom-recorder,
 #clock,
 #custom-logout {
-  padding-left: 5pt;
-  padding-right: 5pt;
-  background: @black;
-  color: @white;
-}
-
-
-/* left */
-#workspaces,
-#taskbar,
-#custom-weather,
-/* middle */
-#mpris,
-#custom-notification,
-#custom-recorder,
-/* right */
-#tray {
-  margin-right: 2pt;
-  margin-left: 2pt;
-  padding-left: 5pt;
-  padding-right: 5pt;
-  border-radius: 0 0 8pt 8pt;
-  background: @black;
-  color: @white;
-}
-
-
-button.active {
-  padding-left: 4pt;
-  padding-right: 4pt;
-  border-bottom: 1pt @white solid;
-}
-
-button:hover {
-  color: black;
-}
-
-/* .modules-right {} */
-
-#keyboard-state label.locked {
-  color: red;
+  padding-left: 3pt;
+  padding-right: 3pt;
+  background: #424242;
+  border-radius: 8pt;
+  color: white;
+  /* box-shadow: 0px 4px 8px rgba(255.0, 255.0, 255.0, 0.5); */
 }
 
 
 /* start */
-#custom-arch,
 #custom-window-close,
-#custom-media-toggle,
+#custom-arch,
 #pulseaudio,
-#custom-clipboard,
-#clock.date {
-  margin-left: 2pt;
-  border-radius: 0 0 0 8pt;
+#custom-clipboard {
+  border-radius: 8pt 0pt 0pt 8pt;
+}
+
+/* middle */
+#custom-temperature,
+#custom-gsconnect,
+#bluetooth,
+#network,
+#keyboard-state,
+#memory,
+#cpu,
+#battery {
+  border-radius: 0;
 }
 
 /* end */
-#custom-files,
 #window,
-#custom-media-next,
+#custom-files,
 #language,
-#custom-unmount,
-#custom-logout {
-  margin-right: 2pt;
-  border-radius: 0 0 8pt 0;
+#custom-unmount {
+  border-radius: 0pt 8pt 8pt 0pt;
+  margin-right: 5pt;
+}
+
+#mpris,
+#clock,
+#workspaces,
+#custom-recorder,
+#tray,
+#custom-weather,
+#taskbar {
+  margin-right: 5pt;
+}
+
+#keyboard-state label.locked {
+  color: red;
 }
 
 #custom-space {
@@ -178,6 +171,21 @@ button:hover {
   border-radius: 5px;
 }
 
+/* workspaces,windows,tray */
+
+button.active {
+  padding: 0 3pt 0 3pt;
+}
+
+button.active {
+  font-weight: 700;
+  border-bottom: 1pt white solid;
+}
+
+button:hover {
+  color: black;
+}
+
 menu {
   border-radius: 15px;
   background: #161320;
@@ -189,20 +197,14 @@ menuitem {
   padding: 8px 12px;
 }
 
-
 #custom-recorder {
-  /* margin: 1pt; */
-  /* padding: 2pt 6pt; */
-  /* border-radius: 8pt; */
   font-size: 16px;
-  /* background: @black; */
-  /* color: @white; */
 }
 
 #custom-recorder.recording {
   color: #ff5555;
 }
 
-#custom-recorder.stopped {
-  color: #999999;
-}
+/* #custom-recorder.stopped { */
+/* color: #ffffff; */
+/* } */

@@ -49,7 +49,7 @@ status_recording() {
     if [[ -f "$STATE_FILE" ]]; then
         echo '{"text": "●", "tooltip": "录制中", "class": "recording"}'
     else
-        echo '{"text": "○", "tooltip": "未录制", "class": "stopped"}'
+        echo '{"text": "", "tooltip": "未录制", "class": "stopped"}'
     fi
 }
 
