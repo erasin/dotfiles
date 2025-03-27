@@ -40,6 +40,7 @@
 #workspaces,
 #taskbar,
 #custom-window-close,
+#custom-window-width,
 #window,
 
 /* middle */
@@ -67,11 +68,14 @@
 #custom-recorder,
 #clock,
 #custom-logout {
+  margin-top: 3pt;
+  padding-top: 1pt;
   padding-left: 3pt;
   padding-right: 3pt;
   background: #424242;
   border-radius: 8pt;
   color: white;
+  min-width: 24px;
   /* box-shadow: 0px 4px 8px rgba(255.0, 255.0, 255.0, 0.5); */
 }
 
@@ -85,6 +89,7 @@
 }
 
 /* middle */
+#custom-window-width,
 #custom-temperature,
 #custom-gsconnect,
 #bluetooth,

@@ -1,6 +1,6 @@
 [[language]]
 name = "bash"
-file-types = ["sh", "tmux.conf"]
+file-types = ["sh", "tmux.conf", ".zprofile", ".zshenv", ".zshrc"]
 
 [[language]]
 name = "yaml"

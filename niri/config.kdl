@@ -89,7 +89,7 @@ output "DP-3" {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "2560x1440@120.030"
+    mode "2560x1440@119.998"
 
     // Scale is a floating-point number, but at the moment only integer values work.
     scale 1.0
@@ -295,7 +295,7 @@ layout {
 // background
 // spawn-at-startup "eww daemon"
 // create swww.services for swww-daemon
-spawn-at-startup "swww img ~/Pictures/wallpaper/zelda5.jpg"
+spawn-at-startup "swww img ~/Pictures/wallpaper/mocha-mountains.png"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -408,6 +408,16 @@ window-rule {
     match app-id=r#"firefox$"# title="^画中画$"
     match app-id=r#"firefox$"# title="^扩展(.*)"
     match app-id=r#"Alacritty$"# title="^file-picker(.*)"
+    match app-id=r#"jetbrains-studio$"#
+    // match app-id=r#"jetbrains-studio$"# title="^(.*)Settings$"
+    // match app-id=r#"jetbrains-studio$"# title="Preferences"
+    // match app-id=r#"jetbrains-studio$"# title="Project Structure"
+    // match app-id=r#"jetbrains-studio$"# title="Confirm(.*)"
+    // match app-id=r#"jetbrains-studio$"# title="Proxy(.*)"
+    // match app-id=r#"jetbrains-studio$"# title="Plugin(.*)"
+    // match app-id=r#"jetbrains-studio$"# title="Open(.*)"
+    // match app-id=r#"jetbrains-studio$"# title="Import(.*)"
+    // match app-id=r#"jetbrains-studio$"# title="Clone(.*)"
 
     open-floating true
     // default-floating-position x=32 y=32 relative-to="bottom-right"
@@ -492,6 +502,7 @@ binds {
     Super+Alt+L hotkey-overlay-title="锁屏" { spawn "swaylock"; }
     Mod+E { spawn "nautilus"; }
     Mod+Tab { spawn "~/.config/niri/scripts/switch-window.sh"; }
+    Mod+O { spawn "~/.config/waybar/scripts/clipboard.sh"; }
 
     // You can also use a shell:
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }

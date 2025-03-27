@@ -11,6 +11,7 @@ export TERM_THEME=dark
 # === TERM ====
 # export TERM=xterm-256color
 export EDITOR=hx
+export SYSTEM_EDITOR=hx
 
 # LANG zh_CN, en_US
 export LANG=zh_CN.UTF-8
@@ -71,10 +72,10 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 # ======= java =========
-# export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 # for android
 if [[ $(uname) == "Linux" ]]; then
-  export JAVA_HOME=/opt/android-studio/jbr
+  export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+  # export JAVA_HOME=/opt/android-studio/jbr
 fi
 if [[ $(uname) == "Darwin" ]]; then
   export JAVA_HOME="/usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
@@ -89,12 +90,6 @@ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 RUBY_PATH=${HOME}/.local/share/gem/ruby/3.0.0/bin 
 
 
-# 默认使用 amdvlk for bevy
-# export AMD_VULKAN_ICD=RADV
-
-# AMD ROCM
-ROCm_PATH=/opt/rocm/bin
-export OLLAMA_GPU_OVERHEAD=1000
 
 # lldb debug bin
 LLDB_VSCODE_PATH=${HOME}/.vscode/extensions/lanza.lldb-vscode-0.2.3/bin/darwin/bin
@@ -144,16 +139,24 @@ export GLICOL_CLI_SAMPLES_PATH=${HOME}/Development/github/glicol/js/assets
 
 if [[ $(uname) == "Linux" ]]; then
   # android
-  export ANDROID_SDK_ROOT=${HOME}/.local/share/Android/SDK
   export ANDROID_HOME=${HOME}/.local/share/Android/SDK
-  export ANDROID_NDK_ROOT=${ANDROID_HOME}/ndk/26.2.11394342
-  export NDK_HOME=${ANDROID_HOME}/ndk/26.2.11394342
+  export ANDROID_NDK=${ANDROID_HOME}/ndk/26.2.11394342
 
   # Playdate
   export PLAYDATE_SDK_PATH=/opt/playdate-sdk
 
   # chrome
   export CHROME_EXECUTABLE=/opt/google/chrome/chrome
+
+  # 默认使用 amdvlk for bevy
+  # export AMD_VULKAN_ICD=RADV
+
+  # AMD ROCM
+  ROCm_PATH=/opt/rocm/bin
+  export OLLAMA_GPU_OVERHEAD=1000
+
+  # for ollama, pytorch AI框架
+  HSA_OVERRIDE_GFX_VERSION=10.3.0
 
   # for rip rm-improved
   export GRAVEYARD=$HOME/.local/share/Trash
