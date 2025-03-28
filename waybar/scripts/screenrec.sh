@@ -2,7 +2,7 @@
 
 # 定义保存状态的文件
 STATE_FILE="/tmp/wl-screenrec-state"
-OUTPUT_FILE="$HOME/Videos/screenrec-$(date +'%Y%m%d-%H%M%S').mp4"
+OUTPUT_FILE="$HOME/Videos/record/rec-$(date +'%Y%m%d-%H%M%S').mp4"
 
 start_recording() {
     # notify-send "开始录制" "保存于: $OUTPUT_FILE"

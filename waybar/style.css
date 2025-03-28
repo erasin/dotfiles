@@ -18,8 +18,6 @@
   min-height: 0;
   margin: 0;
   padding: 0;
-  padding-left: 2pt;
-  padding-right: 2pt;
   box-shadow: none;
   text-shadow: none;
   font-size: 10pt;
@@ -41,6 +39,9 @@
 #taskbar,
 #custom-window-close,
 #custom-window-width,
+#custom-window-center,
+#custom-window-float,
+#custom-window-tabbed,
 #window,
 
 /* middle */
@@ -53,6 +54,7 @@
 /* right */
 #custom-weather,
 #pulseaudio,
+#pulseaudio-silder,
 #bluetooth,
 #network,
 #keyboard-state,
@@ -69,9 +71,7 @@
 #clock,
 #custom-logout {
   margin-top: 3pt;
-  padding-top: 1pt;
-  padding-left: 3pt;
-  padding-right: 3pt;
+  padding: 1pt 5pt 0 5pt;
   background: #424242;
   border-radius: 8pt;
   color: white;
@@ -81,15 +81,19 @@
 
 
 /* start */
-#custom-window-close,
+#window,
 #custom-arch,
 #pulseaudio,
 #custom-clipboard {
   border-radius: 8pt 0pt 0pt 8pt;
+  padding-right: 0;
 }
 
 /* middle */
-#custom-window-width,
+#custom-window-close,
+#custom-window-center,
+#custom-window-float,
+#custom-window-tabbed,
 #custom-temperature,
 #custom-gsconnect,
 #bluetooth,
@@ -99,15 +103,18 @@
 #cpu,
 #battery {
   border-radius: 0;
+  padding-left: 2pt;
+  padding-right: 2pt;
 }
 
 /* end */
-#window,
+#custom-window-width,
 #custom-files,
 #language,
 #custom-unmount {
   border-radius: 0pt 8pt 8pt 0pt;
   margin-right: 5pt;
+  padding-left: 0;
 }
 
 #mpris,
@@ -117,7 +124,28 @@
 #tray,
 #custom-weather,
 #taskbar {
+  margin-right: 4pt;
+}
+
+#custom-arch {
+  margin-left: 5pt;
+  padding-right: 2pt;
+}
+
+#custom-files {
+  padding-left: 2pt;
+}
+
+#custom-logout {
   margin-right: 5pt;
+}
+
+#taskbar button {
+  padding: 0 3pt 0 3pt;
+}
+
+#window {
+  padding: 0 3pt 0 3pt;
 }
 
 #keyboard-state label.locked {
@@ -178,7 +206,7 @@
 
 /* workspaces,windows,tray */
 
-button.active {
+button {
   padding: 0 3pt 0 3pt;
 }
 
@@ -190,6 +218,15 @@ button.active {
 button:hover {
   color: black;
 }
+
+#workspaces button.active:hover {
+  color: black;
+}
+
+#workspaces button.focused {
+  color: #E64A19;
+}
+
 
 menu {
   border-radius: 15px;

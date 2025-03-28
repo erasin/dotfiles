@@ -7,6 +7,12 @@
 spawn-at-startup "fcitx5 -d"
 // xwayland
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "way-edges daemon"
+
+// 壁纸
+// spawn-at-startup "eww daemon"
+// create swww.services for swww-daemon
+spawn-at-startup "swww img ~/Pictures/wallpaper/mocha-mountains.png"
 
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous
 // 
@@ -26,7 +32,6 @@ cursor {
     hide-when-typing
     // n毫秒后自动隐藏 
     hide-after-inactive-ms 10000
-
 }
 
 // Input device configuration.
@@ -73,12 +78,8 @@ input {
     // focus-follows-mouse //max-scroll-amount="0%"
 }
 
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
+// 先使用 `niri msg outputs` 检查输出名称
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
-// Remember to uncomment the node by removing "/-"!
 output "DP-3" {
     // Uncomment this line to disable this output.
     // off
@@ -110,18 +111,19 @@ output "DP-3" {
     position x=1280 y=0
 }
 
-// Settings that influence how windows are positioned and sized.
-// Find more information on the wiki:
+// 默认布局
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
-    // Set gaps around windows in logical pixels.
+    // 窗口间隙，像素单位
     gaps 8
 
     // 单列居中
     always-center-single-column
+
     // 第一个空间留空
     // empty-workspace-above-first
 
+    // 焦点窗口居中
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
     //   or right edge of the screen.
@@ -182,20 +184,6 @@ layout {
         active-gradient from="red" to="orange" angle=45 in="oklch longer hue"
         // active-gradient from="#F97316" to="#A855F7" angle=45
         inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
-
-        // You can also use gradients. They take precedence over solid colors.
-        // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
-        // The angle is the same as in linear-gradient, and is optional,
-        // defaulting to 180 (top-to-bottom gradient).
-        // You can use any CSS linear-gradient tool on the web to set these up.
-        //
-        // active-gradient from="#80c8ff" to="#bbddff" angle=45
-
-        // You can also color the gradient relative to the entire view
-        // of the workspace, rather than relative to just the window itself.
-        // To do that, set relative-to="workspace-view".
-        //
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -212,6 +200,7 @@ layout {
         // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
+    // 窗口阴影
     // You can enable drop shadows for windows.
     shadow {
         // Uncomment the next line to enable shadows.
@@ -250,7 +239,7 @@ layout {
         color "#00000070"
     }
 
-
+    // Tabbed 指示器
     tab-indicator {
         // off
         hide-when-single-tab
@@ -292,10 +281,6 @@ layout {
 // which may be more convenient to use.
 // spawn-at-startup "alacritty" "-e" "fish"
 
-// background
-// spawn-at-startup "eww daemon"
-// create swww.services for swww-daemon
-spawn-at-startup "swww img ~/Pictures/wallpaper/mocha-mountains.png"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -361,11 +346,13 @@ animations {
 }
 
 // Workspace Named
+// 空间命名
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Named-Workspaces
 workspace "def"
 workspace "dev"
 workspace "writer"
 
+// 窗口规则
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
@@ -401,53 +388,46 @@ window-rule {
     // default-column-width {}
 }
 
-// Open the Firefox Picture-in-Picture window at the bottom-left corner of the screen
-// with a small gap.
+// 窗口浮动
 window-rule {
+    // firefox bug?
+    // match app-id=r#"firefox$"# title="Panel$
+
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"firefox$"# title="^画中画$"
-    match app-id=r#"firefox$"# title="^扩展(.*)"
+
+    match title="^画中画$"
+
     match app-id=r#"Alacritty$"# title="^file-picker(.*)"
     match app-id=r#"jetbrains-studio$"#
-    // match app-id=r#"jetbrains-studio$"# title="^(.*)Settings$"
-    // match app-id=r#"jetbrains-studio$"# title="Preferences"
-    // match app-id=r#"jetbrains-studio$"# title="Project Structure"
-    // match app-id=r#"jetbrains-studio$"# title="Confirm(.*)"
-    // match app-id=r#"jetbrains-studio$"# title="Proxy(.*)"
-    // match app-id=r#"jetbrains-studio$"# title="Plugin(.*)"
-    // match app-id=r#"jetbrains-studio$"# title="Open(.*)"
-    // match app-id=r#"jetbrains-studio$"# title="Import(.*)"
-    // match app-id=r#"jetbrains-studio$"# title="Clone(.*)"
 
     open-floating true
+    // 设置浮动位置
     // default-floating-position x=32 y=32 relative-to="bottom-right"
 }
 
 // 遮挡 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
-}
-
-// 录遮挡
-// Block out password managers from screencasts.
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
 
-    block-out-from "screencast"
+    block-out-from "screen-capture"
 }
 
-// Block out mako notifications from screencasts.
-layer-rule {
-    match namespace="^notifications$"
+// 录制遮挡
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    match app-id="firefox$" title="Google Keep"
+    match app-id="firefox$" title="- Gmail "
+
+    match app-id=r#"clash-nyanpasu"#
+    match app-id=r#"Google-chrome"#
+    match app-id=r#"com.obsproject.Studio"# title="设置"
+
     block-out-from "screencast"
 }
 
@@ -475,6 +455,7 @@ window-rule {
     }
 }
 
+// layer 规则 录制遮挡
 // Block out mako notifications from screencasts.
 layer-rule {
     match namespace="^notifications$"
