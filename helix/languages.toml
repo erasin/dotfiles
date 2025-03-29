@@ -1,24 +1,11 @@
 [use-grammars]
 only = [
   # 
-  "rust",
-  "rustfmt",
-  "c",
-  "cpp",
-  "java",
+  "rust", "rustfmt", "c", "cpp", "java",
   # 
-  "go",
-  "gomod",
-  "gowork",
-  "gotmpl",
+  "go", "gomod", "gowork", "gotmpl",
   # 
-  "python",
-  "bash",
-  "lua",
-  "scheme",
-  "tsq",
-  "query",
-  "sql",
+  "python", "bash", "lua", "scheme", "tsq", "query", "sql",
   # 
   "php",
   "php-only",
@@ -57,7 +44,7 @@ only = [
   # 
   "git-config",
   "git-commit",
-  "git-ignore",
+  "gitignore",
   "git-rebase",
   "git-attributes",
   "sshclientconfig",
@@ -186,12 +173,7 @@ args = ["127.0.0.1", "6005"]
 
 [[language]]
 name = "gdscript"
-language-servers = [
-  "godot",
-  "hx-lsp",
-  "typos-lsp",
-  "lsp-ai",
-]
+language-servers = ["godot", "hx-lsp", "typos-lsp", "lsp-ai"]
 
 [language.debugger]
 name = "lldb-vscode"
@@ -315,11 +297,25 @@ language-servers = [
 
 [[language]]
 name = "json"
-language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome", "hx-lsp"]
+language-servers = [
+  { name = "vscode-json-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  "hx-lsp",
+]
 
 [[language]]
 name = "jsonc"
-language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome", "hx-lsp"]
+language-servers = [
+  { name = "vscode-json-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  { name = "hx-lsp", only-features = [
+    "document-colors",
+  ] },
+]
 
 [[language]]
 name = "html"
@@ -335,7 +331,7 @@ language-servers = [
 
 [[language]]
 name = "xml"
-language-servers = [ "vscode-html-language-server" ]
+language-servers = ["vscode-html-language-server"]
 
 [[language]]
 name = "vue"
@@ -345,7 +341,8 @@ language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp", "lsp-ai"]
 name = "tsx"
 language-servers = [
   # "typescript-language-server",
-  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  { name = "typescript-language-server", except-features = ["format"] },
+  "biome",
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
@@ -356,7 +353,8 @@ language-servers = [
 name = "jsx"
 language-servers = [
   # "typescript-language-server",
-  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  { name = "typescript-language-server", except-features = ["format"] },
+  "biome",
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
@@ -372,7 +370,8 @@ name = "javascript"
 auto-format = true
 language-servers = [
   # "typescript-language-server",
-  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  { name = "typescript-language-server", except-features = ["format"] },
+  "biome",
   "hx-lsp",
   "typos-lsp",
   "lsp-ai",
@@ -383,7 +382,8 @@ name = "typescript"
 auto-format = true
 language-servers = [
   # "typescript-language-server",
-  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  { name = "typescript-language-server", except-features = ["format"] },
+  "biome",
   "hx-lsp",
   "typos-lsp",
   "lsp-ai",
@@ -396,8 +396,8 @@ formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 # ----------- php --------------
 [language-server.intelephense.config]
 licenceKey = "/home/erasin/.config/tokens/intelephenser_licence.txt"
-storagePath = "/home/erasin/.config/php/"                             # os.tmpdir()
-globalStoragePath = "/home/erasin/.config/php/"                       # os.homedir()
+storagePath = "/home/erasin/.config/php/"                            # os.tmpdir()
+globalStoragePath = "/home/erasin/.config/php/"                      # os.homedir()
 # clearCache = false # clean state
 
 [[language]]
@@ -552,7 +552,14 @@ file-types = [
 [[language]]
 name = "markdown"
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
-language-servers = ["marksman", "markdown-oxide", "hx-lsp", "typos-lsp", "cspell", "lsp-ai"]
+language-servers = [
+  "marksman",
+  "markdown-oxide",
+  "hx-lsp",
+  "typos-lsp",
+  "cspell",
+  "lsp-ai",
+]
 # 设定 zen-mode-like
 # text-width = 80
 # soft-wrap = { enable = true, wrap-at-text-width = true }
@@ -693,3 +700,7 @@ language-servers = ["dart", "lsp-ai", "hx-lsp"]
 [[language]]
 name = "kdl"
 language-servers = ["hx-lsp"]
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }

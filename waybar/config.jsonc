@@ -7,8 +7,8 @@
 		"custom/files",
 		"niri/workspaces",
 		"wlr/taskbar",
-		"niri/window",
 		"custom/window-close",
+		"niri/window",
 		"group/niri-action"
 	],
 	"modules-center": [

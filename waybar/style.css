@@ -81,7 +81,7 @@
 
 
 /* start */
-#window,
+#custom-window-close,
 #custom-arch,
 #pulseaudio,
 #custom-clipboard {
@@ -90,7 +90,7 @@
 }
 
 /* middle */
-#custom-window-close,
+#window,
 #custom-window-center,
 #custom-window-float,
 #custom-window-tabbed,
