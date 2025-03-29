@@ -485,6 +485,10 @@ binds {
     Mod+Tab { spawn "~/.config/niri/scripts/switch-window.sh"; }
     Mod+O { spawn "~/.config/waybar/scripts/clipboard.sh"; }
 
+    // 兼容 x11 的剪贴板
+    // Mod+Ctrl+C { spawn "sh" "-c" "env DISPLAY=:0 xsel -ob | wl-copy"; }
+    // Mod+Ctrl+V { spawn "sh" "-c" "wl-paste -n | env DISPLAY=:0 xsel -ib"; }
+
     // You can also use a shell:
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
 

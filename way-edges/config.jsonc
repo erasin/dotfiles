@@ -46,7 +46,7 @@
 					"monitor": "DP-3",
 					"layer": "overlay",
 					"position": "bottom",
-					"preview_size": 7,
+					"preview_size": 0,
 					"ignore_exlusive": true,
 					"margins": {
 						"bottom": "30.0%"
@@ -57,6 +57,7 @@
 						"border_width": 4,
 						"length": "15%",
 						"fg_color": "#00E676",
+						"bg_color": "#616161",
 						"redraw_only_on_internal_update": true,
 						"preset": {
 							"type": "speaker"
@@ -72,7 +73,7 @@
 					"margins": {
 						"bottom": "15%"
 					},
-					"preview_size": 7,
+					"preview_size": 0,
 					"ignore_exlusive": true,
 					"widget": {
 						"type": "slider",
@@ -80,6 +81,7 @@
 						"border_width": 4,
 						"length": "15%",
 						"fg_color": "#FF6E40",
+						"bg_color": "#616161",
 						"redraw_only_on_internal_update": true,
 						"preset": {
 							"type": "microphone"

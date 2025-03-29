@@ -1,11 +1,24 @@
 [use-grammars]
 only = [
   # 
-  "rust", "rustfmt", "c", "cpp", "java",
+  "rust",
+  "rustfmt",
+  "c",
+  "cpp",
+  "java",
   # 
-  "go", "gomod", "gowork", "gotmpl",
+  "go",
+  "gomod",
+  "gowork",
+  "gotmpl",
   # 
-  "python", "bash", "lua", "scheme", "tsq", "query", "sql",
+  "python",
+  "bash",
+  "lua",
+  "scheme",
+  "tsq",
+  "query",
+  "sql",
   # 
   "php",
   "php-only",
@@ -307,6 +320,12 @@ language-servers = [
 
 [[language]]
 name = "jsonc"
+file-types = [
+  "jsonc",
+  "code-snippets",
+  { glob = "tsconfig.json" },
+  { glob = "bun.lock" },
+]
 language-servers = [
   { name = "vscode-json-language-server", except-features = [
     "format",
