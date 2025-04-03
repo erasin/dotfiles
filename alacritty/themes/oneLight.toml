@@ -1,25 +1,35 @@
 # One Light
 
 [colors.primary]
-background = '0xfafafa'
-foreground = '0x2a2b33'
+background = '#fafafa'
+foreground = '#2a2b33'
 
 [colors.normal]
-black = '0x000000'
-red = '0xde3d35'
-green = '0x3e953a'
-yellow = '0xa06600'
-blue = '0x2f5af3'
-magenta = '0xa00095'
-cyan = '0x3e953a'
-white = '0xbbbbbb'
+black = '#000000'
+red = '#de3d35'
+green = '#3e953a'
+yellow = '#a06600'
+blue = '#2f5af3'
+magenta = '#a00095'
+cyan = '#3e953a'
+white = '#bbbbbb'
 
 [colors.bright]
-black = '0x000000'
-red = '0xde3d35'
-green = '0x3e953a'
-yellow = '0xa06600'
-blue = '0x2f5af3'
-magenta = '0xa00095'
-cyan = '0x3e953a'
-white = '0xffffff'
+black = '#000000'
+red = '#de3d35'
+green = '#3e953a'
+yellow = '#a06600'
+blue = '#2f5af3'
+magenta = '#a00095'
+cyan = '#3e953a'
+white = '#ffffff'
+
+[colors.dim]
+black = '#1e2127'
+red = '#e06c75'
+green = '#98c379'
+yellow = '#d19a66'
+blue = '#61afef'
+magenta = '#c678dd'
+cyan = '#56b6c2'
+white = '#828791'
