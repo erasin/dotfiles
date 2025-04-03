@@ -24,7 +24,7 @@ dynamic_padding = true
 dynamic_title = true
 dimensions = { columns = 162, lines = 42 }
 padding = { x = 2, y = 0 }
-# opacity = 0.95
+opacity = 0.85
 
 [colors]
 draw_bold_text_with_bright_colors = true

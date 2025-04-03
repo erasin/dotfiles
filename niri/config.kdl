@@ -3,61 +3,60 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
+// 默认启动
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-at-startup
+// 
 // 输入法
-spawn-at-startup "fcitx5 -d"
+spawn-at-startup "fcitx5" "-d"
 // xwayland
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "way-edges daemon"
+spawn-at-startup "way-edges" "daemon"
 
 // 壁纸
-// spawn-at-startup "eww daemon"
-// create swww.services for swww-daemon
+// spawn-at-startup "eww daemon"，已经定义了 systemd
 spawn-at-startup "swww img ~/Pictures/wallpaper/mocha-mountains.png"
 
+// 截图保存路径 niri 自带的截图
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// 省略客户端装饰
+prefer-no-csd
+
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous
-// 
 // 环境变量覆盖
 environment {
     DISPLAY ":0"
 }
     
+
+// 鼠标
+cursor {
+    // xcursor-theme "breeze_cursors"
+    // xcursor-size 48 
+    hide-when-typing // 键入时候自动隐藏
+    hide-after-inactive-ms 10000 // n毫秒后自动隐藏 
+}
+
+// 剪贴板
+clipboard { }
+
 // 隐藏热键帮助
 hotkey-overlay {
     skip-at-startup
 }
 
-// 鼠标
-cursor {
-    // 键入时候自动隐藏
-    hide-when-typing
-    // n毫秒后自动隐藏 
-    hide-after-inactive-ms 10000
-}
-
-// Input device configuration.
-// Find the full list of options on the wiki:
+// 输入设备
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
     keyboard {
         xkb {
-            // You can set rules, model, layout, variant and options.
-            // For more information, see xkeyboard-config(7).
-
-            // For example:
             layout "us"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
         }
     }
 
-    // Next sections include libinput settings.
-    // Omitting settings disables them, or leaves them at their default values.
     touchpad {
         tap
-        // dwt
-        // dwtp
         natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"r
     }
 
     mouse {
@@ -66,190 +65,92 @@ input {
         // accel-profile "flat"
     }
 
-
     tablet {
         map-to-output "DP-3"
     }
-
-    // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
-
-    // Focus windows and outputs automatically when moving the mouse into them.
-    // focus-follows-mouse //max-scroll-amount="0%"
 }
 
-// 先使用 `niri msg outputs` 检查输出名称
+// 先使用 `niri msg outputs` 检查输出名称和支持的modes
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 output "DP-3" {
-    // Uncomment this line to disable this output.
     // off
-
-    // Resolution and, optionally, refresh rate of the output.
-    // The format is "<width>x<height>" or "<idth>x<height>@<refresh rate>".
-    // If the refresh rate is omitted, niri will pick the highest refresh rate
-    // for the resolution.
-    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
     mode "2560x1440@119.998"
-
-    // Scale is a floating-point number, but at the moment only integer values work.
     scale 1.0
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
-
-    // Position of the output in the global coordinate space.
-    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
-    // The cursor can only move between directly adjacent outputs.
-    // Output scale and rotation has to be taken into account for positioning:
-    // outputs are sized in logical, or scaled, pixels.
-    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
-    // so to put another output directly adjacent to it on the right, set its x to 1920.
-    // If the position is unset or results in an overlap, the output is instead placed
-    // automatically.
-    position x=1280 y=0
+    // position x=1280 y=0
 }
 
 // 默认布局
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
-    // 窗口间隙，像素单位
-    gaps 8
+    gaps 8 // 窗口间隙，像素单位
+    always-center-single-column // 单列居中
+    // empty-workspace-above-first // 第一个空间留空
+    center-focused-column "never" // 焦点窗口居中
 
-    // 单列居中
-    always-center-single-column
-
-    // 第一个空间留空
-    // empty-workspace-above-first
-
-    // 焦点窗口居中
-    // When to center a column when changing focus, options are:
-    // - "never", default behavior, focusing an off-screen column will keep at the left
-    //   or right edge of the screen.
-    // - "always", the focused column will always be centered.
-    // - "on-overflow", focusing a column will center it if it doesn't fit
-    //   together with the previously focused column.
-    center-focused-column "never"
-
-    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    // 预设列宽，使用 (Mod+R) 按照顺序变动
     preset-column-widths {
-        // Proportion sets the width as a fraction of the output width, taking gaps into account.
-        // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
         // The default preset widths are 1/3, 1/2 and 2/3 of the output.
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-
-        // Fixed sets the width in logical pixels exactly.
-        // fixed 1920
     }
 
-    // You can change the default width of the new windows.
-    default-column-width { proportion 0.5; }
-    // If you leave the brackets empty, the windows themselves will decide their initial width.
-    // default-column-width {}
+    default-column-width { proportion 0.5; } // 默认列宽
 
-    // By default focus ring and border are rendered as a solid background rectangle
-    // behind windows. That is, they will show up through semitransparent windows.
-    // This is because windows using client-side decorations can have an arbitrary shape.
-    //
-    // If you don't like that, you should uncomment `prefer-no-csd` below.
-    // Niri will draw focus ring and border *around* windows that agree to omit their
-    // client-side decorations.
-    //
-    // Alternatively, you can override it with a window rule called
-    // `draw-border-with-background`.
-
-    // You can change how the focus ring looks.
+    // 焦点环绕
     focus-ring {
-        // Uncomment this line to disable the focus ring.
         // off
-
-        // How many logical pixels the ring extends out from the windows.
-        // width 4
+        width 4
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
         // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
-        // Color of the ring on the active monitor.
         active-color "#7fc8ff"
+        inactive-color "#505050" // 但窗口无法查看
 
-        // Color of the ring on inactive monitors.
-        inactive-color "#505050"
-
-
+        // 梯度色彩
         active-gradient from="red" to="orange" angle=45 in="oklch longer hue"
-        // active-gradient from="#F97316" to="#A855F7" angle=45
         inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
-    // You can also add a border. It's similar to the focus ring, but always visible.
+    // 边框
     border {
-        // The settings are the same as for the focus ring.
-        // If you enable the border, you probably want to disable the focus ring.
         off
+        width 4
 
-        // width 4
-        // active-color "#ffc87f"
-        // inactive-color "#505050"
+        active-color "#ffc87f"
+        inactive-color "#505050"
 
-        // active-gradient from="#F97316" to="#A855F7" angle=45 relative-to="workspace-view"
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        active-gradient from="#F97316" to="#A855F7" angle=45 relative-to="workspace-view"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     // 窗口阴影
-    // You can enable drop shadows for windows.
     shadow {
-        // Uncomment the next line to enable shadows.
         on
 
-        // By default, the shadow draws only around its window, and not behind it.
-        // Uncomment this setting to make the shadow draw behind its window.
-        //
-        // Note that niri has no way of knowing about the CSD window corner
-        // radius. It has to assume that windows have square corners, leading to
-        // shadow artifacts inside the CSD rounded corners. This setting fixes
-        // those artifacts.
-        // 
-        // However, instead you may want to set prefer-no-csd and/or
-        // geometry-corner-radius. Then, niri will know the corner radius and
-        // draw the shadow correctly, without having to draw it behind the
-        // window. These will also remove client-side shadows if the window
-        // draws any.
-        // 
-        // draw-behind-window true
-
-        // You can change how shadows look. The values below are in logical
-        // pixels and match the CSS box-shadow properties.
-
-        // Softness controls the shadow blur radius.
-        softness 30
-
-        // Spread expands the shadow.
-        spread 5
-
-        // Offset moves the shadow relative to the window.
-        offset x=0 y=5
-
-        // You can also change the shadow color and opacity.
-        draw-behind-window true
+        softness 30 // 柔和度
+        spread 5 // 距离
+        offset x=0 y=5 // 偏移
+        draw-behind-window true // 绘制在窗口后面  
         color "#00000070"
     }
 
-    // Tabbed 指示器
+    // 窗口选项卡 （MOD+W) 切换列Tabbed
     tab-indicator {
         // off
-        hide-when-single-tab
-        place-within-column
-        gap 5
-        width 5
-        length total-proportion=0.5
-        position "left"
-        gaps-between-tabs 2
-        corner-radius 8
+        
+        hide-when-single-tab // 单列隐藏
+        place-within-column  // 内部放置
+        gap 5                // 距离
+        width 5              // 宽度
+        length total-proportion=0.5 // 总长度
+        position "left"      // 位置 left,right,top,bottom 
+        gaps-between-tabs 2  // 选项卡间隔
+        corner-radius 8      // 圆角
         // active-color "red"
         // inactive-color "gray"
         // active-gradient from="#80c8ff" to="#bbddff" angle=45
@@ -262,11 +163,7 @@ layout {
         // gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to="workspace-view"
     }
 
-    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
-    // You can think of them as a kind of outer gaps. They are set in logical pixels.
-    // Left and right struts will cause the next window to the side to always be visible.
-    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
-    // layer-shell panels and regular gaps.
+    // layer 四周间距，类似 padding
     struts {
         // left 64
         // right 64
@@ -275,56 +172,22 @@ layout {
     }
 }
 
-
-// Add lines like this to spawn processes at startup.
-// Note that running niri as a session supports xdg-desktop-autostart,
-// which may be more convenient to use.
-// spawn-at-startup "alacritty" "-e" "fish"
-
-
-// Uncomment this line to ask the clients to omit their client-side decorations if possible.
-// If the client will specifically ask for CSD, the request will be honored.
-// Additionally, clients will be informed that they are tiled, removing some rounded corners.
-// 省略客户端装饰
-prefer-no-csd
-
-// You can change the path where screenshots are saved.
-// A ~ at the front will be expanded to the home directory.
-// The path is formatted with strftime(3) to give you the screenshot date and time.
-// 截图保存
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-// You can also set this to null to disable saving screenshots to disk.
-// screenshot-path null
+// 切换事件
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Switch-Events
+switch-events { }
 
 // 动画效果 v 1.5
-// Animation settings.
-// The wiki explains how to configure individual animations:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
 animations {
-    // Uncomment to turn off all animations.
     // off
-
-    // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
 
-    // since 1.5
-    workspace-switch {
-        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
-    }
-
-    horizontal-view-movement {
-        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
-    }
-
-    window-movement {
-        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
-    }
+    // cruve支持:  ease-out-quad, ease-out-cubic, ease-out-expo, linear
 
     window-open {
         duration-ms 150
         curve "ease-out-expo"
-    }
+   }
 
     window-close {
         duration-ms 150
@@ -332,6 +195,18 @@ animations {
     }
 
     window-resize {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+
+    horizontal-view-movement {
         spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
     }
 
@@ -353,15 +228,11 @@ workspace "dev"
 workspace "writer"
 
 // 窗口规则
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
-
-// 圆角
-// ver 1.6
 window-rule {
-    geometry-corner-radius 10
-    clip-to-geometry true
+    geometry-corner-radius 10 // 圆角
+    clip-to-geometry true // 裁剪
+    draw-border-with-background false // 支持窗口透明无背景，关联layout 的 focus-ring 和 border
 }
 
 // window-rule {
@@ -372,20 +243,6 @@ window-rule {
 window-rule {
     match app-id="wlroots"
     open-maximized true
-}
-
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    // match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    // match app-id="Alacritty"
-
-    // 1.6
-    // geometry-corner-radius 8
-    // default-column-width {}
 }
 
 // 窗口浮动
@@ -412,6 +269,7 @@ window-rule {
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match title="密码"
 
     block-out-from "screen-capture"
 }
@@ -423,10 +281,12 @@ window-rule {
 
     match app-id="firefox$" title="Google Keep"
     match app-id="firefox$" title="- Gmail "
+    match title="密码"
 
     match app-id=r#"clash-nyanpasu"#
     match app-id=r#"Google-chrome"#
     match app-id=r#"com.obsproject.Studio"# title="设置"
+    match app-id=r#"^wechat$"#
 
     block-out-from "screencast"
 }
@@ -462,16 +322,8 @@ layer-rule {
     block-out-from "screencast"
 }
 
+// 按键绑定
 binds {
-    // Keys consist of modifiers separated by + signs, followed by an XKB key name
-    // in the end. To find an XKB name for a particular key, you may use a program
-    // like **wev**.
-    //
-    // "Mod" is a special modifier equal to Super when running on a TTY, and to Alt
-    // when running as a winit window.
-    //
-    // Most actions that you can bind here can also be invoked programmatically with
-    // `niri msg action do-something`.
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
