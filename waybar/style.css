@@ -52,6 +52,7 @@
 #custom-notification,
 
 /* right */
+#custom-wallpaper,
 #custom-weather,
 #pulseaudio,
 #pulseaudio-silder,
@@ -81,6 +82,7 @@
 
 
 /* start */
+#custom-media-toggle,
 #custom-window-close,
 #custom-arch,
 #pulseaudio,
@@ -96,6 +98,7 @@
 #custom-window-tabbed,
 #custom-temperature,
 #custom-gsconnect,
+#custom-media,
 #bluetooth,
 #network,
 #keyboard-state,
@@ -108,6 +111,7 @@
 }
 
 /* end */
+#custom-media-next,
 #custom-window-width,
 #custom-files,
 #language,
@@ -117,6 +121,7 @@
   padding-left: 0;
 }
 
+#custom-media-next,
 #mpris,
 #clock,
 #workspaces,

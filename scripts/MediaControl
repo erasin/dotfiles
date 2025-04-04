@@ -23,7 +23,6 @@ Control="MPD"
 # [ -n "$(pgrep strawberry)" ] && Control="strawberry"
 
 
-
 # saves covers here
 Cover=/tmp/cover.png
 # if cover not found in metadata use this instead

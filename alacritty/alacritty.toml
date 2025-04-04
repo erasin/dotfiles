@@ -7,6 +7,9 @@ import = [
 [debug]
 log_level = "Warn"
 
+[selection]
+save_to_clipboard = true
+
 [env]
 TERM = "xterm-256color"
 
@@ -25,6 +28,14 @@ dynamic_title = true
 dimensions = { columns = 162, lines = 42 }
 padding = { x = 2, y = 0 }
 opacity = 0.85
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[bell]
+animation = "Linear"
+duration = 0
 
 [colors]
 draw_bold_text_with_bright_colors = true

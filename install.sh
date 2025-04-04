@@ -1,4 +1,5 @@
 
+ln -s ~/dotfiles/scripts ~/.config/scripts
 ln -s ~/dotfiles/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/aria2 ~/.config/aria2
 ln -s ~/dotfiles/environment.d ~/.config/environment.d

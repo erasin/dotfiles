@@ -12,3 +12,9 @@
 - swww
 - waybar
 
+
+```sh
+systemctl --user daemon-reload
+
+systemctl --user restart xxxx.service
+```

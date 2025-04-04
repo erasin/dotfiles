@@ -12,13 +12,14 @@
 		"group/niri-action"
 	],
 	"modules-center": [
-		"mpris",
-		// "custom/media-toggle",
-		// "custom/media",
-		// "custom/media-next"
+		// "mpris",
+		"custom/media-toggle",
+		"custom/media",
+		"custom/media-next",
 		"custom/notification"
 	],
 	"modules-right": [
+		"custom/wallpaper",
 		"custom/weather",
 		"pulseaudio",
 		"bluetooth",
@@ -148,25 +149,25 @@
 		"format": "{}",
 		"tooltip-format": "播放/暂停",
 		"return-type": "text",
-		"interval": 5,
-		"exec": "wayinfo player status-icon",
-		"on-click": "wayinfo player toggle"
+		"interval": 1,
+		"exec": "$HOME/.config/scripts/MediaControl --statusicon",
+		"on-click": "$HOME/.config/scripts/MediaControl --toggle"
 	},
 	"custom/media": {
 		"format": "{}",
 		"return-type": "text",
 		"max-length": 85,
-		"interval": 5,
-		"exec": "wayinfo player title"
-		// "on-click": "niri msg action spawn -- eww open --toggle music"
+		"interval": 1,
+		"exec": "$HOME/.config/scripts/MediaControl --title",
+		"on-click": "niri msg action spawn -- eww open --toggle player"
 	},
 	"custom/media-next": {
 		"format": "󰒭",
 		"tooltip-format": "下一曲",
 		"return-type": "text",
-		"interval": 5,
-		"exec": "wayinfo player status",
-		"on-click": "wayinfo player next"
+		"interval": 1,
+		"exec": "$HOME/.config/scripts/MediaControl --status",
+		"on-click": "$HOME/.config/scripts/MediaControl --next"
 	},
 	"custom/lyric": {
 		"exec": "waylrc",
@@ -211,9 +212,13 @@
 	"custom/weather": {
 		"format": "{text} {alt}",
 		"return-type": "json",
-		// "exec": "$HOME/.config/waybar/scripts/weather.sh --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
-		"exec": "wayinfo weather --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
+		"exec": "$HOME/.config/waybar/scripts/weather.sh --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
 		"on-click": "niri msg action spawn -- gnome-weather"
+	},
+	"custom/wallpaper": {
+		"format": "󰸉",
+		"tooltip-format": "wallpaper",
+		"on-click": "swww img $(fd -a -e png -e jpg -e webp -g \"*\" ~/Pictures/wallpaper  |shuf -n1) --transition-fps=244 --transition-type=random --transition-duration=1"
 	},
 	"group/audio": {
 		"orientation": "inherit",
@@ -351,8 +356,8 @@
 		"interval": 10,
 		"return-type": "json",
 		"escape": true,
-		"exec": "$HOME/.config/waybar/scripts/gsconnect-status.py",
-		"on-click-right": "/usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/gsconnect-preferences"
+		// "exec": "$HOME/.config/waybar/scripts/gsconnect-status.py",
+		"on-click": "gjs -m /usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/gsconnect-preferences"
 	},
 	// Install fuzzel
 	"custom/unmount": {
@@ -414,16 +419,16 @@
 	"custom/logout": {
 		"format": "",
 		"tooltip": false,
-		// "on-click": "niri msg action spawn -- eww open --toggle powermenu""menu": "on-click",
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		"menu-actions": {
-			"lock": "niri msg action spawn -- swaylock",
-			"shutdown": "shutdown",
-			"reboot": "reboot",
-			"suspend": "systemctl suspend",
-			// "hibernate": "systemctl hibernate"
-			"logout": ""
-		}
+		"on-click": "niri msg action spawn -- eww open --toggle powermenu"
+		// "menu": "on-click",
+		// "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+		// "menu-actions": {
+		// 	"lock": "niri msg action spawn -- swaylock",
+		// 	"shutdown": "shutdown",
+		// 	"reboot": "reboot",
+		// 	"suspend": "systemctl suspend",
+		// 	// "hibernate": "systemctl hibernate"
+		// 	"logout": ""
+		// }
 	}
 }

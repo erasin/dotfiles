@@ -21,8 +21,16 @@ window>.powermenu {
     color: $yellow;
   }
 
+  &.suspend {
+    color: $red;
+  }
+
   &.exit {
     color: $magenta;
+  }
+
+  &.close {
+    color: lightgreen;
   }
 
   button {

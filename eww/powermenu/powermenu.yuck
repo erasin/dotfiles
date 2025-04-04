@@ -10,25 +10,40 @@
 		 :orientation "h"
 		 :spacing 20
     (eventbox :cursor "pointer"
-		(button :class "powermenu lock" 
-				:onclick "niri msg action spawn -- swaylock"
-				:tooltip "Lock session"
-				(label :show-truncated false :text "󰌾")))
+			(button :class "powermenu lock" 
+					:onclick "niri msg action spawn -- swaylock"
+					:tooltip "锁屏 Lock session"
+					(label :show-truncated false :text "󰌾")))
+
     (eventbox :cursor "pointer"
-		(button :class "powermenu exit" 
-				:onclick "niri msg action quit" 
-				:tooltip "Logout"
-				(label :show-truncated false :text "")))
+			(button :class "powermenu exit" 
+					:onclick "niri msg action quit" 
+					:tooltip "登出 Logout"
+					(label :show-truncated false :text "")))
+
     (eventbox :cursor "pointer"
-		(button :class "powermenu reboot" 
-				:onclick "systemctl reboot"
-				:tooltip "Restart"
-				(label :show-truncated false :text "")))
+			(button :class "powermenu reboot" 
+					:onclick "systemctl reboot"
+					:tooltip "重启 Restart"
+					(label :show-truncated false :text "")))
+
+    (eventbox :cursor "suspend"
+			(button :class "powermenu suspend" 
+					:onclick "systemctl suspend"
+					:tooltip "睡眠 Supend"
+					(label :show-truncated false :text "⏼")))     
+
     (eventbox :cursor "pointer"
-		(button :class "powermenu shutdown" 
-				:onclick "systemctl poweroff"
-				:tooltip "Shutdown"
-				(label :show-truncated false :text "⏻")))     
+			(button :class "powermenu shutdown" 
+					:onclick "systemctl poweroff"
+					:tooltip "关机 Shutdown"
+					(label :show-truncated false :text "󰐥")))     
+
+    (eventbox :cursor "close"
+			(button :class "powermenu close" 
+					:onclick "eww open --toggle powermenu"
+					:tooltip "close"
+					(label :show-truncated false :text "󰅙")))     
   )
 )
 

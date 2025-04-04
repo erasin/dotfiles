@@ -256,6 +256,7 @@ window-rule {
     match title="^画中画$"
 
     match app-id=r#"Alacritty$"# title="^file-picker(.*)"
+    match app-id=r#"Alacritty$"# title="^find-replace(.*)"
     match app-id=r#"jetbrains-studio$"#
 
     open-floating true
