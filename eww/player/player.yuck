@@ -1,184 +1,214 @@
 ;; Vars ;;
 
-(defpoll music-player		:interval "1s" "~/.config/scripts/MediaControl --player")
-(defpoll music-art			:interval "1s" "~/.config/scripts/MediaControl --cover")
-(defpoll music-title 		:interval "1s" "~/.config/scripts/MediaControl --title")
-(defpoll music-artist 		:interval "1s" "~/.config/scripts/MediaControl --artist")
-(defpoll music-status 		:interval "1s" "~/.config/scripts/MediaControl --status")
-(defpoll music-position 	:interval "1s" "~/.config/scripts/MediaControl --position")
-(defpoll music-positions	:interval "1s" "~/.config/scripts/MediaControl --positions")
-(defpoll music-length 		:interval "1s" "~/.config/scripts/MediaControl --length")
-(defpoll music-lengths 		:interval "1s" "~/.config/scripts/MediaControl --lengths")
-(defpoll shuffle 			:interval "1s" "~/.config/scripts/MediaControl --shuffle")
-(defpoll loop 				:interval "1s" "~/.config/scripts/MediaControl --loop")
+(defpoll music-player    :interval "1s" "../scripts/MediaControl --player")
+(defpoll music-art       :interval "1s" "../scripts/MediaControl --cover")
+(defpoll music-title     :interval "1s" "../scripts/MediaControl --title")
+(defpoll music-artist    :interval "1s" "../scripts/MediaControl --artist")
+(defpoll music-album     :interval "1s" "../scripts/MediaControl --album")
+(defpoll music-status    :interval "1s" "../scripts/MediaControl --status")
+(defpoll music-position  :interval "1s" "../scripts/MediaControl --position")
+(defpoll music-positions :interval "1s" "../scripts/MediaControl --positions")
+(defpoll music-length    :interval "1s" "../scripts/MediaControl --length")
+(defpoll music-lengths   :interval "1s" "../scripts/MediaControl --lengths")
+(defpoll shuffle         :interval "1s" "../scripts/MediaControl --shuffle")
+(defpoll loop            :interval "1s" "../scripts/MediaControl --loop")
 
 ;; Widgets ;;
 
 (defwidget shuffle [color action status]
-	(eventbox
-		:cursor "pointer"
-		(button 
-			:onclick action
-			:style "color: ${color}"
-			:tooltip status
-			"󰒟"
-		)
-	)
+  (eventbox
+    :cursor "pointer"
+    (button 
+      :onclick action
+      :style "color: ${color}"
+      :tooltip status
+      "󰒟"
+    )
+  )
 )
 
 (defwidget loop [icon color status action]
-	(eventbox
-		:cursor "pointer"
-		(button 
-			:onclick action
-			:style "color: ${color}"
-			:tooltip status
-			icon
-		)
-	)
+  (eventbox
+    :cursor "pointer"
+    (button 
+      :onclick action
+      :style "color: ${color}"
+      :tooltip status
+      icon
+    )
+  )
+)
+
+(defwidget controls []
+  (box 
+    :class "player-controls" 
+    :halign "center"
+    :hexpand true
+    :space-evenly false
+    :spacing 25
+
+    (eventbox
+      :cursor "pointer"
+      (button 
+        :class "player-previous" 
+        :onclick "../scripts/MediaControl --previous" 
+        "󰒮"
+      )
+    )
+
+    (eventbox
+      :cursor "pointer"
+      (button 
+        :class "player-toggle" 
+        :onclick "../scripts/MediaControl --toggle" 
+        {music-status == "Playing" ? "󰏤" : music-status == "Paused" ? "󰐊" : "󰓛"}
+      )
+    )
+
+    (eventbox
+      :cursor "pointer"
+      (button 
+        :class "player-next" 
+        :onclick "../scripts/MediaControl --next" 
+        "󰒭"
+      )
+    )
+
+    ; (eventbox
+    ;   :cursor "pointer"
+    ;   (button 
+    ;     :class "min" 
+    ;     :onclick "eww open --toggle player" 
+    ;     "󰅙"
+    ;   )
+    ; )
+  
+  )
+)
+
+(defwidget info []
+  (box 
+    :class "player-info" 
+    :space-evenly false 
+    :orientation "v" 
+    :spacing 10
+
+    (box
+      :class "player-title-box"
+      :spacing 0
+
+      (label 
+        :class "player-title" 
+        :halign "start" 
+        :text music-title
+        :limit-width 30
+        :wrap true
+        :xalign 0
+      )
+
+      (button
+        :class { music-player != "spotify" ? "mpd-icon" : "spotify-icon"}
+        :halign "end"
+        { music-player != "spotify" ? "󰎆" : "󰓇"}
+      )
+    )
+
+    (label 
+      :class "player-artist" 
+      :halign "start" 
+      :text music-artist 
+      :limit-width 35)
+
+    (label 
+      :class "player-album" 
+      :halign "start" 
+      :text music-album
+      :limit-width 35)
+      
+    (box
+      :space-evenly false
+      :orientation "v"
+      :valign "end"
+      :spacing 6
+      :vexpand true
+      (box
+        (box :class "top-icons"
+          (box 
+            :space-evenly false 
+            :spacing 10
+            (shuffle
+              :action { "../scripts/MediaControl --shuffle toggle" }
+              :color {shuffle == "On" ? "#81ae5f" : "#b8bfe5"}
+              :status shuffle
+            )
+            (loop
+              :action { loop == "None" ? "../scripts/MediaControl --loop playlist" :
+                        loop == "Playlist" ? "../scripts/MediaControl --loop track":
+                        loop == "Track" ? "../scripts/MediaControl --loop none" : ""
+                        }
+              :icon  { loop == "Track" ? "󰑘" :
+                       loop == "Playlist" || loop == "On" ? "󰑖" : "󰑗"}
+              :color { loop == "Playlist" || loop == "Track" || loop == "On" ? "#81ae5f" : "#b8bfe5"}
+              :status loop
+            )
+          )
+        )
+
+        (box 
+          :class "player-position" 
+          :space-evenly false 
+          :halign "end"
+          :spacing 3
+          (label 
+            :class "player-time"
+            :text music-position
+          )
+          (label :class "player-time" :text "/")
+          (label 
+            :class "player-time"
+            :text music-length
+          )
+        )
+      )
+
+      (box 
+        :class "player-bar" 
+        (eventbox
+          :cursor "pointer"
+          (scale 
+            :onchange {music-player != "spotify" ? "mpc seek {}" : "playerctl -p ${music-player} position {}"}
+            :min 0 
+            :max music-lengths
+            :value music-positions
+          )
+        )
+      )
+    )
+    (controls)
+  )
 )
 
 (defwidget player []
-	(box 
-		:class "player" 
-		:space-evenly false
-		(box 
-			:class "player-art" 
-			:style "background-image: url('${music-art}')"
-			(box 
-				:class "player-info" 
-				:space-evenly false 
-				:orientation "v" 
-				:spacing 10
-				(box 
-					:class "top-icons"
-					(box 
-						:space-evenly false 
-						:spacing 10
-						(shuffle
-							:action { "~/.config/scripts/MediaControl --shuffle toggle" }
-							:color {shuffle == "On" ? "#81ae5f" : "#b8bfe5"}
-							:status shuffle
-						)
-						(loop
-							:action { loop == "None" ? "~/.config/scripts/MediaControl --loop playlist" :
-												loop == "Playlist" ? "~/.config/scripts/MediaControl --loop track":
-												loop == "Track" ? "~/.config/scripts/MediaControl --loop none" : ""
-												}
-							:icon  { loop == "Track" ? "󰑘" :
-							         loop == "Playlist" || loop == "On" ? "󰑖" : "󰑗"}
-							:color { loop == "Playlist" || loop == "Track" || loop == "On" ? "#81ae5f" : "#b8bfe5"}
-							:status loop
-						)
-					)
-					(box
-						(button 
-							:class { music-player != "spotify" ? "mpd-icon" : "spotify-icon"}
-							:halign "end"
-							{ music-player != "spotify" ? "󰎆" : "󰓇"}
-						)
-					)
-				)
-				(label 
-					:class "player-title" 
-					:halign "start" 
-					:text music-title
-					:limit-width 30
-					:wrap true
-					:xalign 0
-				)
-				(label 
-					:class "player-artist" 
-					:halign "start" 
-					:text music-artist 
-					:limit-width 35
-				)
-				
-				(box
-					:space-evenly false
-					:orientation "v"
-					:valign "end"
-					:spacing 6
-					:vexpand true
-					(box 
-						:class "player-bar" 
-						(eventbox
-							:cursor "pointer"
-							(scale 
-								:onchange {music-player != "spotify" ? "mpc seek {}" : "playerctl -p ${music-player} position {}"}
-								:min 0 
-								:max music-lengths
-								:value music-positions
-							)
-						)
-					)
-					(box 
-						:class "player-position" 
-						:space-evenly false 
-						:valign "end"
-						:spacing 3
-						(label 
-							:class "player-time"
-							:text music-position
-						)
-						(label :class "player-time" :text "/")
-						(label 
-							:class "player-time"
-							:text music-length
-						)	
-					)
-				)
-			)
-		)
-		(box 
-			:class "player-controls" 
-			:orientation "v"
-			:valign "center"
-			:hexpand true
-			:space-evenly false
-			:spacing 20
-			(eventbox
-				:cursor "pointer"
-				(button 
-					:class "player-previous" 
-					:onclick "~/.config/scripts/MediaControl --previous" 
-					"󰒮"
-				)
-			)
-			(eventbox
-				:cursor "pointer"
-				(button 
-					:class "player-toggle" 
-					:onclick "~/.config/scripts/MediaControl --toggle" 
-					{music-status == "Playing" ? "󰏤" : music-status == "Paused" ? "󰐊" : "󰓛"}
-				)
-			)
-			(eventbox
-				:cursor "pointer"
-				(button 
-					:class "player-next" 
-					:onclick "~/.config/scripts/MediaControl --next" 
-					"󰒭"
-				)
-			)
-      (eventbox
-				:cursor "pointer"
-				(button 
-					:class "min" 
-					:onclick "eww open --toggle player" 
-					"󰅙"
-				)
-			)
-		)
-	)
+  (box 
+    :class "player" 
+    :space-evenly false
+    :spacing 10
+    (box 
+      :class "player-art" 
+      :style "background-image: url('${music-art}')"
+      )
+    (info)
+  )
 )
 
 ;; Windows ;;
 
 (defwindow player
-	:monitor 0
-  :geometry (geometry :y "0%"
-											:anchor "bottom center")
-											:wm-ignore false
-				    (player))
-    
+  :monitor 0
+  :geometry (geometry
+              :x "2%"
+              :y "1%"
+              :anchor "top center")
+  :wm-ignore false
+  (player)
+)

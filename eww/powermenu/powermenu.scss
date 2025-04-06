@@ -4,13 +4,13 @@ window>.powermenu {
 }
 
 .powermenu {
-  font-family: "Symbols Nerd Font Mono", "JetBrains Mono Medium", "Material Symbols Rounded";
+  font-family: "Symbols Nerd Font Mono", "JetBrains Mono Medium";
   font-size: 2.5rem;
   padding: 0.3rem;
   border-radius: 0.5rem;
 
   &.shutdown {
-    color: $red;
+    color: rgba(211, 47, 47, 1.0);
   }
 
   &.reboot {
@@ -22,7 +22,7 @@ window>.powermenu {
   }
 
   &.suspend {
-    color: $red;
+    color: rgba(244, 81, 30, 1.0);
   }
 
   &.exit {

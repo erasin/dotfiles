@@ -1,0 +1,75 @@
+.date {
+  background-color: $bg2;
+  color: $fg;
+  border-radius: 0.5rem;
+}
+
+.timebox {
+  margin: 1.2rem 3.5rem 0 3.5rem;
+
+  .time-container {
+    .content {
+      font-family: JetBrainsMono NF;
+      font-weight: Bolder;
+      font-size: 3.6rem;
+      color: $fg;
+    }
+
+    .divider {
+      margin: 0.2rem 15px;
+      padding: 0px 1px;
+      background: linear-gradient($red, $magenta, $blue, $cyan);
+    }
+  }
+
+  .date-container {
+    font-family: Inconsolata SemiCondensed Medium;
+    font-weight: Bold;
+    font-size: 1rem;
+    color: $fg;
+    margin: 5px 0;
+  }
+}
+
+.cal-box {
+  font-family: JetBrainsMono;
+  font-weight: Bold;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  padding: 0 1rem 0.2rem;
+  color: $fg;
+  background-color: $bg-alt;
+  margin: 0.9rem 0.6rem 0.9rem 0.6rem;
+
+  &>* {
+    border: solid 0px transparent;
+  }
+
+  &.highlight {
+    padding: 10rem;
+  }
+
+}
+
+calendar:selected {
+  color: $magenta;
+  font-weight: bold;
+}
+
+calendar.header {
+  color: $magenta;
+  font-weight: bold;
+}
+
+calendar.button {
+  color: $fg;
+}
+
+calendar.highlight {
+  color: $green;
+  font-weight: bold;
+}
+
+calendar:indeterminate {
+  color: $red;
+}

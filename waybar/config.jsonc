@@ -305,8 +305,8 @@
 	},
 	"memory": {
 		"interval": 5,
-		"format": "󰍛 {used:0.1f}G",
-		"format-alt": "󰍛 {used:0.1f}G/{total:0.1f}G",
+		"format": " {used:0.1f}G",
+		"format-alt": " {used:0.1f}G/{total:0.1f}G",
 		"tooltip-format": "{percentage}%",
 		"on-click": "niri msg action spawn -- gnome-system-monitor",
 		"states": {
@@ -392,8 +392,10 @@
 	"clock": {
 		"interval": 1,
 		"format": " {:%H:%M:%S %d/%m}",
-		"format-alt": "{:L%A, %d/%m/%Y (%R)}  ",
-		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		// "format-alt": "{:L%A, %d/%m/%Y (%R)}  ",
+		// "tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"tooltip": false,
+		"on-click": "niri msg action spawn -- eww open --toggle calendar",
 		"on-click-right": "niri msg action spawn -- gnome-calendar",
 		"calendar": {
 			"mode": "year",

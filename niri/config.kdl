@@ -14,7 +14,7 @@ spawn-at-startup "way-edges" "daemon"
 
 // 壁纸
 // spawn-at-startup "eww daemon"，已经定义了 systemd
-spawn-at-startup "swww img ~/Pictures/wallpaper/mocha-mountains.png"
+spawn-at-startup "swww img ~/Pictures/wallpaper/w04.jpg"
 
 // 截图保存路径 niri 自带的截图
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"

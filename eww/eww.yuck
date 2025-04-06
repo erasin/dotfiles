@@ -1,2 +1,5 @@
 (include "powermenu/powermenu.yuck")
 (include "player/player.yuck")
+(include "calendar/calendar.yuck")
+; (include "calendar/calendar.yuck")
+; (include "profilecard/profilecard.yuck")

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+CPU_TEMP_PATH="/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input"
+cpu_temp=$(cat $CPU_TEMP_PATH 2>/dev/null || echo 0)
+cpu_temp_c=$((cpu_temp / 1000))
 
-TEMP="$(cat /sys/devices/platform/coretemp.*/hwmon/hwmon*/temp2_input | awk '{sub(/000$/, "°C", $0); print}')"
-echo "${TEMP:-null}"
+echo "${cpu_temp_c:-null}°C"
