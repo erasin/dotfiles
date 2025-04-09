@@ -236,8 +236,11 @@ window-rule {
 }
 
 // window-rule {
-//     match is-active=false
-//     opacity 0.95
+//     match is-floating=true is-active=false
+//     opacity 0.85
+//     focus-ring {
+//         inactive-color "#1E88E5"
+//     }
 // }
 
 window-rule {
@@ -262,6 +265,14 @@ window-rule {
     open-floating true
     // 设置浮动位置
     // default-floating-position x=32 y=32 relative-to="bottom-right"
+}
+
+window-rule {
+    match app-id=r#"Alacritty$"# title="^Lyric(.*)"
+    open-floating true
+    default-floating-position x=32 y=50 relative-to="bottom-right"
+    default-column-width { fixed 400; }
+    default-window-height { fixed 600; }
 }
 
 // 遮挡 

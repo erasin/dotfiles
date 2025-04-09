@@ -24,9 +24,9 @@
 		"pulseaudio",
 		"bluetooth",
 		"network",
-		"cpu",
-		"memory",
-		"keyboard-state",
+		// "cpu",
+		// "memory",
+		// "keyboard-state",
 		"custom/temperature",
 		"niri/language",
 		"custom/clipboard",
@@ -159,7 +159,8 @@
 		"max-length": 85,
 		"interval": 1,
 		"exec": "$HOME/.config/scripts/MediaControl --title",
-		"on-click": "niri msg action spawn -- eww open --toggle player"
+		"on-click": "niri msg action spawn -- eww open --toggle player",
+		"on-click-right": " [ -z \"$(niri msg --json windows | jq -r '.[] | select(.title==\"Lyric\").id')\" ] &&  niri msg action spawn --  alacritty -T \"Lyric\" -e lyric-next"
 	},
 	"custom/media-next": {
 		"format": "󰒭",
