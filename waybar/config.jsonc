@@ -16,9 +16,11 @@
 		"custom/media-toggle",
 		"custom/media",
 		"custom/media-next",
-		"custom/notification"
+		"custom/notification",
+		"custom/pomodoro"
 	],
 	"modules-right": [
+		"custom/colorpicker",
 		"custom/wallpaper",
 		"custom/weather",
 		"pulseaudio",
@@ -170,11 +172,37 @@
 		"exec": "$HOME/.config/scripts/MediaControl --status",
 		"on-click": "$HOME/.config/scripts/MediaControl --next"
 	},
-	"custom/lyric": {
-		"exec": "waylrc",
+	// pomodoro time
+	"custom/pomodoro": {
+		"format": "{icon} {text}",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+			// "",
+			// "",
+			// "",
+			// "",
+			// "",
+			// "",
+			// "",
+			// "",
+			// "",
+			// ""
+		],
+		"tooltip": false,
 		"return-type": "json",
-		"escape": true
+		"interval": 1,
+		"on-click": "uairctl toggle",
+		"on-click-middle": "uairctl prev",
+		"on-click-right": "uairctl next",
+		"exec-if": "which uairctl",
+		"exec": "uairctl fetch '{\"text\":\"{name} {time} {percent}%\",\"class\":\"{state}\",\"percentage\":{percent}}'"
 	},
+
+	// uairctl fetch '{"text":"{name} {time} {percent}%","class":"{state}","percentage":{percent}}'
 	// "custom/notification": {
 	//   "tooltip": false,
 	//   "format": "{icon}",
@@ -220,6 +248,11 @@
 		"format": "󰸉",
 		"tooltip-format": "wallpaper",
 		"on-click": "swww img $(fd -a -e png -e jpg -e webp -g \"*\" ~/Pictures/wallpaper  |shuf -n1) --transition-fps=244 --transition-type=random --transition-duration=1"
+	},
+	"custom/colorpicker": {
+		"format": "",
+		"tooltip-format": "color picker",
+		"on-click": "niri msg action spawn -- hyprpicker"
 	},
 	"group/audio": {
 		"orientation": "inherit",

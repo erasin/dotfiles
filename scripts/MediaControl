@@ -11,16 +11,22 @@
 # │  │ ││││├┤ ││ ┬│ │├┬┘├─┤ │ ││ ││││└─┐
 # └─┘└─┘┘└┘└  ┴└─┘└─┘┴└─┴ ┴ ┴ ┴└─┘┘└┘└─┘
 
+
+
 # uncomment your music players below.
 # 
-
-Control="MPD"
-[ -n "$(pgrep amberol)" ] && Control="io.bassi.Amberol"
+# systemctl --user start playerctld
+Control=$(playerctl -l | head -n 1)
+# 
+# use mpd-mpris
+# Control="MPD"
+# [ -n "$(pgrep amberol)" ] && Control="io.bassi.Amberol"
 # [ -n "$(pgrep spotify)" ] && Control="spotify"
 # [ -n "$(pgrep rhythmbox)" ] && Control="rhythmbox"
 # [ -n "$(pgrep audacious)" ] && Control="audacious"
 # [ -n "$(pgrep clementine)" ] && Control="clementine"
 # [ -n "$(pgrep strawberry)" ] && Control="strawberry"
+
 
 
 # saves covers here
@@ -133,13 +139,18 @@ echo "${loop:-Off}"
 }
 
 ########################## Lyrics ##########################
+# lyric-next tui https://github.com/erasin/lyric-next
 lyrics() {
-Title=$(playerctl --player=$Control metadata --format {{title}})
-Artist=$(playerctl --player=$Control metadata --format {{artist}})
-URL="https://api.lyrics.ovh/v1/$Artist/$Title"
-lyrics=$(curl -s "$( echo "$URL" | sed s/" "/%20/g | sed s/"&"/%26/g | sed s/,/%2C/g | sed s/-/%2D/g)" | jq '.lyrics' )
-[ "$lyrics" = "null" ] && lyrics=$( curl -s --get "https://makeitpersonal.co/lyrics" --data-urlencode "artist=$Artist" --data-urlencode "title=$Title")
-printf "$lyrics" | less
+	win_id=$(niri msg --json windows | jq -r '.[] | select(.title=="Lyric").id')
+	if [ -z $win_id ];then
+		niri msg action spawn --  alacritty -T "Lyric" -e lyric-next
+	fi
+# Title=$(playerctl --player=$Control metadata --format {{title}})
+# Artist=$(playerctl --player=$Control metadata --format {{artist}})
+# URL="https://api.lyrics.ovh/v1/$Artist/$Title"
+# lyrics=$(curl -s "$( echo "$URL" | sed s/" "/%20/g | sed s/"&"/%26/g | sed s/,/%2C/g | sed s/-/%2D/g)" | jq '.lyrics' )
+# [ "$lyrics" = "null" ] && lyrics=$( curl -s --get "https://makeitpersonal.co/lyrics" --data-urlencode "artist=$Artist" --data-urlencode "title=$Title")
+# printf "$lyrics" | less
 }
 
 json(){
@@ -318,7 +329,7 @@ case $Control in
 		--playlist)   mpcsongpos ;;
 		--shuffle)    mpcshuffle $2 ;;
 		--loop)       mpcloop $2 ;;
-		--lyrics)     mpclyrics ;;
+		--lyrics)     lyrics ;;
 		--json)       json ;; 
 		*)          doc ;;
 	esac

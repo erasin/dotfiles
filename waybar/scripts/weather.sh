@@ -1,5 +1,7 @@
 #!/bin/bash
-
+#
+# https://zh.wttr.in/Hangzhou?format=%22%C,+%t%22
+#
 # 默认参数
 CITY=""
 API_KEY=""

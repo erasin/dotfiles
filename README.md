@@ -4,6 +4,7 @@
 
 - [niri](https://github.com/YaLTeR/niri) wayland 窗口管理
 - [waybar](https://github.com/Alexays/Waybar) bar 顶部小部件
+- [eww](https://github.com/elkowar/eww) 界面小部件
 - [way-edges](https://github.com/way-edges/way-edges) 边缘小部件
 - [fuzzel](https://github.com/catppuccin/fuzzel) dmenu 菜单搜索
 - [mako](https://github.com/emersion/mako) 轻量通知管理

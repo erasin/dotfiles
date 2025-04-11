@@ -1,0 +1,15 @@
+.color-picker {
+  font-family: "Symbols Nerd Font Mono", "JetBrains Mono";
+  /* background-color: $bg; */
+  background: $bg2;
+  padding: 0.6rem;
+  min-height: 12rem;
+  border-radius: 1.2rem;
+
+  .color-chooser {
+    background: $bg;
+  }
+
+  .close {}
+
+}

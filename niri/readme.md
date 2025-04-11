@@ -1,6 +1,7 @@
 
 ## lock
 
+- [hyprlock](https://github.com/hyprwm/hyprland/wiki/hyprlock)
 - [swaylock](https://github.com/swaywm/swaylock)
 
 ## bar

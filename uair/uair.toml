@@ -1,0 +1,60 @@
+[defaults]
+format = "{time}\n"
+paused_state_text = "paused"
+resumed_state_text = "resumed"
+
+[[sessions]]
+id = "work"
+name = "Work"
+duration = "25m"
+time_format = "%M:%S"
+command = "notify-send 'Work Done!'"
+
+[[sessions]]
+id = "rest"
+name = "Rest"
+duration = "5m"
+time_format = "%M:%S"
+command = "notify-send 'Rest Done!'"
+
+[[sessions]]
+id = "work"
+name = "Work"
+duration = "25m"
+time_format = "%M:%S"
+command = "notify-send 'Work Done!'"
+
+[[sessions]]
+id = "rest"
+name = "Rest"
+duration = "5m"
+time_format = "%M:%S"
+command = "notify-send 'Rest Done!'"
+
+[[sessions]]
+id = "work"
+name = "Work"
+duration = "25m"
+time_format = "%M:%S"
+command = "notify-send 'Work Done!'"
+
+[[sessions]]
+id = "rest"
+name = "Rest"
+duration = "5m"
+time_format = "%M:%S"
+command = "notify-send 'Rest Done!'"
+
+[[sessions]]
+id = "work"
+name = "Work"
+duration = "25m"
+time_format = "%M:%S"
+command = "notify-send 'Work Done!'"
+
+[[sessions]]
+id = "rest"
+name = "Rest"
+duration = "5m"
+time_format = "%M:%S"
+command = "notify-send 'Rest Done!'"

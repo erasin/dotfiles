@@ -1,0 +1,28 @@
+(defwidget color-picker []
+  (box
+    :class "color-picker"
+    :orientation "v" 
+    :hexpand true
+    :space-evenly false
+    :spacing 25
+    (eventbox
+      :cursor "pointer"
+      (button 
+        :class "close" 
+        :onclick "eww open --toggle color-picker" 
+        "x"
+      )
+    )
+    
+    (color-chooser)
+   
+  )
+)
+
+(defwindow color-picker
+  :monitor 0
+  :geometry (geometry
+              :anchor "center")
+  :wm-ignore false
+  (color-picker)
+)

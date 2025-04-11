@@ -49,7 +49,7 @@
 
 ;; Widegets ;;
 
-(defwidget launchermenu []
+(defwidget profile-card []
   (box :class "launchermenu"
       :orientation "v"
       :space-evenly "false"
@@ -106,7 +106,7 @@
            (eventbox :cursor "pointer"
            (button :class "btn-info"
                   :tooltip "Lock Computer"
-                  :onclick "niri msg action spawn -- swaylock"
+                  :onclick "niri msg action spawn -- hyprlock"
                   "󱅞"))
            (eventbox :cursor "pointer"
            (button :class "btn-info" :tooltip "Logout BSPWM" :onclick "bspc quit" "󰍃")))
@@ -276,10 +276,10 @@
 
 ;; Windows ;;
 
-(defwindow launchermenu
+(defwindow profile-card
   :monitor 0
   :geometry (geometry :x "80px"
                       :y "0px"
                       :anchor "left center")
   :wm-ignore false
-  (launchermenu))
+  (profile-card))

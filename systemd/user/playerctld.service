@@ -1,0 +1,10 @@
+[Unit]
+Description=Keep track of media player activity
+
+# https://wiki.archlinux.org/title/MPRIS
+[Service]
+ExecStart=/usr/bin/playerctld daemon
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
