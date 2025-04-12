@@ -2,8 +2,6 @@
 # only = [ ]
 #
 
-# 空 disable-lsp 用于关闭 lsp 配置
-
 # 这里定义 lsp-ai
 # lsp-ai, helix-gpt, llm-lsp 
 
@@ -12,14 +10,13 @@
 # command = "lsp-ai"
 # args = ["--config", "/home/erasin/.config/helix/lsp-ai2.json"]
 
-
-
 # llm-lsp
 # 使用 https://github.com/rosarp/llm-lsp/ 对接AI，自动补全
 # 使用前需要执行 `llm-lsp generate-config` 初始化 `~/.config/llm-lsp/` 的配置
 [language-server.lsp-ai]
-command = "llm-lsp"
-args = ["server", "-p", "codeium"]
+command = ""
+# command = "llm-lsp"
+# args = ["server", "-p", "codeium"]
 
 # helix-gpt 
 # https://github.com/leona/helix-gpt
@@ -474,7 +471,6 @@ language-servers = [
   "markdown-oxide",
   "hx-lsp",
   "cspell-lsp",
-  "lsp-ai",
 ]
 # 设定 zen-mode-like
 # text-width = 80

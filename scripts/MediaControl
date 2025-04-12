@@ -16,7 +16,7 @@
 # uncomment your music players below.
 # 
 # systemctl --user start playerctld
-Control=$(playerctl -l | head -n 1)
+Control=$(playerctl -l | rg -v 'firefox' | head -n 1)
 # 
 # use mpd-mpris
 # Control="MPD"
@@ -26,8 +26,6 @@ Control=$(playerctl -l | head -n 1)
 # [ -n "$(pgrep audacious)" ] && Control="audacious"
 # [ -n "$(pgrep clementine)" ] && Control="clementine"
 # [ -n "$(pgrep strawberry)" ] && Control="strawberry"
-
-
 
 # saves covers here
 Cover=/tmp/cover.png
