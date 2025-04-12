@@ -162,7 +162,7 @@
 		"interval": 1,
 		"exec": "$HOME/.config/scripts/MediaControl --title",
 		"on-click": "niri msg action spawn -- eww open --toggle player",
-		"on-click-right": " [ -z \"$(niri msg --json windows | jq -r '.[] | select(.title==\"Lyric\").id')\" ] &&  niri msg action spawn --  alacritty -T \"Lyric\" -e lyric-next"
+		"on-click-right": "id=\"$(niri msg --json windows | jq -r '.[] | select(.title==\"Lyric\").id')\"; if [ -z $id ];then niri msg action spawn --  alacritty -T \"Lyric\" -e lyric-next; else niri msg action close-window --id $id; fi"
 	},
 	"custom/media-next": {
 		"format": "󰒭",
