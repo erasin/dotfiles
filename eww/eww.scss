@@ -2,6 +2,10 @@
   all: unset;
 }
 
+background {
+  background-color: transparent;
+}
+
 tooltip {
   background-color: #14171c;
   color: #b8bfe5;
@@ -14,5 +18,6 @@ tooltip {
 @import "player/eww.scss";
 @import "powermenu/eww.scss";
 @import "calendar/eww.scss";
-@import "colorpicker/eww.scss";
+@import "color-picker/eww.scss";
 @import "profile-card/eww.scss";
+@import "pomodoro/eww.scss";

@@ -196,8 +196,9 @@
 		"return-type": "json",
 		"interval": 1,
 		"on-click": "uairctl toggle",
-		"on-click-middle": "uairctl prev",
-		"on-click-right": "uairctl next",
+		// "on-click-middle": "uairctl prev",
+		// "on-click-right": "uairctl next",
+		"on-click-right": "niri msg action spawn -- eww open --toggle pomodoro",
 		"exec-if": "which uairctl",
 		"exec": "uairctl fetch '{\"text\":\"{name} {time} {percent}%\",\"class\":\"{state}\",\"percentage\":{percent}}'"
 	},

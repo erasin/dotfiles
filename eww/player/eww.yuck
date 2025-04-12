@@ -133,7 +133,6 @@
       :vexpand true
       (box
         (box :class "top-icons"
-          (box 
             :space-evenly false 
             :spacing 10
             (shuffle
@@ -151,7 +150,6 @@
               :color { loop == "Playlist" || loop == "Track" || loop == "On" ? "#81ae5f" : "#b8bfe5"}
               :status loop
             )
-          )
         )
 
         (box 

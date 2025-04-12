@@ -3,3 +3,4 @@
 (include "calendar/eww.yuck")
 (include "color-picker/eww.yuck")
 (include "profile-card/eww.yuck")
+(include "pomodoro/eww.yuck")

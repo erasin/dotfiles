@@ -1,0 +1,89 @@
+(defpoll pomodoro-name :interval "1s" :initial "NONE" "uairctl fetch '{name}'")
+(defpoll pomodoro-time :interval "1s" "uairctl fetch '{time}'")
+(defpoll pomodoro-value :interval "1s" "uairctl fetch '{percent}'")
+(defpoll pomodoro-state :interval "1s" "uairctl fetch '{state}'")
+
+
+; (defwidget pomodoro-start []
+;     (eventbox
+;       :cursor "pointer"
+;       :onclick "niri msg action spawn -- uair --quite" 
+;       (label
+;         :class "pomodoro-start" 
+;         :halign "center" 
+;         :text pomodoro-name
+;       )
+;     )
+; )
+
+(defwidget pomodoro []
+  (box
+    :class "pomodoro"
+    :orientation "v" 
+    :space-evenly false
+    ; :spacing 25
+
+    (box
+      :class "pomodoro-header"
+      :orientation "h" 
+      ; :space-evenly false
+      ; :spacing 0
+
+      (eventbox
+        :onclick "eww open --toggle pomodoro" 
+        (label 
+          :class "pomodoro-name" 
+          :halign "center" 
+          :text pomodoro-name
+        )
+      )
+    )
+
+    (eventbox
+      :cursor "pointer"
+      :onclick "niri msg action spawn -- uairctl toggle" 
+      :onrightclick "niri msg action spawn -- uairctl next" 
+      :onmiddleclick "niri msg action spawn -- uairctl prev"
+      (circular-progress
+        :class "pomodoro-progress pomodoro-${pomodoro-state}"
+        :value pomodoro-value
+        :start-at 100.0
+        :thickness 8
+        ; :clockwise false
+        :halign "center"
+        :valign "center"
+        :height 100
+        :width 100
+
+        (box
+          :orientation "v" 
+          :valign "center" 
+          :space-evenly false
+          :spacing 5
+    
+            (label 
+              :class "pomodoro-time" 
+              :halign "center" 
+              :text pomodoro-time
+            )
+
+            ; (label 
+            ;   :class "pomodoro-value" 
+            ;   :halign "center" 
+            ;   :text "${pomodoro-value}%"
+            ; )
+        )
+      )
+    )
+  )
+)
+
+(defwindow pomodoro
+  :monitor 0
+  :geometry (geometry
+              :x "0.5%"
+              :y "1%"
+              :anchor "top right")
+  :wm-ignore false
+  (pomodoro)
+)

@@ -18,42 +18,42 @@ time_format = "%M:%S"
 command = "notify-send 'Rest Done!'"
 
 [[sessions]]
-id = "work"
+id = "work2"
 name = "Work"
 duration = "25m"
 time_format = "%M:%S"
 command = "notify-send 'Work Done!'"
 
 [[sessions]]
-id = "rest"
+id = "rest2"
 name = "Rest"
 duration = "5m"
 time_format = "%M:%S"
 command = "notify-send 'Rest Done!'"
 
 [[sessions]]
-id = "work"
+id = "work3"
 name = "Work"
 duration = "25m"
 time_format = "%M:%S"
 command = "notify-send 'Work Done!'"
 
 [[sessions]]
-id = "rest"
+id = "rest3"
 name = "Rest"
 duration = "5m"
 time_format = "%M:%S"
 command = "notify-send 'Rest Done!'"
 
 [[sessions]]
-id = "work"
+id = "work4"
 name = "Work"
 duration = "25m"
 time_format = "%M:%S"
 command = "notify-send 'Work Done!'"
 
 [[sessions]]
-id = "rest"
+id = "rest4"
 name = "Rest"
 duration = "5m"
 time_format = "%M:%S"

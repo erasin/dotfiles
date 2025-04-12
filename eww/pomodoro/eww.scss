@@ -1,0 +1,50 @@
+.pomodoro {
+  font-family: "Symbols Nerd Font Mono", "JetBrains Mono";
+  background: $bg2;
+  padding: 0.6rem;
+  border-radius: 1.2rem;
+  /* border: 0.2rem solid rgba(158, 158, 158, 0.5); */
+
+  .pomodoro-name {
+    font-style: italic;
+    font-family: Cartograph CF;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: $fg;
+    text-shadow: 0 0 0.5rem rgba($color: $bg-alt, $alpha: 0.5);
+  }
+
+
+  .pomodoro-progress {
+    &.pomodoro-paused {
+      color: red;
+    }
+
+    &.pomodoro-resumed {
+      color: green;
+    }
+  }
+
+  .pomodoro-time {
+    font-family: JetBrainsMono NF;
+    font-weight: bolder;
+    font-size: 1.8rem;
+    color: $fg;
+    text-shadow: 0 0 0.5rem rgba($color: $bg-alt, $alpha: 0.5);
+  }
+
+  .pomodoro-value {
+    font-family: JetBrainsMono NF;
+    font-weight: bolder;
+    font-size: 1.0rem;
+    color: $green;
+    text-shadow: 0 0 0.5rem rgba($color: $bg-alt, $alpha: 0.5);
+  }
+
+
+  .close {
+    font-size: 1.1rem;
+    padding: 0 0.9rem;
+    color: $red;
+  }
+}

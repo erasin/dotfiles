@@ -1,5 +1,8 @@
 # [use-grammars]
 # only = [ ]
+#
+
+# 空 disable-lsp 用于关闭 lsp 配置
 
 # 这里定义 lsp-ai
 # lsp-ai, helix-gpt, llm-lsp 
@@ -8,6 +11,8 @@
 # [language-server.lsp-ai]
 # command = "lsp-ai"
 # args = ["--config", "/home/erasin/.config/helix/lsp-ai2.json"]
+
+
 
 # llm-lsp
 # 使用 https://github.com/rosarp/llm-lsp/ 对接AI，自动补全
