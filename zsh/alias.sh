@@ -294,4 +294,6 @@ fi
 
 if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
     alias openfolder='niri msg action spawn -- nautilus $(pwd)'
+    alias niri-fcitx='niri msg action spawn -- fcitx5 -r'
+    alias niri-pomodoro='niri msg action spawn -- uair --quiet'
 fi

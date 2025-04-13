@@ -21,7 +21,7 @@
 - [aria2](https://github.com/aria2/aria2) 下载
   - yt-dlp
   - lux
-
+- [lyrics-next](https://github.com/erasin/lyrics-next) 终端歌词 for mpris 
 
 **Script required**
 
@@ -31,5 +31,9 @@
 - [wl-clipboard] 剪贴板
 - [cava] 谐振器
 - [neofetch](https://github.com/dylanaraps/neofetch) 系统信息
-
-
+- [uair](https://github.com/metent/uair) 番茄时钟
+- [jq](https://jqlang.org/) json 解析
+- [fd](https://github.com/sharkdp/fd) 替代 find
+- [rg](https://github.com/BurntSushi/ripgrep) 替代 grep
+- [sd](https://github.com/chmln/sd) 替代 sed
+- [procs](https://github.com/dalance/procs) 替代 ps

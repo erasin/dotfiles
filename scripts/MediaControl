@@ -137,11 +137,11 @@ echo "${loop:-Off}"
 }
 
 ########################## Lyrics ##########################
-# lyric-next tui https://github.com/erasin/lyric-next
+# lyric-next tui https://github.com/erasin/lyrics-next
 lyrics() {
 	win_id=$(niri msg --json windows | jq -r '.[] | select(.title=="Lyric").id')
 	if [ -z $win_id ];then
-		niri msg action spawn --  alacritty -T "Lyric" -e lyric-next
+		niri msg action spawn --  alacritty -T "Lyrics" -e lyrics-next
 	fi
 # Title=$(playerctl --player=$Control metadata --format {{title}})
 # Artist=$(playerctl --player=$Control metadata --format {{artist}})
