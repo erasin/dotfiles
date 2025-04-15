@@ -249,6 +249,14 @@ window-rule {
     open-maximized true
 }
 
+window-rule {
+    match app-id="org.gnome.Decibels"
+    match app-id="io.bassi.Amberol"
+
+    default-column-width { fixed 500; }
+    // default-window-height { fixed 400; }
+}
+
 // 窗口浮动
 window-rule {
     // firefox bug?

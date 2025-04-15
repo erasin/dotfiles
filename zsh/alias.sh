@@ -294,6 +294,7 @@ fi
 
 if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
     alias openfolder='niri msg action spawn -- nautilus $(pwd)'
-    alias niri-fcitx='niri msg action spawn -- fcitx5 -r'
-    alias niri-pomodoro='niri msg action spawn -- uair --quiet'
+    alias niri-msg-fcitx='niri msg action spawn -- fcitx5 -r'
+    alias niri-msg-pomodoro='niri msg action spawn -- uair --quiet'
+    alias gnome-control-center='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
 fi

@@ -60,6 +60,7 @@
 #pulseaudio-silder,
 #bluetooth,
 #network,
+#custom-keyboard,
 #keyboard-state,
 #memory,
 #cpu,
@@ -105,6 +106,7 @@
 #custom-media,
 #bluetooth,
 #network,
+#custom-keyboard,
 #keyboard-state,
 #memory,
 #cpu,
@@ -263,4 +265,8 @@ menuitem {
 
 #custom-pomodoro.resumed {
   color: #98c379;
+}
+
+#custom-keyboard.lock {
+  color: #ff5555;
 }

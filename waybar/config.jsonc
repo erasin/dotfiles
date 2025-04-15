@@ -28,6 +28,7 @@
 		"network",
 		// "cpu",
 		// "memory",
+		"custom/keyboard",
 		// "keyboard-state",
 		"custom/temperature",
 		"niri/language",
@@ -284,7 +285,8 @@
 			"default": ["▁󰓃", "▂󰓃", "▃󰓃", "▄󰓃", "▅󰓃", "▆󰓃", "▇󰓃", "█󰓃"]
 		},
 		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-		"on-click-right": "pavucontrol",
+		// "on-click-right": "pavucontrol",
+		"on-click-right": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center sound",
 		"tooltip": false
 	},
 	// Install blueman pulseaudio-bluetooth
@@ -300,6 +302,7 @@
 		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
 		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
 		"on-click": "niri msg action spawn -- blueman-manager"
+		// "on-click": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center bluetooth"
 	},
 	"custom/temperature": {
 		"exec": "$HOME/.config/waybar/scripts/temperature.sh",
@@ -310,7 +313,8 @@
 		"tooltip": true,
 		// "tooltip-format": "{tooltip}",
 		"format-icons": ["", "", "", "", ""],
-		"max-value": 100
+		"max-value": 100,
+		"on-click-right": "niri msg action spawn -- gnome-system-monitor"
 	},
 	"battery": {
 		"interval": 10,
@@ -354,9 +358,10 @@
 		"format-wifi": "",
 		"format-ethernet": "󰱓",
 		"format-disconnected": "󰅛 No connection",
-		"format-alt": "󰩠 {ipaddr}/{cidr}",
+		// "format-alt": "󰩠 {ipaddr}/{cidr}",
 		"tooltip-format-wifi": " {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz",
 		"tooltip-format-ethernet": "󰱓 {ifname}\nIP: {ipaddr}",
+		"on-click": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center network",
 		"on-click-right": "niri msg action spawn -- nm-connection-editor"
 	},
 	// keyboard layout
@@ -373,7 +378,14 @@
 		"format-icons": {
 			"locked": "",
 			"unlocked": ""
-		}
+		},
+		"device-path": "/dev/input/event5"
+	},
+	"custom/keyboard": {
+		"format": "{}",
+		"interval": 1,
+		"return-type": "json",
+		"exec": "$HOME/.config/waybar/scripts/keyboard-status.sh"
 	},
 	"niri/language": {
 		"format": "{}",
@@ -391,7 +403,7 @@
 		"interval": 10,
 		"return-type": "json",
 		"escape": true,
-		// "exec": "$HOME/.config/waybar/scripts/gsconnect-status.py",
+		"exec": "$HOME/.config/waybar/scripts/gsconnect-status.py",
 		"on-click": "gjs -m /usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/gsconnect-preferences"
 	},
 	// Install fuzzel
