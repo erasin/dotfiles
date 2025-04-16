@@ -20,23 +20,27 @@
 		"custom/pomodoro"
 	],
 	"modules-right": [
-		"custom/colorpicker",
-		"custom/wallpaper",
 		"custom/weather",
 		"pulseaudio",
 		"bluetooth",
 		"network",
 		// "cpu",
 		// "memory",
+		"custom/temperature",
+		// "niri/language",
 		"custom/keyboard",
 		// "keyboard-state",
-		"custom/temperature",
-		"niri/language",
+
 		"custom/clipboard",
 		"custom/gsconnect",
-		"custom/unmount",
+
+		"group/tools",
+		// "custom/recorder",
+		// "custom/unmount",
+		// "custom/colorpicker",
+		// "custom/wallpaper",
+
 		"tray",
-		"custom/recorder",
 		"clock",
 		"custom/logout"
 	],
@@ -177,21 +181,11 @@
 	"custom/pomodoro": {
 		"format": "{icon} {text}",
 		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			""
-			// "",
-			// "",
-			// "",
-			// "",
+			" ",
+			" ",
+			" ",
+			" "
 			// "",
-			// "",
-			// "",
-			// "",
-			// "",
-			// ""
 		],
 		"tooltip": false,
 		"return-type": "json",
@@ -241,10 +235,14 @@
 		"escape": true
 	},
 	"custom/weather": {
-		"format": "{text} {alt}",
+		"format": "{text}",
+		// "tooltip-format": "{}",
+		"tooltip": true,
 		"return-type": "json",
+		"interval": 5000,
 		"exec": "$HOME/.config/waybar/scripts/weather.sh --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
-		"on-click": "niri msg action spawn -- gnome-weather"
+		"on-click": "niri msg action spawn -- gnome-weather",
+		"on-click-right": "niri msg action spawn -- gnome-weather"
 	},
 	"custom/wallpaper": {
 		"format": "󰸉",
@@ -274,7 +272,7 @@
 		"scroll-step": 1,
 		"format": "{icon} {volume}%",
 		"format-bluetooth": "{icon} {volume}%",
-		"format-muted": "󰋐",
+		"format-muted": "󰝟",
 		"format-icons": {
 			"headphone": " ",
 			"hands-free": " ",
@@ -291,9 +289,9 @@
 	},
 	// Install blueman pulseaudio-bluetooth
 	"bluetooth": {
-		"format": " {status}",
+		"format": "",
 		"format-disabled": "󰂲",
-		"format-connected": " {num_connections} ",
+		"format-connected": "󰂲 {num_connections} ",
 		// "format-connected": " {device_alias}",
 		"format-connected-battery": " {device_alias} {device_battery_percentage}%",
 		// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
@@ -311,7 +309,6 @@
 		"format": "{icon} {text}°",
 		"format-alt": "{icon} {alt}°",
 		"tooltip": true,
-		// "tooltip-format": "{tooltip}",
 		"format-icons": ["", "", "", "", ""],
 		"max-value": 100,
 		"on-click-right": "niri msg action spawn -- gnome-system-monitor"
@@ -357,7 +354,7 @@
 		"interval": 5,
 		"format-wifi": "",
 		"format-ethernet": "󰱓",
-		"format-disconnected": "󰅛 No connection",
+		"format-disconnected": "󰅛 ",
 		// "format-alt": "󰩠 {ipaddr}/{cidr}",
 		"tooltip-format-wifi": " {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz",
 		"tooltip-format-ethernet": "󰱓 {ifname}\nIP: {ipaddr}",
@@ -412,7 +409,8 @@
 		"interval": 10,
 		"return-type": "json",
 		"exec": "$HOME/.config/waybar/scripts/unmount.sh",
-		"on-click": "$HOME/.config/waybar/scripts/unmount.sh unmount",
+		// "on-click": "$HOME/.config/waybar/scripts/unmount.sh unmount",
+		"on-click-right": "niri msg action spawn -- gnome-disks",
 		"signal": 10
 	},
 	// Install cliphist wl-clipboard libnotify fuzzel
@@ -423,10 +421,27 @@
 		"on-click": "$HOME/.config/waybar/scripts/clipboard.sh",
 		"on-click-middle": "$HOME/.config/waybar/scripts/clipboard.sh wipe"
 	},
+
+	"group/tools": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 500,
+			"children-class": "tools",
+			"transition-left-to-right": false
+		},
+		"modules": [
+			"custom/recorder",
+			"custom/unmount",
+			"custom/colorpicker",
+			"custom/wallpaper"
+		]
+	},
+
 	"tray": {
 		"icon-size": 21,
 		"spacing": 5
 	},
+
 	"custom/recorder": {
 		"format": "{}",
 		"return-type": "json",

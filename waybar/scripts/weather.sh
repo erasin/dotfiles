@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # https://zh.wttr.in/Hangzhou?format=%22%C,+%t%22
+# <https://github.com/Alexays/Waybar/wiki/Module:-Custom:-Simple#weather#>
 #
 # 默认参数
 CITY=""
@@ -15,7 +16,7 @@ weather_icon() {
         "晴") echo "󰖙" ;;
         "少云") echo "󰖐" ;;
         "晴间多云") echo "󰖕" ;;
-        "多云") echo "󰼯" ;;
+        "多云") echo "󰖐" ;;
         "阴") echo "󰼰" ;;
         "有风"|"平静"|"微风"|"和风"|"清风") echo "" ;;
         "强风/劲风"|"疾风"|"大风") echo "󰖝" ;;
@@ -106,7 +107,7 @@ ICON=$(weather_icon "$WEATHER")
 # 格式化输出
 if $WAYBAR; then
     # 输出为 Waybar JSON 格式
-    echo "{ \"text\": \"${ICON} ${WEATHER} ${TEMP}󰔄\", \"alt\": \"${WIND} ${POWER}\", \"tooltip\": null, \"class\": \"wayinfo-weather-sun\", \"percentage\": 0 }"
+    echo "{ \"text\": \"${ICON} ${WEATHER} ${TEMP}°C\", \"alt\": \"${WIND} ${POWER}\", \"tooltip\": \"${DATE} 周${WEEK}\n ${WEATHER} ${TEMP} \n${WIND} ${POWER}\", \"class\": \"wayinfo-weather-sun\", \"percentage\": 0 }"
 else
     # 输出为普通格式
     echo "日期：$DATE"

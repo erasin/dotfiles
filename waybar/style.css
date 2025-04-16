@@ -90,23 +90,25 @@
 #custom-media-toggle,
 #custom-window-close,
 #custom-arch,
-#pulseaudio,
-#custom-clipboard {
+#custom-clipboard,
+#pulseaudio {
   border-radius: 8pt 0pt 0pt 8pt;
   padding-right: 0;
 }
 
 /* middle */
-#window,
 #custom-window-center,
 #custom-window-float,
 #custom-window-tabbed,
 #custom-temperature,
 #custom-gsconnect,
 #custom-media,
+#custom-unmount,
+#custom-colorpicker,
+#custom-wallpaper,
+#window,
 #bluetooth,
 #network,
-#custom-keyboard,
 #keyboard-state,
 #memory,
 #cpu,
@@ -117,22 +119,22 @@
 }
 
 /* end */
-#custom-wallpaper,
+#custom-recorder,
 #custom-media-next,
 #custom-window-width,
 #custom-files,
-#language,
-#custom-unmount {
+#custom-keyboard,
+#language {
   border-radius: 0pt 8pt 8pt 0pt;
   margin-right: 5pt;
   padding-left: 0;
 }
 
+#custom-notification,
 #custom-media-next,
 #mpris,
 #clock,
 #workspaces,
-#custom-recorder,
 #tray,
 #custom-weather,
 #taskbar {
@@ -152,8 +154,17 @@
   margin-right: 5pt;
 }
 
+#taskbar.empty {
+  padding: 0;
+  margin: 0;
+}
+
 #taskbar button {
   padding: 0 3pt 0 3pt;
+}
+
+#taskbar button:hover {
+  color: red;
 }
 
 #window {
