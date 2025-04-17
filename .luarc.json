@@ -3,5 +3,5 @@
 	"workspace": {
 		"library": ["/usr/share/nvim/runtime"]
 	},
-	"diagnostics.globals": ["vim"]
+	"diagnostics.globals": ["vim", "Header"]
 }

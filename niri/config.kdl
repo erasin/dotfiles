@@ -276,9 +276,11 @@ window-rule {
 
     match title="^画中画$"
 
-    match app-id=r#"Alacritty$"# title="^file-picker(.*)"
+    match app-id="Alacritty" title="file-picker"
     match app-id=r#"Alacritty$"# title="^find-replace(.*)"
     match app-id=r#"jetbrains-studio$"#
+
+    match app-id="org.gnome.Nautilus" title="打开文件"
 
     open-floating true
     // 设置浮动位置
