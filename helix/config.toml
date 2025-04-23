@@ -130,6 +130,9 @@ column-width = 22
 [icons.vcs]
 enabled = true
 
+[icons.kind]
+enabled = true
+
 [icons.mime]
 enabled = true
 php = ""
@@ -142,9 +145,6 @@ error = ""
 warning = ""
 info = ""
 hint = ""
-
-[icons.lsp]
-enabled = true
 
 [keys.normal]
 # W = "@miw"
@@ -188,7 +188,7 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "n" = "signature_help"
 
 [keys.normal.space.o]
-"o" = ":open %sh{ ~/.config/scripts/file-picker.sh }" # dotfile/scripts/file-picker.sh 需要yazi
+"o" = ":open %sh{ ~/.config/helix/scripts/file-picker }" # dotfile/scripts/file-picker.sh 需要yazi
 # "r" = ":sh tmux popup -xC -yC -w90%% -h90%% -E scooter"
 # https://github.com/thomasschafer/scooter?tab=readme-ov-file#helix
 "r" = [":sh alacritty -T \"find-replace\" --working-directory $(pwd) -e scooter", ":reload"]

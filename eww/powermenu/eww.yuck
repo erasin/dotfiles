@@ -1,8 +1,13 @@
 (defwidget powermenu []
-     (box :class "powermenu"
+  (eventbox 
+    :onclick "eww open --toggle powermenu"
+    (box :class "powermenu"
           :orientation "h"
           :space-evenly "false"
-          (lock-power-restart)))
+          (lock-power-restart)
+    )
+  )
+)
 
 
 (defwidget lock-power-restart []
@@ -51,8 +56,8 @@
 (defwindow powermenu
     :monitor 0
     :monitor_focused true
-    :geometry (geometry :x "0%"
-                        :y "0%"
+    :geometry (geometry :x "0.5%"
+                        :y "1%"
                         :anchor "top right")
     :wm-ignore false
     (powermenu))

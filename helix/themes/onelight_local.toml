@@ -3,7 +3,7 @@ inherits = "onelight"
 
 tabstop = { modifiers = ["italic"], bg = "grey-300" }
 
-"ui.text.directory" = { fg = "blue", underline = { style = "line" } }
+"ui.text.directory" = { fg = "green", underline = { style = "line" } }
 
 # "ui.text.focus" = { fg = "red", bg = "grey-300", modifiers = ["bold"] }
 
@@ -19,5 +19,6 @@ tabstop = { modifiers = ["italic"], bg = "grey-300" }
 "ui.background" = { bg = "white"}
 
 # "ui.popup.info" = { fg = "blue" }
-"ui.picker.header" = { fg = "purple"}
-"ui.picker.header.active" = { fg = "blue"}
+
+"ui.picker.header" = { fg = "blue"}
+"ui.picker.header.column.active" = { fg = "purple"}

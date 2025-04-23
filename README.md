@@ -29,9 +29,9 @@
 **Script required**
 
 - [slurp] wayland 交互区域
-- [wl-screenrec] wayland 屏幕录制
-- [grim] wayland 截图
-- [wl-clipboard] 剪贴板
+- [wl-screenrec](https://github.com/russelltg/wl-screenrec) wayland 屏幕录制
+- [grim] wayland 截图 `grim -g "$(slurp)"`
+- [wl-clipboard](https://github.com/bugaevc/wl-clipboard) 剪贴板
 - [cava] 谐振器
 - [neofetch](https://github.com/dylanaraps/neofetch) 系统信息
 - [uair](https://github.com/metent/uair) 番茄时钟

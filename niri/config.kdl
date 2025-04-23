@@ -281,6 +281,7 @@ window-rule {
     match app-id=r#"jetbrains-studio$"#
 
     match app-id="org.gnome.Nautilus" title="打开文件"
+    // match app-id="Menu"
 
     open-floating true
     // 设置浮动位置

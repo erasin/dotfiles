@@ -197,11 +197,15 @@ roots = ["package.json"]
 language-servers = ["svelteserver", "tailwindcss-ls"]
 
 [[language]]
+name = "scss"
+file-types = ["scss"]
+
+[[language]]
 name = "css"
-file-types = ["css", "scss", "less"]
+file-types = ["css"]
 language-servers = [
   "vscode-css-language-server",
-  "biome",
+  # "biome",
   "emmet-language-server",
   "tailwindcss-ls",
 ]
