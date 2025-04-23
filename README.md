@@ -8,8 +8,11 @@
 - [way-edges](https://github.com/way-edges/way-edges) 边缘小部件
 - [fuzzel](https://github.com/catppuccin/fuzzel) dmenu 菜单搜索
 - [mako](https://github.com/emersion/mako) 轻量通知管理
-- [swaylock](https://github.com/swaywm/swaylock) 锁屏
 - [swww](https://github.com/LGFae/swww) 壁纸
+- [hypridle](https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/) idle 空闲管理守护进程
+- ~~[swayidle]()~~
+- [hyprlock](https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/) 锁屏
+- ~~[swaylock](https://github.com/swaywm/swaylock) 锁屏~~
 
 **Terminal**
 

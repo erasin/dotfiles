@@ -95,7 +95,8 @@ RUBY_PATH=${HOME}/.local/share/gem/ruby/3.0.0/bin
 LLDB_VSCODE_PATH=${HOME}/.vscode/extensions/lanza.lldb-vscode-0.2.3/bin/darwin/bin
 
 # ==== harmonyos dev eco =====
-HARMONY_CLI_PATH=${HOME}/Development/deveco-cli/bin
+HARMONY_CLI_PATH=${HOME}/Development/harmonyos-next/command-line-tools/bin
+HARMONY_GN_PATH=${HOME}/Development/harmonyos-next/depot_tools
 
 ## ======= PATH ============
 
