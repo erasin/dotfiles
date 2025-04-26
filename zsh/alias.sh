@@ -165,11 +165,6 @@ function theme-dark() {
     #env
     sd "^export TERM_THEME=light" "export TERM_THEME=dark" ${HOME}/.config/zsh/.zshenv
     
-    # kitty
-    if command -v kitten &> /dev/null; then
-        kitten theme "One Half Dark"
-        sd "^text_composition_strategy"  "# text_composition_strategy" ${HOME}/.config/kitty/kitty.conf
-    fi
     
     # alacritty
     sd "themes/oneLight.toml"  "themes/oneDark.toml" ${HOME}/.config/alacritty/alacritty.toml
@@ -192,6 +187,14 @@ function theme-dark() {
 
     # aichat
     sd "light_theme: true" "light_theme: false" ${HOME}/.config/aichat/config.yaml
+
+    # kitty
+    if command -v kitten &> /dev/null; then
+        if [ "${KITTY_WINDOW_ID}" ]; then
+            kitten theme "One Half Dark"
+        fi
+        sd "^text_composition_strategy"  "# text_composition_strategy" ${HOME}/.config/kitty/kitty.conf
+    fi
     
     export TERM_THEME="dark"
 }
@@ -199,12 +202,6 @@ function theme-dark() {
 function theme-light() {
     #env
     sd "^export TERM_THEME=dark" "export TERM_THEME=light" ${HOME}/.config/zsh/.zshenv
-    
-    # kitty
-    if command -v kitten &> /dev/null; then
-        kitten theme "One Half Light"
-        sd "# text_composition_strategy"  "text_composition_strategy" ${HOME}/.config/kitty/kitty.conf
-    fi
     
     # alacritty
     sd "themes/oneDark.toml"  "themes/oneLight.toml" ${HOME}/.config/alacritty/alacritty.toml
@@ -227,6 +224,14 @@ function theme-light() {
     
     # aichat
     sd "light_theme: false" "light_theme: true" ${HOME}/.config/aichat/config.yaml
+
+    # kitty
+    if command -v kitten &> /dev/null; then
+        if [ "${KITTY_WINDOW_ID}" ]; then
+            kitten theme "One Half Light"
+        fi
+        sd "# text_composition_strategy"  "text_composition_strategy" ${HOME}/.config/kitty/kitty.conf
+    fi
 
     export TERM_THEME="light"
 }

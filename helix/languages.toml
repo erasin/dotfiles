@@ -37,7 +37,8 @@ command = "hx-lsp"
 
 # https://github.com/vlabo/cspell-lsp
 [language-server.cspell-lsp]
-command = "cspell-lsp"
+command = ""
+# command = "cspell-lsp"
 args = ["--stdio", "--dictionary", "/home/erasin/.config/cspell/dict.txt"]
 
 # ---------- rust -----
@@ -229,7 +230,7 @@ file-types = [
 ]
 language-servers = [
   { name = "vscode-json-language-server", except-features = [ "format" ] },
-  "biome",
+  # "biome",
   # { name = "hx-lsp", only-features = [ "document-colors" ] },
 ]
 
@@ -318,6 +319,9 @@ globalStoragePath = "/home/erasin/.config/php/"                      # os.homedi
 [[language]]
 name = "php"
 language-servers = ["intelephense", "lsp-ai"]
+# https://github.com/carthage-software/mago
+# mago format / lint
+
 
 # ----------- python pyright --------------
 
