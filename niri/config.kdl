@@ -268,16 +268,14 @@ window-rule {
 
 // 窗口浮动
 window-rule {
-    // firefox bug?
-    // match app-id=r#"firefox$"# title="Panel$
-
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    match app-id=r#"firefox$"# title="^画中画$"
+    match app-id="firefox" title="^Picture-in-Picture$"
+    match app-id="firefox" title="^画中画$"
+    match app-id="firefox" title="Download Panel"
 
     match title="^画中画$"
 
     match app-id="Alacritty" title="file-picker"
-    match app-id=r#"Alacritty$"# title="^find-replace(.*)"
+    match app-id="Alacritty" title="^find-replace(.*)"
     match app-id=r#"jetbrains-studio$"#
 
     match app-id="org.gnome.Nautilus" title="打开文件"
@@ -368,7 +366,7 @@ binds {
     Super+Alt+L hotkey-overlay-title="锁屏" { spawn "hyprlock"; } //swaylock
     Mod+E { spawn "nautilus"; }
     Mod+Tab { spawn "~/.config/niri/scripts/switch-window.sh"; }
-    Mod+O { spawn "~/.config/waybar/scripts/clipboard.sh"; }
+    // Mod+O { spawn "~/.config/waybar/scripts/clipboard.sh"; }
 
     // 兼容 x11 的剪贴板
     // Mod+Ctrl+C { spawn "sh" "-c" "env DISPLAY=:0 xsel -ob | wl-copy"; }

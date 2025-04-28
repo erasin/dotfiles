@@ -33,6 +33,7 @@
 
 		"custom/clipboard",
 		"custom/gsconnect",
+		"idle_inhibitor",
 
 		"group/tools",
 		// "custom/recorder",
@@ -170,7 +171,7 @@
 		"on-click-right": "id=\"$(niri msg --json windows | jq -r '.[] | select(.title==\"Lyrics\").id')\"; if [ -z $id ];then niri msg action spawn --  alacritty -T \"Lyrics\" -e lyrics-next; else niri msg action close-window --id $id; fi"
 	},
 	"custom/media-next": {
-		"format": "󰒭",
+		"format": "󰙡",
 		"tooltip-format": "下一曲",
 		"return-type": "text",
 		"interval": 1,
@@ -435,6 +436,14 @@
 			"custom/colorpicker",
 			"custom/wallpaper"
 		]
+	},
+
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "󰈈",
+			"deactivated": "󰈉"
+		}
 	},
 
 	"tray": {

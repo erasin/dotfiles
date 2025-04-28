@@ -132,6 +132,9 @@ enabled = true
 
 [icons.kind]
 enabled = true
+number = ""
+string = "󰅳"
+function = "󰊕"
 
 [icons.mime]
 enabled = true
@@ -139,6 +142,12 @@ php = ""
 gd = ""
 gdshader = ""
 godot = ""
+wgsl = "󰘷"
+yml = ""
+yaml = ""
+conf=""
+kdl=""
+Makefile=""
 
 [icons.diagnostic]
 error = ""

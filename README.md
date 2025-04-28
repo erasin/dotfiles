@@ -25,6 +25,7 @@
   - yt-dlp
   - lux
 - [lyrics-next](https://github.com/erasin/lyrics-next) 终端歌词 for mpris 
+- [chafa](https://github.com/hpjansson/chafa) yazi image 预览
 
 **Script required**
 

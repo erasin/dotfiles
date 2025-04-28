@@ -230,7 +230,7 @@ file-types = [
 ]
 language-servers = [
   { name = "vscode-json-language-server", except-features = [ "format" ] },
-  # "biome",
+  "biome",
   # { name = "hx-lsp", only-features = [ "document-colors" ] },
 ]
 
