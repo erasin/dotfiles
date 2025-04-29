@@ -1,9 +1,14 @@
 .pomodoro {
   font-family: "Symbols Nerd Font Mono", "JetBrains Mono";
-  background: $bg2;
-  padding: 0.6rem;
-  border-radius: 1.2rem;
+  padding: 0.5rem;
+
   /* border: 0.2rem solid rgba(158, 158, 158, 0.5); */
+  .body {
+    border-radius: 0.8rem;
+    background: $bg-alt;
+    padding: 0.5rem;
+    box-shadow: 0 0 0.2rem black;
+  }
 
   .pomodoro-name {
     font-style: italic;

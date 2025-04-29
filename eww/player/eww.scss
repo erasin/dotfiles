@@ -2,11 +2,10 @@
   font-family: "Symbols Nerd Font Mono", "JetBrains Mono";
   /* background-color: $bg; */
   /* background: $bg2; */
-  padding: 0.6rem;
+  padding: 0.8rem;
   min-height: 12rem;
   /* border: 0.2rem solid rgba(158, 158, 158, 0.5); */
   border-radius: 1.2rem;
-  /* box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1); */
 
   .player-art {
     background-size: cover;
@@ -21,10 +20,12 @@
   .player-info {
     min-width: 16rem;
     border-radius: 0 1.2rem 1.2rem 0;
-    /* background: linear-gradient(to right, rgb(#191919, 1), rgba(#262626, 0.5)); */
-    background: $bg-alt;
+    /* background: $bg-alt; */
+    background: linear-gradient(to right, rgb($bg, 1), rgba(#455A64, 1.8));
+    box-shadow: 0 0 0.3rem black;
 
     padding: 0.65rem;
+    padding-left: 1rem;
 
     .player-shuffle,
     .player-loop {

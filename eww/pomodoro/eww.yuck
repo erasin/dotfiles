@@ -18,7 +18,7 @@
 
 (defwidget pomodoro []
   (box
-    :class "pomodoro"
+    :class "body"
     :orientation "v" 
     :space-evenly false
     ; :spacing 25
@@ -85,5 +85,8 @@
               :y "1%"
               :anchor "top right")
   :wm-ignore false
-  (pomodoro)
+  (box
+    :class "pomodoro"
+    (pomodoro)
+  )
 )

@@ -275,7 +275,7 @@ env:
 修改 ~/.tmux.conf (or ~/.config/tmux/tmux.conf):
 
 > 如果使用了 [Oh my tmux!](https://github.com/gpakosz/.tmux.git), 则修改 `~/.tmux.conf.local`
-> 阅读 [Oh my tmux](./tmux.md)
+> 阅读 [Oh my tmux](../tmux/README.md)
 
 ```bash
 # 支持 256color
