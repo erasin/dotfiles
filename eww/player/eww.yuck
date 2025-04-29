@@ -61,7 +61,7 @@
       (button 
         :class "player-toggle" 
         :onclick "../scripts/MediaControl --toggle" 
-        {music-status == "Playing" ? "󰏤" : music-status == "Paused" ? "󰐊" : "󰓛"}
+        {music-status == "Playing" ? "" : music-status == "Paused" ? "" : ""}
       )
     )
 
@@ -190,12 +190,19 @@
   (box 
     :class "player" 
     :space-evenly false
-    :spacing 10
+    :spacing 0
     (box 
       :class "player-art" 
       :style "background-image: url('${music-art}')"
       )
-    (info)
+    (box 
+      :space-evenly false 
+      :orientation "v" 
+      :spacing 10
+      (box)
+      (info)
+      (box)
+    )
   )
 )
 
