@@ -37,6 +37,8 @@
 #custom-files,
 #workspaces,
 #taskbar,
+#custom-window-left,
+#custom-window-right,
 #custom-window-close,
 #custom-window-width,
 #custom-window-center,
@@ -99,6 +101,9 @@
 
 /* middle */
 #idle_inhibitor,
+#custom-window-width,
+#custom-window-left,
+#custom-window-right,
 #custom-window-center,
 #custom-window-float,
 #custom-window-tabbed,
@@ -108,7 +113,6 @@
 #custom-unmount,
 #custom-colorpicker,
 #custom-wallpaper,
-#window,
 #bluetooth,
 #network,
 #keyboard-state,
@@ -121,9 +125,9 @@
 }
 
 /* end */
+#window,
 #custom-recorder,
 #custom-media-next,
-#custom-window-width,
 #custom-files,
 #custom-keyboard,
 #language {

@@ -7,9 +7,9 @@
 		"custom/files",
 		"niri/workspaces",
 		"wlr/taskbar",
-		"custom/window-close",
+		// "custom/window-close",
+		"group/niri-action",
 		"niri/window",
-		"group/niri-action"
 	],
 	"modules-center": [
 		// "mpris",
@@ -78,7 +78,7 @@
 	// 关闭按钮
 	"custom/window-close": {
 		"format": "󰅙",
-		"tooltip": false,
+		"tooltip-format": "Close window",
 		"on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action close-window --id {}"
 	},
 	"group/niri-action": {
@@ -86,35 +86,48 @@
 		"drawer": {
 			"transition-duration": 500,
 			"children-class": "not-power",
-			"transition-left-to-right": false
+			// "transition-left-to-right": false
 		},
 		"modules": [
-			"custom/window-width",
+			"custom/window-close",
+			"custom/window-left",
 			"custom/window-center",
+			"custom/window-right",
+			"custom/window-width",
 			"custom/window-float",
 			"custom/window-tabbed"
 		]
 	},
 	"custom/window-width": {
-		"format": "",
-		"tooltip-format": "rand window width",
+		"format": "",
+		"tooltip-format": "窗口宽度",
 		"on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action switch-preset-window-width --id {}",
 		"on-scroll-up": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action set-window-width \"-10%\" --id {}",
 		"on-scroll-down": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action set-window-width \"+10%\" --id {}"
 	},
+	"custom/window-left": {
+		"format": "󰜱",
+		"tooltip-format": "Focus left",
+		"on-click": "niri msg action focus-column-left" 
+	},
+	"custom/window-right": {
+		"format": "󰜴",
+		"tooltip-format": "Focus right",
+		"on-click": "niri msg action focus-column-right-or-first" 
+	},
 	"custom/window-center": {
-		"format": "󰘞",
-		"tooltip-format": "toggle window center",
+		"format": "󰋱",
+		"tooltip-format": "Toggle window center",
 		"on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action center-window --id {}"
 	},
 	"custom/window-float": {
 		"format": "󱂬",
-		"tooltip-format": "toggle window floating",
+		"tooltip-format": "Toggle window floating",
 		"on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action toggle-window-floating --id {} && niri msg action center-window"
 	},
 	"custom/window-tabbed": {
 		"format": "󰓩",
-		"tooltip-format": "toggle window tabbed",
+		"tooltip-format": "Toggle window tabbed",
 		"on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action toggle-column-tabbed-display --id {}",
 		"on-scroll-up": "niri msg action focus-window-down",
 		"on-scroll-down": "niri msg action focus-window-up"
@@ -196,7 +209,7 @@
 		// "on-click-right": "uairctl next",
 		"on-click-right": "niri msg action spawn -- eww open --toggle pomodoro",
 		"exec-if": "which uairctl",
-		"exec": "uairctl fetch '{\"text\":\"{name} {time} {percent}%\",\"class\":\"{state}\",\"percentage\":{percent}}'"
+		"exec": "uairctl fetch '{\"text\":\"{name} {time}\",\"class\":\"{state}\",\"percentage\":{percent}}'"
 	},
 
 	// uairctl fetch '{"text":"{name} {time} {percent}%","class":"{state}","percentage":{percent}}'
@@ -290,9 +303,9 @@
 	},
 	// Install blueman pulseaudio-bluetooth
 	"bluetooth": {
-		"format": "",
+		"format": "󰂯",
 		"format-disabled": "󰂲",
-		"format-connected": " {num_connections}",
+		"format-connected": "󰂯{num_connections}",
 		// "format-connected": " {device_alias}",
 		"format-connected-battery": " {device_alias} {device_battery_percentage}%",
 		// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
@@ -417,8 +430,7 @@
 	// Install cliphist wl-clipboard libnotify fuzzel
 	"custom/clipboard": {
 		"format": "{}  ",
-		"tooltip-format": "{}",
-		"tooltip": false,
+		"tooltip-format": "系统剪贴板",
 		"on-click": "$HOME/.config/waybar/scripts/clipboard.sh",
 		"on-click-middle": "$HOME/.config/waybar/scripts/clipboard.sh wipe"
 	},
