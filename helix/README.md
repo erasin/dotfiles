@@ -29,6 +29,7 @@ cargo install --path helix-term
 - **origin**
   - [#12369 icons v2](https://github.com/helix-editor/helix/pull/12369)
   - [#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)
+  - [#13206 Word completion](https://github.com/helix-editor/helix/pull/13206)
   - ~~[#12308 Color swatches](https://github.com/helix-editor/helix/pull/12308)~~ lsp document color support
   - ~~[#12214 incomplete_completion ](https://github.com/helix-editor/helix/pull/12214)  implement incomplete completion requests~~
   - ~~[#12036 fix: better display of prompts on long inputs](https://github.com/helix-editor/helix/pull/12036)~~

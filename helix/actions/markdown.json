@@ -1,4 +1,10 @@
 {
+	"format": {
+		"title": "format",
+		"filter": "SEL=\"${TM_SELECTED_TEXT}\"; [ ${#SEL} -gt 1 ] && echo -n 1;",
+		"shell": ["echo -n \"${TM_SELECTED_TEXT}\"|md-tables-format"],
+		"description": "bold"
+	},
 	"bold": {
 		"title": "bold",
 		"filter": "SEL=\"${TM_SELECTED_TEXT}\"; [ ${#SEL} -gt 1 ] && echo -n 1;",

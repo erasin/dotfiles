@@ -93,7 +93,8 @@ left = [
   "file-name",
   "file-modification-indicator",
 ]
-center = ["diagnostics", "workspace-diagnostics"]
+# center = ["diagnostics", "workspace-diagnostics"]
+center = ["diagnostics"]
 right = [
   "register",
   "selections",
@@ -163,7 +164,6 @@ hint = ""
 # smart tab
 tab = "move_parent_node_end"
 S-tab = "move_parent_node_start"
-
 "C-r" = { s = ":write", r = ":reload", c = ":config-reload" }
 "C-s" = ":write"
 "C-j" = "save_selection"
@@ -199,6 +199,7 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "." = "file_picker_in_current_buffer_directory"
 "n" = "signature_help"
 
+# 打开文件和替换
 [keys.normal.space.o]
 "o" = ":open %sh{ ~/.config/helix/scripts/file-picker }" # dotfile/scripts/file-picker.sh 需要yazi
 # "r" = ":sh tmux popup -xC -yC -w90%% -h90%% -E scooter"

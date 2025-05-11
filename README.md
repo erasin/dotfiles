@@ -41,7 +41,7 @@
 - [rg](https://github.com/BurntSushi/ripgrep) 替代 grep
 - [sd](https://github.com/chmln/sd) 替代 sed
 - [procs](https://github.com/dalance/procs) 替代 ps
-
+- [delta](https://github.com/dandavison/delta/) git diff
 
 **gnome**
 
