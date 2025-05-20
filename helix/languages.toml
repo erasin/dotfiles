@@ -174,20 +174,20 @@ locale = "zh-CN"
 
 [language-server.typescript-language-server.config.typescript.inlayHints]
 includeInlayEnumMemberValueHints = true
-includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionLikeReturnTypeHints = false
 includeInlayFunctionParameterTypeHints = true
 includeInlayParameterNameHints = "all"
-includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayParameterNameHintsWhenArgumentMatchesName = false
 includeInlayPropertyDeclarationTypeHints = true
 includeInlayVariableTypeHints = true
 # includeInlayVariableTypeHintsWhenTypeMatchesName = true
 
 [language-server.typescript-language-server.config.javascript.inlayHints]
 includeInlayEnumMemberValueHints = true
-includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionLikeReturnTypeHints = false
 includeInlayFunctionParameterTypeHints = true
 includeInlayParameterNameHints = "all"
-includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayParameterNameHintsWhenArgumentMatchesName = false
 includeInlayPropertyDeclarationTypeHints = true
 includeInlayVariableTypeHints = true
 
@@ -317,12 +317,26 @@ licenceKey = "/home/erasin/.config/tokens/intelephenser_licence.txt"
 storagePath = "/home/erasin/.config/php/"                            # os.tmpdir()
 globalStoragePath = "/home/erasin/.config/php/"                      # os.homedir()
 # clearCache = false # clean state
+environment.phpVersion = "7.4.0"
 
 [[language]]
 name = "php"
 language-servers = ["intelephense", "lsp-ai"]
 # https://github.com/carthage-software/mago
 # mago format / lint
+
+[[language]]
+name = "tpl5"
+scope = "source.tpl5"
+injection-regex = "tpl5"
+file-types = ["tpl5"]
+block-comment-tokens = { start = "{/*", end = "*/}" }
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "tpl5"
+source = { path = "/home/erasin/Development/project/tree-sitter-tpl5", rev = "" }
+# source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "" }
 
 
 # ----------- python pyright --------------
