@@ -9,9 +9,10 @@
 // 输入法
 spawn-at-startup "fcitx5" "-d"
 // xwayland
-spawn-at-startup "xwayland-satellite"
+
+// spawn-at-startup "waybar"
 spawn-at-startup "way-edges" "daemon"
-spawn-at-startup "uair --quite"
+// spawn-at-startup "uair --quite"
 
 // 壁纸
 // spawn-at-startup "eww daemon"，已经定义了 systemd
@@ -23,6 +24,8 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // 省略客户端装饰
 prefer-no-csd
 
+// 兼容处理
+spawn-at-startup "xwayland-satellite"
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous
 // 环境变量覆盖
 environment {
@@ -244,11 +247,13 @@ window-rule {
 //     }
 // }
 
+
 window-rule {
     match app-id="wlroots"
     open-maximized true
 }
 
+// 特定窗口宽度设定
 window-rule {
     match app-id="org.gnome.Decibels"
     match app-id="io.bassi.Amberol"
@@ -286,6 +291,13 @@ window-rule {
     // default-floating-position x=32 y=32 relative-to="bottom-right"
 }
 
+// steam 通知
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
+
+// 歌词窗口浮动左下角
 window-rule {
     match app-id=r#"Alacritty$"# title="^Lyrics(.*)"
     open-floating true
@@ -363,7 +375,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="打开终端" { spawn "alacritty"; } // or kitty
     Mod+Space { spawn "fuzzel"; }
-    Super+Alt+L hotkey-overlay-title="锁屏" { spawn "hyprlock"; } //swaylock
+    Super+Alt+L hotkey-overlay-title="锁屏" { spawn "swaylock"; } //swaylock
     Mod+E { spawn "nautilus"; }
     Mod+Tab { spawn "~/.config/niri/scripts/switch-window.sh"; }
     // Mod+O { spawn "~/.config/waybar/scripts/clipboard.sh"; }
@@ -395,6 +407,8 @@ binds {
     // XF86AudioLowerVolume { spawn "bash" "-c" "pactl set-sink-volume @DEFAULT_SINK@ -5%  && notify-send -c \"system\" \" $(pactl get-sink-volume @DEFAULT_SINK@ | head -1 | tr -s ' ' | cut -d ' ' -f1,5)\""; }
     // XF86MonBrightnessDown { spawn "bash" "-c" "brightnessctl -c backlight set 1- && notify-send -c \"system\" \" Brightness: $(brightnessctl -m | cut -d',' -f4)\""; }
     // XF86MonBrightnessUp { spawn "bash" "-c" "brightnessctl -c backlight set +1 && notify-send -c \"system\" \" Brightness: $(brightnessctl -m | cut -d',' -f4)\""; }
+
+    Mod+O repeat=false { toggle-overview; }
 
     Mod+Q { close-window; }
 

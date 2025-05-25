@@ -1,7 +1,6 @@
 
 ## lock
 
-- [hyprlock](https://github.com/hyprwm/hyprland/wiki/hyprlock)
 - [swaylock](https://github.com/swaywm/swaylock)
 
 ## bar
@@ -131,7 +130,7 @@ chrome
 
 ## color picker
 
-- hyprpicker
+- niri msg pick-color
 
 ## other
 

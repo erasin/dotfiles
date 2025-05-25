@@ -98,6 +98,11 @@ LLDB_VSCODE_PATH=${HOME}/.vscode/extensions/lanza.lldb-vscode-0.2.3/bin/darwin/b
 HARMONY_CLI_PATH=${HOME}/Development/harmonyos-next/command-line-tools/bin
 HARMONY_GN_PATH=${HOME}/Development/harmonyos-next/depot_tools
 
+export CANGJIE_HOME=/opt/cangjie
+CANGJIE_BIN_PATH=${CANGJIE_HOME}/bin
+CANGJIE_TOOL_BIN_PATH=${CANGJIE_HOME}/tools/bin
+CANGJIE_USER_PATH=${HOME}/.cjpm/bin
+
 ## ======= PATH ============
 
 LOCAL_PATH=$HOME/.local/bin
@@ -115,6 +120,9 @@ $RUBY_PATH:\
 $ROCm_PATH:\
 $LLDB_VSCODE_PATH:\
 $HARMONY_CLI_PATH:\
+$CANGJIE_BIN_PATH:\
+$CANGJIE_TOOL_BIN_PATH:\
+$CANGJIE_USER_PATH:\
 $ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 
 ## ===== soft ======

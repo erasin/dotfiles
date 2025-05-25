@@ -1,38 +1,44 @@
-; highlights.scm for Helix
+; 基本元素
+(line_comment) @comment.line
+(block_comment) @comment.block
+(string) @string
+(number) @number
 
-; Comments
-(comment) @comment
+(control) @keyword.control.conditional
+(control_repeat) @keyword.control.repeat
+(attribute) @variable.other.member
 
-; Text
-; (text) @text
-
-; Output tags
-(tpl_output) @variable
-
-; Control keywords
 [
-  (tpl_if)
-  (tpl_elseif)
-  (tpl_else)
-  (tpl_endif)
-  (tpl_compare)
-  (tpl_volist)
-  (tpl_foreach)
-  (tpl_switch)
-  (tpl_case)
-  (tpl_endswitch)
-  (tpl_default)
-  (tpl_include)
+  (block_keyword)
+  (compare_keyword)
+  (extend_keyword)
 ] @keyword
 
-; Variables
-(variable) @variable
+"include" @keyword.control.import
 
-; Function names
-(function_call) @function
+; (parameter) @variable.parameter
 
-; Strings inside arguments
-; (string) @string
+((const) @constant
+ (#match? @constant "__?[A-Z][A-Z\\d_]+__$"))
 
-; Numeric literals
-; (number) @number
+(variable) @variable.parameter
+
+(function) @function
+
+[
+  "|"
+  "."
+] @operator
+
+[
+  "("
+  ")"
+  "{"
+  "}"
+] @punctuation.bracket
+
+[
+  "$"
+  "{"
+  "}"
+]@keyword

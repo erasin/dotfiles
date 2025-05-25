@@ -9,15 +9,15 @@
 		"wlr/taskbar",
 		// "custom/window-close",
 		"group/niri-action",
-		"niri/window",
+		"niri/window"
 	],
 	"modules-center": [
 		// "mpris",
 		"custom/media-toggle",
 		"custom/media",
 		"custom/media-next",
-		"custom/notification",
-		"custom/pomodoro"
+		"custom/notification"
+		// "custom/pomodoro"
 	],
 	"modules-right": [
 		"custom/weather",
@@ -28,12 +28,12 @@
 		// "memory",
 		"custom/temperature",
 		// "niri/language",
-		"custom/keyboard",
+		// "custom/keyboard",
 		// "keyboard-state",
 
 		"custom/clipboard",
+		"custom/colorpicker",
 		"custom/gsconnect",
-		"idle_inhibitor",
 
 		"group/tools",
 		// "custom/recorder",
@@ -85,7 +85,7 @@
 		"orientation": "inherit",
 		"drawer": {
 			"transition-duration": 500,
-			"children-class": "not-power",
+			"children-class": "not-power"
 			// "transition-left-to-right": false
 		},
 		"modules": [
@@ -108,12 +108,12 @@
 	"custom/window-left": {
 		"format": "󰜱",
 		"tooltip-format": "Focus left",
-		"on-click": "niri msg action focus-column-left" 
+		"on-click": "niri msg action focus-column-left"
 	},
 	"custom/window-right": {
 		"format": "󰜴",
 		"tooltip-format": "Focus right",
-		"on-click": "niri msg action focus-column-right-or-first" 
+		"on-click": "niri msg action focus-column-right-or-first"
 	},
 	"custom/window-center": {
 		"format": "󰋱",
@@ -192,25 +192,25 @@
 		"on-click": "$HOME/.config/scripts/MediaControl --next"
 	},
 	// pomodoro time
-	"custom/pomodoro": {
-		"format": "{icon} {text}",
-		"format-icons": [
-			" ",
-			" ",
-			" ",
-			" "
-			// "",
-		],
-		"tooltip": false,
-		"return-type": "json",
-		"interval": 1,
-		"on-click": "uairctl toggle",
-		// "on-click-middle": "uairctl prev",
-		// "on-click-right": "uairctl next",
-		"on-click-right": "niri msg action spawn -- eww open --toggle pomodoro",
-		"exec-if": "which uairctl",
-		"exec": "uairctl fetch '{\"text\":\"{name} {time}\",\"class\":\"{state}\",\"percentage\":{percent}}'"
-	},
+	// "custom/pomodoro": {
+	// 	"format": "{icon} {text}",
+	// 	"format-icons": [
+	// 		" ",
+	// 		" ",
+	// 		" ",
+	// 		" "
+	// 		// "",
+	// 	],
+	// 	"tooltip": false,
+	// 	"return-type": "json",
+	// 	"interval": 1,
+	// 	"on-click": "uairctl toggle",
+	// 	// "on-click-middle": "uairctl prev",
+	// 	// "on-click-right": "uairctl next",
+	// 	"on-click-right": "niri msg action spawn -- eww open --toggle pomodoro",
+	// 	"exec-if": "which uairctl",
+	// 	"exec": "uairctl fetch '{\"text\":\"{name} {time}\",\"class\":\"{state}\",\"percentage\":{percent}}'"
+	// },
 
 	// uairctl fetch '{"text":"{name} {time} {percent}%","class":"{state}","percentage":{percent}}'
 	// "custom/notification": {
@@ -266,7 +266,7 @@
 	"custom/colorpicker": {
 		"format": "",
 		"tooltip-format": "color picker",
-		"on-click": "niri msg action spawn -- hyprpicker"
+		"on-click": "$HOME/.config/waybar/scripts/color-picker.sh"
 	},
 	"group/audio": {
 		"orientation": "inherit",
@@ -376,28 +376,28 @@
 		"on-click-right": "niri msg action spawn -- nm-connection-editor"
 	},
 	// keyboard layout
-	"keyboard-state": {
-		"numlock": false,
-		"capslock": true,
-		"scrollock": true,
-		// "format": "{name} {icon}",
-		"format": {
-			"numlock": " {icon}",
-			"capslock": "󰘲 {icon}",
-			"scrollock": " {icon}"
-		},
-		"format-icons": {
-			"locked": "",
-			"unlocked": ""
-		},
-		"device-path": "/dev/input/event5"
-	},
-	"custom/keyboard": {
-		"format": "{}",
-		"interval": 1,
-		"return-type": "json",
-		"exec": "$HOME/.config/waybar/scripts/keyboard-status.sh"
-	},
+	// "keyboard-state": {
+	// 	"numlock": false,
+	// 	"capslock": true,
+	// 	"scrollock": true,
+	// 	// "format": "{name} {icon}",
+	// 	"format": {
+	// 		"numlock": " {icon}",
+	// 		"capslock": "󰘲 {icon}",
+	// 		"scrollock": " {icon}"
+	// 	},
+	// 	"format-icons": {
+	// 		"locked": "",
+	// 		"unlocked": ""
+	// 	},
+	// 	"device-path": "/dev/input/event5"
+	// },
+	// "custom/keyboard": {
+	// 	"format": "{}",
+	// 	"interval": 1,
+	// 	"return-type": "json",
+	// 	"exec": "$HOME/.config/waybar/scripts/keyboard-status.sh"
+	// },
 	"niri/language": {
 		"format": "{}",
 		"format-en": "EN",
@@ -445,7 +445,7 @@
 		"modules": [
 			"custom/recorder",
 			"custom/unmount",
-			"custom/colorpicker",
+			"idle_inhibitor",
 			"custom/wallpaper"
 		]
 	},

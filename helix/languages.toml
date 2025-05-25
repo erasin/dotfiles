@@ -330,6 +330,7 @@ name = "tpl5"
 scope = "source.tpl5"
 injection-regex = "tpl5"
 file-types = ["tpl5"]
+comment-token = "{//"
 block-comment-tokens = { start = "{/*", end = "*/}" }
 indent = { tab-width = 2, unit = "  " }
 
@@ -732,3 +733,20 @@ nagaVersion = "0.22"
 "bevy_sprite::mesh2d_view_types" = "file:///home/erasin/Development/gdev/bevy/crates/bevy_sprite/src/mesh2d/mesh2d_view_types.wgsl"
 "bevy_sprite::sprite_view_bindings" = "file:///home/erasin/Development/gdev/bevy/crates/bevy_sprite/src/render/sprite_view_bindings.wgsl"
 "bevy_ui::ui_vertex_output" = "file:///home/erasin/Development/gdev/bevy/crates/bevy_ui/src/render/ui_vertex_output.wgsl"
+
+[[language]]
+name = "cangjie"
+scope = "source.cangjie"
+injection-regex = "cangjie"
+file-types = ["cj"]
+roots = []
+auto-format = false
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "cangjie"
+source = { git = "https://gitcode.com/vchuoshen6/tree-sitter-cangjie", rev = "4a47b8790c88f079c8b2e5adfc6fa5c6c36998d1" }
+# source = { git = "https://gitcode.com/OpenCangjieCommunity/tree-sitter-cangjie", rev = "8640e9a0d55b52b1b8bcd0b7ce9632a40f188905" }
+# 
