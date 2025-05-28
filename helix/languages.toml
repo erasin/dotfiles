@@ -337,7 +337,7 @@ indent = { tab-width = 2, unit = "  " }
 [[grammar]]
 name = "tpl5"
 source = { path = "/home/erasin/Development/project/tree-sitter-tpl5", rev = "" }
-# source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "" }
+# source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "185cef710b24211f8fe45455ad47e2e653dd224e" }
 
 
 # ----------- python pyright --------------

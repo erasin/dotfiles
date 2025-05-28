@@ -299,11 +299,11 @@ window-rule {
 
 // 歌词窗口浮动左下角
 window-rule {
-    match app-id=r#"Alacritty$"# title="^Lyrics(.*)"
+    match app-id=r#"Alacritty$"# title="^Lyrics$"
     open-floating true
     default-floating-position x=32 y=50 relative-to="bottom-right"
-    default-column-width { fixed 400; }
-    default-window-height { fixed 600; }
+    default-column-width { proportion 0.4; }
+    default-window-height { proportion 0.5; }
 }
 
 // 遮挡 

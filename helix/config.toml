@@ -96,6 +96,7 @@ left = [
 # center = ["diagnostics", "workspace-diagnostics"]
 center = ["diagnostics"]
 right = [
+  "file-indent-style",
   "register",
   "selections",
   "primary-selection-length",

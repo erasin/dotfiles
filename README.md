@@ -10,7 +10,7 @@
 - [mako](https://github.com/emersion/mako) 轻量通知管理
 - [swww](https://github.com/LGFae/swww) 壁纸
 - [hypridle](https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/) idle 空闲管理守护进程
-- ~~[swayidle]()~~
+- [swayidle]()
 - [hyprlock](https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/) 锁屏
 - ~~[swaylock](https://github.com/swaywm/swaylock) 锁屏~~
 
