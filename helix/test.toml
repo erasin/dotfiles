@@ -1,0 +1,45 @@
+
+theme = "onedark_local"
+
+[editor]
+# 真彩支持
+# tty export COLORTERM=truecolor
+true-color = true
+undercurl = true
+auto-completion = true
+# auto-save = false
+auto-info = true
+# cursorcolumn = true # 光标列高亮
+cursorline = true  # 光标 行高亮
+color-modes = true
+idle-timeout = 40
+# mouse = true
+# scrolloff = 5 # 滚动时上下边缘填充行数
+# scroll-lines = 3
+line-number = "relative" # 行号类型 absolute / relative 
+
+[editor.statusline]
+left = [
+  "mode",
+  "version-control",
+  "read-only-indicator",
+  "file-name",
+  "file-modification-indicator",
+]
+# center = ["diagnostics", "workspace-diagnostics"]
+center = ["diagnostics"]
+right = [
+  "register",
+  "separator",
+  "selections",
+  "separator",
+  "primary-selection-length",
+  "file-encoding",
+  "separator",
+  "file-indent-style",
+  "file-line-ending",
+  "position",
+  "position-percentage",
+  "file-type",
+]
+separator = ""
