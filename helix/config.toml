@@ -101,15 +101,16 @@ left = [
 center = ["diagnostics"]
 right = [
   "register",
-  "selections",
+  "position",
   "primary-selection-length",
+  "selections",
   'word-count', # local: statusline-word-count
   "file-encoding",
   "file-indent-style",
   "file-line-ending",
-  "position",
   "position-percentage",
   "file-type",
+  "spacer"
 ]
 separator = "│"
 

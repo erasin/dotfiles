@@ -1,7 +1,8 @@
 使用 HELIX EDITOR
 ===
 
-> <h2>已经迁移到 <https://github.com/erasin/dotfiles></h2>
+> 已经迁移到 <https://github.com/erasin/dotfiles>
+
 
 > <https://erasin.wang/helix/>
 
