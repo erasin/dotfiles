@@ -1,0 +1,6 @@
+theme = "onedark_local"
+
+[editor]
+true-color = true
+color-modes = true
+# zen-mode = true

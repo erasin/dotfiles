@@ -3,7 +3,6 @@ inherits = "onelight"
 
 "ui.statusline.version-control" = { fg = "white", bg = "green"}
 "ui.statusline.file-name" = { fg = "blue", bg = "grey-300"}
-
 "ui.statusline.file-modification-indicator" = { fg = "red", bg = "grey-300", modifiers = ["bold"]}
 
 "ui.statusline.register" = { fg = "white", bg = "pink"}

@@ -1,3 +1,5 @@
+# https://github.com/helix-editor/helix/pull/2869 
+# 
 name = "nerd"
 
 [diagnostic]

@@ -1,3 +1,4 @@
+# 过滤
 # [use-grammars]
 # only = [ ]
 #
@@ -500,8 +501,8 @@ name = "markdown"
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 language-servers = [
   "marksman",
-  # "markdown-oxide",
-  "iwe",
+  "markdown-oxide",
+  # "iwe",
   "hx-lsp",
   "cspell-lsp",
 ]

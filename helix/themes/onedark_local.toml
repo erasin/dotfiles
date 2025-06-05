@@ -2,10 +2,8 @@
 inherits = "onedark"
 
 
-
 "ui.statusline.version-control" = { fg = "light-black", bg = "green"}
 "ui.statusline.file-name" = { fg = "blue", bg = "light-black"}
-
 "ui.statusline.file-modification-indicator" = { fg = "red", bg = "light-black", modifiers = ["bold"]}
 
 "ui.statusline.register" = { fg = "light-black", bg = "pink"}
@@ -20,8 +18,6 @@ inherits = "onedark"
 "ui.statusline.position" = { fg = "green", bg = "light-black"}
 "ui.statusline.position-percentage" = { fg = "light-black", bg = "light-blue"}
 # "ui.statusline.file-type" = { fg = "", bg = ""}
-
-
 
 # "ui.statusline.spinner" = { fg = "", bg = ""}
 # "ui.statusline.file-name" = { fg = "blue", bg = "light-black"}
@@ -44,12 +40,6 @@ inherits = "onedark"
 # "ui.statusline.spacer" = { fg = "", bg = ""}
 # "ui.statusline.version-control" = { fg = "light-black", bg = "green"}
 # "ui.statusline.register" = { fg = "purple", bg = "light-black"}
-
-
-
-
-
-
 
 "attribute" = { fg = "pink" }
 "label" = { fg = "cyan" }
