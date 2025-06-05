@@ -27,6 +27,8 @@ cd helix
 cargo install --path helix-term
 ```
 
+![Screenshot from 2025-06-05 21-44-47](https://github.com/user-attachments/assets/d051752c-a243-4490-b934-19d65b009caa)
+
 ## PR 合并
 
 - [#12369 Icons v2](https://github.com/helix-editor/helix/pull/12369)

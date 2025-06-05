@@ -96,8 +96,8 @@ right = [
 separator = "│"
 
 mode.normal = " "
-mode.insert = "󰫲 "
-mode.select = "󰬃 "
+mode.insert = " "
+mode.select = " "
 
 diagnostics = ["warning", "error"]
 workspace-diagnostics = ["warning", "error"]
@@ -122,7 +122,7 @@ enabled = true
 [icons.kind]
 enabled = true
 number = ""
-string = "󰅳"
+string = ""
 function = "󰊕"
 color = "󰌁"
 
@@ -132,19 +132,26 @@ php = { glyph = "", color = "#1976D2" }
 godot = { glyph = "", color = "#2196F3" }
 gd = { glyph = "", color = "#2196F3" }
 gdshader = { glyph = "󰘷", color = "#9C27B0" }
-wgsl = { glyph = "󰘷", color = "#9C27B0" }
+wgsl = { glyph = "", color = "#9C27B0" }
+cj = ""
 yml = ""
 yaml = ""
 conf= ""
-kdl= ""
+kdl= ""
 Makefile = ""
-ron = ""
+ron = "󰔘"
+db = ""
+sql = "󰆼"
+jsonc = ""
+json5 = ""
+"ignore" = "󰈉"
+".ignore" = "󰈉"
 
-[icons.diagnostic]
-error = ""
-warning = ""
-info = ""
-hint = ""
+# [icons.diagnostic]
+# error = "" 
+# warning = ""
+# info = ""
+# hint = ""
 
 [keys.normal]
 # W = "@miw"
