@@ -55,8 +55,6 @@ function ala() {
 # --disturl=https://npm.taobao.org/dist \
 # --userconfig=$HOME/.cnpmrc"
 
-
-
 ## tools {{{
 
 # alias yui='java -Djava.awt.headless=true -jar ${HOME}/Development/Tools/bin/yuicompressor-2.4.8.jar'
@@ -118,14 +116,18 @@ alias bynote="touch `date +'%Y%m%d-%H%M.md'`;hx `date +'%Y%m%d-%H%M.md'`"
 alias wgetweb="wget -r -np -nd -k -p"   #下载网站某目录
 
 # git{{{
-alias gitc='git commit -a -m'
-alias gitcm='git commit -a'
-alias gits='git status'
+alias gits='git'
+alias gita='git add'
 alias gitb='git checkout'
-alias gitgui='git gui &'
-alias gitlt='git log --graph --pretty=oneline --abbrev-commit'
+alias gitc='git commit'
+alias gitd='git diff'
+alias gitf='git fetch'
+alias gitt='git tag'
+alias gitr='git rebase'
+alias gitp='git pull'
+alias gitu='git push'
+alias gitl='git log --graph --pretty=oneline --abbrev-commit'
 # }}}
-
 
 alias gopathset='export GOPATH=`pwd`'
 alias gobuildsmall='go build -ldflags "-s -w"'
