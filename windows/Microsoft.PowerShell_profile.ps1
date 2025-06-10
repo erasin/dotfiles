@@ -18,6 +18,7 @@ function gita { git add $args}
 function gitb { git checkout $args}
 function gitc { git commit $args}
 function gitd { git diff $args}
+function gitf { git fetch $args}
 function gitt { git tag $args}
 function gitr { git rebase $args}
 function gitp { git pull $args}
