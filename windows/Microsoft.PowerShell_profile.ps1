@@ -10,5 +10,16 @@ fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 # alias
 Set-Alias ls eza -Force -Option AllScope
-function ll { eza -l --time-style=long-iso $args }
-function rm { del $args }
+function ll { eza --long --header --git --icons --time-style=long-iso $args }
+function llt { eza --tree --long --header --git --icons --time-style=long-iso $args }
+
+function gits { git status }
+function gita { git add $args}
+function gitb { git checkout $args}
+function gitc { git commit $args}
+function gitd { git diff $args}
+function gitt { git tag $args}
+function gitr { git rebase $args}
+function gitp { git pull $args}
+function gitu { git push $args}
+function gitl { git log --graph --pretty=oneline --abbrev-commit $args}
