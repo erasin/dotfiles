@@ -42,6 +42,13 @@ if [[ $(uname) == "Darwin" ]]; then
   source /usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 fi
 
+# cursor bug
+[[ "$TERM_PROGRAM" == "vscode" ]] && unset ARGV0
+
+if [[ "$ARGV0" == "/usr/bin/cursor" ]]; then
+  unset ARGV0
+fi
+
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"

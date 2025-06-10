@@ -54,7 +54,7 @@ cargo.features = "all"
 
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer", "hx-lsp", "cspell-lsp", "lsp-ai"]
+language-servers = ["rust-analyzer", "hx-lsp", "cspell-lsp"]
 
 [language.debugger]
 name = "lldb-dap"
@@ -328,6 +328,25 @@ includePaths = [
 [[language]]
 name = "php"
 language-servers = ["intelephense", "hx-lsp"]
+
+# [language.debugger]
+# name = "vscode-php-debug"
+# transport = "stdio"
+# command = "node"
+# args = [ "/home/erasin/.vscode-oss/extensions/xdebug.php-debug-1.36.0-universal/out/phpDebug.js" ]
+
+[language.debugger]
+name = "php-xdebug-dap"
+transport = "stdio"
+command = "/home/erasin/Development/project/php-dap/target/debug/php-dap"
+# args = ['--stdio']
+
+[[language.debugger.templates]]
+name = "Listen for Xdebug"
+request = "launch"
+# completion = [ "ignored" ]
+args = {  } 
+
 
 [[language]]
 name = "tpl5"

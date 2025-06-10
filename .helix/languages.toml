@@ -1,7 +1,3 @@
 [[language]]
-name = "bash"
-file-types = ["sh", "tmux.conf", ".zprofile", ".zshenv", ".zshrc"]
-
-[[language]]
 name = "yaml"
 indent = { tab-width = 4, unit = "\t" }
