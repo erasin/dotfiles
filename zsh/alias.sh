@@ -1,22 +1,17 @@
-# npm config set registry  https://registry.npm.taobao.org
+alias ls='eza --icons'
+alias ll='eza --all --header --group --long --git --time-style=long-iso --icons'
+alias lltree='eza --tree --level=2 --all --long --git --icons'
 
-alias ls='eza --icons=auto'
-# alias whereis=whereis-rs
-# alias vim=nvim
-# #alias rm=rip
-alias neovide='${HOME}/Applications/Neovide.app/Contents/MacOS/neovide'
-alias py=python
-
+# alias rm=rip
 alias cp='cp -iv'
 alias mv='mv -iv'
-# alias rm='rm -i'
 alias rm='rm -i'
 alias ln='ln -iv'
-alias ll='eza --all --header --group --long --git --time-style long-iso --icons=auto'
-alias lltree='eza --tree --level=2 --all --long --git --icons=auto'
+
 alias vimdiff='nvim -d'
 alias copy='rsync -r -v --progress'
-alias bevyrundy='cargo run --features bevy/dynamic'
+
+alias py=python
 
 ## 环境 {{{
 # alias gocn='export LANG=zh_CN.UTF-8;export LANGUAGE=zh_CN:zh:en;echo "zh_CN.UTF-8";'
@@ -116,7 +111,7 @@ alias bynote="touch `date +'%Y%m%d-%H%M.md'`;hx `date +'%Y%m%d-%H%M.md'`"
 alias wgetweb="wget -r -np -nd -k -p"   #下载网站某目录
 
 # git{{{
-alias gits='git'
+alias gits='git status'
 alias gita='git add'
 alias gitb='git checkout'
 alias gitc='git commit'
@@ -147,20 +142,9 @@ alias pane50='tmux resize-pane -x 50'
 
 alias killnds='sudo killall -HUP mDNSResponder'
 
-# [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-function j() {
-    OUTPUT=`jump $@`
-    if [ $? -eq 0 ]
-    then cd "$OUTPUT"
-    else echo "$OUTPUT"
-    fi
-}
-
 alias skcode='code $(sk)'
 alias skcd='cd "$(sk)"'
-# for wayland
-alias code="code --ozone-platform=wayland"
+
 
 
 function theme-dark() {
@@ -272,13 +256,11 @@ if [[ "$TERM" = "xterm-kitty" ]]; then
     alias clip="kitty +kitten clipboard"
 fi
 
+# MacOS
 if [[ $(uname) == "Darwin" ]]; then
     alias quicklook='qlmanage -p'
-    alias setphp7='brew unlink php && brew link php@7.2 && brew services stop php && brew services start php@7.2'
-    alias setphp8='brew unlink php@7.2 && brew link php && brew services stop php@7.2 && brew services start php'
-    
-    
-    # OSX {{{
+    alias setphp7='brew unlink php && brew link php@7.4 && brew services stop php && brew services start php@7.4'
+    alias setphp8='brew unlink php@7.4 && brew link php && brew services stop php@7.4 && brew services start php'
     
     alias ios-show='open -a Simulator'
     
@@ -296,10 +278,10 @@ if [[ $(uname) == "Darwin" ]]; then
     
     # 重置app 图标
     alias resetDock='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock'
-    # }}}
 fi
 
 if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+    alias code="code --ozone-platform=wayland"
     alias openfolder='niri msg action spawn -- nautilus $(pwd)'
     alias niri-msg-fcitx='niri msg action spawn -- fcitx5 -r'
     alias niri-msg-pomodoro='niri msg action spawn -- uair --quiet'
