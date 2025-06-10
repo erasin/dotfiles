@@ -70,7 +70,7 @@
     "PHP Foreach Loop": {
         "prefix": "foreach",
         "body": [
-            "foreach (${1:array} as ${2:key} => ${3:value}) {",
+            "foreach ($${1:array} as $${2:key} => $${3:value}) {",
             "\t$0",
             "}"
         ],
@@ -155,9 +155,9 @@
         "prefix": "pdo",
         "body": [
             "try {",
-            "\t$${1:dbh} = new PDO('${2:mysql}:host=${3:localhost};dbname=${4:test}', ${5:username}, ${6:password});",
+            "\t$${1:dbh} = new PDO('${2:mysql}:host=${3:localhost};dbname=${4:test}', $${5:username}, $${6:password});",
             "\t$${1:dbh}->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);",
-            "} catch(PDOException $${7:e}) {",
+            "} catch(\\PDOException $${7:e}) {",
             "\techo 'Error: ' . $${7:e}->getMessage();",
             "}"
         ],
@@ -201,13 +201,14 @@
         "body": [
             "// 启动事务",
             "Db::startTrans();",
-            "try{",
-            "    $1",
-            "    // 提交事务",
-            "    Db::commit();    ",
-            "} catch (\\Exception $e) {",
-            "    // 回滚事务",
-            "    Db::rollback();",
+            "try {",
+            "\t$1",
+            "\t// 提交事务",
+            "\tDb::commit();",
+            "} catch (\\Exception $${2:e}) {",
+            "\t// 回滚事务",
+            "\tDb::rollback();",
+            "\t${0}",
             "}"
         ],
         "description": "Create ThinkPHP Db Transaction"
@@ -215,13 +216,11 @@
     "ThinkPHP5 Controler Create": {
         "prefix": "tpController",
         "body": [
-            "namespace $0;",
-            "",
-            "use think\\Controller;",
-            "",
+            "namespace $1;\n",
+            "use think\\Controller;\n",
             "class ${TM_FILENAME_BASE} extends Controller",
             "{",
-            "    $1",
+            "\t$0",
             "}"
         ],
         "description": "Create ThinkPHP Controller"
@@ -229,13 +228,11 @@
     "ThinkPHP5 Model Create": {
         "prefix": "tpModel",
         "body": [
-            "namespace $0;",
-            "",
-            "use think\\Model;",
-            "",
+            "namespace $1;\n",
+            "use think\\Model;\n",
             "class ${TM_FILENAME_BASE} extends Model",
             "{",
-            "    $1",
+            "\t$0",
             "}"
         ],
         "description": "Create ThinkPHP Model"
