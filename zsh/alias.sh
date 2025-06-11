@@ -19,31 +19,6 @@ alias goen='export LANGUAGE=en_US;echo "LANGUAGE=en_US";'
 alias goen2='export LANG=en_US.UTF-8;export LANGUAGE=en_US:en;echo "en_US.UTF-8";'
 #}}}
 
-# alias ze='zellij  -l simple'
-# alias ze='zellij -s O -l simple attach --index 0 --create'
-function ze(){
-    ZJ_SESSIONS=$(zellij list-sessions)
-    NO_SESSIONS=$(echo "${ZJ_SESSIONS}" | wc -l)
-    
-    if [ "${NO_SESSIONS}" -ge 2 ]; then
-        zellij -l simple attach \
-        "$(echo "${ZJ_SESSIONS}" | sk)"
-    else
-        zellij -l simple  attach -c Z
-    fi
-}
-
-function hxa() {
-    # env -u WAYLAND_DISPLAY
-    nohup  alacritty -T ${PWD##*/} --config-file ${HOME}/.config/alacritty/hx.toml --working-directory $(pwd) -e hx -w $(pwd) $@ > /dev/null >&1 &
-    # nohup kitty --title $(pwd) --working-directory $(pwd) hx -w $(pwd) $@ > /dev/null >&1 &
-    # nohup wezterm start --cwd $(pwd) -- hx $@ > /dev/null >&1 &
-}
-
-function ala() {
-    nohup alacritty -T ${PWD##*/} --config-file ${HOME}/.config/alacritty/hx.toml --working-directory $(pwd) $@ > /dev/null >&1 &
-}
-
 
 # alias cnpm="npm --registry=https://registry.npm.taobao.org \
 # --cache=$HOME/.npm/.cache/cnpm \
@@ -117,6 +92,7 @@ alias gitb='git checkout'
 alias gitc='git commit'
 alias gitd='git diff'
 alias gitf='git fetch'
+alias gitm='git merge'
 alias gitt='git tag'
 alias gitr='git rebase'
 alias gitp='git pull'
@@ -146,6 +122,16 @@ alias skcode='code $(sk)'
 alias skcd='cd "$(sk)"'
 
 
+function hxa() {
+    # env -u WAYLAND_DISPLAY
+    nohup  alacritty -T ${PWD##*/} --config-file ${HOME}/.config/alacritty/hx.toml --working-directory $(pwd) -e hx -w $(pwd) $@ > /dev/null >&1 &
+    # nohup kitty --title $(pwd) --working-directory $(pwd) hx -w $(pwd) $@ > /dev/null >&1 &
+    # nohup wezterm start --cwd $(pwd) -- hx $@ > /dev/null >&1 &
+}
+
+function ala() {
+    nohup alacritty -T ${PWD##*/} --config-file ${HOME}/.config/alacritty/hx.toml --working-directory $(pwd) $@ > /dev/null >&1 &
+}
 
 function theme-dark() {
     #env
