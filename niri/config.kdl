@@ -79,6 +79,7 @@ input {
 output "DP-3" {
     // off
     mode "2560x1440@119.998"
+    // mode "1920x1080@119.880"
     scale 1.0
     transform "normal"
     // position x=1280 y=0
