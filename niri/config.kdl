@@ -374,7 +374,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="打开终端" { spawn "alacritty"; } // kitty | alacritty
+    Mod+T hotkey-overlay-title="打开终端" { spawn "kitty"; } // kitty | alacritty
     Mod+Space { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="锁屏" { spawn "swaylock"; } //swaylock
     Mod+E { spawn "nautilus"; }

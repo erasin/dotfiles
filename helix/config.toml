@@ -147,6 +147,7 @@ jsonc = ""
 json5 = ""
 "ignore" = "󰈉"
 ".ignore" = "󰈉"
+"lrc" = "󰨖"
 
 # [icons.diagnostic]
 # error = "" 
