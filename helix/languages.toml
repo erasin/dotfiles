@@ -291,7 +291,7 @@ auto-format = true
 language-servers = [
   # "typescript-language-server",
   { name = "typescript-language-server", except-features = ["format"] },
-  "biome",
+  # "biome",
   "hx-lsp",
   "cspell-lsp",
   "lsp-ai",

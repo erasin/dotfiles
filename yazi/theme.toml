@@ -8,7 +8,7 @@ dark  = ""
 light = ""
 
 
-[manager]
+[mgr]
 cwd = { fg = "green" }
 
 # Hovered

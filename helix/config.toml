@@ -52,6 +52,7 @@ select = "underline"
 display-messages = true
 display-progress-messages = true
 display-inlay-hints = true
+# inlay-hints-length-limit = 40
 
 # [#6417] inline diagnostic
 [editor.inline-diagnostics]

@@ -2,7 +2,7 @@
 inherits = "onedark"
 
 
-"ui.statusline.version-control" = { fg = "light-black", bg = "green"}
+"ui.statusline.version-control" = { fg = "light-black", bg = "green", modifiers = ["bold"]}
 "ui.statusline.file-name" = { fg = "blue", bg = "light-black"}
 "ui.statusline.file-modification-indicator" = { fg = "red", bg = "light-black", modifiers = ["bold"]}
 
