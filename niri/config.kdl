@@ -277,20 +277,11 @@ window-rule {
     match app-id="firefox" title="^Picture-in-Picture$"
     match app-id="firefox" title="^画中画$"
     match app-id="firefox" title="(Aria2)"
-
     match title="^画中画$"
 
-    match app-id="Alacritty|kitty" title="yazi-picker"
-    match app-id="Alacritty|kitty" title="scooter-picker"
-    // match app-id="kitty" title="scooter-picker"
     match app-id=r#"jetbrains-studio$"#
-
     match app-id="org.gnome.Nautilus" title="打开文件"
-    // match app-id="Menu"
-
     open-floating true
-    // 设置浮动位置
-    // default-floating-position x=32 y=32 relative-to="bottom-right"
 }
 
 // steam 通知
@@ -299,12 +290,21 @@ window-rule {
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
+// picker for helix editor
+window-rule {
+    match app-id="Alacritty|kitty" title="yazi-picker"
+    match app-id="Alacritty|kitty" title="scooter-picker"
+    open-floating true
+    default-column-width { proportion 0.6; }
+    default-window-height { proportion 0.6; }
+}
+
 // 歌词窗口浮动左下角
 window-rule {
-    match app-id=r#"Alacritty$"# title="^Lyrics$"
+    match app-id="Alacritty|kitty" title="Lyrics"
     open-floating true
     default-floating-position x=32 y=50 relative-to="bottom-right"
-    default-column-width { proportion 0.4; }
+    default-column-width { proportion 0.15; }
     default-window-height { proportion 0.3; }
 }
 

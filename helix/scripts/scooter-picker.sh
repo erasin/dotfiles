@@ -11,4 +11,4 @@
 # 
 # "s" = ":open %sh{ ~/.config/helix/scripts/scooter-picker }"
 
-kitty -T "scooter-picker" --working-directory $(pwd) -e scooter
+kitty -T "scooter-picker" --working-directory $(pwd) -e scooter 

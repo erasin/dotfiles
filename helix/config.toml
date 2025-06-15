@@ -192,7 +192,7 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 # 打开 yazi 文件浏览器
 [keys.normal.space.o]
 # yazi 文件 picker
-"e" = ":open %sh{ ~/.config/helix/scripts/yazi-picker}"
+"e" = ":open %sh{ ~/.config/helix/scripts/yazi-picker.sh }"
 # scooter 搜索
 "s" = ":sh bash ~/.config/helix/scripts/scooter-picker.sh"
 
