@@ -35,7 +35,7 @@
 - [wl-clipboard](https://github.com/bugaevc/wl-clipboard) 剪贴板
 - [cava] 谐振器
 - [neofetch](https://github.com/dylanaraps/neofetch) 系统信息
-- [uair](https://github.com/metent/uair) 番茄时钟
+- ~~[uair](https://github.com/metent/uair) 番茄时钟~~
 - [jq](https://jqlang.org/) json 解析
 - [fd](https://github.com/sharkdp/fd) 替代 find
 - [rg](https://github.com/BurntSushi/ripgrep) 替代 grep

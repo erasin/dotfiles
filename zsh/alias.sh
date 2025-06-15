@@ -98,6 +98,7 @@ alias gitr='git rebase'
 alias gitp='git pull'
 alias gitu='git push'
 alias gitl='git log --graph --pretty=oneline --abbrev-commit'
+alias gitz='lazygit'
 # }}}
 
 alias gopathset='export GOPATH=`pwd`'

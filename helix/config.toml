@@ -149,11 +149,11 @@ json5 = ""
 ".ignore" = "󰈉"
 "lrc" = "󰨖"
 
-# [icons.diagnostic]
-# error = "" 
-# warning = ""
-# info = ""
-# hint = ""
+[icons.diagnostic]
+error = " " 
+warning = " "
+info = ""
+hint = "󰮥 "
 
 [keys.normal]
 # W = "@miw"
@@ -191,25 +191,28 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 
 # 打开 yazi 文件浏览器
 [keys.normal.space.o]
-# "o" = ":open %sh{ ~/.config/helix/scripts/file-picker }"
-# https://github.com/sxyazi/yazi/pull/2461
-o = [
-  ':sh rm -f /tmp/yazi-file',
-  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/yazi-file',
-  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-  ':open %sh{cat /tmp/yazi-file}',
-  ':redraw',
-]
+# yazi 文件 picker
+"e" = ":open %sh{ ~/.config/helix/scripts/yazi-picker}"
+# scooter 搜索
+"s" = ":sh bash ~/.config/helix/scripts/scooter-picker.sh"
 
+# BUG:  
+# https://github.com/sxyazi/yazi/pull/2461
+# e = [
+#   ':sh rm -f /tmp/yazi-file',
+#   ':insert-output yazi %{buffer_name} --chooser-file=/tmp/yazi-file',
+#   ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+#   ':open %sh{cat /tmp/yazi-file}',
+#   ':redraw',
+# ]
 # 全局搜索
 # https://github.com/thomasschafer/scooter?tab=readme-ov-file#helix
-# "r" = [":sh alacritty -T \"find-replace\" --working-directory $(pwd) -e scooter", ":reload"]
-r = [
-    # ":write-all",
-    ":insert-output scooter >/dev/tty",
-    ":redraw",
-    ":reload-all"
-]
+# s = [
+#     # ":write-all",
+#     ":insert-output scooter >/dev/tty",
+#     ":redraw",
+#     ":reload-all"
+# ]
 
 [keys.insert]
 # smart tab

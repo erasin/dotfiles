@@ -1,17 +1,17 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "b12a9ab"
-hash = "aeca767ec27bfbea66873d667a729791de18f364"
+rev = "aeca767"
+hash = "a7ab702e1ef0c097defbc976ed34c186"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "b12a9ab"
-hash = "aeca767ec27bfbea66873d667a729791de18f364"
+rev = "aeca767"
+hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "b12a9ab"
-hash = "aeca767ec27bfbea66873d667a729791de18f364"
+rev = "aeca767"
+hash = "bf6f074cd41ee33c3360341d168f9733"
 
 [flavor]
 deps = []
