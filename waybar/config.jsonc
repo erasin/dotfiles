@@ -504,16 +504,15 @@
 	"custom/logout": {
 		"format": "",
 		"tooltip": false,
-		"on-click": "niri msg action spawn -- eww open --toggle powermenu"
-		// "menu": "on-click",
-		// "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		// "menu-actions": {
-		// 	"lock": "niri msg action spawn -- swaylock",
-		// 	"shutdown": "shutdown",
-		// 	"reboot": "reboot",
-		// 	"suspend": "systemctl suspend",
-		// 	// "hibernate": "systemctl hibernate"
-		// 	"logout": ""
-		// }
+		// "on-click": "niri msg action spawn -- eww open --toggle powermenu"
+		"menu": "on-click",
+		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+		"menu-actions": {
+			"lock": "niri msg action spawn -- swaylock",
+			"logout": "niri msg action quit",
+			"suspend": "systemctl suspend",
+			"shutdown": "systemctl poweroff",
+			"reboot": "sytemctl reboot"
+		}
 	}
 }

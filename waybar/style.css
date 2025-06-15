@@ -1,3 +1,8 @@
+/* Colors (gruvbox) */
+/* @define-color black rgba(0, 0, 0, 0.6); */
+/* @define-color white #ebdbb2; */
+
+
 /* Keyframes */
 @keyframes blink-critical {
   to {
@@ -7,22 +12,6 @@
   }
 }
 
-/* Colors (gruvbox) */
-/* @define-color black rgba(0, 0, 0, 0.6); */
-/* @define-color white #ebdbb2; */
-
-/* Reset all styles */
-* {
-  border: none;
-  border-radius: 0;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
-  text-shadow: none;
-  font-size: 10pt;
-  color: white;
-}
 
 /* The whole bar  */
 #waybar {
@@ -215,9 +204,7 @@
 /* 托盘弹出菜单的背景和阴影 */
 #tray menu {
   background-color: rgba(30, 30, 46, 0.95);
-  border: 1px solid rgba(200, 200, 200, 0.2);
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* 托盘菜单的项目样式 */
@@ -227,39 +214,16 @@
 }
 
 #tray menuitem:hover {
-  background-color: #89b4fa;
+  background-color: #FFA000;
   color: #1e1e2e;
   border-radius: 5px;
 }
 
-/* workspaces,windows,tray */
-
-button {
-  padding: 0 3pt 0 3pt;
-}
-
-button.active {
-  font-weight: 700;
-  border-bottom: 1pt white solid;
-}
-
-button:hover {
-  color: black;
-}
-
-#workspaces button.active:hover {
-  color: black;
-}
-
-#workspaces button.focused {
-  color: #E64A19;
-}
-
-
+/* waybar-menu */
 menu {
   border-radius: 15px;
   background: #161320;
-  color: #B5E8E0;
+  color: #EEEEEE;
 }
 
 menuitem {
@@ -267,17 +231,50 @@ menuitem {
   padding: 8px 12px;
 }
 
+
+/* workspaces,windows,tray */
+
+#workspaces button {
+  padding: 0 3px;
+  color: #BCAAA4;
+  border-radius: 6px;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+  color: #0066ff;
+  /* macOS 蓝 */
+  background: rgba(0, 102, 255, 0.12);
+  box-shadow: 0 0 3px rgba(0, 102, 255, 0.2);
+}
+
+#workspaces button:hover {
+  color: #1E88E5;
+}
+
+#workspaces button.focused {
+  color: #FFA000;
+}
+
+
 #custom-recorder {
   font-size: 16px;
 }
 
 #custom-recorder.recording {
   color: #ff5555;
+  animation: blink 1.5s infinite;
 }
 
-/* #custom-recorder.stopped { */
-/* color: #ffffff; */
-/* } */
+/* 动效 */
+@keyframes blink {
+  50% {
+    /* opacity: 0.7; */
+    color: #FB8C00;
+    font-size: 18px;
+  }
+}
 
 #custom-pomodoro.resumed {
   color: #64B5F6;
