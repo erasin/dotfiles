@@ -14,6 +14,12 @@ winget install ajeetdsouza.zoxide
 winget install sxyazi.yazi
 winget install thomasschafer.scooter
 winget install Schniz.fnm
+winget install sharkdp.bat
+winget install sharkdp.fd
+winget install chmln.sd
+winget install BurntSushi.ripgrep.MSVC
+winget install hurl
+winget install dundee.gdu
 ```
 
 ## window terminal
