@@ -181,7 +181,8 @@
 		"interval": 1,
 		"exec": "$HOME/.config/scripts/MediaControl --title",
 		"on-click": "niri msg action spawn -- eww open --toggle player",
-		"on-click-right": "$HOME/.config/waybar/scripts/lyrics.sh"
+		"on-click-right": "$HOME/.config/waybar/scripts/lyrics.sh",
+		"on-click-middle": "$HOME/.config/waybar/scripts/rmpc-picker.sh"
 	},
 	"custom/media-next": {
 		"format": "󰙡",

@@ -104,23 +104,49 @@ alias gitz='lazygit'
 alias gopathset='export GOPATH=`pwd`'
 alias gobuildsmall='go build -ldflags "-s -w"'
 
-# alias proxy_local_http='export http_proxy=socks5://127.0.0.1:7891;export https_proxy=socks5://127.0.0.1:7891;'
-# alias proxy_local_sock='export http_proxy=socks5://127.0.0.1:7891;export https_proxy=socks5://127.0.0.1:7891;'
-# alias proxy_local_sock='export http_proxy=socks5://127.0.0.1:55773;export https_proxy=socks5://127.0.0.1:55773;'
-alias proxy-set='export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890'
-alias proxy_local_unset='unset http_proxy ; unset https_proxy;'
-
 alias rust_doc='rustup doc --std'
 alias rust_stable='rustup default stable'
 alias rust_night='rustup default nightly'
 
 alias pane50='tmux resize-pane -x 50'
 
-
 alias killnds='sudo killall -HUP mDNSResponder'
 
 alias skcode='code $(sk)'
 alias skcd='cd "$(sk)"'
+
+
+function proxy-set() {
+    
+    export http_proxy="http://127.0.0.1:7890"       # 或者使用小写
+    export HTTP_PROXY="http://127.0.0.1:7890"       # 或者使用大写 (有些工具认大写)
+    export https_proxy="http://127.0.0.1:7890"      # HTTPS 通常也用 http:// 协议指向代理地址
+    export HTTPS_PROXY="http://127.0.0.1:7890"
+
+    export no_proxy="localhost,127.0.0.1,192.168.31.0/16,10.0.0.0/8,.example.com" # 根据你的网络修改
+    export NO_PROXY="localhost,127.0.0.1,192.168.31.0/16,10.0.0.0/8,.example.com"
+
+    # export http_proxy="socks5://127.0.0.1:7890"
+    # export https_proxy="socks5://127.0.0.1:7890"
+    # export all_proxy="socks5://127.0.0.1:7890"
+
+    git config --global http.proxy http://127.0.0.1:7890
+    git config --global https.proxy http://127.0.0.1:7890
+
+    # npm config set proxy http://127.0.0.1:7890
+    # npm config set https-proxy http://127.0.0.1:7890
+    # pip config set global.proxy http://127.0.0.1:7890
+}
+
+function proxy-unset() {
+    unset http_proxy
+    unset https_proxy
+    unset HTTP_PROXY
+    unset HTTPS_PROXY
+
+    git config --global --unset http.proxy
+    git config --global --unset https.proxy    
+}
 
 
 function hxa() {

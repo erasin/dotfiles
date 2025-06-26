@@ -132,8 +132,7 @@ export FPATH=$FPATH:${HOME}/.config/zsh/functions
 
 # helix editor 
 export HELIX_RUNTIME=${HOME}/Development/helix/runtime
-export STEEL_HOME=${HOME}/.config/steel
-export STEEL_LSP_HOME=${HOME}/.config/steel-lsp
+export STEEL_HOME=${HOME}/.steel
 
 # huggingface.co
 export HF_ENDPOINT=https://hf-mirror.com
