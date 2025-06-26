@@ -3,6 +3,11 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
+# 设置 Vim 为默认编辑器
+$env:EDITOR = "hx"
+$env:VISUAL = "hx"
+Set-PSReadLineOption -EditMode Vi
+
 # Invoke-Expression (&starship init powershell)
 starship init powershell | Invoke-Expression
 zoxide init powershell | Out-String | Invoke-Expression
