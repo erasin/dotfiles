@@ -104,8 +104,7 @@ diagnostics = ["warning", "error"]
 workspace-diagnostics = ["warning", "error"]
 
 # [#5768]
-# s-e 切换显示
-# s-E 切换并追溯到当前文件所在位置 
+# space e 显示
 [editor.explorer]
 position = "left"
 column-width = 22
@@ -148,6 +147,9 @@ json5 = ""
 "ignore" = "󰈉"
 ".ignore" = "󰈉"
 "lrc" = "󰨖"
+"env" = ""
+"hurl" = { glyph = "", color = "#DE3163" }
+
 
 [icons.diagnostic]
 error = " " 

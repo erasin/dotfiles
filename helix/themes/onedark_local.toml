@@ -1,6 +1,8 @@
 # 继承 onedark
 inherits = "onedark"
 
+"ui.statusline.explorer" = { fg = "blue", bg = "light-black", modifiers = ["bold"]}
+# "ui.statusline.inactive" = { fg = "light-gray", bg = "light-black" }
 
 "ui.statusline.version-control" = { fg = "light-black", bg = "green", modifiers = ["bold"]}
 "ui.statusline.file-name" = { fg = "blue", bg = "light-black"}

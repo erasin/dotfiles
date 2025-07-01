@@ -4,3 +4,6 @@ theme = "onedark_local"
 true-color = true
 color-modes = true
 # zen-mode = true
+# [editor.explorer]
+# position = "right"
+# column-width = 22
