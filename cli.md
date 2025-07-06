@@ -15,7 +15,7 @@
 
 - Zellij | tmux
 
-- yazi
+- [yazi](https://github.com/sxyazi/yazi)
 
 - gdu [github](https://github.com/dundee/gdu) 磁盘使用检查工具
 - du-dust [github](https://github.com/bootandy/dust) du-dust
