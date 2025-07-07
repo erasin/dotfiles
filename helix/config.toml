@@ -197,6 +197,8 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "e" = ":open %sh{ ~/.config/helix/scripts/yazi-picker.sh }"
 # scooter 搜索
 "s" = ":sh bash ~/.config/helix/scripts/scooter-picker.sh"
+"g" = ":sh bash ~/.config/helix/scripts/lazygit-picker.sh"
+
 
 # BUG:  
 # https://github.com/sxyazi/yazi/pull/2461
