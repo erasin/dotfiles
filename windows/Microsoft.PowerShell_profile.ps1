@@ -3,12 +3,35 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
+# PowerShell 5: black text bg 
+# https://github.com/microsoft/terminal/issues/18624
+# https://learn.microsoft.com/en-us/windows/terminal/troubleshooting#black-lines-in-powershell-51-6x-70
+# https://github.com/PowerShell/PSReadLine
+# 
+# Install-Module PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck
+# 
+
+# Light theme
+Set-PSReadLineOption -Colors @{
+   "Default"   = [ConsoleColor]::Black
+   "Parameter" = [ConsoleColor]::Black
+   "Type"      = [ConsoleColor]::DarkBlue
+   "Number"    = [ConsoleColor]::Magenta
+   "String"    = [ConsoleColor]::Magenta
+   "Comment"   = [ConsoleColor]::Yellow
+   "Variable"  = [ConsoleColor]::Green
+   "Keyword"   = [ConsoleColor]::Blue
+   "Operator"  = [ConsoleColor]::Blue
+   "Command"   = [ConsoleColor]::Blue
+   "Member"    = [ConsoleColor]::Blue
+   "Error"     = [ConsoleColor]::Red
+}
+
 # 设置 Vim 为默认编辑器
 $env:EDITOR = "hx"
 $env:VISUAL = "hx"
 Set-PSReadLineOption -EditMode Vi
 
-# Invoke-Expression (&starship init powershell)
 starship init powershell | Invoke-Expression
 zoxide init powershell | Out-String | Invoke-Expression
 fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
@@ -25,8 +48,10 @@ function gitc { git commit $args}
 function gitd { git diff $args}
 function gitf { git fetch $args}
 function gitm { git merge $args}
-function gitt { git tag $args}
 function gitr { git rebase $args}
+function gitt { git tag $args}
 function gitp { git pull $args}
 function gitu { git push $args}
 function gitl { git log --graph --pretty=oneline --abbrev-commit $args}
+
+function hurlvvv { hurl --very-verbose $args}
