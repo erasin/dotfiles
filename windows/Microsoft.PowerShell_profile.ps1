@@ -25,8 +25,10 @@ function gitc { git commit $args}
 function gitd { git diff $args}
 function gitf { git fetch $args}
 function gitm { git merge $args}
-function gitt { git tag $args}
 function gitr { git rebase $args}
+function gitt { git tag $args}
 function gitp { git pull $args}
 function gitu { git push $args}
 function gitl { git log --graph --pretty=oneline --abbrev-commit $args}
+
+function hurlvvv { hurl --very-verbose $args}

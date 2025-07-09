@@ -20,6 +20,7 @@ winget install chmln.sd
 winget install BurntSushi.ripgrep.MSVC
 winget install hurl
 winget install dundee.gdu
+winget install lazygit
 ```
 
 ## window terminal
