@@ -111,9 +111,18 @@ commandline = false
 
 ### zen-mode-like
 
-在使用 markdown 增加写入体验 
+在使用 markdown 增加写入体验
 
-`.helix/config.toml` 处理回车换行的时候保持垂直居中
+仅仅 markdown 使用 zen-mode 可以配置 `.helix/languages.toml`
+
+```toml
+[[language]]
+name = "markdown"
+text-width = 80
+zen-mode = true
+```
+
+或者全部 zen-mode `.helix/config.toml` 处理回车换行的时候保持垂直居中
 
 ```toml
 [editor]
