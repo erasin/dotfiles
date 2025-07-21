@@ -31,6 +31,10 @@ commandline = false
 # [editor.gutters]
 # layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
 
+[editor.word-completion]
+enable = true
+trigger-length = 4
+
 # [Inline Git Blame #13133]
 [editor.inline-blame]
 show = "cursor-line"
