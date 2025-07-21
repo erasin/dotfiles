@@ -79,8 +79,7 @@ input {
 output "DP-3" {
     // off
     mode "2560x1440@119.998"
-    // mode "1920x1080@119.880"
-    scale 1.0
+    // scale 1.5
     transform "normal"
     // position x=1280 y=0
 }
@@ -294,6 +293,7 @@ window-rule {
 window-rule {
     match app-id="Alacritty|kitty" title="yazi-picker"
     match app-id="Alacritty|kitty" title="scooter-picker"
+    match app-id="Alacritty|kitty" title="lazygit-picker"
     open-floating true
     default-column-width { proportion 0.6; }
     default-window-height { proportion 0.6; }
@@ -412,7 +412,7 @@ binds {
 
     Mod+O repeat=false { toggle-overview; }
 
-    Mod+Q { close-window; }
+    Mod+Q repeat=false { close-window; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
