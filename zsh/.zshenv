@@ -127,6 +127,11 @@ $ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME
 
 ## ===== soft ======
 
+# qwen
+# export OPENAI_BASE_URL="https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+# export OPENAI_API_KEY="your_api_key_here"
+# export OPENAI_MODEL="qwen3-coder-plus"
+
 # ZSH function dir: FPATH
 export FPATH=$FPATH:${HOME}/.config/zsh/functions
 

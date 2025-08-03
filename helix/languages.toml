@@ -173,6 +173,7 @@ args = ["--stdio"]
 [language-server.typescript-language-server.config]
 hostInfo = "helix"
 locale = "zh-CN"
+# config = {userLanguages = { rust = "html", "*.rs" = "html" } }
 
 [language-server.typescript-language-server.config.typescript.inlayHints]
 includeInlayEnumMemberValueHints = true
@@ -649,6 +650,9 @@ language-servers = ["dart", "lsp-ai", "hx-lsp"]
 [[language]]
 name = "kdl"
 language-servers = [ { name = "hx-lsp", only-features = [ "document-colors" ] } ]
+
+[language-server.taplo]
+config = {}
 
 [[language]]
 name = "toml"

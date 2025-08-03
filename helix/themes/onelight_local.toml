@@ -29,3 +29,12 @@ inherits = "onelight"
 
 "markup.list.checked" = { fg = "green", modifiers = ["bold"]}
 "markup.list.unchecked" = { fg = "blue", modifiers = ["bold"]}
+
+# #13530 
+rainbow = ["#fc6b59", { fg = "lavender" }, "lilac", { modifiers = ["reversed"] }]
+
+[palette]
+lavender = "#a4a0e8"
+comet = "#5a5977"
+lilac = "#dbbfef"
+
