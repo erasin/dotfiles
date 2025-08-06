@@ -219,7 +219,7 @@ language-servers = [
 name = "json"
 language-servers = [
   # "vscode-css-language-server",
-  { name = "vscode-json-language-server", except-features = [ "format" ] },
+  { name = "vscode-json-language-server", except-features = ["format"] },
   "biome",
   "hx-lsp",
 ]
@@ -234,9 +234,9 @@ file-types = [
 ]
 language-servers = [
   # "vscode-css-language-server",
-  { name = "vscode-json-language-server", except-features = [ "format" ] },
+  { name = "vscode-json-language-server", except-features = ["format"] },
   "biome",
-  { name = "hx-lsp", only-features = [ "document-colors" ] },
+  { name = "hx-lsp", only-features = ["document-colors"] },
 ]
 
 [[language]]
@@ -317,15 +317,13 @@ formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 # ----------- php --------------
 [language-server.intelephense.config]
 licenceKey = "/home/erasin/.config/tokens/intelephenser_licence.txt"
-globalStoragePath = "/home/erasin/.config/php/"  # os.homedir()
+globalStoragePath = "/home/erasin/.config/php/"
 # clearCache = false # clean state
 [language-server.intelephense.config.intelephense]
 # stubs = ["redis"]
 [language-server.intelephense.config.intelephense.environment]
 phpVersion = "7.4.0"
-includePaths = [ 
-  "/home/erasin/.config/php/stubs/"
-]
+includePaths = ["/home/erasin/.config/php/stubs/"]
 
 [[language]]
 name = "php"
@@ -347,14 +345,14 @@ command = "/home/erasin/Development/project/php-dap/target/debug/php-dap"
 name = "Listen for Xdebug"
 request = "launch"
 # completion = [ "ignored" ]
-args = {  } 
+args = {}
 
 
 [[language]]
 name = "tpl5"
 scope = "source.tpl5"
 injection-regex = "tpl5"
-file-types = ["tpl5"]
+file-types = ["tpl5", { glob = "views/*.thml" }]
 comment-token = "{//"
 block-comment-tokens = { start = "{/*", end = "*/}" }
 indent = { tab-width = 2, unit = "  " }
@@ -442,7 +440,6 @@ setType = true
 paramName = "All"
 paramType = true
 await = true
-
 
 
 # [language-server.lua-language-server.config.Lua.workspace]
@@ -535,7 +532,7 @@ language-servers = [
 # ---- latex ----
 [[language]]
 name = "latex"
-language-servers = [ "texlab", "hx-lsp" ]
+language-servers = ["texlab", "hx-lsp"]
 
 # # ---- typst ----
 # # https://myriad-dreamin.github.io/tinymist//frontend/helix.html
@@ -634,7 +631,7 @@ command = "steel-language-server"
 [[language]]
 name = "scheme"
 shebangs = ["scheme", "guile", "chicken", "steel"]
-language-servers = [ "steel", "hx-lsp" ]
+language-servers = ["steel", "hx-lsp"]
 
 # --- dart ---
 [language-server.dart.config]
@@ -649,19 +646,30 @@ language-servers = ["dart", "lsp-ai", "hx-lsp"]
 
 [[language]]
 name = "kdl"
-language-servers = [ { name = "hx-lsp", only-features = [ "document-colors" ] } ]
+language-servers = [{ name = "hx-lsp", only-features = ["document-colors"] }]
 
 [language-server.taplo]
 config = {}
 
 [[language]]
 name = "toml"
-language-servers = [ "taplo", { name = "hx-lsp", only-features = [ "document-colors" ] } ]
+language-servers = [
+  "taplo",
+  { name = "hx-lsp", only-features = [
+    "document-colors",
+  ] },
+]
 formatter = { command = "taplo", args = ["fmt", "-"] }
 
 [[language]]
 name = "hurl"
-language-servers = [ "hx-lsp" ]
+language-servers = ["hx-lsp"]
+
+
+[[grammar]]
+name = "hurl"
+source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "ff07a42d9ec95443b5c1b57ed793414bf7b79be5" }
+
 
 # [[language]]
 # name = "wgsl"
@@ -689,4 +697,10 @@ source = { git = "https://gitcode.com/vchuoshen6/tree-sitter-cangjie", rev = "4a
 
 [[language]]
 name = "env"
-file-types = ["env", { glob = ".env" }, { glob = ".env.*" }, { glob = ".envrc" }, { glob = ".envrc.*" }]
+file-types = [
+  "env",
+  { glob = ".env" },
+  { glob = ".env.*" },
+  { glob = ".envrc" },
+  { glob = ".envrc.*" },
+]
