@@ -12,6 +12,7 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 # 
 
 # Light theme
+# 如果使用 dark theme ，注释此代码
 Set-PSReadLineOption -Colors @{
    "Default"   = [ConsoleColor]::Black
    "Parameter" = [ConsoleColor]::Black
@@ -55,3 +56,5 @@ function gitu { git push $args}
 function gitl { git log --graph --pretty=oneline --abbrev-commit $args}
 
 function hurlvvv { hurl --very-verbose $args}
+
+function open { Invoke-Item } # 默认 ii = Invoke-Item ，类似 linux 下 xdg-open
