@@ -1,13 +1,11 @@
-local wezterm = require 'wezterm'
+local wezterm = require 'wezterm' --[[@as Wezterm]]
 local colors = require 'colors'
 local events = require 'events'
 local keys = require 'keys'
 
-local M = {}
-
-if wezterm.config_builder then
-  M = wezterm.config_builder()
-end
+local  M = wezterm.config_builder()
+-- local M = {} --[[@as Config]]
+local term_theme = 'dark'
 
 -- M.check_for_updates = false
 -- M.automatically_reload_config = false -- 自动加载配置
@@ -17,6 +15,11 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   M.default_prog = { 'powershell.exe' } -- For Windows PowerShell (powershell.exe)
 end
 
+if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
+  term_theme = os.getenv('TERM_THEME') or term_theme
+  M.enable_wayland = true
+end
+
 -- 启用 GPU 加速
 -- front_end = 'WebGpu',
 
@@ -24,9 +27,6 @@ end
 -- window_background_opacity = 0.92,
 -- text_background_opacity = 0.8,
 
--- M.enable_wayland = true
--- local term_theme = os.getenv('TERM_THEME')
-local term_theme = 'dark'
 M.colors = colors.get(term_theme)
 
 M.font_size = 11.0
@@ -34,15 +34,13 @@ M.line_height = 1.1
 M.dpi = 96
 -- M.adjust_window_size_when_changing_font_size = false
 M.warn_about_missing_glyphs = false
-M.bold_brightens_ansi_colors = true
+M.bold_brightens_ansi_colors = "BrightAndBold"
 
 -- 字体
 M.font = wezterm.font_with_fallback {
   { family = 'JetBrains Mono',         weight = 'DemiBold' },
   { family = 'Symbols Nerd Font Mono', weight = 'Regular', scale = 1.0 },
-  { family = 'Microsoft YaHei',        scale = 1.0 },
-
-  -- { family = 'HarmonyOS Sans SC',      weight = 'Regular', scale = 1.1 },
+  { family = 'HarmonyOS Sans SC',      weight = 'Regular', scale = 1.2 },
 }
 
 M.font_rules = {

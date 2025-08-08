@@ -27,3 +27,10 @@ Leader + M        | 切换标签栏显示
 快捷键         | 说明
 ---------------|----------------
 CMD + M        | 放大pane
+
+
+## dev
+
+```sh
+git clone https://github.com/gonstoll/wezterm-types
+```
