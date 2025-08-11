@@ -3,9 +3,11 @@ local colors = require 'colors'
 local events = require 'events'
 local keys = require 'keys'
 
+--- @class Config
 local  M = wezterm.config_builder()
 -- local M = {} --[[@as Config]]
 local term_theme = 'dark'
+  term_theme = os.getenv('TERM_THEME') or term_theme
 
 -- M.check_for_updates = false
 -- M.automatically_reload_config = false -- 自动加载配置
@@ -16,8 +18,11 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 end
 
 if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
-  term_theme = os.getenv('TERM_THEME') or term_theme
   M.enable_wayland = true
+end
+
+if wezterm.target_triple == "x86_64-apple-darwin" or wezterm.target_triple == "aarch64-apple-darwin" then
+  M.window_decorations = "INTEGRATED_BUTTONS"|"RESIZE"
 end
 
 -- 启用 GPU 加速
