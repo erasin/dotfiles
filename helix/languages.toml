@@ -322,7 +322,7 @@ globalStoragePath = "/home/erasin/.config/php/"
 [language-server.intelephense.config.intelephense]
 # stubs = ["redis"]
 [language-server.intelephense.config.intelephense.environment]
-phpVersion = "7.4.0"
+# phpVersion = "7.4.0"
 includePaths = ["/home/erasin/.config/php/stubs/"]
 
 [[language]]
@@ -348,19 +348,19 @@ request = "launch"
 args = {}
 
 
-[[language]]
-name = "tpl5"
-scope = "source.tpl5"
-injection-regex = "tpl5"
-file-types = ["tpl5", { glob = "views/*.thml" }]
-comment-token = "{//"
-block-comment-tokens = { start = "{/*", end = "*/}" }
-indent = { tab-width = 2, unit = "  " }
+# [[language]]
+# name = "tpl5"
+# scope = "source.tpl5"
+# injection-regex = "tpl5"
+# file-types = ["tpl5", { glob = "views/*.thml" }]
+# comment-token = "{//"
+# block-comment-tokens = { start = "{/*", end = "*/}" }
+# indent = { tab-width = 2, unit = "  " }
 
-[[grammar]]
-name = "tpl5"
-# source = { path = "/home/erasin/Development/project/tree-sitter-tpl5", rev = "" }
-source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "185cef710b24211f8fe45455ad47e2e653dd224e" }
+# [[grammar]]
+# name = "tpl5"
+# # source = { path = "/home/erasin/Development/project/tree-sitter-tpl5", rev = "" }
+# source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "185cef710b24211f8fe45455ad47e2e653dd224e" }
 
 
 # ----------- python pyright --------------
