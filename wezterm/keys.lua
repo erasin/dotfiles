@@ -1,69 +1,71 @@
-local wezterm = require 'wezterm'
+local wezterm = require 'wezterm' --[[@as Wezterm]]
 local utils = require 'utils'
+local act = wezterm.action
 
 local keys = {
 
-  { key = '=', mods = 'CTRL',       action = wezterm.action.IncreaseFontSize },
-  { key = '-', mods = 'CTRL',       action = wezterm.action.DecreaseFontSize },
-  { key = '0', mods = 'CTRL',       action = wezterm.action.ResetFontSize },
+  { key = '=', mods = 'CTRL',       action = act.IncreaseFontSize },
+  { key = '-', mods = 'CTRL',       action = act.DecreaseFontSize },
+  { key = '0', mods = 'CTRL',       action = act.ResetFontSize },
 
   -- clipboard
-  { key = 'V', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom 'Clipboard' },
-  { key = 'C', mods = 'CTRL|SHIFT', action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection' },
+  { key = 'V', mods = 'CTRL|SHIFT', action = act.PasteFrom 'Clipboard' },
+  { key = 'C', mods = 'CTRL|SHIFT', action = act.CopyTo 'ClipboardAndPrimarySelection' },
 
-  -- { key = 'r', mods = 'CTRL|ALT', action = wezterm.action.EmitEvent 'reload-colors' },
+  { key = 'F11', mods = '', action = act.ToggleFullScreen},
+  -- { key = 'r', mods = 'CTRL|ALT', action = act.EmitEvent 'reload-colors' },
 }
 
 local window_keys = {
 
-  { key = 'e', mods = 'LEADER',       action = wezterm.action.EmitEvent 'toggle-tabbar' },
-  { key = 'n', mods = 'SUPER',        action = wezterm.action.SpawnWindow },
-  -- { key = 'h', mods = 'SUPER', action = wezterm.action.Hide },
+  { key = 'e', mods = 'LEADER',       action = act.EmitEvent 'toggle-tabbar' },
+  { key = 'n', mods = 'SUPER',        action = act.SpawnWindow },
+  -- { key = 'h', mods = 'SUPER', action = act.Hide },
 
   -- table
-  { key = 't', mods = 'LEADER',       action = wezterm.action.SpawnTab 'DefaultDomain' },
+  { key = 't', mods = 'LEADER',       action = act.SpawnTab 'DefaultDomain' },
 
   -- pane
-  { key = 'w', mods = 'LEADER',       action = wezterm.action.ShowTabNavigator },
-  { key = 'x', mods = 'LEADER',       action = wezterm.action.CloseCurrentPane { confirm = true } },
-  { key = 'f', mods = 'LEADER',       action = wezterm.action.TogglePaneZoomState },
+  { key = 'w', mods = 'LEADER',       action = act.ShowTabNavigator },
+  { key = 'x', mods = 'LEADER',       action = act.CloseCurrentPane { confirm = true } },
+  { key = 'f', mods = 'LEADER',       action = act.TogglePaneZoomState },
 
-  { key = 'p', mods = 'LEADER',       action = wezterm.action.PaneSelect },
+  { key = 'p', mods = 'LEADER',       action = act.PaneSelect },
 
 
   -- 分割
-  { key = '-', mods = 'LEADER',       action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-  { key = '_', mods = 'LEADER|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
+  { key = '-', mods = 'LEADER',       action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+  { key = '_', mods = 'LEADER|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
 
   -- 切换
-  { key = 'h', mods = 'LEADER',       action = wezterm.action.ActivatePaneDirection 'Left' },
-  { key = 'j', mods = 'LEADER',       action = wezterm.action.ActivatePaneDirection 'Down' },
-  { key = 'k', mods = 'LEADER',       action = wezterm.action.ActivatePaneDirection 'Up' },
-  { key = 'l', mods = 'LEADER',       action = wezterm.action.ActivatePaneDirection 'Right' },
+  { key = 'h', mods = 'LEADER',       action = act.ActivatePaneDirection 'Left' },
+  { key = 'j', mods = 'LEADER',       action = act.ActivatePaneDirection 'Down' },
+  { key = 'k', mods = 'LEADER',       action = act.ActivatePaneDirection 'Up' },
+  { key = 'l', mods = 'LEADER',       action = act.ActivatePaneDirection 'Right' },
 
   -- 调整尺寸 resize pane
-  { key = 'H', mods = 'LEADER',       action = wezterm.action.AdjustPaneSize { 'Left', 5 } },
-  { key = 'J', mods = 'LEADER',       action = wezterm.action.AdjustPaneSize { 'Down', 5 } },
-  { key = 'K', mods = 'LEADER',       action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
-  { key = 'L', mods = 'LEADER',       action = wezterm.action.AdjustPaneSize { 'Right', 5 } },
+  { key = 'H', mods = 'LEADER',       action = act.AdjustPaneSize { 'Left', 5 } },
+  { key = 'J', mods = 'LEADER',       action = act.AdjustPaneSize { 'Down', 5 } },
+  { key = 'K', mods = 'LEADER',       action = act.AdjustPaneSize { 'Up', 5 } },
+  { key = 'L', mods = 'LEADER',       action = act.AdjustPaneSize { 'Right', 5 } },
 
   -- 窗口
-  { key = '1', mods = 'LEADER',       action = wezterm.action.ActivateTab(0) },
-  { key = '2', mods = 'LEADER',       action = wezterm.action.ActivateTab(1) },
-  { key = '3', mods = 'LEADER',       action = wezterm.action.ActivateTab(2) },
-  { key = '4', mods = 'LEADER',       action = wezterm.action.ActivateTab(3) },
-  { key = '5', mods = 'LEADER',       action = wezterm.action.ActivateTab(4) },
-  { key = '6', mods = 'LEADER',       action = wezterm.action.ActivateTab(5) },
-  { key = '7', mods = 'LEADER',       action = wezterm.action.ActivateTab(6) },
-  { key = '8', mods = 'LEADER',       action = wezterm.action.ActivateTab(7) },
-  { key = '9', mods = 'LEADER',       action = wezterm.action.ActivateTab(-1) },
+  { key = '1', mods = 'LEADER',       action = act.ActivateTab(0) },
+  { key = '2', mods = 'LEADER',       action = act.ActivateTab(1) },
+  { key = '3', mods = 'LEADER',       action = act.ActivateTab(2) },
+  { key = '4', mods = 'LEADER',       action = act.ActivateTab(3) },
+  { key = '5', mods = 'LEADER',       action = act.ActivateTab(4) },
+  { key = '6', mods = 'LEADER',       action = act.ActivateTab(5) },
+  { key = '7', mods = 'LEADER',       action = act.ActivateTab(6) },
+  { key = '8', mods = 'LEADER',       action = act.ActivateTab(7) },
+  { key = '9', mods = 'LEADER',       action = act.ActivateTab(-1) },
 
 
   {
     key = 'r',
     mods = 'LEADER',
     -- 设定tab标题
-    action = wezterm.action.PromptInputLine {
+    action = act.PromptInputLine {
       description = 'Enter new name for tab',
       action = wezterm.action_callback(function(window, pane, line)
         if line then

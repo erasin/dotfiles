@@ -4,10 +4,12 @@ local events = require 'events'
 local keys = require 'keys'
 
 --- @class Config
-local  M = wezterm.config_builder()
+local M = wezterm.config_builder()
 -- local M = {} --[[@as Config]]
+
 local term_theme = 'dark'
-  term_theme = os.getenv('TERM_THEME') or term_theme
+term_theme = os.getenv('TERM_THEME') or term_theme
+M.colors = colors.get(term_theme)
 
 -- M.check_for_updates = false
 -- M.automatically_reload_config = false -- 自动加载配置
@@ -31,8 +33,6 @@ end
 -- 透明窗口效果（需要 WebGPU）
 -- window_background_opacity = 0.92,
 -- text_background_opacity = 0.8,
-
-M.colors = colors.get(term_theme)
 
 M.font_size = 11.0
 M.line_height = 1.1
@@ -58,7 +58,6 @@ M.font_rules = {
   }
 }
 
--- M.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 M.window_padding = { left = 2, right = 2, top = 0, bottom = 0 } -- padding
 
 -- M.initial_cols = 182
@@ -67,8 +66,8 @@ M.animation_fps = 10 -- fps 禁用滚动效果
 M.cursor_blink_rate = 1000
 M.enable_scroll_bar = true
 
-M.enable_tab_bar = false -- 开启关闭标签栏 
-M.use_fancy_tab_bar = true -- 不使用原生tab
+M.enable_tab_bar = false              -- 开启关闭标签栏
+M.use_fancy_tab_bar = true            -- 不使用原生tab
 -- M.tab_bar_at_bottom = true -- 底部
 M.hide_tab_bar_if_only_one_tab = true -- 单一标签关闭显示
 -- M.tab_max_width = 30 -- 宽度认定
@@ -77,16 +76,16 @@ M.hide_tab_bar_if_only_one_tab = true -- 单一标签关闭显示
 M.send_composed_key_when_right_alt_is_pressed = false
 -- 设定未激活的pane的显示
 M.inactive_pane_hsb = {
-  saturation = 0.9,  -- 饱和度
-  brightness = 0.95, -- 亮度
+  saturation = 0.9,               -- 饱和度
+  brightness = 0.95,              -- 亮度
 }
 M.window_background_opacity = 1.0 -- 窗口透明度
-M.text_background_opacity = 1.0 -- 文本透明度
+M.text_background_opacity = 1.0   -- 文本透明度
 
 -- -- 默认绑定
 -- M.disable_default_key_bindings = true
 
 -- 检查是否 tmux 环境
-keys.set(M,true)
+keys.set(M, true)
 
 return M
