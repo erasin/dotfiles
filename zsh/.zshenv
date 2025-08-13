@@ -18,6 +18,11 @@ export LANG=zh_CN.UTF-8
 export LANG_ALL=zh_CN.UTF-8
 
 
+
+# 使用远程的时候，禁用 gnome-keyring 
+# export SSH_AUTH_SOCK=
+
+
 # ======= rust ========
 CARGO_PATH=${HOME}/.cargo/bin
 # export RUSTC_WRAPPER=sccache
