@@ -43,7 +43,7 @@ M.bold_brightens_ansi_colors = "BrightAndBold"
 
 -- 字体
 M.font = wezterm.font_with_fallback {
-  { family = 'JetBrains Mono',         weight = 'DemiBold' },
+  { family = 'JetBrains Mono',         weight = 'SemiBold' },
   { family = 'Symbols Nerd Font Mono', weight = 'Regular', scale = 1.0 },
   { family = 'HarmonyOS Sans SC',      weight = 'Regular', scale = 1.2 },
 }

@@ -138,7 +138,8 @@ php = { glyph = "", color = "#1976D2" }
 godot = { glyph = "", color = "#2196F3" }
 gd = { glyph = "", color = "#2196F3" }
 gdshader = { glyph = "󰘷", color = "#9C27B0" }
-wgsl = { glyph = "", color = "#9C27B0" }
+wgsl = { glyph = "", color = "#E06C75" }
+wesl = { glyph = "", color = "#E06C75" }
 cj = ""
 yml = ""
 yaml = ""

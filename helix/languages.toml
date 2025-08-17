@@ -670,6 +670,10 @@ language-servers = ["hx-lsp"]
 name = "hurl"
 source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "ff07a42d9ec95443b5c1b57ed793414bf7b79be5" }
 
+[[language]]
+name = "wesl"
+language-servers = [ "wgsl-analyzer" ]
+
 
 # [[language]]
 # name = "wgsl"

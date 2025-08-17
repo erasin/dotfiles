@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-kitty -T "lazygit-picker" --working-directory $(pwd) -e lazygit 
+alacritty -T "lazygit-picker" --working-directory $(pwd) -e lazygit 
+# kitty -o confirm_os_window_close=0 -T "lazygit-picker" --working-directory $(pwd) -e lazygit 

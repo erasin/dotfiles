@@ -5,10 +5,11 @@
 # niri 添加窗口规则，Alacritty | Kitty
 #
 # window-rule {
-#     match app-id=r#"Alacritty$"# title="^scooter-picker(.*)"
+#     match app-id="Alacritty|kitty"# title="scooter-picker"
 #     open-floating true
 # }
 # 
 # "s" = ":open %sh{ ~/.config/helix/scripts/scooter-picker }"
 
-kitty -T "scooter-picker" --working-directory $(pwd) -e scooter 
+alacritty -T "scooter-picker" --working-directory $(pwd) -e scooter 
+# kitty -o confirm_os_window_close=0 -T "scooter-picker" --working-directory $(pwd) -e scooter 
