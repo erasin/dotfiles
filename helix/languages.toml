@@ -198,7 +198,7 @@ includeInlayVariableTypeHints = true
 [[language]]
 name = "svelte"
 roots = ["package.json"]
-language-servers = ["svelteserver", "tailwindcss-ls"]
+language-servers = ["svelteserver", "tailwindcss-ls", "hx-lsp"]
 
 [[language]]
 name = "scss"
@@ -293,7 +293,7 @@ auto-format = true
 language-servers = [
   # "typescript-language-server",
   { name = "typescript-language-server", except-features = ["format"] },
-  # "biome",
+  "biome",
   "hx-lsp",
   "cspell-lsp",
   "lsp-ai",
@@ -622,7 +622,7 @@ source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "e061995
 [[language]]
 name = "ron"
 file-types = ["ron", "trickfilm"]
-formatter = { command = 'ronfmt' }
+formatter = { command = 'ronfmt' , args = ["%{buffer_name}"] }
 
 # --- steel -----
 [language-server.steel]
@@ -665,15 +665,22 @@ formatter = { command = "taplo", args = ["fmt", "-"] }
 name = "hurl"
 language-servers = ["hx-lsp"]
 
-
 [[grammar]]
 name = "hurl"
 source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "ff07a42d9ec95443b5c1b57ed793414bf7b79be5" }
 
+
+# https://github.com/antaalt/shader-sense
+[language-server.shader-language-server]
+command = "shader-language-server"
+
+[[language]]
+name = "wgsl"
+language-servers = [ "wgsl-analyzer", "hx-lsp" ]
+
 [[language]]
 name = "wesl"
-language-servers = [ "wgsl-analyzer" ]
-
+language-servers = [ "wgsl-analyzer", "hx-lsp" ]
 
 # [[language]]
 # name = "wgsl"
@@ -708,3 +715,18 @@ file-types = [
   { glob = ".envrc" },
   { glob = ".envrc.*" },
 ]
+
+[[language]]
+name = "hexdump"
+scope = "source.hexdump"
+injection-regex = "hexdump"
+file-types = ["hexdump"]
+roots = []
+auto-format = false
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "hexdump"
+source = { git = "https://github.com/rush-rs/tree-sitter-hexdump", rev = "09eaf4fcfed00be93928d7d3d82b490cd1343b80"}
+

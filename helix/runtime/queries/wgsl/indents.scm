@@ -3,4 +3,4 @@
   (compound_statement)
 ] @indent
 
-"}" @outdent
+[ "}" ] @outdent

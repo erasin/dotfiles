@@ -11,7 +11,8 @@ log_level = "Warn"
 save_to_clipboard = true
 
 [env]
-TERM = "xterm-256color"
+# TERM = "xterm-256color"
+TERM = "wezterm"
 
 [mouse]
 hide_when_typing = true

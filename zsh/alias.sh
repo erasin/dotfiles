@@ -1,6 +1,6 @@
-alias ls='eza --icons'
-alias ll='eza --all --header --group --long --git --time-style=long-iso --icons'
-alias lltree='eza --tree --level=2 --all --long --git --icons'
+alias ls='eza --icons $@'
+alias ll='eza --all --header --group --long --git --time-style=long-iso --icons $@'
+alias lltree='eza --tree --level=2 --all --long --git --icons $@'
 
 # alias rm=rip
 alias cp='cp -iv'
