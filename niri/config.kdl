@@ -376,10 +376,10 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="打开终端" { spawn "alacritty"; } // kitty | alacritty
-    Mod+Space { spawn "fuzzel"; }
+    Mod+Space hotkey-overlay-title="程序" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="锁屏" { spawn "swaylock"; } //swaylock
-    Mod+E { spawn "nautilus"; }
-    Mod+Tab { spawn "~/.config/niri/scripts/switch-window.sh"; }
+    Mod+E hotkey-overlay-title="文件" { spawn "nautilus"; }
+    Mod+Tab hotkey-overlay-title="切换" { spawn "~/.config/niri/scripts/switch-window.sh"; }
     // Mod+O { spawn "~/.config/waybar/scripts/clipboard.sh"; }
 
     // 兼容 x11 的剪贴板
@@ -594,7 +594,7 @@ binds {
 
     // Move the focused window between the floating and the tiling layout.
     // Mod+V       { toggle-window-floating; }
-    Mod+V       { spawn "~/.config/niri/scripts/floating.sh"; }
+    Mod+V hotkey-overlay-title="浮动切换"  { spawn "~/.config/niri/scripts/floating.sh"; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.

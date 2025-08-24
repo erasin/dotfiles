@@ -33,7 +33,7 @@ cargo install --path helix-term
   - 需要 [Nerd Fonts](https://www.nerdfonts.com/) 字体支持，linux用户可以参考 [erasin/dotfiles/fontconfig](https://github.com/erasin/dotfiles/tree/main/fontconfig)
 - [#13133 Inline git blame](https://github.com/helix-editor/helix/pull/13133)
 - 🎉 merged ~~[#13206 Word completion](https://github.com/helix-editor/helix/pull/13206)~~
-- [#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)
+- 🎉 merged ~~[#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)~~
 - [#5768  tree_explorer](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
   - 分支维护 [tree_explorer_local](https://github.com/erasin/helix/tree/tree_explorer_local)
 
