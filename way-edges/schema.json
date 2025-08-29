@@ -1,0 +1,991 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Root",
+  "type": "object",
+  "properties": {
+    "widgets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Widget"
+      }
+    }
+  },
+  "allowTrailingCommas": true,
+  "$defs": {
+    "Align": {
+      "type": "string",
+      "enum": [
+        "top-left",
+        "top-center",
+        "top-right",
+        "center-left",
+        "center-center",
+        "center-right",
+        "bottom-left",
+        "bottom-center",
+        "bottom-right"
+      ]
+    },
+    "BoxedWidgetConfig": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "array",
+          "default": [-1, -1],
+          "items": {
+            "type": "integer",
+            "format": "int"
+          },
+          "maxItems": 2,
+          "minItems": 2
+        }
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "ring"
+            },
+            "animation-curve": {
+              "$ref": "#/$defs/Curve"
+            },
+            "bg-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "fg-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "font-family": {
+              "$ref": "#/$defs/FamilyOwned",
+              "default": "monospace"
+            },
+            "font-size": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "prefix": {
+              "type": ["string", "null"],
+              "default": "{float:2,100}"
+            },
+            "prefix-hide": {
+              "type": "boolean"
+            },
+            "preset": {
+              "$ref": "#/$defs/RingPreset"
+            },
+            "radius": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "ring-width": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "suffix": {
+              "type": ["string", "null"],
+              "default": "{float:2,100}"
+            },
+            "suffix-hide": {
+              "type": "boolean"
+            },
+            "text-transition-ms": {
+              "type": "integer",
+              "format": "uint64",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "type",
+            "radius",
+            "ring-width",
+            "bg-color",
+            "fg-color",
+            "text-transition-ms",
+            "animation-curve",
+            "prefix",
+            "prefix-hide",
+            "suffix",
+            "suffix-hide",
+            "font-size",
+            "preset"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "text"
+            },
+            "fg-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "font-family": {
+              "$ref": "#/$defs/FamilyOwned",
+              "default": "monospace"
+            },
+            "font-size": {
+              "type": "integer",
+              "format": "int32",
+              "default": 24
+            },
+            "preset": {
+              "$ref": "#/$defs/TextPreset"
+            }
+          },
+          "required": ["type", "preset"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "tray"
+            },
+            "font-family": {
+              "$ref": "#/$defs/FamilyOwned",
+              "default": "monospace"
+            },
+            "grid-align": {
+              "$ref": "#/$defs/Align"
+            },
+            "header-draw-config": {
+              "$ref": "#/$defs/HeaderDrawConfig"
+            },
+            "header-menu-align": {
+              "$ref": "#/$defs/HeaderMenuAlign"
+            },
+            "header-menu-stack": {
+              "$ref": "#/$defs/HeaderMenuStack"
+            },
+            "icon-size": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            },
+            "icon-theme": {
+              "type": ["string", "null"],
+              "default": null
+            },
+            "menu-draw-config": {
+              "$ref": "#/$defs/MenuDrawConfig"
+            },
+            "tray-gap": {
+              "type": "integer",
+              "format": "int32",
+              "default": 2
+            }
+          },
+          "required": ["type"]
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "Curve": {
+      "type": "string",
+      "enum": ["linear", "ease-quad", "ease-cubic", "ease-expo"]
+    },
+    "FamilyOwned": {
+      "oneOf": [
+        {
+          "enum": ["serif", "sans-serif", "cursive", "fantasy", "monospace"]
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "HeaderDrawConfig": {
+      "type": "object",
+      "properties": {
+        "font-pixel-height": {
+          "type": "integer",
+          "format": "int32",
+          "default": 20
+        },
+        "text-color": {
+          "type": "string",
+          "default": "#00000000"
+        }
+      },
+      "additionalProperties": false
+    },
+    "HeaderMenuAlign": {
+      "type": "string",
+      "enum": ["left", "right"]
+    },
+    "HeaderMenuStack": {
+      "type": "string",
+      "enum": ["header-top", "menu-top"]
+    },
+    "KeyEventMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\d+$": {
+          "type": "string"
+        }
+      }
+    },
+    "Margins": {
+      "type": "object",
+      "properties": {
+        "bottom": {
+          "$ref": "#/$defs/NumOrRelative"
+        },
+        "left": {
+          "$ref": "#/$defs/NumOrRelative"
+        },
+        "right": {
+          "$ref": "#/$defs/NumOrRelative"
+        },
+        "top": {
+          "$ref": "#/$defs/NumOrRelative"
+        }
+      },
+      "additionalProperties": false
+    },
+    "MenuDrawConfig": {
+      "type": "object",
+      "properties": {
+        "border-color": {
+          "type": "string",
+          "default": "#00000000"
+        },
+        "font-pixel-height": {
+          "type": "integer",
+          "format": "int32",
+          "default": 22
+        },
+        "icon-size": {
+          "type": "integer",
+          "format": "int32",
+          "default": 20
+        },
+        "margin": {
+          "type": "array",
+          "default": [12, 12],
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxItems": 2,
+          "minItems": 2
+        },
+        "marker-color": {
+          "type": ["string", "null"],
+          "default": "#00000000"
+        },
+        "marker-size": {
+          "type": "integer",
+          "format": "int32",
+          "default": 20
+        },
+        "separator-height": {
+          "type": "integer",
+          "format": "int32",
+          "default": 5
+        },
+        "text-color": {
+          "type": "string",
+          "default": "#00000000"
+        }
+      },
+      "additionalProperties": false
+    },
+    "MonitorSpecifier": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "enum": ["*"]
+        },
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "NiriConf": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "niri"
+        },
+        "filter-empty": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "NumOrRelative": {
+      "type": ["number", "string"],
+      "anyOf": [
+        {
+          "description": "absolute number",
+          "type": "number"
+        },
+        {
+          "description": "relative number",
+          "type": "string",
+          "pattern": "^(\\d+(\\.\\d+)?)%\\s*(.*)$"
+        }
+      ]
+    },
+    "Outlook": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "window"
+            },
+            "border-radius": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5
+            },
+            "border-width": {
+              "type": "integer",
+              "format": "int32",
+              "default": 15
+            },
+            "color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "margins": {
+              "$ref": "#/$defs/OutlookMargins"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "board"
+            }
+          },
+          "$ref": "#/$defs/OutlookBoardConfig",
+          "required": ["type"]
+        }
+      ]
+    },
+    "OutlookBoardConfig": {
+      "type": "object",
+      "properties": {
+        "border-radius": {
+          "type": "integer",
+          "format": "int32",
+          "default": 5
+        },
+        "color": {
+          "type": "string",
+          "default": "#00000000"
+        },
+        "margins": {
+          "$ref": "#/$defs/OutlookMargins"
+        }
+      }
+    },
+    "OutlookMargins": {
+      "type": "object",
+      "properties": {
+        "bottom": {
+          "type": "integer",
+          "format": "int32",
+          "default": 5
+        },
+        "left": {
+          "type": "integer",
+          "format": "int32",
+          "default": 5
+        },
+        "right": {
+          "type": "integer",
+          "format": "int32",
+          "default": 5
+        },
+        "top": {
+          "type": "integer",
+          "format": "int32",
+          "default": 5
+        }
+      }
+    },
+    "Preset": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "speaker"
+            },
+            "animation-curve": {
+              "$ref": "#/$defs/Curve"
+            },
+            "device": {
+              "type": ["string", "null"]
+            },
+            "mute-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "mute-text-color": {
+              "type": ["string", "null"],
+              "default": "#00000000"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "microphone"
+            },
+            "animation-curve": {
+              "$ref": "#/$defs/Curve"
+            },
+            "device": {
+              "type": ["string", "null"]
+            },
+            "mute-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "mute-text-color": {
+              "type": ["string", "null"],
+              "default": "#00000000"
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "backlight"
+            },
+            "device": {
+              "type": ["string", "null"],
+              "default": null
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "custom"
+            },
+            "event-map": {
+              "$ref": "#/$defs/KeyEventMap"
+            },
+            "on-change-command": {
+              "type": ["string", "null"],
+              "default": "{float:2,100}"
+            },
+            "update-command": {
+              "type": "string",
+              "default": ""
+            },
+            "update-interval": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        }
+      ]
+    },
+    "RingPreset": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "ram"
+            },
+            "update-interval": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 1000,
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "swap"
+            },
+            "update-interval": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 1000,
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "cpu"
+            },
+            "core": {
+              "type": ["integer", "null"],
+              "format": "uint",
+              "default": null,
+              "minimum": 0
+            },
+            "update-interval": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 1000,
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "battery"
+            },
+            "update-interval": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 1000,
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "disk"
+            },
+            "partition": {
+              "type": "string",
+              "default": "/"
+            },
+            "update-interval": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 1000,
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "custom"
+            },
+            "cmd": {
+              "type": "string"
+            },
+            "update-interval": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 1000,
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type", "cmd"]
+        }
+      ]
+    },
+    "TextPreset": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "time"
+            },
+            "format": {
+              "type": "string",
+              "default": "%Y-%m-%d %H:%M:%S"
+            },
+            "time-zone": {
+              "type": ["string", "null"],
+              "default": null
+            },
+            "update-interval": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 1000,
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "custom"
+            },
+            "cmd": {
+              "type": "string"
+            },
+            "update-interval": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 1000,
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": ["type", "cmd"]
+        }
+      ]
+    },
+    "Widget": {
+      "type": "object",
+      "properties": {
+        "animation-curve": {
+          "$ref": "#/$defs/Curve"
+        },
+        "edge": {
+          "type": "string",
+          "enum": ["top", "bottom", "left", "right"]
+        },
+        "extra-trigger-size": {
+          "$ref": "#/$defs/NumOrRelative"
+        },
+        "ignore-exclusive": {
+          "type": "boolean"
+        },
+        "layer": {
+          "type": "string",
+          "enum": ["top", "bottom", "background", "overlay"]
+        },
+        "margins": {
+          "$ref": "#/$defs/Margins"
+        },
+        "monitor": {
+          "$ref": "#/$defs/MonitorSpecifier"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "pin-key": {
+          "type": "integer",
+          "format": "uint32",
+          "minimum": 0
+        },
+        "pin-on-startup": {
+          "type": "boolean"
+        },
+        "pin-with-key": {
+          "type": "boolean"
+        },
+        "pinnable": {
+          "type": "boolean"
+        },
+        "position": {
+          "type": ["string", "null"],
+          "enum": ["top", "bottom", "left", "right"]
+        },
+        "preview-size": {
+          "$ref": "#/$defs/NumOrRelative"
+        },
+        "transition-duration": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0
+        }
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "btn"
+            },
+            "border-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "border-width": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            },
+            "color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "event-map": {
+              "$ref": "#/$defs/KeyEventMap"
+            },
+            "length": {
+              "$ref": "#/$defs/NumOrRelative"
+            },
+            "thickness": {
+              "$ref": "#/$defs/NumOrRelative"
+            }
+          },
+          "required": ["type", "thickness", "length"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "slider"
+            },
+            "bg-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "bg-text-color": {
+              "type": ["string", "null"],
+              "default": "#00000000"
+            },
+            "border-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "border-width": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            },
+            "fg-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "fg-text-color": {
+              "type": ["string", "null"],
+              "default": "#00000000"
+            },
+            "length": {
+              "$ref": "#/$defs/NumOrRelative"
+            },
+            "obtuse-angle": {
+              "type": "number",
+              "format": "double",
+              "default": 120.0
+            },
+            "preset": {
+              "$ref": "#/$defs/Preset"
+            },
+            "radius": {
+              "type": "number",
+              "format": "double",
+              "default": 20.0
+            },
+            "redraw-only-on-internal-update": {
+              "type": "boolean",
+              "default": false
+            },
+            "scroll-unit": {
+              "type": "number",
+              "format": "double",
+              "default": 0.005
+            },
+            "thickness": {
+              "$ref": "#/$defs/NumOrRelative"
+            }
+          },
+          "required": ["type", "thickness", "length"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "wrap-box"
+            },
+            "align": {
+              "$ref": "#/$defs/Align"
+            },
+            "gap": {
+              "type": "number",
+              "format": "double",
+              "default": 10.0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/BoxedWidgetConfig"
+              }
+            },
+            "outlook": {
+              "$ref": "#/$defs/Outlook"
+            }
+          },
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "workspace"
+            },
+            "active-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "active-increase": {
+              "type": "number",
+              "format": "double",
+              "default": 0.5
+            },
+            "border-radius": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5
+            },
+            "border-width": {
+              "type": ["integer", "null"],
+              "format": "int32",
+              "default": null
+            },
+            "default-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "focus-color": {
+              "type": "string",
+              "default": "#00000000"
+            },
+            "focused-only": {
+              "type": "boolean",
+              "default": false
+            },
+            "gap": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5
+            },
+            "hover-color": {
+              "type": ["string", "null"],
+              "default": "#00000000"
+            },
+            "invert-direction": {
+              "type": "boolean",
+              "default": false
+            },
+            "length": {
+              "$ref": "#/$defs/NumOrRelative"
+            },
+            "output-name": {
+              "type": ["string", "null"],
+              "default": null
+            },
+            "pop-duration": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 1000,
+              "minimum": 0
+            },
+            "preset": {
+              "$ref": "#/$defs/WorkspacePreset"
+            },
+            "thickness": {
+              "$ref": "#/$defs/NumOrRelative"
+            },
+            "workspace-animation-curve": {
+              "$ref": "#/$defs/Curve"
+            },
+            "workspace-transition-duration": {
+              "type": "integer",
+              "format": "uint64",
+              "default": 300,
+              "minimum": 0
+            }
+          },
+          "required": ["type", "thickness", "length", "preset"]
+        }
+      ],
+      "required": [
+        "edge",
+        "position",
+        "layer",
+        "margins",
+        "monitor",
+        "namespace",
+        "ignore-exclusive",
+        "transition-duration",
+        "animation-curve",
+        "extra-trigger-size",
+        "preview-size",
+        "pin-with-key",
+        "pin-key",
+        "pinnable",
+        "pin-on-startup"
+      ]
+    },
+    "WorkspacePreset": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": ["hyprland", "niri"]
+        },
+        {
+          "type": "object",
+          "$ref": "#/$defs/NiriConf"
+        }
+      ]
+    }
+  }
+}

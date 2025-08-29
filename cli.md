@@ -10,6 +10,7 @@
 - Bat ~~cat~~
 - Eza ~~ls~~ [github](https://github.com/eza-community/eza)
 - skim [github](https://github.com/lotabout/skim) 终端文件查找 fzf
+- scooter 搜索替换
 
 - sd
 
@@ -42,3 +43,7 @@
 - kondo [github](https://github.com/tbillington/kondo) 清理 target;,node_modules,build 等等
 
 - espanso [github](https://github.com/espanso/espanso)
+
+- tdf 终端读取 pdf 
+- docxx 终端阅读doc `cargo i`
+- tunein-cli 终端radio `cargo i`

@@ -372,7 +372,8 @@ args = ["--stdio"]
 # 禁用 diagnostics, format, 使用 ruff-lsp
 except-features = ["diagnostics", "format"]
 
-#  https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+# https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+# https://microsoft.github.io/pyright/#/configuration
 #  为 pyright 在 pyproject.toml 中设置 venv 路径适配 rye 等 venv 
 # ```toml
 #  [tool.pyright]
@@ -380,6 +381,7 @@ except-features = ["diagnostics", "format"]
 #  venv = ".venv"
 # ```
 
+# locale seting : LANG=zh-cn 没有使用zh_cn posix标准
 [language-server.pyright.config]
 settings.python.analysis = { autoImportCompletions = true, typeCheckingMode = "on", autoSearchPaths = true, useLibraryCodeForTypes = true, diagnosticMode = "openFilesOnly" }
 
