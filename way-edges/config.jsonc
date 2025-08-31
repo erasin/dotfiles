@@ -25,7 +25,9 @@
 			"active-color": "#F4511E",
 			"focus-color": "#FF8A65",
 			"focused-only": true,
-			"default-color": "#333333",
+			"border-radius": 5,
+			// "border-width": 0,
+			"default-color": "#616161",
 			"preset": { "type": "niri", "filter-empty": false }
 		},
 
