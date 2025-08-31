@@ -21,7 +21,7 @@ if [[ -n "$TMUX" ]]; then
 # 检查是否在zellij会话中
 elif [[ -n "$ZELLIJ" ]]; then
     # 创建新浮动窗格并执行命令
-    zellij action new-floating-pane --cwd "$(pwd)" --command "scooter"
+    zellij run -c -f --cwd "$(pwd)" -- scooter
 else
     # 在普通终端中使用alacritty创建新窗口
     alacritty -T "scooter-picker" --working-directory "$(pwd)" -e scooter
