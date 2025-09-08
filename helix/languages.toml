@@ -638,6 +638,10 @@ language-servers = ["dart", "lsp-ai", "hx-lsp"]
 name = "kdl"
 language-servers = [{ name = "hx-lsp", only-features = ["document-colors"] }]
 
+[[grammar]]
+name = "kdl"
+source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-kdl", rev = "b37e3d58e5c5cf8d739b315d6114e02d42e66664" }
+
 [language-server.taplo]
 config = {}
 
