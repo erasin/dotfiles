@@ -11,7 +11,8 @@ log_level = "Warn"
 save_to_clipboard = true
 
 [env]
-TERM = "xterm-256color"
+# TERM = "xterm-256color"
+TERM = "wezterm"
 
 [mouse]
 hide_when_typing = true
@@ -43,8 +44,9 @@ duration = 0
 [font]
 # ../fontconfig/font.conf
 size = 13.0
-# normal = { family = "JetBrains Mono" }
-normal = { family = "JetNerdMono"}
+# normal = { family = "JetBrains Mono"}
+# normal = { family = "JetBrains Mono", style="SemiBold"}
+normal = { family = "JetNerdMono", style="SemiBold"}
 # normal = { family = "MapleNerdMono"}
 # 使用 fontconfigs 支持多种字体
 # /etc/fonts/fonts.conf 或者 ~/.config/fontconfig/fonts.conf 

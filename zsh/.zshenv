@@ -18,6 +18,11 @@ export LANG=zh_CN.UTF-8
 export LANG_ALL=zh_CN.UTF-8
 
 
+
+# 使用远程的时候，禁用 gnome-keyring 
+# export SSH_AUTH_SOCK=
+
+
 # ======= rust ========
 CARGO_PATH=${HOME}/.cargo/bin
 # export RUSTC_WRAPPER=sccache
@@ -95,8 +100,13 @@ RUBY_PATH=${HOME}/.local/share/gem/ruby/3.0.0/bin
 LLDB_VSCODE_PATH=${HOME}/.vscode/extensions/lanza.lldb-vscode-0.2.3/bin/darwin/bin
 
 # ==== harmonyos dev eco =====
-HARMONY_CLI_PATH=${HOME}/Development/harmonyos-next/command-line-tools/bin
+
 HARMONY_GN_PATH=${HOME}/Development/harmonyos-next/depot_tools
+
+export HARMONY_TOOL_DIR=${HOME}/Development/harmonyos-next/command-line-tools
+export HARMONY_CLI_PATH=${HARMONY_TOOL_DIR}/bin
+export OHOS_NDK_HOME=${HARMONY_TOOL_DIR}/sdk/default/openharmony
+export HDC_HOME=${OHOS_NDK_HOME}/toolchains
 
 export CANGJIE_HOME=/opt/cangjie
 CANGJIE_BIN_PATH=${CANGJIE_HOME}/bin
@@ -123,9 +133,15 @@ $HARMONY_CLI_PATH:\
 $CANGJIE_BIN_PATH:\
 $CANGJIE_TOOL_BIN_PATH:\
 $CANGJIE_USER_PATH:\
+$HDC_HOME:\
 $ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 
 ## ===== soft ======
+
+# qwen
+# export OPENAI_BASE_URL="https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+# export OPENAI_API_KEY="your_api_key_here"
+# export OPENAI_MODEL="qwen3-coder-plus"
 
 # ZSH function dir: FPATH
 export FPATH=$FPATH:${HOME}/.config/zsh/functions

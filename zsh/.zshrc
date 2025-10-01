@@ -53,7 +53,7 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 # eval "$(direnv hook zsh)"
-eval "$(fnm env --use-on-cd --shell zsh)"
+# eval "$(fnm env --use-on-cd --shell zsh)"
 
 # echo -e "\e]2;New Title\007";sleep 100
 # preexec() { print -Pn "\e]0;${PWD##*/} \a" }

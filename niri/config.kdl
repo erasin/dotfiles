@@ -79,8 +79,7 @@ input {
 output "DP-3" {
     // off
     mode "2560x1440@119.998"
-    // mode "1920x1080@119.880"
-    scale 1.0
+    // scale 1.2
     transform "normal"
     // position x=1280 y=0
 }
@@ -294,6 +293,7 @@ window-rule {
 window-rule {
     match app-id="Alacritty|kitty" title="yazi-picker"
     match app-id="Alacritty|kitty" title="scooter-picker"
+    match app-id="Alacritty|kitty" title="lazygit-picker"
     open-floating true
     default-column-width { proportion 0.6; }
     default-window-height { proportion 0.6; }
@@ -375,11 +375,11 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="打开终端" { spawn "kitty"; } // kitty | alacritty
-    Mod+Space { spawn "fuzzel"; }
+    Mod+T hotkey-overlay-title="打开终端" { spawn "alacritty"; } // kitty | alacritty
+    Mod+Space hotkey-overlay-title="程序" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="锁屏" { spawn "swaylock"; } //swaylock
-    Mod+E { spawn "nautilus"; }
-    Mod+Tab { spawn "~/.config/niri/scripts/switch-window.sh"; }
+    Mod+E hotkey-overlay-title="文件" { spawn "nautilus"; }
+    Mod+Tab hotkey-overlay-title="切换" { spawn "~/.config/niri/scripts/switch-window.sh"; }
     // Mod+O { spawn "~/.config/waybar/scripts/clipboard.sh"; }
 
     // 兼容 x11 的剪贴板
@@ -393,7 +393,6 @@ binds {
     // The allow-when-locked=true property makes them work even when the session is locked.
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" "&& ~/.config/niri/scripts/wp-vol.sh";
-
     }
     XF86AudioLowerVolume allow-when-locked=true {
         spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" "&& ~/.config/niri/scripts/wp-vol.sh";
@@ -412,7 +411,7 @@ binds {
 
     Mod+O repeat=false { toggle-overview; }
 
-    Mod+Q { close-window; }
+    Mod+Q repeat=false { close-window; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
@@ -594,7 +593,7 @@ binds {
 
     // Move the focused window between the floating and the tiling layout.
     // Mod+V       { toggle-window-floating; }
-    Mod+V       { spawn "~/.config/niri/scripts/floating.sh"; }
+    Mod+V hotkey-overlay-title="浮动切换"  { spawn "~/.config/niri/scripts/floating.sh"; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.

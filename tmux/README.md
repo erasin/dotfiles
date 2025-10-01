@@ -8,6 +8,7 @@ prefix <C-a>, 默认 <C-b>
 
 <C-c> | 新建 session
 <C-f> | 查询 session
+d | quit
 
 # window
 

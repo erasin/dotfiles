@@ -1,135 +1,83 @@
 {
-	"$schema": "https://raw.githubusercontent.com/way-edges/way-edges/master/config/config.schema.json",
-	"ensure_load_group": [
-		"niri",
-		// "tray",
-		"vol"
-	],
+	// way-edges v.0.10.0
+	// "$schema": "https://raw.githubusercontent.com/way-edges/way-edges/refs/heads/master/doc/config/schema.json",
+	"$schema": "./schema.json",
 	// event
 	// 272 鼠标左键
 	// 273 鼠标右键
 	// 274 鼠标中键
 	// 275 鼠标后退键
 	// 276 鼠标前进键
-	"groups": [
-		// niri
+	"widgets": [
+		// 工作区间
 		{
-			"name": "niri",
-			"widgets": [
-				// 工作区间
-				{
-					"edge": "left",
-					"position": "bottom",
-					"layer": "overlay",
-					"monitor": "DP-3",
-					"widget": {
-						"type": "workspace",
-						"thickness": 30,
-						"length": "30%",
-						"active_increase": 0.2,
-						"hover_color": "#FFA726",
-						"active_color": "#F4511E",
-						"focus_color": "#FF8A65",
-						"default_color": "#333333",
-						"preset": "niri"
-					}
-				}
-			]
+			"edge": "left",
+			"position": "bottom",
+			"layer": "overlay",
+			"pin-on-startup": true,
+			"pinnable": false,
+			"monitor": "DP-3",
+			"type": "workspace",
+			"thickness": 30,
+			"length": "30%",
+			"active-increase": 0.2,
+			"hover-color": "#FFA726",
+			"active-color": "#F4511E",
+			"focus-color": "#FF8A65",
+			"focused-only": true,
+			"border-radius": 5,
+			// "border-width": 0,
+			"default-color": "#616161",
+			"preset": { "type": "niri", "filter-empty": false }
 		},
-		// 音频
+
+		// 音量
 		{
-			"name": "vol",
-			"widgets": [
-				// 音量
-				{
-					"edge": "right",
-					"monitor": "DP-3",
-					"layer": "overlay",
-					"position": "bottom",
-					"preview_size": 0,
-					"ignore_exlusive": true,
-					"margins": {
-						"bottom": "30.0%"
-					},
-					"widget": {
-						"type": "slider",
-						"thickness": 30,
-						"border_width": 4,
-						"length": "15%",
-						"fg_color": "#00E676",
-						"bg_color": "#616161",
-						"redraw_only_on_internal_update": true,
-						"preset": {
-							"type": "speaker"
-						}
-					}
-				},
-				// 音频输入
-				{
-					"edge": "right",
-					"position": "bottom",
-					"monitor": "DP-3",
-					"layer": "overlay",
-					"margins": {
-						"bottom": "15%"
-					},
-					"preview_size": 0,
-					"ignore_exlusive": true,
-					"widget": {
-						"type": "slider",
-						"thickness": 30,
-						"border_width": 4,
-						"length": "15%",
-						"fg_color": "#FF6E40",
-						"bg_color": "#616161",
-						"redraw_only_on_internal_update": true,
-						"preset": {
-							"type": "microphone"
-						}
-					}
-				}
-			]
+			"edge": "right",
+			"monitor": "DP-3",
+			"layer": "overlay",
+			"pin-on-startup": true,
+			"pinnable": false,
+			"position": "bottom",
+			"preview-size": 0,
+			"ignore-exlusive": true,
+			"margins": {
+				"bottom": "30.0%"
+			},
+			"type": "slider",
+			"thickness": 30,
+			"border_width": 4,
+			"length": "15%",
+			"fg-color": "#00E676",
+			"bg-color": "#616161",
+			"redraw_only_on_internal_update": true,
+			"preset": {
+				"type": "speaker"
+			}
 		},
-		// tray
+		// 音频输入
 		{
-			"name": "tray",
-			"widgets": [
-				{
-					"name": "tray",
-					"edge": "bottom",
-					"position": "right",
-					"monitor": "DP-3",
-					"layer": "overlay",
-					"widget": {
-						"type": "wrap-box",
-						"align": "bottom_left",
-						"outlook": {
-							"type": "window",
-							"color": "#F74F4F"
-						},
-						"widgets": [
-							{
-								"index": [-1, -1],
-								"widget": {
-									"type": "tray",
-									"icon_size": 24,
-									"header_menu_stack": "menu_top",
-									"header_menu_align": "left",
-									"menu_draw_config": {
-										"font_pixel_height": 16,
-										"text_color": "#eee",
-										"border_color": "#111"
-									},
-									"header_draw_config": {
-										"text_color": "#eee"
-									},
-									"grid_align": "bottom_left"
-								}
-							}
-						]
-					}
-				}
-			]
+			"edge": "right",
+			"position": "bottom",
+			"monitor": "DP-3",
+			"layer": "overlay",
+			"pin-on-startup": true,
+			"pinnable": false,
+			"margins": {
+				"bottom": "15%"
+			},
+			"preview_size": 0,
+			"ignore-exlusive": true,
+			"type": "slider",
+			"thickness": 30,
+			"border-width": 4,
+			"length": "15%",
+			"fg-color": "#FF6E40",
+			"bg-color": "#616161",
+			"redraw-only-on-internal-update": true,
+			"preset": {
+				"type": "microphone"
+			}
 		}
 	]
 }

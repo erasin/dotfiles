@@ -16,10 +16,10 @@
 # uncomment your music players below.
 # 
 # systemctl --user start playerctld
-Control=$(playerctl -l | rg -v 'firefox' | head -n 1)
+# Control=$(playerctl -l | rg -v 'firefox' | head -n 1)
 # 
 # use mpd-mpris
-# Control="MPD"
+Control="MPD"
 # [ -n "$(pgrep amberol)" ] && Control="io.bassi.Amberol"
 # [ -n "$(pgrep spotify)" ] && Control="spotify"
 # [ -n "$(pgrep rhythmbox)" ] && Control="rhythmbox"

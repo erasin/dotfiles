@@ -1,7 +1,10 @@
 {
 	"$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/refs/heads/master/setting/schema-zh-cn.json",
 	"workspace": {
-		"library": ["/usr/share/nvim/runtime"]
+		"library": [
+			"/usr/share/nvim/runtime",
+			"~/.local/share/wezterm/wezterm-types"
+		]
 	},
 	"diagnostics.globals": ["vim", "Header"]
 }
