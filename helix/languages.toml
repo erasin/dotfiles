@@ -81,6 +81,16 @@ language-servers = [
   "lsp-ai",
 ]
 
+[language-server.gopls.config.hints]
+assignVariableTypes = true
+compositeLiteralFields = true
+compositeLiteralTypes = true
+constantValues = true
+functionTypeParameters = true
+ignoredError = true
+parameterNames = true
+rangeVariableTypes = true
+
 # ----------- godot4 -------------
 [language-server.godot]
 command = "nc"
@@ -521,7 +531,7 @@ name = "markdown"
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 language-servers = [
   "marksman",
-  "markdown-oxide",
+  # "markdown-oxide",
   # "iwe",
   "hx-lsp",
   "cspell-lsp",
@@ -724,3 +734,6 @@ indent = { tab-width = 2, unit = "  " }
 name = "hexdump"
 source = { git = "https://github.com/rush-rs/tree-sitter-hexdump", rev = "09eaf4fcfed00be93928d7d3d82b490cd1343b80"}
 
+[[language]]
+name = "ruby"
+language-servers = [ "ruby-lsp", "solargraph", "hx-lsp" ]

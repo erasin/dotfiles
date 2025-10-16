@@ -41,7 +41,7 @@ export RUSTUP_DIST_SERVER=https://rsproxy.cn
 export RUSTUP_UPDATE_SERVER=https://rsproxy.cn/rustup
 
 # ======= go ===========
-export GOPROXY=https://goproxy.cn
+export GOPROXY=https://goproxy.cn/,direct
 # 使用私有库,  使用 , 分割,支持通配符 *
 export GOPRIVATE=git.dyuit.cn
 export GO111MODULE=on;

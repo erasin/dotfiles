@@ -266,8 +266,9 @@
 	},
 	"custom/colorpicker": {
 		"format": "",
-		"tooltip-format": "color picker",
-		"on-click": "$HOME/.config/waybar/scripts/color-picker.sh"
+		"tooltip-format": "Color Picker",
+		"on-click": "$HOME/.config/waybar/scripts/color-picker.sh",
+		"on-click-right": "niri msg action spawn -- eyedropper"
 	},
 	"group/audio": {
 		"orientation": "inherit",
