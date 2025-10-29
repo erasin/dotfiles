@@ -12,7 +12,7 @@
 - skim [github](https://github.com/lotabout/skim) 终端文件查找 fzf
 - scooter 搜索替换
 
-- sd
+- sd 用于替换内容
 
 - Zellij | tmux
 
@@ -28,7 +28,7 @@
 - just ~~make~~ [github](https://github.com/casey/just) [book](https://just.systems/man/zh/) 
 - rmpc [github](https://github.com/mierak/rmpc) mpd client
 - xh [github](https://github.com/ducaale/xh) httpie
-- oha [github](https://github.com/hatoo/oha) http 压测工具
+- oha [github](https://github.com/hatoo/oha) http 压测工具 hey
 - hurl
 
 - svgbob [github](https://github.com/ivanceras/svgbobrus)

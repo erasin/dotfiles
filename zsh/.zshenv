@@ -22,6 +22,9 @@ export LANG_ALL=zh_CN.UTF-8
 # 使用远程的时候，禁用 gnome-keyring 
 # export SSH_AUTH_SOCK=
 
+# ===== AI ======
+# https://aistudio.google.com/app/
+export GEMINI_API_KEY=$(cat ${HOME}/dotfiles/tokens/gemini)
 
 # ======= rust ========
 CARGO_PATH=${HOME}/.cargo/bin
@@ -41,16 +44,17 @@ export RUSTUP_DIST_SERVER=https://rsproxy.cn
 export RUSTUP_UPDATE_SERVER=https://rsproxy.cn/rustup
 
 # ======= go ===========
-export GOPROXY=https://goproxy.cn/,direct
-# 使用私有库,  使用 , 分割,支持通配符 *
-export GOPRIVATE=git.dyuit.cn
 export GO111MODULE=on;
-GOPATH_BIN=${HOME}/golang/bin
-export GOPATH=${HOME}/golang
+export GOPROXY=https://goproxy.cn,direct
+export GOSUMDB=sum.golang.org
+# 使用私有库,  使用 , 分割,支持通配符 *
+# export GOPRIVATE=git.xxx.cn
+GOPATH_BIN=${HOME}/.golang/bin
+export GOPATH=${HOME}/.golang
 export GOROOT=/usr/lib/go
 
 if [[ $(uname) == "Darwin" ]]; then
-  export GOROOT="${HOME}/golang/go1.22"
+  export GOROOT="/usr/local/go"
 fi
 
 # ======= python =========
@@ -147,12 +151,11 @@ $ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME
 export FPATH=$FPATH:${HOME}/.config/zsh/functions
 
 # helix editor 
-export HELIX_RUNTIME=${HOME}/Development/helix/runtime
 export STEEL_HOME=${HOME}/.steel
 
 # huggingface.co
 export HF_ENDPOINT=https://hf-mirror.com
-export HUGGINGFACE_TOKEN=$(cat $HOME/.config/tokens/huggingface.txt)
+export HUGGINGFACE_TOKEN=$(cat $HOME/dotfiles/tokens/huggingface)
 
 # bat man
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -162,6 +165,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export GLICOL_CLI_SAMPLES_PATH=${HOME}/Development/github/glicol/js/assets
 
 if [[ $(uname) == "Linux" ]]; then
+  export HELIX_RUNTIME=${HOME}/Development/helix/runtime
+
   # android
   export ANDROID_HOME=${HOME}/.local/share/Android/SDK
   export ANDROID_NDK=${ANDROID_HOME}/ndk/26.2.11394342
@@ -187,9 +192,11 @@ if [[ $(uname) == "Linux" ]]; then
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
+  export HELIX_RUNTIME=${HOME}/soft/helix/runtime
+
   # 关闭 brew 自动更新
   export HOMEBREW_NO_AUTO_UPDATE=1 
-  export HOMEBREW_GITHUB_API_TOKEN=$(cat $HOME/.config/tokens/huggingface.txt)
+  export HOMEBREW_GITHUB_API_TOKEN=$(cat $HOME/dotfiles/tokens/brew)
 
   # android
   export ANDROID_HOME=${HOME}/Library/Android/sdk
