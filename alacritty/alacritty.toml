@@ -11,8 +11,8 @@ log_level = "Warn"
 save_to_clipboard = true
 
 [env]
-# TERM = "xterm-256color"
-TERM = "wezterm"
+TERM = "xterm-256color"
+# TERM = "wezterm"
 
 [mouse]
 hide_when_typing = true
@@ -23,12 +23,13 @@ bindings = [{ mouse = "Right", mods = "Control", action = "Paste" }]
 # program = "/bin/bash"
 
 [window]
-decorations = "none"
+decorations = "Buttonless"
 dynamic_padding = true
 dynamic_title = true
-dimensions = { columns = 162, lines = 42 }
+dimensions = { columns = 200, lines = 52 }
 padding = { x = 2, y = 0 }
 # opacity = 0.90
+option_as_alt = "Both" # macos only
 
 [scrolling]
 history = 10000
@@ -43,10 +44,12 @@ duration = 0
 
 [font]
 # ../fontconfig/font.conf
-size = 13.0
+size = 16.0
+normal = { family = "JetBrainsMono Nerd Font", style="SemiBold"}
+
 # normal = { family = "JetBrains Mono"}
 # normal = { family = "JetBrains Mono", style="SemiBold"}
-normal = { family = "JetNerdMono", style="SemiBold"}
+# normal = { family = "JetNerdMono", style="SemiBold"}
 # normal = { family = "MapleNerdMono"}
 # 使用 fontconfigs 支持多种字体
 # /etc/fonts/fonts.conf 或者 ~/.config/fontconfig/fonts.conf 

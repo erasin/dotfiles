@@ -17,7 +17,7 @@ bindings = [
   # 在 linux 下 , Super 与系统按键冲突, Alt 按键部分与 helix 冲突
   # 使用 C-a
   { key = "T",        mods = "Super",         chars = "\u0001c" }, # <C-a c>  new window 新建窗口 
-  # { key = "W",        mods = "Super",         chars = "\u0001x" }, # <C-a w> 窗口列表
+  { key = "W",        mods = "Alt",         chars = "\u0001w" }, # <C-a w> 窗口列表
   # { key = "M",        mods = "Super",         chars = "\u0001w" }, # <C-a m> 
   # { key = "M",        mods = "Super|Shift",   chars = "\u0001m\u001B" }, # <C-a m>  pane 最大化
   # { key = "Tab",      mods = "Super",         chars = "\u0001\t\u001B" },  
@@ -33,6 +33,7 @@ bindings = [
   # { key = "J",        mods = "Super|Shift",   chars = "\u0001J\u001B" },
   # { key = "K",        mods = "Super|Shift",   chars = "\u0001K\u001B" },
   # { key = "L",        mods = "Super|Shift",   chars = "\u0001L\u001B" },
+
 
   { key = "Key1",     mods = "Alt",         chars = "\u00011\u001B" },
   { key = "Key2",     mods = "Alt",         chars = "\u00012\u001B" },

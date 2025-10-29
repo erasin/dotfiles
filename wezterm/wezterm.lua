@@ -24,7 +24,7 @@ if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
 end
 
 if wezterm.target_triple == "x86_64-apple-darwin" or wezterm.target_triple == "aarch64-apple-darwin" then
-  M.window_decorations = "INTEGRATED_BUTTONS"|"RESIZE"
+  -- M.window_decorations = "INTEGRATED_BUTTONS"|"RESIZE"
 end
 
 -- 启用 GPU 加速
@@ -34,7 +34,7 @@ end
 -- window_background_opacity = 0.92,
 -- text_background_opacity = 0.8,
 
-M.font_size = 11.0
+M.font_size = 12.0
 M.line_height = 1.1
 M.dpi = 96
 -- M.adjust_window_size_when_changing_font_size = false
