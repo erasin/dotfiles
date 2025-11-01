@@ -164,37 +164,37 @@ function ala() {
 
 function theme-dark() {
     #env
-    sd "^export TERM_THEME=light" "export TERM_THEME=dark" ${HOME}/.config/zsh/.zshenv
+    sd "^export TERM_THEME=light" "export TERM_THEME=dark" ${HOME}/dotfiles/zsh/.zshenv
     
     
     # alacritty
-    sd "themes/oneLight.toml"  "themes/oneDark.toml" ${HOME}/.config/alacritty/alacritty.toml
-    sd "themes/oneLight.toml"  "themes/oneDark.toml" ${HOME}/.config/alacritty/hx.toml
+    sd "themes/oneLight.toml"  "themes/oneDark.toml" ${HOME}/dotfiles/alacritty/alacritty.toml
+    sd "themes/oneLight.toml"  "themes/oneDark.toml" ${HOME}/dotfiles/alacritty/hx.toml
     
     # wezterm
-    sd "M.color_scheme = \"OneHalfLight\"" "M.color_scheme = \"OneHalfDark\"" ${HOME}/.config/wezterm/wezterm.lua
+    sd "M.color_scheme = \"OneHalfLight\"" "M.color_scheme = \"OneHalfDark\"" ${HOME}/dotfiles/wezterm/wezterm.lua
     
     # helix
-    sd "^theme = \"onelight_local\""  "theme = \"onedark_local\"" ${HOME}/.config/helix/config.toml
+    sd "^theme = \"onelight_local\""  "theme = \"onedark_local\"" ${HOME}/dotfiles/helix/config.toml
     
     # zellij
-    # sd "^theme = \"onelight\""  "theme = \"onedark\"" ${HOME}/.config/zellij/config.kdl
+    # sd "^theme = \"onelight\""  "theme = \"onedark\"" ${HOME}/dotfiles/zellij/config.kdl
     
     # gitconfig/delta
     sd "light = true" "dark = true"  ${HOME}/.gitconfig
     
     # bat
-    sd "OneHalfLight" "OneHalfDark" ${HOME}/.config/bat/config
+    sd "OneHalfLight" "OneHalfDark" ${HOME}/dotfiles/bat/config
 
     # aichat
-    sd "light_theme: true" "light_theme: false" ${HOME}/.config/aichat/config.yaml
+    sd "light_theme: true" "light_theme: false" ${HOME}/dotfiles/aichat/config.yaml
 
     # kitty
     if command -v kitten &> /dev/null; then
         if [ "${KITTY_WINDOW_ID}" ]; then
             kitten theme "One Half Dark"
         fi
-        sd "^text_composition_strategy"  "# text_composition_strategy" ${HOME}/.config/kitty/kitty.conf
+        sd "^text_composition_strategy"  "# text_composition_strategy" ${HOME}/dotfiles/kitty/kitty.conf
     fi
     
     export TERM_THEME="dark"
@@ -202,36 +202,36 @@ function theme-dark() {
 
 function theme-light() {
     #env
-    sd "^export TERM_THEME=dark" "export TERM_THEME=light" ${HOME}/.config/zsh/.zshenv
+    sd "^export TERM_THEME=dark" "export TERM_THEME=light" ${HOME}/dotfiles/zsh/.zshenv
     
     # alacritty
-    sd "themes/oneDark.toml"  "themes/oneLight.toml" ${HOME}/.config/alacritty/alacritty.toml
-    sd "themes/oneDark.toml"  "themes/oneLight.toml" ${HOME}/.config/alacritty/hx.toml
+    sd "themes/oneDark.toml"  "themes/oneLight.toml" ${HOME}/dotfiles/alacritty/alacritty.toml
+    sd "themes/oneDark.toml"  "themes/oneLight.toml" ${HOME}/dotfiles/alacritty/hx.toml
     
     # wezterm
-    sd "M.color_scheme = \"OneHalfDark\"" "M.color_scheme = \"OneHalfLight\"" ${HOME}/.config/wezterm/wezterm.lua
+    sd "M.color_scheme = \"OneHalfDark\"" "M.color_scheme = \"OneHalfLight\"" ${HOME}/dotfiles/wezterm/wezterm.lua
     
     # helix
-    sd "^theme = \"onedark_local\""  "theme = \"onelight_local\"" ${HOME}/.config/helix/config.toml
+    sd "^theme = \"onedark_local\""  "theme = \"onelight_local\"" ${HOME}/dotfiles/helix/config.toml
     
     # zellij
-    # sd "^theme = \"onedark\""  "theme = \"onelight\"" ${HOME}/.config/zellij/config.kdl
+    # sd "^theme = \"onedark\""  "theme = \"onelight\"" ${HOME}/dotfiles/zellij/config.kdl
     
     # gitconfig/delta
     sd "dark = true" "light = true"  ${HOME}/.gitconfig
     
     # bat
-    sd "OneHalfDark" "OneHalfLight" ${HOME}/.config/bat/config
+    sd "OneHalfDark" "OneHalfLight" ${HOME}/dotfiles/bat/config
     
     # aichat
-    sd "light_theme: false" "light_theme: true" ${HOME}/.config/aichat/config.yaml
+    sd "light_theme: false" "light_theme: true" ${HOME}/dotfiles/aichat/config.yaml
 
     # kitty
     if command -v kitten &> /dev/null; then
         if [ "${KITTY_WINDOW_ID}" ]; then
             kitten theme "One Half Light"
         fi
-        sd "# text_composition_strategy"  "text_composition_strategy" ${HOME}/.config/kitty/kitty.conf
+        sd "# text_composition_strategy"  "text_composition_strategy" ${HOME}/dotfiles/kitty/kitty.conf
     fi
 
     export TERM_THEME="light"

@@ -1,6 +1,6 @@
 # 过滤
 # [use-grammars]
-# only = [ ]
+# only = []
 #
 
 # 这里定义 lsp-ai
@@ -80,6 +80,10 @@ language-servers = [
   "cspell-lsp",
   "lsp-ai",
 ]
+
+
+# [language-server.gopls.config.ui]
+# diagnostic.staticcheck = true
 
 [language-server.gopls.config.hints]
 assignVariableTypes = true
