@@ -330,7 +330,7 @@ formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 
 # ----------- php --------------
 [language-server.intelephense.config]
-licenceKey = "/home/erasin/.config/tokens/intelephenser_licence.txt"
+licenceKey = "/home/erasin/dotfile/tokens/intelephenser"
 globalStoragePath = "/home/erasin/.config/php/"
 # clearCache = false # clean state
 [language-server.intelephense.config.intelephense]
