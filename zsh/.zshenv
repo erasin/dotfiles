@@ -83,7 +83,8 @@ fi
 # ======= java =========
 # for android
 if [[ $(uname) == "Linux" ]]; then
-  export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+  # 使用 archlinux-java set 设定
+  export JAVA_HOME=/usr/lib/jvm/default
   # export JAVA_HOME=/opt/android-studio/jbr
 fi
 if [[ $(uname) == "Darwin" ]]; then
@@ -185,7 +186,7 @@ if [[ $(uname) == "Linux" ]]; then
   export OLLAMA_GPU_OVERHEAD=1000
 
   # for ollama, pytorch AI框架
-  HSA_OVERRIDE_GFX_VERSION=10.3.0
+  HSA_OVERRIDE_GFX_VERSION=10.30
 
   # for rip rm-improved
   export GRAVEYARD=$HOME/.local/share/Trash

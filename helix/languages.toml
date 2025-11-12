@@ -183,6 +183,15 @@ args = ["--stdio"]
 command = "tailwindcss-language-server"
 args = ["--stdio"]
 
+[language-server.tailwindcss-ls.config]
+userLanguages = { rust = "html", "*.rs" = "html" } 
+
+[language-server.tailwindcss-ls.config.tailwindCSS.experimental]
+classRegex = [
+  # dioxus
+  ["class: \"(.*)\""],
+]
+
 # -------- typescript -----------
 [language-server.typescript-language-server.config]
 hostInfo = "helix"
