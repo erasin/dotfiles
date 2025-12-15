@@ -85,8 +85,8 @@ inherits = "onedark"
 
 "punctuation" = { fg = "white" }
 "punctuation.delimiter" = { fg = "purple" }
-"punctuation.bracket" = { fg = "white" }
-"punctuation.special" = { fg = "white" }
+"punctuation.bracket" = { fg = "gold" }
+"punctuation.special" = { fg = "gold" }
 
 "keyword" = { fg = "purple" }
 "keyword.control" = { fg = "purple" }
@@ -213,6 +213,8 @@ tabstop = { modifiers = ["italic"], bg = "grey-800" }
 
 # path
 "ui.text.directory" = { fg = "green", underline = { style = "line" } }
+
+
 
 [palette]
 

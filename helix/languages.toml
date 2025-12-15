@@ -544,7 +544,7 @@ name = "markdown"
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 language-servers = [
   "marksman",
-  # "markdown-oxide",
+  "markdown-oxide",
   # "iwe",
   "hx-lsp",
   "cspell-lsp",

@@ -90,7 +90,7 @@ left = [
   "file-name",
   "file-modification-indicator",
 ]
-# center = ["diagnostics", "workspace-diagnostics"]
+# # center = ["diagnostics", "workspace-diagnostics"]
 center = ["diagnostics"]
 right = [
   "register",
@@ -105,7 +105,7 @@ right = [
   "file-type",
   "spacer"
 ]
-separator = "│"
+# separator = "│"
 
 mode.normal = " "
 mode.insert = " "
@@ -142,7 +142,7 @@ string = ""
 function = "󰊕"
 color = "󰌁"
 
-[icons.mime]
+[icons.fs]
 enabled = true
 php = { glyph = "", color = "#1976D2" }
 godot = { glyph = "", color = "#2196F3" }
