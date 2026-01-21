@@ -16,7 +16,7 @@ spawn-at-startup "way-edges" "daemon"
 
 // 壁纸
 // spawn-at-startup "eww daemon"，已经定义了 systemd
-spawn-at-startup "swww img ~/Pictures/wallpaper/w04.jpg"
+spawn-at-startup "swww img ~/Pictures/wallpaper/ws11.jpg"
 
 // 截图保存路径 niri 自带的截图
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -306,6 +306,15 @@ window-rule {
     default-floating-position x=32 y=50 relative-to="bottom-right"
     default-column-width { proportion 0.15; }
     default-window-height { proportion 0.3; }
+}
+
+// 取色器
+window-rule {
+    match app-id="com.github.finefindus.eyedropper" title="Eyedropper"
+    open-floating true
+    default-floating-position x=132 y=150 relative-to="bottom-right"
+    default-column-width { proportion 0.15; }
+    default-window-height { proportion 0.4; }
 }
 
 // 遮挡 

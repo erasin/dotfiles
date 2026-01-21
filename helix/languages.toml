@@ -1,6 +1,6 @@
 # 过滤
 # [use-grammars]
-# only = [ ]
+# only = []
 #
 
 # 这里定义 lsp-ai
@@ -80,6 +80,20 @@ language-servers = [
   "cspell-lsp",
   "lsp-ai",
 ]
+
+
+# [language-server.gopls.config.ui]
+# diagnostic.staticcheck = true
+
+[language-server.gopls.config.hints]
+assignVariableTypes = true
+compositeLiteralFields = true
+compositeLiteralTypes = true
+constantValues = true
+functionTypeParameters = true
+ignoredError = true
+parameterNames = true
+rangeVariableTypes = true
 
 # ----------- godot4 -------------
 [language-server.godot]
@@ -168,6 +182,15 @@ args = ["--stdio"]
 # command = "hx-tw"
 command = "tailwindcss-language-server"
 args = ["--stdio"]
+
+[language-server.tailwindcss-ls.config]
+userLanguages = { rust = "html", "*.rs" = "html" } 
+
+[language-server.tailwindcss-ls.config.tailwindCSS.experimental]
+classRegex = [
+  # dioxus
+  ["class: \"(.*)\""],
+]
 
 # -------- typescript -----------
 [language-server.typescript-language-server.config]
@@ -316,7 +339,7 @@ formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 
 # ----------- php --------------
 [language-server.intelephense.config]
-licenceKey = "/home/erasin/.config/tokens/intelephenser_licence.txt"
+licenceKey = "/home/erasin/dotfile/tokens/intelephenser"
 globalStoragePath = "/home/erasin/.config/php/"
 # clearCache = false # clean state
 [language-server.intelephense.config.intelephense]
@@ -661,8 +684,7 @@ language-servers = ["hx-lsp"]
 
 [[grammar]]
 name = "hurl"
-source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "ff07a42d9ec95443b5c1b57ed793414bf7b79be5" }
-
+source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "597efbd7ce9a814bb058f48eabd055b1d1e12145" }
 
 # https://github.com/antaalt/shader-sense
 [language-server.shader-language-server]
@@ -724,3 +746,22 @@ indent = { tab-width = 2, unit = "  " }
 name = "hexdump"
 source = { git = "https://github.com/rush-rs/tree-sitter-hexdump", rev = "09eaf4fcfed00be93928d7d3d82b490cd1343b80"}
 
+[[language]]
+name = "ruby"
+language-servers = [ "ruby-lsp", "solargraph", "hx-lsp" ]
+
+
+[[language]]
+name = "goctl"
+scope = "source.goctl"
+injection-regex = "goctl"
+file-types = ["goctl", "api"]
+roots = []
+auto-format = false
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "goctl"
+source = { git = "https://github.com/chaozwn/tree-sitter-goctl", rev = "49c43532689fe1f53e8b9e009d0521cab02c432b"}
