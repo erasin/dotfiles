@@ -426,6 +426,10 @@ args = ["--ignore", "E501", "E402"]
 
 # https://docs.astral.sh/ruff/configuration/
 # use pyproject.toml [tool.ruff]
+#
+
+# https://github.com/astral-sh/ty
+# ty lsp
 
 [[language]]
 name = "python"
@@ -440,9 +444,10 @@ file-types = [
   "SConstruct",
   "mel",
 ]
-roots = ["pyproject.toml", "pyrightconfig.json"]
+roots = ["pyproject.toml", "pyrightconfig.json", "ty.toml"]
 # formatter = { command = "ruff", args = ["format"] }
-language-servers = ["pyright", "ruff-lsp", "hx-lsp", "lsp-ai"]
+# language-servers = ["pyright", "ruff-lsp", "hx-lsp", "lsp-ai"]
+language-servers = ["ty", "ruff-lsp", "hx-lsp", "lsp-ai"]
 auto-format = true
 
 # ------------ lua --------------
@@ -543,9 +548,9 @@ command = "iwes"
 name = "markdown"
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 language-servers = [
-  "marksman",
-  "markdown-oxide",
-  # "iwe",
+  # "marksman",
+  # "markdown-oxide",
+  "iwe",
   "hx-lsp",
   "cspell-lsp",
 ]
