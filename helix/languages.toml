@@ -183,6 +183,15 @@ args = ["--stdio"]
 command = "tailwindcss-language-server"
 args = ["--stdio"]
 
+[language-server.tailwindcss-ls.config]
+userLanguages = { rust = "html", "*.rs" = "html" } 
+
+[language-server.tailwindcss-ls.config.tailwindCSS.experimental]
+classRegex = [
+  # dioxus
+  ["class: \"(.*)\""],
+]
+
 # -------- typescript -----------
 [language-server.typescript-language-server.config]
 hostInfo = "helix"
@@ -330,7 +339,7 @@ formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 
 # ----------- php --------------
 [language-server.intelephense.config]
-licenceKey = "/home/erasin/.config/tokens/intelephenser_licence.txt"
+licenceKey = "/home/erasin/dotfile/tokens/intelephenser"
 globalStoragePath = "/home/erasin/.config/php/"
 # clearCache = false # clean state
 [language-server.intelephense.config.intelephense]
@@ -417,6 +426,10 @@ args = ["--ignore", "E501", "E402"]
 
 # https://docs.astral.sh/ruff/configuration/
 # use pyproject.toml [tool.ruff]
+#
+
+# https://github.com/astral-sh/ty
+# ty lsp
 
 [[language]]
 name = "python"
@@ -431,9 +444,10 @@ file-types = [
   "SConstruct",
   "mel",
 ]
-roots = ["pyproject.toml", "pyrightconfig.json"]
+roots = ["pyproject.toml", "pyrightconfig.json", "ty.toml"]
 # formatter = { command = "ruff", args = ["format"] }
-language-servers = ["pyright", "ruff-lsp", "hx-lsp", "lsp-ai"]
+# language-servers = ["pyright", "ruff-lsp", "hx-lsp", "lsp-ai"]
+language-servers = ["ty", "ruff-lsp", "hx-lsp", "lsp-ai"]
 auto-format = true
 
 # ------------ lua --------------
@@ -534,9 +548,9 @@ command = "iwes"
 name = "markdown"
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 language-servers = [
-  "marksman",
+  # "marksman",
   # "markdown-oxide",
-  # "iwe",
+  "iwe",
   "hx-lsp",
   "cspell-lsp",
 ]
@@ -675,8 +689,7 @@ language-servers = ["hx-lsp"]
 
 [[grammar]]
 name = "hurl"
-source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "ff07a42d9ec95443b5c1b57ed793414bf7b79be5" }
-
+source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "597efbd7ce9a814bb058f48eabd055b1d1e12145" }
 
 # https://github.com/antaalt/shader-sense
 [language-server.shader-language-server]
@@ -741,3 +754,19 @@ source = { git = "https://github.com/rush-rs/tree-sitter-hexdump", rev = "09eaf4
 [[language]]
 name = "ruby"
 language-servers = [ "ruby-lsp", "solargraph", "hx-lsp" ]
+
+
+[[language]]
+name = "goctl"
+scope = "source.goctl"
+injection-regex = "goctl"
+file-types = ["goctl", "api"]
+roots = []
+auto-format = false
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "goctl"
+source = { git = "https://github.com/chaozwn/tree-sitter-goctl", rev = "49c43532689fe1f53e8b9e009d0521cab02c432b"}

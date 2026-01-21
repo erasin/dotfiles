@@ -23,7 +23,7 @@ bindings = [{ mouse = "Right", mods = "Control", action = "Paste" }]
 # program = "/bin/bash"
 
 [window]
-decorations = "Buttonless"
+# decorations = "none"
 dynamic_padding = true
 dynamic_title = true
 dimensions = { columns = 200, lines = 52 }
