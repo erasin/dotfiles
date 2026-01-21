@@ -1,0 +1,11 @@
+// 输入法
+spawn-at-startup "fcitx5" "-d"
+// xwayland
+
+// spawn-at-startup "waybar"
+spawn-at-startup "way-edges" "daemon"
+// spawn-at-startup "uair --quite"
+
+// 壁纸
+// spawn-at-startup "eww daemon"，已经定义了 systemd
+spawn-at-startup "swww img ~/Pictures/wallpaper/ws11.jpg"
