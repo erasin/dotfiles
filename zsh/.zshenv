@@ -193,11 +193,14 @@ if [[ $(uname) == "Linux" ]]; then
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
-  export HELIX_RUNTIME=${HOME}/soft/helix/runtime
+  export HELIX_RUNTIME=/Applications/helix/runtime
 
   # 关闭 brew 自动更新
   export HOMEBREW_NO_AUTO_UPDATE=1 
   export HOMEBREW_GITHUB_API_TOKEN=$(cat $HOME/dotfiles/tokens/brew)
+  export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
+  export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
+  # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   # android
   export ANDROID_HOME=${HOME}/Library/Android/sdk
