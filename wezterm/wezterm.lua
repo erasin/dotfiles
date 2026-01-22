@@ -34,16 +34,16 @@ end
 -- window_background_opacity = 0.92,
 -- text_background_opacity = 0.8,
 
-M.font_size = 12.0
+M.font_size = 14.0
 M.line_height = 1.1
-M.dpi = 96
+-- M.dpi = 96
 -- M.adjust_window_size_when_changing_font_size = false
 M.warn_about_missing_glyphs = false
 M.bold_brightens_ansi_colors = "BrightAndBold"
 
 -- 字体
 M.font = wezterm.font_with_fallback {
-  { family = 'JetBrains Mono',         weight = 'SemiBold' },
+  { family = 'JetBrains Mono',         weight = 'DemiBold' },
   { family = 'Symbols Nerd Font Mono', weight = 'Regular', scale = 1.0 },
   { family = 'HarmonyOS Sans SC',      weight = 'Regular', scale = 1.2 },
 }
