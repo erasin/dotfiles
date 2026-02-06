@@ -1,5 +1,7 @@
 niri msg --json windows \
-  | jq -r '.[] | "\(.id) \(.title) - \(.app_id)"' \
+  | jaq -r '.[] | "\(.id) \(.title) - \(.app_id)"' \
   | fuzzel --dmenu -w 55 \
-  | awk '{print $1}' \
+  | choose 0 \
   | xargs -I {} niri msg action focus-window --id {}
+
+  # | awk '{print $1}' \

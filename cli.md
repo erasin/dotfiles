@@ -1,4 +1,10 @@
-# 终端工具
+
+## soft
+
+- zeditor
+- zedis
+
+## 终端工具
 
 - starship [github](https://github.com/starship/starship) [home](https://github.com/starship/starship) 替代shell "prompt"
 - Zoxide [github](https://github.com/ajeetdsouza/zoxide) z 快速跳转(cd) 替代
@@ -6,7 +12,8 @@
 
 - Ripgrep ~~grep~~ [github](https://github.com/BurntSushi/ripgrep)超快速的 grep 替代工具
 - Fd ~~find~~ [github](https://github.com/sharkdp/fd) 快速查找文件工具
-- choose ~~awk~~
+- choose [github](https://github.com/theryangeary/choose)
+  - ~~awk~~
 - Bat ~~cat~~
 - Eza ~~ls~~ [github](https://github.com/eza-community/eza)
 - skim [github](https://github.com/lotabout/skim) 终端文件查找 fzf
@@ -33,7 +40,8 @@
 
 - svgbob [github](https://github.com/ivanceras/svgbobrus)
 
-- jq [github](https://github.com/jqlang/jq) [site](https://jqlang.org/)
+- jaq [github](https://github.com/01mf02/jaq) [site](https://gedenkt.at/jaq/manual/) 
+  - jq [github](https://github.com/jqlang/jq) [site](https://jqlang.org/)
 
 - bacon [github](https://github.com/Canop/bacon)  rust checker tui
 
@@ -44,6 +52,13 @@
 
 - espanso [github](https://github.com/espanso/espanso)
 
+- mmdf [github](https://github.com/1jehuang/mermaid-rs-renderer) 转换 mermaid uml 为图片 png 
+
+
+
+## other
+
 - tdf 终端读取 pdf 
 - docxx 终端阅读doc `cargo i`
 - tunein-cli 终端radio `cargo i`
+
