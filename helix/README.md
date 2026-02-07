@@ -29,6 +29,7 @@ cargo install --path helix-term
 
 ## PR 合并
 
+- [#14544](https://github.com/helix-editor/helix/pull/14544) implement file-watching based on filesentry,  
 - [#12369 Icons v2](https://github.com/helix-editor/helix/pull/12369)
   - 需要 [Nerd Fonts](https://www.nerdfonts.com/) 字体支持，linux用户可以参考 [erasin/dotfiles/fontconfig](https://github.com/erasin/dotfiles/tree/main/fontconfig)
 - [#13133 Inline git blame](https://github.com/helix-editor/helix/pull/13133)
