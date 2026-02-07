@@ -31,15 +31,15 @@ if [[ $(uname) == "Linux" ]]; then
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
-  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
   # if type brew &>/dev/null; then
   #   FPATH=$HOME/.config/zsh-completions:$(brew --prefix)/share/zsh-completions:$FPATH
   #   autoload -Uz compinit && compinit
   # fi
 
-  source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-  source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+  source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+  source /usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh  
 fi
 
 # cursor bug
