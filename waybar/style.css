@@ -68,7 +68,7 @@
 #custom-logout {
   margin-top: 3pt;
   padding: 1pt 5pt 0 5pt;
-  background: #424242;
+  background: #282c34;
   border-radius: 8pt;
   color: white;
   min-width: 24px;
@@ -239,7 +239,7 @@ menuitem {
   color: #BCAAA4;
   border-radius: 6px;
   background: transparent;
-  transition: all 0.2s ease;
+  /* transition: all 0.2s ease; */
 }
 
 #workspaces button.active {
