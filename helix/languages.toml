@@ -418,8 +418,9 @@ args = ["--server"]
 
 # https://github.com/astral-sh/ruff-lsp
 [language-server.ruff-lsp]
-command = "ruff-lsp"
-args = ["--ignore", "E501", "E402"]
+command = "ruff"
+args = ["server"]
+#  "E501", "E402"
 
 # support ruff check
 # support ruff format

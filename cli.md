@@ -10,7 +10,7 @@
 - Zoxide [github](https://github.com/ajeetdsouza/zoxide) z 快速跳转(cd) 替代
 - atuin [github](https://github.com/ellie/atuin) 快速查询历史命令工具
 
-- Ripgrep ~~grep~~ [github](https://github.com/BurntSushi/ripgrep)超快速的 grep 替代工具
+- Ripgrep(rg) ~~grep~~ [github](https://github.com/BurntSushi/ripgrep)超快速的 grep 替代工具
 - Fd ~~find~~ [github](https://github.com/sharkdp/fd) 快速查找文件工具
 - choose [github](https://github.com/theryangeary/choose)
   - ~~awk~~
@@ -38,12 +38,21 @@
 - oha [github](https://github.com/hatoo/oha) http 压测工具 hey
 - hurl
 
+- tokei 代码统计
+
 - svgbob [github](https://github.com/ivanceras/svgbobrus)
 
 - jaq [github](https://github.com/01mf02/jaq) [site](https://gedenkt.at/jaq/manual/) 
   - jq [github](https://github.com/jqlang/jq) [site](https://jqlang.org/)
 
 - bacon [github](https://github.com/Canop/bacon)  rust checker tui
+
+- hexyl 十六进制
+- broot
+
+- gping ping
+
+- bandwhich 带宽查看
 
 - delta git diff
 
@@ -54,7 +63,7 @@
 
 - mmdf [github](https://github.com/1jehuang/mermaid-rs-renderer) 转换 mermaid uml 为图片 png 
 
-
+- bun ~~npm~~
 
 ## other
 
