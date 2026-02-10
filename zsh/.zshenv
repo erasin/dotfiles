@@ -186,8 +186,9 @@ if [[ $(uname) == "Linux" ]]; then
   export OLLAMA_GPU_OVERHEAD=1000
 
   # for ollama, pytorch AI框架
-  HSA_OVERRIDE_GFX_VERSION=10.30
-
+  export HSA_OVERRIDE_GFX_VERSION=10.30
+  export HIP_VISIBLE_DEVICES=0
+  
   # for rip rm-improved
   export GRAVEYARD=$HOME/.local/share/Trash
 fi
