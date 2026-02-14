@@ -153,8 +153,8 @@ wesl = { glyph = "", color = "#E06C75" }
 cj = ""
 yml = ""
 yaml = ""
-conf= ""
-kdl= ""
+conf = ""
+kdl = ""
 Makefile = ""
 ron = "󰔘"
 db = ""
@@ -168,7 +168,7 @@ json5 = ""
 "hurl" = { glyph = "", color = "#DE3163" }
 
 [icons.diagnostic]
-error = " " 
+error = " "
 warning = " "
 info = ""
 hint = "󰮥 "
@@ -183,7 +183,7 @@ S-tab = "move_parent_node_start"
 "\\" = ":reflow" # |
 # "X" = "extend_line_above"
 # "x" = ["extend_line_down", "extend_to_line_bounds"] 
-"X" = ["extend_line_up", "extend_to_line_bounds"] 
+"X" = ["extend_line_up", "extend_to_line_bounds"]
 
 "C-s" = ":write"
 "C-j" = "save_selection"
@@ -196,9 +196,16 @@ S-tab = "move_parent_node_start"
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
 # 插入模式，恢复输入法
 i = ["insert_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
-I = ["insert_at_line_start", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1" ]
+I = [
+  "insert_at_line_start",
+  ":pipe-to bash ~/.config/helix/scripts/ime-switch 1",
+]
 # a = "@li" or remap `after insert`
-a = ["move_char_right", "insert_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1" ]
+a = [
+  "move_char_right",
+  "insert_mode",
+  ":pipe-to bash ~/.config/helix/scripts/ime-switch 1",
+]
 A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 o = ["open_below", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
@@ -212,30 +219,30 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 
 # 打开 yazi 文件浏览器
 [keys.normal.space.o]
-# yazi 文件 picker
-"e" = ":open %sh{ ~/.config/helix/scripts/yazi-picker.sh }"
 # scooter 搜索
-"s" = ":sh bash ~/.config/helix/scripts/scooter-picker.sh"
-"g" = ":sh bash ~/.config/helix/scripts/lazygit-picker.sh"
+s = [
+  ":write-all",
+  ":insert-output scooter --no-stdin >/dev/tty",
+  ":redraw",
+  ":reload-all",
+]
+# "s" = ":sh bash ~/.config/helix/scripts/scooter-picker.sh"
 
+### lazygit
+"g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+# "g" = ":sh bash ~/.config/helix/scripts/lazygit-picker.sh"
 
+# yazi 文件 picker
+# "e" = ":open %sh{ ~/.config/helix/scripts/yazi-picker.sh }"
 # BUG:  
 # https://github.com/sxyazi/yazi/pull/2461
-# e = [
-#   ':sh rm -f /tmp/yazi-file',
-#   ':insert-output yazi %{buffer_name} --chooser-file=/tmp/yazi-file',
-#   ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-#   ':open %sh{cat /tmp/yazi-file}',
-#   ':redraw',
-# ]
-# 全局搜索
-# https://github.com/thomasschafer/scooter?tab=readme-ov-file#helix
-# s = [
-#     # ":write-all",
-#     ":insert-output scooter >/dev/tty",
-#     ":redraw",
-#     ":reload-all"
-# ]
+e = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]
 
 [keys.insert]
 # smart tab
@@ -252,3 +259,6 @@ S-tab = "move_parent_node_start"
 [keys.select]
 tab = "extend_parent_node_end"
 S-tab = "extend_parent_node_start"
+
+# [keys.select.ret]
+
