@@ -1,0 +1,17 @@
+
+# https://github.com/blopker/codebook
+
+dictionaries = ["en_us"]
+words = ["codebook", "rustc"]
+flag_words = ["todo", "fixme"]
+ignore_paths = ["target/**/*", "**/*.json", ".git/**/*"]
+min_word_length = 3
+use_global = true
+
+ignore_patterns = [
+    '\b[ATCG]+\b',           # DNA sequences with word boundaries
+    '^vim\..*',              # Lines starting with vim.
+    '^\s*//.*',              # Lines that are // comments
+    'https?://[^\s]+',       # URLs
+    '[\u4e00-\u9fff]+',      # Chinese characters
+]
