@@ -80,6 +80,8 @@ if [[ $(uname) == "Darwin" ]]; then
   export PNPM_HOME="/Users/erasin/Library/pnpm"
 fi
 
+BUN_BIN=${HOME}/.bun/bin
+
 # ======= java =========
 # for android
 if [[ $(uname) == "Linux" ]]; then
@@ -131,6 +133,7 @@ $PATH:\
 $LOCAL_PATH:\
 $GOPATH_BIN:\
 $PNPM_HOME:\
+$BUN_BIN:\
 $RUBY_PATH:\
 $ROCm_PATH:\
 $LLDB_VSCODE_PATH:\
