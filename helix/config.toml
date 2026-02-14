@@ -234,7 +234,7 @@ s = [
 ### lazygit
 "g" = [
   ":new",
-  ":insert-output lazygit",
+  ":insert-output lazygit >/dev/tty",
   ":buffer-close!",
   ":redraw",
   ':set mouse false',
