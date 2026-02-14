@@ -217,19 +217,29 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "." = "file_picker_in_current_buffer_directory"
 "n" = "signature_help"
 
-# 打开 yazi 文件浏览器
 [keys.normal.space.o]
+# 外部程序 scooter, lazygit, yazi 也支持鼠标,会导致鼠标冲突,需要重新获取鼠标支持 # 15059
+
 # scooter 搜索
 s = [
   ":write-all",
   ":insert-output scooter --no-stdin >/dev/tty",
   ":redraw",
   ":reload-all",
+  ':set mouse false',
+  ':set mouse true',
 ]
 # "s" = ":sh bash ~/.config/helix/scripts/scooter-picker.sh"
 
 ### lazygit
-"g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+"g" = [
+  ":new",
+  ":insert-output lazygit",
+  ":buffer-close!",
+  ":redraw",
+  ':set mouse false',
+  ':set mouse true',
+]
 # "g" = ":sh bash ~/.config/helix/scripts/lazygit-picker.sh"
 
 # yazi 文件 picker
@@ -242,6 +252,8 @@ e = [
   ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
   ':open %sh{cat /tmp/unique-file}',
   ':redraw',
+  ':set mouse false',
+  ':set mouse true',
 ]
 
 [keys.insert]
