@@ -36,15 +36,11 @@ command = ""
 [language-server.hx-lsp]
 command = "hx-lsp"
 
-# https://github.com/blopker/codebook
-[language-server.codebook-lsp]
-command = "codebook-lsp"
-args = ["serve"]
-
-[language-server.codebook-lsp.config]
-globalConfigPath = "D:/erasin/dotfiles/helix/cookbook.toml"
-checkWhileTyping = false
-diagnosticSeverity = "information"
+# 单词拼写检查
+# https://github.com/Automattic/harper
+[language-server.harper-ls.config.harper-ls]
+# diagnosticSeverity = "warning"
+linters = { spaces = false }
 
 # ---------- rust -----
 [language-server.rust-analyzer.config]
@@ -59,7 +55,7 @@ check.command = "clippy"
 
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer", "hx-lsp", "codebook-lsp"]
+language-servers = ["rust-analyzer", "hx-lsp", "harper-ls"]
 
 [language.debugger]
 name = "lldb-dap"
@@ -81,7 +77,7 @@ language-servers = [
   "gopls",
   "golangci-lint-lsp",
   "hx-lsp",
-  "codebook-lsp",
+  "harper-ls",
   "lsp-ai",
 ]
 
@@ -106,7 +102,7 @@ args = ["127.0.0.1", "6005"]
 
 [[language]]
 name = "gdscript"
-language-servers = ["godot", "hx-lsp", "codebook-lsp", "lsp-ai"]
+language-servers = ["godot", "hx-lsp", "harper-ls", "lsp-ai"]
 
 [language.debugger]
 name = "lldb-vscode"
@@ -156,7 +152,7 @@ auto-format = true
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
 indent = { tab-width = 4, unit = "\t" }
-# language-servers = ["gdshader-lsp", "hx-lsp", "codebook-lsp"]
+# language-servers = ["gdshader-lsp", "hx-lsp", "harper-ls"]
 
 [[grammar]]
 name = "gdshader"
@@ -274,7 +270,7 @@ language-servers = [
   "emmet-language-server",
   "tailwindcss-ls",
   "hx-lsp",
-  "codebook-lsp",
+  "harper-ls",
   "lsp-ai",
 ]
 
@@ -284,7 +280,7 @@ language-servers = ["vscode-html-language-server"]
 
 [[language]]
 name = "vue"
-language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "codebook-lsp", "lsp-ai"]
+language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "harper-ls", "lsp-ai"]
 
 [[language]]
 name = "tsx"
@@ -294,7 +290,7 @@ language-servers = [
   "biome",
   "tailwindcss-ls",
   "hx-lsp",
-  "codebook-lsp",
+  "harper-ls",
   "lsp-ai",
 ]
 
@@ -306,7 +302,7 @@ language-servers = [
   "biome",
   "tailwindcss-ls",
   "hx-lsp",
-  "codebook-lsp",
+  "harper-ls",
   "lsp-ai",
 ]
 
@@ -322,7 +318,7 @@ language-servers = [
   { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "hx-lsp",
-  "codebook-lsp",
+  "harper-ls",
   "lsp-ai",
 ]
 
@@ -340,6 +336,7 @@ language-servers = [
 [[language]]
 name = "yaml"
 formatter = { command = 'prettier', args = ["--parser", "yaml"] }
+language-servers = [ "hx-lsp" ]
 
 # ----------- php --------------
 [language-server.intelephense.config]
@@ -557,7 +554,8 @@ language-servers = [
   "markdown-oxide",
   # "iwe",
   "hx-lsp",
-  "codebook-lsp",
+  "harper-ls",
+  "harper-ls"
 ]
 # auto-format = true # optional, enable format-on-save
 # 设定 zen-mode-like
