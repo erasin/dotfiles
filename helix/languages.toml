@@ -34,6 +34,7 @@ command = "hx-lsp"
 
 # ==================== 拼写检查 ====================
 # Harper: https://github.com/Automattic/harper
+# https://writewithharper.com/docs/integrations/language-server#Dictionaries
 [language-server.harper-ls.config.harper-ls]
 # diagnosticSeverity = "warning"
 linters = { spaces = false }
