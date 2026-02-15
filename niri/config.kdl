@@ -1,6 +1,6 @@
-// This config is in the KDL format: https://kdl.dev
-// "/-" comments out the following node.
-// Check the wiki for a full description of the configuration:
+// 本配置文件使用 KDL 格式: https://kdl.dev
+// "/-" 用于注释掉下一个节点
+// 完整配置说明请查看 Wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
 include "startup.kdl"
@@ -86,7 +86,7 @@ layout {
 
     // 预设列宽，使用 (Mod+R) 按照顺序变动
     preset-column-widths {
-        // The default preset widths are 1/3, 1/2 and 2/3 of the output.
+        // 默认预设宽度为输出的 1/3、1/2 和 2/3
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
@@ -99,15 +99,15 @@ layout {
         // off
         width 4
 
-        // Colors can be set in a variety of ways:
-        // - CSS named colors: "red"
-        // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
-        // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
+        // 颜色设置方式:
+        // - CSS 颜色名: "red"
+        // - RGB 十六进制: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
+        // - CSS 样式: "rgb(255, 127, 0)", rgba(), hsl() 等
 
         active-color "#7fc8ff"
-        inactive-color "#505050" // 但窗口无法查看
+        inactive-color "#505050" // 非焦点窗口
 
-        // 梯度色彩
+        // 渐变色
         active-gradient from="red" to="orange" angle=45 in="oklch longer hue"
         inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
@@ -135,16 +135,16 @@ layout {
         color "#00000070"
     }
 
-    // 窗口选项卡 （MOD+W) 切换列Tabbed
+    // 窗口选项卡 （Mod+W) 切换列显示模式
     tab-indicator {
         // off
         
-        hide-when-single-tab // 单列隐藏
+        hide-when-single-tab // 单窗口隐藏
         place-within-column  // 内部放置
-        gap 5                // 距离
+        gap 5                // 间距
         width 5              // 宽度
-        length total-proportion=0.5 // 总长度
-        position "left"      // 位置 left,right,top,bottom 
+        length total-proportion=0.5 // 总长度比例
+        position "left"      // 位置 left, right, top, bottom 
         gaps-between-tabs 2  // 选项卡间隔
         corner-radius 8      // 圆角
         // active-color "red"
@@ -172,13 +172,13 @@ layout {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Switch-Events
 switch-events { }
 
-// 动画效果 v 1.5
+// 动画效果 (v1.5+)
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
 animations {
     // off
     // slowdown 3.0
 
-    // cruve支持:  ease-out-quad, ease-out-cubic, ease-out-expo, linear
+    // 曲线支持: ease-out-quad, ease-out-cubic, ease-out-expo, linear
 
     window-open {
         duration-ms 150
@@ -226,11 +226,10 @@ workspace "writer"
 // 按键绑定
 binds {
 
-    // Mod-Shift-/, which is usually the same as Mod-?,
-    // shows a list of important hotkeys.
+    // Mod+Shift+/, 即 Mod+?, 显示快捷键帮助
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
+    // 运行程序的快捷键建议: 终端、应用启动器、锁屏
     Mod+T hotkey-overlay-title="打开终端" { spawn "alacritty"; } // kitty | alacritty
     Mod+Space hotkey-overlay-title="程序" { spawn "anyrun"; } // fuzzel
     Super+Alt+L hotkey-overlay-title="锁屏" { spawn "swaylock"; } //swaylock
@@ -238,15 +237,15 @@ binds {
     Mod+Tab hotkey-overlay-title="切换" { spawn "~/.config/niri/scripts/switch-window.sh"; }
     // Mod+O { spawn "~/.config/waybar/scripts/clipboard.sh"; }
 
-    // 兼容 x11 的剪贴板
+    // 兼容 X11 的剪贴板
     // Mod+Ctrl+C { spawn "sh" "-c" "env DISPLAY=:0 xsel -ob | wl-copy"; }
     // Mod+Ctrl+V { spawn "sh" "-c" "wl-paste -n | env DISPLAY=:0 xsel -ib"; }
 
-    // You can also use a shell:
+    // 也可以使用 shell:
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
 
-    // Example volume keys mappings for PipeWire & WirePlumber.
-    // The allow-when-locked=true property makes them work even when the session is locked.
+    // PipeWire & WirePlumber 的音量键映射
+    // allow-when-locked=true 属性使锁屏时也可触发
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" "&& ~/.config/niri/scripts/wp-vol.sh";
     }
@@ -287,8 +286,7 @@ binds {
     Mod+Ctrl+K     { move-window-up; }
     Mod+Ctrl+L     { move-column-right; }
 
-    // Alternative commands that move across workspaces when reaching
-    // the first or last window in a column.
+    // 替代命令: 到达列的首个或最后一个窗口时跨工作区移动
     // Mod+J     { focus-window-or-workspace-down; }
     // Mod+K     { focus-window-or-workspace-up; }
     // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
@@ -317,11 +315,11 @@ binds {
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
-    // Alternatively, there are commands to move just a single window:
+    // 另一种方式: 移动单个窗口
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
     // ...
 
-    // And you can also move a whole workspace to another monitor:
+    // 还可以移动整个工作区到另一个显示器:
     // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
     // ...
 
@@ -334,7 +332,7 @@ binds {
     Mod+Ctrl+U         { move-column-to-workspace-down; }
     Mod+Ctrl+I         { move-column-to-workspace-up; }
 
-    // Alternatively, there are commands to move just a single window:
+    // 另一种方式: 移动单个窗口
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
     // ...
 
@@ -344,12 +342,12 @@ binds {
     Mod+Shift+I         { move-workspace-up; }
 
 
-    // You can bind mouse wheel scroll ticks using the following syntax.
-    // These binds will change direction based on the natural-scroll setting.
+    // 可以使用以下语法绑定鼠标滚轮滚动
+    // 这些快捷键会根据 natural-scroll 设置改变方向
     //
-    // To avoid scrolling through workspaces really fast, you can use
-    // the cooldown-ms property. The bind will be rate-limited to this value.
-    // You can set a cooldown on any bind, but it's most useful for the wheel.
+    // 为避免工作区切换过快，可以使用 cooldown-ms 属性
+    // 快捷键将限制在此值的时间间隔内触发
+    // 可以为任何快捷键设置冷却时间，滚轮最有用
     Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
@@ -360,30 +358,24 @@ binds {
     Mod+Ctrl+WheelScrollRight { move-column-right; }
     Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
-    // Usually scrolling up and down with Shift in applications results in
-    // horizontal scrolling; these binds replicate that.
+    // 通常在应用程序中 Shift+上下滚动会变成水平滚动; 这些快捷键复现了这种行为
     Mod+Shift+WheelScrollDown      { focus-column-right; }
     Mod+Shift+WheelScrollUp        { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-    // Similarly, you can bind touchpad scroll "ticks".
-    // Touchpad scrolling is continuous, so for these binds it is split into
-    // discrete intervals.
-    // These binds are also affected by touchpad's natural-scroll, so these
-    // example binds are "inverted", since we have natural-scroll enabled for
-    // touchpads by default.
+    // 同样可以绑定触控板滚轮 "点击"
+    // 触控板滚动是连续的，所以这些快捷键会被分割成离散的间隔
+    // 这些快捷键也受触控板 natural-scroll 影响
+    // 示例快捷键是 "反向" 的，因为我们默认启用了 natural-scroll
     // Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
     // Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
 
-    // You can refer to workspaces by index. However, keep in mind that
-    // niri is a dynamic workspace system, so these commands are kind of
-    // "best effort". Trying to refer to a workspace index bigger than
-    // the current workspace count will instead refer to the bottommost
-    // (empty) workspace.
+    // 可以按索引引用工作区。但请注意，niri 是动态工作区系统
+    // 这些命令是 "尽力而为"。尝试引用大于当前工作区数量的索引
+    // 将改为引用最底部的（空）工作区
     //
-    // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-    // will all refer to the 3rd workspace.
+    // 例如，有 2 个工作区 + 1 个空工作区，索引 3、4、5 等都将指向第 3 个工作区
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -403,21 +395,21 @@ binds {
     Mod+Ctrl+8 { move-column-to-workspace 8; }
     Mod+Ctrl+9 { move-column-to-workspace 9; }
 
-    // Alternatively, there are commands to move just a single window:
+    // 另一种方式: 移动单个窗口
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
-    // Switches focus between the current and the previous workspace.
+    // 在当前和上一个工作区之间切换焦点
     // Mod+Tab { focus-workspace-previous; }
 
-    // The following binds move the focused window in and out of a column.
-    // If the window is alone, they will consume it into the nearby column to the side.
-    // If the window is already in a column, they will expel it out.
+    // 以下快捷键将焦点窗口移入或移出列
+    // 如果窗口单独存在，会被合并到旁边的列中
+    // 如果窗口已经在列中，会被 expel 出
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
 
-    // Consume one window from the right to the bottom of the focused column.
+    // 将右边的一个窗口消费到底部列中
     Mod+Comma  { consume-window-into-column; }
-    // Expel the bottom window from the focused column to the right.
+    // 将底部窗口 expel 出列到右边
     Mod+Period { expel-window-from-column; }
 
     Mod+R { switch-preset-column-width; }
@@ -426,42 +418,40 @@ binds {
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
 
-    // Expand the focused column to space not taken up by other fully visible columns.
-    // Makes the column "fill the rest of the space".
+    // 展开焦点列以占据其他完全可见列未占用的空间
+    // 让列 "填充剩余空间"
     Mod+Ctrl+F { expand-column-to-available-width; }
 
     Mod+C { center-column; }
 
-    // Finer width adjustments.
-    // This command can also:
-    // * set width in pixels: "1000"
-    // * adjust width in pixels: "-5" or "+5"
-    // * set width as a percentage of screen width: "25%"
-    // * adjust width as a percentage of screen width: "-10%" or "+10%"
-    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
-    // set-column-width "100" will make the column occupy 200 physical screen pixels.
+    // 精细的宽度调整
+    // 此命令还可以:
+    // * 以像素设置宽度: "1000"
+    // * 以像素调整宽度: "-5" 或 "+5"
+    // * 以屏幕宽度百分比设置宽度: "25%"
+    // * 以屏幕宽度百分比调整宽度: "-10%" 或 "+10%"
+    // 像素大小使用逻辑或缩放像素。例如，在缩放 2.0 的输出上
+    // set-column-width "100" 将使列占用 200 个物理屏幕像素
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
 
-    // Finer height adjustments when in column with other windows.
+    // 当列中有其他窗口时，更精细的高度调整
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
-    // Move the focused window between the floating and the tiling layout.
+    // 在浮动和平铺布局之间移动焦点窗口
     // Mod+V       { toggle-window-floating; }
     Mod+V hotkey-overlay-title="浮动切换"  { spawn "~/.config/niri/scripts/floating.sh"; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
-    // Toggle tabbed column display mode.
-    // Windows in this column will appear as vertical tabs,
-    // rather than stacked on top of each other.
+    // 切换选项卡列显示模式
+    // 此列中的窗口将显示为垂直选项卡，而不是堆叠在一起
     Mod+W { toggle-column-tabbed-display; }
 
-    // Actions to switch layouts.
-    // Note: if you uncomment these, make sure you do NOT have
-    // a matching layout switch hotkey configured in xkb options above.
-    // Having both at once on the same hotkey will break the switching,
-    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
+    // 切换布局的操作
+    // 注意: 如果取消注释这些，请确保在上方的 xkb 选项中没有配置
+    // 相同的布局切换快捷键。同时使用两者会破坏切换功能
+    // 因为按下快捷键时会切换两次（一次由 xkb，一次由 niri）
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
@@ -469,21 +459,21 @@ binds {
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
-    // Applications such as remote-desktop clients and software KVM switches may
-    // request that niri stops processing the keyboard shortcuts defined here
-    // so they may, for example, forward the key presses as-is to a remote machine.
-    // It's a good idea to bind an escape hatch to toggle the inhibitor,
-    // so a buggy application can't hold your session hostage.
+    // 远程桌面客户端和软件 KVM 开关等应用程序可能
+    // 请求 niri 停止处理此处定义的键盘快捷键
+    // 以便它们可以按原样转发按键到远程机器
+    // 绑定一个紧急开关来切换快捷键抑制是个好主意
+    // 这样有问题的应用程序就不会劫持你的会话
     //
-    // The allow-inhibiting=false property can be applied to other binds as well,
-    // which ensures niri always processes them, even when an inhibitor is active.
+    // allow-inhibiting=false 属性也可以应用到其他快捷键
+    // 确保即使在激活抑制器时 niri 始终处理它们
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
-    // The quit action will show a confirmation dialog to avoid accidental exits.
+    // quit 操作会显示确认对话框以避免意外退出
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
 
-    // Powers off the monitors. To turn them back on, do any input like
-    // moving the mouse or pressing any other key.
+    // 关闭显示器。再次打开需要任何输入
+    // 如移动鼠标或按任何键
     Mod+Shift+P { power-off-monitors; }
 }
