@@ -1,6 +1,8 @@
 # wezterm 
 
-version:20230326
+
+https://github.com/wezterm/wezterm
+version:20240203
 
 ## 快捷键
 
