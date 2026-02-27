@@ -74,7 +74,10 @@ fi
 # ======== javascript =============
 
 # npm config set prefix '~/.npm-global'
-NPM_BIN = "${HOME}/.npm-global/bin"
+NPM_BIN=$(npm config get prefix)
+if [[ -n $WSL_DISTRO_NAME ]]; then
+  NPM_BIN="${HOME}/.npm-global/bin"
+fi
 
 # YARN_PATH="$(yarn global bin)"
 if [[ $(uname) == "Linux" ]]; then
