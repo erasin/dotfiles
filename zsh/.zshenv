@@ -74,10 +74,7 @@ fi
 # ======== javascript =============
 
 # npm config set prefix '~/.npm-global'
-NPM_BIN=$(npm config get prefix)
-if [[ -n $WSL_DISTRO_NAME ]]; then
-  NPM_BIN="${HOME}/.npm-global/bin"
-fi
+NPM_PREFIX="${HOME}/.npm-global"
 
 # YARN_PATH="$(yarn global bin)"
 if [[ $(uname) == "Linux" ]]; then
@@ -140,7 +137,7 @@ fi
 export PATH=$CARGO_PATH:\
 $LOCAL_PATH:\
 $GOPATH_BIN:\
-$NPM_BIN:\
+$NPM_PREFIX/bin:\
 $PNPM_HOME:\
 $BUN_BIN:\
 $RUBY_PATH:\
