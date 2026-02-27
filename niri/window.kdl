@@ -7,14 +7,19 @@ window-rule {
     draw-border-with-background false // 支持窗口透明无背景，关联layout 的 focus-ring 和 border
 }
 
-// window-rule {
-//     match is-floating=true is-active=false
-//     opacity 0.85
-//     focus-ring {
-//         inactive-color "#1E88E5"
-//     }
-// }
+// 浮动未激活透明处理
+window-rule {
+    match is-floating=true is-active=false
+    opacity 0.85
+    focus-ring {
+        inactive-color "#1E88E5"
+    }
+}
 
+// window-rule {
+//     match is-active=false app-id="Alacritty"
+//     opacity 0.9
+// }
 
 window-rule {
     match app-id="wlroots"

@@ -79,11 +79,11 @@ output "DP-3" {
 // 默认布局
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
-    gaps 8 // 窗口间隙，像素单位
+    gaps 10 // 窗口间隙，像素单位
     always-center-single-column // 单列居中
     // empty-workspace-above-first // 第一个空间留空
     center-focused-column "never" // 焦点窗口居中
-
+    
     // 预设列宽，使用 (Mod+R) 按照顺序变动
     preset-column-widths {
         // 默认预设宽度为输出的 1/3、1/2 和 2/3
@@ -108,6 +108,7 @@ layout {
         inactive-color "#505050" // 非焦点窗口
 
         // 渐变色
+        // active-gradient from="#c792ea" to="#89ddff" angle=90 relative-to="window" in="oklab"
         active-gradient from="red" to="orange" angle=45 in="oklch longer hue"
         inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
@@ -159,12 +160,12 @@ layout {
         // gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to="workspace-view"
     }
 
-    // layer 四周间距，类似 padding
+    // 屏幕边距设为0，最大化利用空间（可根据喜好调整）
     struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
+        left 0
+        right 0
+        top 0
+        bottom 0
     }
 }
 
@@ -183,7 +184,7 @@ animations {
     window-open {
         duration-ms 150
         curve "ease-out-expo"
-   }
+    }
 
     window-close {
         duration-ms 150
