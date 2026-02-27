@@ -24,7 +24,9 @@ export LANG_ALL=zh_CN.UTF-8
 
 # ===== AI ======
 # https://aistudio.google.com/app/
-export GEMINI_API_KEY=$(cat ${HOME}/dotfiles/tokens/gemini)
+if [[ -f ${HOME}/dotfiles/tokens/gemini ]]; then
+  export GEMINI_API_KEY=$(cat ${HOME}/dotfiles/tokens/gemini)
+fi
 
 # ======= rust ========
 CARGO_PATH=${HOME}/.cargo/bin
@@ -70,6 +72,9 @@ fi
 #   . $HOME/.rye/env
 # fi
 # ======== javascript =============
+
+# npm config set prefix '~/.npm-global'
+NPM_BIN = "${HOME}/.npm-global/bin"
 
 # YARN_PATH="$(yarn global bin)"
 if [[ $(uname) == "Linux" ]]; then
@@ -128,10 +133,11 @@ if [[ $(uname) == "Darwin" ]]; then
   LOCAL_PATH=$HOME/.local/bin:/usr/local/sbin
 fi
 
+# TODO sort default PATH 
 export PATH=$CARGO_PATH:\
-$PATH:\
 $LOCAL_PATH:\
 $GOPATH_BIN:\
+$NPM_BIN:\
 $PNPM_HOME:\
 $BUN_BIN:\
 $RUBY_PATH:\
@@ -142,6 +148,7 @@ $CANGJIE_BIN_PATH:\
 $CANGJIE_TOOL_BIN_PATH:\
 $CANGJIE_USER_PATH:\
 $HDC_HOME:\
+$PATH:\
 $ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 
 ## ===== soft ======
@@ -159,8 +166,9 @@ export STEEL_HOME=${HOME}/.steel
 
 # huggingface.co
 export HF_ENDPOINT=https://hf-mirror.com
-export HUGGINGFACE_TOKEN=$(cat $HOME/dotfiles/tokens/huggingface)
-
+if [[ -f ${HOME}/dotfiles/tokens/huggingface ]]; then
+  export HUGGINGFACE_TOKEN=$(cat $HOME/dotfiles/tokens/huggingface)
+fi
 # bat man
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # man 2 select

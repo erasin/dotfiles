@@ -327,7 +327,7 @@ language-servers = ["hx-lsp"]
 
 # ==================== PHP ====================
 [language-server.intelephense.config]
-licenceKey = "/home/erasin/dotfile/tokens/intelephenser"
+licenceKey = "/home/erasin/dotfiles/tokens/intelephenser"
 globalStoragePath = "/home/erasin/.config/php/"
 
 [language-server.intelephense.config.intelephense]

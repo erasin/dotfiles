@@ -17,7 +17,7 @@
 # 检查是否在tmux会话中
 if [[ -n "$TMUX" ]]; then
     # 使用tmux popup创建浮动窗口（需要tmux 3.2+）
-    tmux popup -w 80% -h 75% -d "$(pwd)" -E "scooter"
+    tmux display-popup -w 80% -h 75% -d "$(pwd)" -E "scooter"
 # 检查是否在zellij会话中
 elif [[ -n "$ZELLIJ" ]]; then
     # 创建新浮动窗格并执行命令

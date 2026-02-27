@@ -266,6 +266,12 @@ elif [[ $(uname) == "Linux" ]]; then
     #         ibus engine $cached_input_method
     #     fi
     # fi
+
+    # Windows WSL 
+    if [[ -n $WSL_DISTRO_NAME ]]; then
+        win-ime-switch.exe en
+    fi
+ 
 else
     echo "无法确定当前系统"
 fi

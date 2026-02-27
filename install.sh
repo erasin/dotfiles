@@ -22,3 +22,4 @@ ln -s ~/dotfiles/tokens ~/.config/tokens
 ln -s ~/dotfiles/waybar ~/.config/waybar
 ln -s ~/dotfiles/zsh ~/.config/zsh
 ln -s ~/dotfiles/scripts ~/.config/scripts
+ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
