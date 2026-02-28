@@ -70,7 +70,18 @@ pacman -S eww
 - [eww book](https://elkowar.github.io/eww/configuration.html)
 - [eww guide](https://dharmx.is-a.dev/eww-powermenu/)
 
+
+### wayedge
+
+wayedge 边缘扩展按钮
+
+- https://github.com/way-edges/way-edges
+- `~/dotfiles/way-edges/` 配置文件 
+- `~/dotfiles/systemd/user/wayedges.service`
+ 用户桌面服务配置
+
 ---
+
 
 ## 壁纸
 
