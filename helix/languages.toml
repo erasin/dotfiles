@@ -447,7 +447,7 @@ formatter = { command = "prettier", args = ["--parser", "markdown"] }
 language-servers = [
   "markdown-oxide",
   "hx-lsp",
-  "harper-ls",
+  # "harper-ls",
 ]
 # auto-format = true
 # text-width = 80

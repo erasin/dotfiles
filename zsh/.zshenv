@@ -9,7 +9,7 @@ export TERM_THEME=dark
 # GLFW_IM_MODULE=fcitx
 
 # === TERM ====
-# export TERM=xterm-256color
+export TERM=xterm-256color
 export EDITOR=hx
 export SYSTEM_EDITOR=hx
 
