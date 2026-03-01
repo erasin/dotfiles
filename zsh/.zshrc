@@ -61,7 +61,7 @@ eval "$(atuin init zsh)"
 preexec() { print -Pn "\e]0;$1 - zsh\a" }  
 
 if [[ $(uname) == "Linux" ]]; then
-  source ${HOME}/.config/broot/launcher/bash/br
+  [[ -f ${HOME}/.config/broot/launcher/bash/br ]] && source ${HOME}/.config/broot/launcher/bash/br
   # source /usr/share/nvm/init-nvm.sh
 fi
 

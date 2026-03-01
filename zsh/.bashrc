@@ -10,4 +10,7 @@ fi
 
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
-#eval "$(atuin init bash)"
+eval "$(atuin init bash)"
+
+# https://github.com/rcaloras/bash-preexec?tab=readme-ov-file 
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
