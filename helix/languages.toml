@@ -606,9 +606,9 @@ comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
 indent = { tab-width = 4, unit = "    " }
 
-[[grammar]]
-name = "cangjie"
-source = { git = "https://gitcode.com/vchuoshen6/tree-sitter-cangjie", rev = "4a47b8790c88f079c8adfc6fa5c6cb2e536998d1" }
+# [[grammar]]
+# name = "cangjie"
+# source = { git = "https://gitcode.com/vchuoshen6/tree-sitter-cangjie", rev = "4a47b8790c88f079c8adfc6fa5c6cb2e536998d1" }
 
 # ==================== Env ====================
 [[language]]

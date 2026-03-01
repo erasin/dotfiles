@@ -79,7 +79,7 @@
 	"custom/window-close": {
 		"format": "󰅙",
 		"tooltip-format": "Close window",
-		"on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action close-window --id {}"
+		"on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action close-window --id {}"
 	},
 	"group/niri-action": {
 		"orientation": "inherit",
@@ -101,9 +101,9 @@
 	"custom/window-width": {
 		"format": "",
 		"tooltip-format": "窗口宽度",
-		"on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action switch-preset-window-width --id {}",
-		"on-scroll-up": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action set-window-width \"-10%\" --id {}",
-		"on-scroll-down": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action set-window-width \"+10%\" --id {}"
+		"on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action switch-preset-window-width --id {}",
+		"on-scroll-up": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action set-window-width \"-10%\" --id {}",
+		"on-scroll-down": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action set-window-width \"+10%\" --id {}"
 	},
 	"custom/window-left": {
 		"format": "󰜱",
@@ -118,17 +118,17 @@
 	"custom/window-center": {
 		"format": "󰋱",
 		"tooltip-format": "Toggle window center",
-		"on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action center-window --id {}"
+		"on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action center-window --id {}"
 	},
 	"custom/window-float": {
 		"format": "󱂬",
 		"tooltip-format": "Toggle window floating",
-		"on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action toggle-window-floating --id {} && niri msg action center-window"
+		"on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action toggle-window-floating --id {} && niri msg action center-window"
 	},
 	"custom/window-tabbed": {
 		"format": "󰓩",
 		"tooltip-format": "Toggle window tabbed",
-		"on-click": "niri msg --json focused-window | jq -r '.id' | xargs -I {} niri msg action toggle-column-tabbed-display --id {}",
+		"on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action toggle-column-tabbed-display --id {}",
 		"on-scroll-up": "niri msg action focus-window-down",
 		"on-scroll-down": "niri msg action focus-window-up"
 	},

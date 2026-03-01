@@ -87,19 +87,19 @@ URL="https://restapi.amap.com/v3/weather/weatherInfo?key=${API_KEY}&city=${CITY}
 RESPONSE=$(curl -s "$URL")
 
 # 检查 API 响应状态
-STATUS=$(echo "$RESPONSE" | jq -r '.status')
+STATUS=$(echo "$RESPONSE" | jaq -r '.status')
 if [[ "$STATUS" != "1" ]]; then
     echo "获取天气数据失败"
     exit 1
 fi
 
 # 提取天气数据
-DATE=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].date")
-WEEK=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].week")
-WEATHER=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].dayweather")
-TEMP=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].daytemp")
-WIND=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].daywind")
-POWER=$(echo "$RESPONSE" | jq -r ".forecasts[0].casts[$((DAY-1))].daypower")
+DATE=$(echo "$RESPONSE" | jaq -r ".forecasts[0].casts[$((DAY-1))].date")
+WEEK=$(echo "$RESPONSE" | jaq -r ".forecasts[0].casts[$((DAY-1))].week")
+WEATHER=$(echo "$RESPONSE" | jaq -r ".forecasts[0].casts[$((DAY-1))].dayweather")
+TEMP=$(echo "$RESPONSE" | jaq -r ".forecasts[0].casts[$((DAY-1))].daytemp")
+WIND=$(echo "$RESPONSE" | jaq -r ".forecasts[0].casts[$((DAY-1))].daywind")
+POWER=$(echo "$RESPONSE" | jaq -r ".forecasts[0].casts[$((DAY-1))].daypower")
 
 # 获取天气图标
 ICON=$(weather_icon "$WEATHER")

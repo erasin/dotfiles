@@ -139,14 +139,14 @@ echo "${loop:-Off}"
 ########################## Lyrics ##########################
 # lyric-next tui https://github.com/erasin/lyrics-next
 lyrics() {
-	win_id=$(niri msg --json windows | jq -r '.[] | select(.title=="Lyric").id')
+	win_id=$(niri msg --json windows | jaq -r '.[] | select(.title=="Lyric").id')
 	if [ -z $win_id ];then
 		niri msg action spawn --  alacritty -T "Lyrics" -e lyrics-next
 	fi
 # Title=$(playerctl --player=$Control metadata --format {{title}})
 # Artist=$(playerctl --player=$Control metadata --format {{artist}})
 # URL="https://api.lyrics.ovh/v1/$Artist/$Title"
-# lyrics=$(curl -s "$( echo "$URL" | sed s/" "/%20/g | sed s/"&"/%26/g | sed s/,/%2C/g | sed s/-/%2D/g)" | jq '.lyrics' )
+# lyrics=$(curl -s "$( echo "$URL" | sed s/" "/%20/g | sed s/"&"/%26/g | sed s/,/%2C/g | sed s/-/%2D/g)" | jaq '.lyrics' )
 # [ "$lyrics" = "null" ] && lyrics=$( curl -s --get "https://makeitpersonal.co/lyrics" --data-urlencode "artist=$Artist" --data-urlencode "title=$Title")
 # printf "$lyrics" | less
 }
@@ -265,7 +265,7 @@ mpclyrics() {
 Title=$(mpc -f %title% current)
 Artist=$(mpc -f %artist% current)
 URL="https://api.lyrics.ovh/v1/$Artist/$Title"
-lyrics=$(curl -s "$( echo "$URL" | sed s/" "/%20/g | sed s/"&"/%26/g | sed s/,/%2C/g | sed s/-/%2D/g)" | jq '.lyrics' )
+lyrics=$(curl -s "$( echo "$URL" | sed s/" "/%20/g | sed s/"&"/%26/g | sed s/,/%2C/g | sed s/-/%2D/g)" | jaq '.lyrics' )
 [ "$lyrics" = "null" ] && lyrics=$( curl -s --get "https://makeitpersonal.co/lyrics" --data-urlencode "artist=$Artist" --data-urlencode "title=$Title")
 printf "$lyrics" | less
 }

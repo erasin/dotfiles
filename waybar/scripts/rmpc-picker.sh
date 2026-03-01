@@ -1,6 +1,6 @@
 #!/bin/bash
 
-id=$(niri msg --json windows | jq -r '.[] | select(.title=="Rmpc").id')
+id=$(niri msg --json windows | jaq -r '.[] | select(.title=="Rmpc").id')
 
 if [ -z $id ];then
   # alacritty 与 niri 窗口大小处理协议问题？
