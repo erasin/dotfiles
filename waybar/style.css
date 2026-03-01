@@ -1,27 +1,15 @@
-/* Colors (gruvbox) */
-/* @define-color black rgba(0, 0, 0, 0.6); */
-/* @define-color white #ebdbb2; */
+/* ========================================
+   Waybar Style Configuration
+   ======================================== */
 
-
-/* Keyframes */
-@keyframes blink-critical {
-  to {
-    /*color: @white;*/
-    /* background-color: @critical; */
-    background-color: transparent;
-  }
-}
-
-
-/* The whole bar  */
+/* ==================== 全局样式 ==================== */
 #waybar {
-  font-family: "Symbols Nerd Font Mono", "JetBrains Mono Medium", "HarmonyOS Sans SC";
+  font-family: "Symbols Nerd Font Mono", "JetBrains Mono Medium", "HarmonyOS Sans SC", sans-serif;
   background: transparent;
 }
 
-/* .modules-left {} */
-
-/* left */
+/* ==================== 模块通用样式 ==================== */
+/* 所有模块的基础样式 */
 #custom-arch,
 #custom-files,
 #workspaces,
@@ -34,16 +22,12 @@
 #custom-window-float,
 #custom-window-tabbed,
 #window,
-
-/* middle */
 #mpris,
 #custom-media-toggle,
 #custom-media,
 #custom-media-next,
 #custom-notification,
 #custom-pomodoro,
-
-/* right */
 #idle_inhibitor,
 #custom-colorpicker,
 #custom-wallpaper,
@@ -70,25 +54,30 @@
   padding: 1pt 5pt 0 5pt;
   background: #282c34;
   border-radius: 8pt;
-  color: white;
+  color: #ffffff;
   min-width: 24px;
   min-height: 24px;
-  /* box-shadow: 0px 4px 8px rgba(255.0, 255.0, 255.0, 0.5); */
 }
 
+/* ==================== 左侧模块样式 ==================== */
 
-/* start */
+/* 开始模块 (圆角左边) */
+#custom-arch,
 #custom-colorpicker,
+#custom-clipboard,
 #custom-media-toggle,
 #custom-window-close,
-#custom-arch,
-#custom-clipboard,
 #pulseaudio {
-  border-radius: 8pt 0pt 0pt 8pt;
+  border-radius: 8pt 0 0 8pt;
   padding-right: 0;
 }
 
-/* middle */
+#custom-arch {
+  margin-left: 5pt;
+  padding-right: 2pt;
+}
+
+/* 中间模块 (无圆角) */
 #idle_inhibitor,
 #custom-window-width,
 #custom-window-left,
@@ -112,7 +101,7 @@
   padding-right: 2pt;
 }
 
-/* end */
+/* 结束模块 (圆角右边) */
 #custom-temperature,
 #window,
 #custom-recorder,
@@ -120,11 +109,12 @@
 #custom-files,
 #custom-keyboard,
 #language {
-  border-radius: 0pt 8pt 8pt 0pt;
+  border-radius: 0 8pt 8pt 0;
   margin-right: 5pt;
   padding-left: 0;
 }
 
+/* 特殊模块间距 */
 #custom-notification,
 #custom-media-next,
 #mpris,
@@ -136,11 +126,6 @@
   margin-right: 4pt;
 }
 
-#custom-arch {
-  margin-left: 5pt;
-  padding-right: 2pt;
-}
-
 #custom-files {
   padding-left: 2pt;
 }
@@ -149,6 +134,7 @@
   margin-right: 5pt;
 }
 
+/* ==================== 任务栏 ==================== */
 #taskbar.empty {
   background-color: rgba(200, 0, 0, 0.2);
 }
@@ -158,93 +144,19 @@
 }
 
 #taskbar button:hover {
-  color: red;
+  color: #ff5555;
 }
 
-#window {
-  padding: 0 3pt 0 3pt;
-}
-
-#keyboard-state label.locked {
-  color: red;
-}
-
-#custom-space {
-  padding-left: 5pt;
-}
-
-/* 托盘图标默认状态 */
-#tray>.passive {
-  background-color: transparent;
-  padding: 3px;
-}
-
-/* 托盘图标激活状态 */
-#tray>.active {
-  /* 激活时背景色 */
-  border-radius: 5px;
-}
-
-/* 托盘需要注意（如通知）状态 */
-#tray>.needs-attention {
-  background-color: #f38ba8;
-  /* 需要注意时背景色 */
-  border-radius: 5px;
-  padding: 3px;
-}
-
-/* 托盘图标的悬浮状态 */
-#tray>.passive:hover,
-#tray>.active:hover,
-#tray>.needs-attention:hover {
-  border-radius: 5px;
-  background-color: black;
-}
-
-/* 托盘弹出菜单的背景和阴影 */
-#tray menu {
-  background-color: rgba(30, 30, 46, 0.95);
-  border-radius: 8px;
-}
-
-/* 托盘菜单的项目样式 */
-#tray menuitem {
-  padding: 8px 12px;
-  color: #cdd6f4;
-}
-
-#tray menuitem:hover {
-  background-color: #FFA000;
-  color: #1e1e2e;
-  border-radius: 5px;
-}
-
-/* waybar-menu */
-menu {
-  border-radius: 15px;
-  background: #161320;
-  color: #EEEEEE;
-}
-
-menuitem {
-  border-radius: 15px;
-  padding: 8px 12px;
-}
-
-
-/* workspaces,windows,tray */
-
+/* ==================== 工作区 ==================== */
 #workspaces button {
   padding: 0 3px;
   color: #BCAAA4;
   border-radius: 6px;
   background: transparent;
-  /* transition: all 0.2s ease; */
 }
 
 #workspaces button.active {
   color: #0066ff;
-  /* macOS 蓝 */
   background: rgba(0, 102, 255, 0.12);
   box-shadow: 0 0 3px rgba(0, 102, 255, 0.2);
 }
@@ -257,7 +169,63 @@ menuitem {
   color: #FFA000;
 }
 
+/* ==================== 窗口标题 ==================== */
+#window {
+  padding: 0 3pt 0 3pt;
+}
 
+/* ==================== 键盘状态 ==================== */
+#keyboard-state label.locked {
+  color: #ff5555;
+}
+
+#custom-keyboard.lock {
+  color: #ff5555;
+}
+
+/* ==================== 系统托盘 ==================== */
+/* 托盘图标状态 */
+#tray>.passive {
+  background-color: transparent;
+  padding: 3px;
+}
+
+#tray>.active {
+  border-radius: 5px;
+}
+
+#tray>.needs-attention {
+  background-color: #f38ba8;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+/* 托盘悬浮状态 */
+#tray>.passive:hover,
+#tray>.active:hover,
+#tray>.needs-attention:hover {
+  border-radius: 5px;
+  background-color: black;
+}
+
+/* 托盘菜单 */
+#tray menu {
+  background-color: rgba(30, 30, 46, 0.95);
+  border-radius: 8px;
+}
+
+#tray menuitem {
+  padding: 8px 12px;
+  color: #cdd6f4;
+}
+
+#tray menuitem:hover {
+  background-color: #FFA000;
+  color: #282c34;
+  border-radius: 5px;
+}
+
+/* ==================== 录屏指示 ==================== */
 #custom-recorder {
   font-size: 16px;
 }
@@ -267,19 +235,32 @@ menuitem {
   animation: blink 1.5s infinite;
 }
 
-/* 动效 */
+/* ==================== 动画 ==================== */
 @keyframes blink {
   50% {
-    /* opacity: 0.7; */
     color: #FB8C00;
     font-size: 18px;
   }
 }
 
+/* ==================== 番茄钟 ==================== */
 #custom-pomodoro.resumed {
   color: #64B5F6;
 }
 
-#custom-keyboard.lock {
-  color: #ff5555;
+/* ==================== 菜单通用样式 ==================== */
+menu {
+  border-radius: 15px;
+  background: #161320;
+  color: #EEEEEE;
+}
+
+menuitem {
+  border-radius: 15px;
+  padding: 8px 12px;
+}
+
+/* ==================== 间隔器 ==================== */
+#custom-space {
+  padding-left: 5pt;
 }

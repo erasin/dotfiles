@@ -1,520 +1,405 @@
 {
-	"layer": "top",
-	"position": "top",
-	"spacing": 0,
-	"modules-left": [
-		"custom/arch",
-		"custom/files",
-		"niri/workspaces",
-		"wlr/taskbar",
-		// "custom/window-close",
-		"group/niri-action",
-		"niri/window"
-	],
-	"modules-center": [
-		// "mpris",
-		"custom/media-toggle",
-		"custom/media",
-		"custom/media-next",
-		"custom/notification"
-		// "custom/pomodoro"
-	],
-	"modules-right": [
-		"custom/weather",
-		"pulseaudio",
-		"bluetooth",
-		"network",
-		// "cpu",
-		// "memory",
-		"custom/temperature",
-		// "niri/language",
-		// "custom/keyboard",
-		// "keyboard-state",
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
 
-		"custom/clipboard",
-		"custom/colorpicker",
-		"custom/gsconnect",
+  "modules-left": [
+    "custom/arch",
+    "custom/files",
+    "niri/workspaces",
+    "wlr/taskbar",
+    "group/niri-action",
+    "niri/window"
+  ],
 
-		"group/tools",
-		// "custom/recorder",
-		// "custom/unmount",
-		// "custom/colorpicker",
-		// "custom/wallpaper",
+  "modules-center": [
+    "custom/media-toggle",
+    "custom/media",
+    "custom/media-next",
+    "custom/notification"
+  ],
 
-		"tray",
-		"clock",
-		"custom/logout"
-	],
-	"custom/arch": {
-		"format": "",
-		"tooltip": false,
-		"on-click": "niri msg action spawn -- fuzzel"
-	},
-	"custom/files": {
-		"format": "",
-		"tooltip": false,
-		"on-click": "niri msg action spawn -- nautilus"
-	},
-	"niri/workspaces": {
-		"format": "{icon}",
-		"format-icons": {
-			// Named workspaces
-			"def": "󰹑",
-			"dev": "",
-			"writer": "",
-			// Icons by state
-			// "active": "",
-			"default": ""
-		}
-	},
-	"wlr/taskbar": {
-		"format": "{icon}",
-		"tooltip-format": "{title} | {app_id}",
-		"icon-size": 20,
-		"on-click": "activate",
-		"on-click-middle": "close",
-		"on-click-right": "minimize"
-	},
-	// 关闭按钮
-	"custom/window-close": {
-		"format": "󰅙",
-		"tooltip-format": "Close window",
-		"on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action close-window --id {}"
-	},
-	"group/niri-action": {
-		"orientation": "inherit",
-		"drawer": {
-			"transition-duration": 500,
-			"children-class": "not-power"
-			// "transition-left-to-right": false
-		},
-		"modules": [
-			"custom/window-close",
-			"custom/window-left",
-			"custom/window-center",
-			"custom/window-right",
-			"custom/window-width",
-			"custom/window-float",
-			"custom/window-tabbed"
-		]
-	},
-	"custom/window-width": {
-		"format": "",
-		"tooltip-format": "窗口宽度",
-		"on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action switch-preset-window-width --id {}",
-		"on-scroll-up": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action set-window-width \"-10%\" --id {}",
-		"on-scroll-down": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action set-window-width \"+10%\" --id {}"
-	},
-	"custom/window-left": {
-		"format": "󰜱",
-		"tooltip-format": "Focus left",
-		"on-click": "niri msg action focus-column-left"
-	},
-	"custom/window-right": {
-		"format": "󰜴",
-		"tooltip-format": "Focus right",
-		"on-click": "niri msg action focus-column-right-or-first"
-	},
-	"custom/window-center": {
-		"format": "󰋱",
-		"tooltip-format": "Toggle window center",
-		"on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action center-window --id {}"
-	},
-	"custom/window-float": {
-		"format": "󱂬",
-		"tooltip-format": "Toggle window floating",
-		"on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action toggle-window-floating --id {} && niri msg action center-window"
-	},
-	"custom/window-tabbed": {
-		"format": "󰓩",
-		"tooltip-format": "Toggle window tabbed",
-		"on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action toggle-column-tabbed-display --id {}",
-		"on-scroll-up": "niri msg action focus-window-down",
-		"on-scroll-down": "niri msg action focus-window-up"
-	},
-	// 标题
-	"niri/window": {
-		"format": "{title}",
-		"max-length": 30,
-		"all-outputs": true,
-		"offscreen-css": true,
-		"offscreen-css-text": "(inactive)",
-		"icon": true,
-		"icons-size": "20",
-		"rewrite": {
-			"(.*) - Mozilla Firefox": "🌎 $1",
-			"(.*) - zsh": " [$1]"
-		},
-		"on-click": "$HOME/.config/niri/scripts/switch-window.sh"
-	},
-	"mpris": {
-		"format": "{player_icon} {dynamic}",
-		"format-paused": "{player_icon} <i>{dynamic}</i> {status_icon}",
-		"player-icons": {
-			"default": "▶",
-			"mpd": "",
-			"mpv": "",
-			"firefox": "󰈹"
-		},
-		"status-icons": {
-			"paused": "⏸"
-		},
-		"dynamic-len": 10,
-		"dynamic-order": ["title", "artist", "album"],
-		"dynamic-importance-order": ["title", "artist", "album"]
-		// "ignored-players": [
-		//   "firefox"
-		// ]
-	},
-	"custom/media-toggle": {
-		"format": "{}",
-		"tooltip-format": "播放/暂停",
-		"return-type": "text",
-		"interval": 1,
-		"exec": "$HOME/.config/scripts/MediaControl --statusicon",
-		"on-click": "$HOME/.config/scripts/MediaControl --toggle"
-	},
-	"custom/media": {
-		"format": "{}",
-		"return-type": "text",
-		"max-length": 85,
-		"interval": 1,
-		"exec": "$HOME/.config/scripts/MediaControl --title",
-		"on-click": "niri msg action spawn -- eww open --toggle player",
-		"on-click-right": "$HOME/.config/waybar/scripts/lyrics.sh",
-		"on-click-middle": "$HOME/.config/waybar/scripts/rmpc-picker.sh"
-	},
-	"custom/media-next": {
-		"format": "󰙡",
-		"tooltip-format": "下一曲",
-		"return-type": "text",
-		"interval": 1,
-		"exec": "$HOME/.config/scripts/MediaControl --status",
-		"on-click": "$HOME/.config/scripts/MediaControl --next"
-	},
-	// pomodoro time
-	// "custom/pomodoro": {
-	// 	"format": "{icon} {text}",
-	// 	"format-icons": [
-	// 		" ",
-	// 		" ",
-	// 		" ",
-	// 		" "
-	// 		// "",
-	// 	],
-	// 	"tooltip": false,
-	// 	"return-type": "json",
-	// 	"interval": 1,
-	// 	"on-click": "uairctl toggle",
-	// 	// "on-click-middle": "uairctl prev",
-	// 	// "on-click-right": "uairctl next",
-	// 	"on-click-right": "niri msg action spawn -- eww open --toggle pomodoro",
-	// 	"exec-if": "which uairctl",
-	// 	"exec": "uairctl fetch '{\"text\":\"{name} {time}\",\"class\":\"{state}\",\"percentage\":{percent}}'"
-	// },
+  "modules-right": [
+    "custom/weather",
+    "pulseaudio",
+    "bluetooth",
+    "network",
+    "custom/temperature",
+    "custom/clipboard",
+    "custom/colorpicker",
+    "custom/gsconnect",
+    "group/tools",
+    "tray",
+    "clock",
+    "custom/logout"
+  ],
 
-	// uairctl fetch '{"text":"{name} {time} {percent}%","class":"{state}","percentage":{percent}}'
-	// "custom/notification": {
-	//   "tooltip": false,
-	//   "format": "{icon}",
-	//   "format-icons": {
-	//     "notification": "<span foreground='red'><sup></sup></span>",
-	//     "none": "",
-	//     "dnd-notification": "<span foreground='red'><sup></sup></span>",
-	//     "dnd-none": "",
-	//     "inhibited-notification": "<span foreground='red'><sup></sup></span>",
-	//     "inhibited-none": "",
-	//     "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-	//     "dnd-inhibited-none": ""
-	//   },
-	//   "return-type": "json",
-	//   "exec-if": "which swaync-client",
-	//   "exec": "swaync-client -swb",
-	//   "on-click": "swaync-client -t -sw",
-	//   "on-click-right": "swaync-client -d -sw",
-	//   "escape": true
-	// },
-	"custom/notification": {
-		"tooltip": true,
-		"format": "{icon}",
-		"format-icons": {
-			"notification": "<span foreground='red'><sup></sup></span>",
-			"none": ""
-		},
-		"interval": 1,
-		"return-type": "json",
-		"exec-if": "which makoctl",
-		"exec": "$HOME/.config/waybar/scripts/mako-status.sh",
-		"on-click": "makoctl restore",
-		"on-click-right": "makoctl dismiss -a",
-		"escape": true
-	},
-	"custom/weather": {
-		"format": "{text}",
-		// "tooltip-format": "{}",
-		"tooltip": true,
-		"return-type": "json",
-		"interval": 5000,
-		"exec": "$HOME/.config/waybar/scripts/weather.sh --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
-		"on-click": "niri msg action spawn -- gnome-weather",
-		"on-click-right": "niri msg action spawn -- gnome-weather"
-	},
-	"custom/wallpaper": {
-		"format": "󰸉",
-		"tooltip-format": "wallpaper",
-		"on-click": "swww img $(fd -a -e png -e jpg -e webp -g \"*\" ~/Pictures/wallpaper  |shuf -n1) --transition-fps=244 --transition-type=random --transition-duration=1"
-	},
-	"custom/colorpicker": {
-		"format": "",
-		"tooltip-format": "Color Picker",
-		"on-click": "$HOME/.config/waybar/scripts/color-picker.sh",
-		"on-click-right": "niri msg action spawn -- eyedropper"
-	},
-	"group/audio": {
-		"orientation": "inherit",
-		"drawer": {
-			"transition-duration": 500,
-			"children-class": "not-power",
-			"transition-left-to-right": true
-		},
-		"modules": ["pulseaudio", "pulseaudio/slider"]
-	},
-	"pulseaudio/slider": {
-		"min": 0,
-		"max": 100,
-		"orientation": "horizontal"
-	},
-	"pulseaudio": {
-		"scroll-step": 1,
-		"format": "{icon} {volume}%",
-		"format-bluetooth": "{icon} {volume}%",
-		"format-muted": "󰝟",
-		"format-icons": {
-			"headphone": " ",
-			"hands-free": " ",
-			"headset": " ",
-			"phone": "",
-			"portable": "󰓃",
-			"car": "󱓭",
-			"default": ["▁󰓃", "▂󰓃", "▃󰓃", "▄󰓃", "▅󰓃", "▆󰓃", "▇󰓃", "█󰓃"]
-		},
-		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-		// "on-click-right": "pavucontrol",
-		"on-click-right": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center sound",
-		"tooltip": false
-	},
-	// Install blueman pulseaudio-bluetooth
-	"bluetooth": {
-		"format": "󰂯",
-		"format-disabled": "󰂲",
-		"format-connected": "󰂯{num_connections}",
-		// "format-connected": " {device_alias}",
-		"format-connected-battery": " {device_alias} {device_battery_percentage}%",
-		// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
-		"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-		"on-click": "niri msg action spawn -- blueman-manager",
-		"on-click-right": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center bluetooth"
-	},
-	"custom/temperature": {
-		"exec": "$HOME/.config/waybar/scripts/temperature.sh",
-		"return-type": "json",
-		"interval": 5,
-		"format": "{icon} {text}",
-		"format-alt": "{icon} {alt}",
-		"tooltip": true,
-		"format-icons": ["", "", "", "", ""],
-		"max-value": 100,
-		"on-click-right": "niri msg action spawn -- gnome-system-monitor"
-	},
-	"battery": {
-		"interval": 10,
-		"states": {
-			"warning": 30,
-			"critical": 15
-		},
-		"format-time": "{H}:{M:02}",
-		"format": "{icon} {capacity}% ({time})",
-		"format-charging": " {capacity}% ({time})",
-		"format-charging-full": " {capacity}%",
-		"format-full": "{icon} {capacity}%",
-		"format-alt": "{icon} {power}W",
-		"format-icons": ["", "", "", "", ""],
-		"tooltip": false
-	},
-	"cpu": {
-		"interval": 10,
-		// "tooltip": false,
-		"format": " {usage}%",
-		"format-alt": " {load}",
-		"on-click": "niri msg action spawn -- gnome-system-monitor",
-		"states": {
-			"warning": 70,
-			"critical": 90
-		}
-	},
-	"memory": {
-		"interval": 5,
-		"format": " {used:0.1f}G",
-		"format-alt": " {used:0.1f}G/{total:0.1f}G",
-		"tooltip-format": "{percentage}%",
-		"on-click": "niri msg action spawn -- gnome-system-monitor",
-		"states": {
-			"warning": 70,
-			"critical": 90
-		}
-	},
-	"network": {
-		"interval": 5,
-		"format-wifi": "",
-		"format-ethernet": "󰱓",
-		"format-disconnected": "󰅛 ",
-		// "format-alt": "󰩠 {ipaddr}/{cidr}",
-		"tooltip-format-wifi": " {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz",
-		"tooltip-format-ethernet": "󰱓 {ifname}\nIP: {ipaddr}",
-		"on-click": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center network",
-		"on-click-right": "niri msg action spawn -- nm-connection-editor"
-	},
-	// keyboard layout
-	// "keyboard-state": {
-	// 	"numlock": false,
-	// 	"capslock": true,
-	// 	"scrollock": true,
-	// 	// "format": "{name} {icon}",
-	// 	"format": {
-	// 		"numlock": " {icon}",
-	// 		"capslock": "󰘲 {icon}",
-	// 		"scrollock": " {icon}"
-	// 	},
-	// 	"format-icons": {
-	// 		"locked": "",
-	// 		"unlocked": ""
-	// 	},
-	// 	"device-path": "/dev/input/event5"
-	// },
-	// "custom/keyboard": {
-	// 	"format": "{}",
-	// 	"interval": 1,
-	// 	"return-type": "json",
-	// 	"exec": "$HOME/.config/waybar/scripts/keyboard-status.sh"
-	// },
-	"niri/language": {
-		"format": "{}",
-		"format-en": "EN",
-		"format-zh": "中"
-	},
-	// Install python-pydbus ydotool gsconnect(AUR)
-	// then 'sudo usermod -aG input $USER' AND REBOOT
-	"custom/gsconnect": {
-		"format": "{alt}󱘖",
-		// "min-length": 30,
-		// "align": 0.2,
-		"format-alt": "{alt}-{types}",
-		"tooltip": false,
-		"interval": 10,
-		"return-type": "json",
-		"escape": true,
-		"exec": "$HOME/.config/waybar/scripts/gsconnect-status.py",
-		"on-click": "gjs -m /usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/gsconnect-preferences"
-	},
-	// Install fuzzel
-	"custom/unmount": {
-		"format": "{}  ",
-		"interval": 10,
-		"return-type": "json",
-		"exec": "$HOME/.config/waybar/scripts/unmount.sh",
-		// "on-click": "$HOME/.config/waybar/scripts/unmount.sh unmount",
-		"on-click-right": "niri msg action spawn -- gnome-disks",
-		"signal": 10
-	},
-	// Install cliphist wl-clipboard libnotify fuzzel
-	"custom/clipboard": {
-		"format": "{}  ",
-		"tooltip-format": "系统剪贴板",
-		"on-click": "$HOME/.config/waybar/scripts/clipboard.sh",
-		"on-click-middle": "$HOME/.config/waybar/scripts/clipboard.sh wipe"
-	},
+  // ==================== 左侧模块 ====================
+  
+  // 系统菜单
+  "custom/arch": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "niri msg action spawn -- fuzzel"
+  },
 
-	"group/tools": {
-		"orientation": "inherit",
-		"drawer": {
-			"transition-duration": 500,
-			"children-class": "tools",
-			"transition-left-to-right": false
-		},
-		"modules": [
-			"custom/recorder",
-			"custom/unmount",
-			"idle_inhibitor",
-			"custom/wallpaper"
-		]
-	},
+  // 文件管理器
+  "custom/files": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "niri msg action spawn -- nautilus"
+  },
 
-	"idle_inhibitor": {
-		"format": "{icon}",
-		"format-icons": {
-			"activated": "󰈈",
-			"deactivated": "󰈉"
-		}
-	},
+  // 工作区
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "def": "󰹑",
+      "dev": "",
+      "writer": "",
+      "default": ""
+    }
+  },
 
-	"tray": {
-		"icon-size": 21,
-		"spacing": 5
-	},
+  // 任务栏
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "tooltip-format": "{title} | {app_id}",
+    "icon-size": 20,
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "on-click-right": "minimize"
+  },
 
-	"custom/recorder": {
-		"format": "{}",
-		"return-type": "json",
-		"exec": "$HOME/.config/waybar/scripts/screenrec.sh status",
-		"interval": 1,
-		"on-click": "$HOME/.config/waybar/scripts/screenrec.sh toggle",
-		"on-click-right": "$HOME/.config/waybar/scripts/screenrec.sh select-area",
-		"tooltip": true
-	},
-	"clock": {
-		"interval": 1,
-		"format": " {:%H:%M:%S %d/%m}",
-		// "format-alt": "{:L%A, %d/%m/%Y (%R)}  ",
-		// "tooltip-format": "<tt><small>{calendar}</small></tt>",
-		"tooltip": false,
-		"on-click": "niri msg action spawn -- eww open --toggle calendar",
-		"on-click-right": "niri msg action spawn -- gnome-calendar",
-		"calendar": {
-			"mode": "year",
-			"mode-mon-col": 3,
-			"weeks-pos": "right",
-			"on-scroll": 1,
-			"format": {
-				"months": "<span color='#ffead3'><b>{}</b></span>",
-				"days": "<span color='#ecc6d9'><b>{}</b></span>",
-				"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-				"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-			}
-		},
-		"actions": {
-			"on-click-right": "mode",
-			"on-click-forward": "tz_up",
-			"on-click-backward": "tz_down",
-			"on-scroll-up": "shift_up",
-			"on-scroll-down": "shift_down"
-		}
-	},
-	"custom/logout": {
-		"format": "",
-		"tooltip": false,
-		// "on-click": "niri msg action spawn -- eww open --toggle powermenu"
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		"menu-actions": {
-			"lock": "niri msg action spawn -- swaylock",
-			"logout": "niri msg action quit",
-			"suspend": "systemctl suspend",
-			"shutdown": "systemctl poweroff",
-			"reboot": "sytemctl reboot"
-		}
-	}
+  // 窗口管理组
+  "group/niri-action": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "not-power"
+    },
+    "modules": [
+      "custom/window-close",
+      "custom/window-left",
+      "custom/window-center",
+      "custom/window-right",
+      "custom/window-width",
+      "custom/window-float",
+      "custom/window-tabbed"
+    ]
+  },
+
+  "custom/window-close": {
+    "format": "󰅙",
+    "tooltip-format": "关闭窗口",
+    "on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action close-window --id {}"
+  },
+
+  "custom/window-left": {
+    "format": "󰜱",
+    "tooltip-format": "聚焦左侧",
+    "on-click": "niri msg action focus-column-left"
+  },
+
+  "custom/window-center": {
+    "format": "󰋱",
+    "tooltip-format": "居中窗口",
+    "on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action center-window --id {}"
+  },
+
+  "custom/window-right": {
+    "format": "󰜴",
+    "tooltip-format": "聚焦右侧",
+    "on-click": "niri msg action focus-column-right-or-first"
+  },
+
+  "custom/window-width": {
+    "format": "",
+    "tooltip-format": "窗口宽度",
+    "on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action switch-preset-window-width --id {}",
+    "on-scroll-up": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action set-window-width '-10%' --id {}",
+    "on-scroll-down": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action set-window-width '+10%' --id {}"
+  },
+
+  "custom/window-float": {
+    "format": "󱂬",
+    "tooltip-format": "切换浮动窗口",
+    "on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action toggle-window-floating --id {} && niri msg action center-window"
+  },
+
+  "custom/window-tabbed": {
+    "format": "󰓩",
+    "tooltip-format": "切换标签页显示",
+    "on-click": "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action toggle-column-tabbed-display --id {}",
+    "on-scroll-up": "niri msg action focus-window-down",
+    "on-scroll-down": "niri msg action focus-window-up"
+  },
+
+  // 窗口标题
+  "niri/window": {
+    "format": "{title}",
+    "max-length": 30,
+    "all-outputs": true,
+    "offscreen-css": true,
+    "offscreen-css-text": "(inactive)",
+    "icon": true,
+    "icons-size": "20",
+    "rewrite": {
+      "(.*) - Mozilla Firefox": "🌎 $1",
+      "(.*) - zsh": " [$1]"
+    },
+    "on-click": "$HOME/.config/niri/scripts/switch-window.sh"
+  },
+
+  // ==================== 中间模块 ====================
+
+  // 媒体控制
+  "custom/media-toggle": {
+    "format": "{}",
+    "tooltip-format": "播放/暂停",
+    "return-type": "text",
+    "interval": 1,
+    "exec": "$HOME/.config/scripts/MediaControl --statusicon",
+    "on-click": "$HOME/.config/scripts/MediaControl --toggle"
+  },
+
+  "custom/media": {
+    "format": "{}",
+    "return-type": "text",
+    "max-length": 85,
+    "interval": 1,
+    "exec": "$HOME/.config/scripts/MediaControl --title",
+    "on-click": "niri msg action spawn -- eww open --toggle player",
+    "on-click-right": "$HOME/.config/waybar/scripts/lyrics.sh",
+    "on-click-middle": "$HOME/.config/waybar/scripts/rmpc-picker.sh"
+  },
+
+  "custom/media-next": {
+    "format": "󰙡",
+    "tooltip-format": "下一曲",
+    "return-type": "text",
+    "interval": 1,
+    "exec": "$HOME/.config/scripts/MediaControl --status",
+    "on-click": "$HOME/.config/scripts/MediaControl --next"
+  },
+
+  // 通知
+  "custom/notification": {
+    "tooltip": true,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": ""
+    },
+    "interval": 1,
+    "return-type": "json",
+    "exec-if": "which makoctl",
+    "exec": "$HOME/.config/waybar/scripts/mako-status.sh",
+    "on-click": "makoctl restore",
+    "on-click-right": "makoctl dismiss -a",
+    "escape": true
+  },
+
+  // ==================== 右侧模块 ====================
+
+  // 天气
+  "custom/weather": {
+    "format": "{text}",
+    "tooltip": true,
+    "return-type": "json",
+    "interval": 5000,
+    "exec": "$HOME/.config/waybar/scripts/weather.sh --waybar --city 杭州 --key-file $HOME/.config/tokens/gaode.txt",
+    "on-click": "niri msg action spawn -- gnome-weather",
+    "on-click-right": "niri msg action spawn -- gnome-weather"
+  },
+
+  // 音频
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": "󰝟",
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": " ",
+      "headset": " ",
+      "phone": "",
+      "portable": "󰓃",
+      "car": "󱓭",
+      "default": ["▁󰓃", "▂󰓃", "▃󰓃", "▄󰓃", "▅󰓃", "▆󰓃", "▇󰓃", "█󰓃"]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center sound",
+    "tooltip": false
+  },
+
+  // 蓝牙
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂯{num_connections}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "niri msg action spawn -- blueman-manager",
+    "on-click-right": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center bluetooth"
+  },
+
+  // 网络
+  "network": {
+    "interval": 5,
+    "format-wifi": "",
+    "format-ethernet": "󰱓",
+    "format-disconnected": "󰅛 ",
+    "tooltip-format-wifi": " {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz",
+    "tooltip-format-ethernet": "󰱓 {ifname}\nIP: {ipaddr}",
+    "on-click": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center network",
+    "on-click-right": "niri msg action spawn -- nm-connection-editor"
+  },
+
+  // 温度
+  "custom/temperature": {
+    "exec": "$HOME/.config/waybar/scripts/temperature.sh",
+    "return-type": "json",
+    "interval": 5,
+    "format": "{icon} {text}",
+    "format-alt": "{icon} {alt}",
+    "tooltip": true,
+    "format-icons": ["", "", "", "", ""],
+    "max-value": 100,
+    "on-click-right": "niri msg action spawn -- gnome-system-monitor"
+  },
+
+  // 剪贴板
+  "custom/clipboard": {
+    "format": "{}  ",
+    "tooltip-format": "系统剪贴板",
+    "on-click": "$HOME/.config/waybar/scripts/clipboard.sh",
+    "on-click-middle": "$HOME/.config/waybar/scripts/clipboard.sh wipe"
+  },
+
+  // 取色器
+  "custom/colorpicker": {
+    "format": "",
+    "tooltip-format": "取色器",
+    "on-click": "$HOME/.config/waybar/scripts/color-picker.sh",
+    "on-click-right": "niri msg action spawn -- eyedropper"
+  },
+
+  // GSConnect
+  "custom/gsconnect": {
+    "format": "{alt}󱘖",
+    "format-alt": "{alt}-{types}",
+    "tooltip": false,
+    "interval": 10,
+    "return-type": "json",
+    "escape": true,
+    "exec": "$HOME/.config/waybar/scripts/gsconnect-status.py",
+    "on-click": "gjs -m /usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/gsconnect-preferences"
+  },
+
+  // 工具组
+  "group/tools": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "tools",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/recorder",
+      "custom/unmount",
+      "idle_inhibitor",
+      "custom/wallpaper"
+    ]
+  },
+
+  // 录屏
+  "custom/recorder": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/screenrec.sh status",
+    "interval": 1,
+    "on-click": "$HOME/.config/waybar/scripts/screenrec.sh toggle",
+    "on-click-right": "$HOME/.config/waybar/scripts/screenrec.sh select-area",
+    "tooltip": true
+  },
+
+  // 卸载设备
+  "custom/unmount": {
+    "format": "{}  ",
+    "interval": 10,
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/unmount.sh",
+    "on-click-right": "niri msg action spawn -- gnome-disks",
+    "signal": 10
+  },
+
+  // 阻止息屏
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰈈",
+      "deactivated": "󰈉"
+    }
+  },
+
+  // 壁纸
+  "custom/wallpaper": {
+    "format": "󰸉",
+    "tooltip-format": "切换壁纸",
+    "on-click": "swww img $(fd -a -e png -e jpg -e webp -g \"*\" $HOME/Pictures/wallpaper | shuf -n1) --transition-fps=244 --transition-type=random --transition-duration=1"
+  },
+
+  // 系统托盘
+  "tray": {
+    "icon-size": 21,
+    "spacing": 5
+  },
+
+  // 时钟
+  "clock": {
+    "interval": 1,
+    "format": " {:%H:%M:%S %d/%m}",
+    "tooltip": false,
+    "on-click": "niri msg action spawn -- eww open --toggle calendar",
+    "on-click-right": "niri msg action spawn -- gnome-calendar",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+
+  // 注销菜单
+  "custom/logout": {
+    "format": "",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/power_menu.xml",
+    "menu-actions": {
+      "lock": "niri msg action spawn -- swaylock",
+      "logout": "niri msg action quit",
+      "suspend": "systemctl suspend",
+      "shutdown": "systemctl poweroff",
+      "reboot": "systemctl reboot"
+    }
+  }
 }

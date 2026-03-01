@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 获取通知历史记录数量
-count=$(makoctl history | rg -c "Notification \d")
+count=$(makoctl list | rg -c "Notification \d")
 
 # 如果有通知未读，显示数量；否则为空
 if [[ $count -gt 0 ]]; then

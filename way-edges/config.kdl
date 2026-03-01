@@ -9,6 +9,9 @@ workspace {
   ignore-exclusive
   edge "left"
   position "bottom"
+  margins{
+    bottom "5%"
+  }
   layer "overlay"
   monitor "DP-3"
   thickness 30
@@ -27,10 +30,13 @@ slide {
   pinnable
   pin-with-key
   ignore-exclusive
-  edge "top"
+  edge "right"
   monitor "*"
   layer "overlay"
-  position "left"
+  position "bottom"
+  margins{
+    bottom "5%"
+  }
   preview-size 9
   thickness 40
   border-width 3
@@ -50,12 +56,12 @@ slide {
   pinnable
   pin-with-key
   ignore-exclusive
-  edge "top"
+  edge "right"
   monitor "*"
   layer "overlay"
-  position "left"
+  position "bottom"
   margins {
-    left "12.5%"
+    bottom "17.5%"
   }
   preview-size 9
   thickness 40
