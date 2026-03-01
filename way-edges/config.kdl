@@ -1,0 +1,77 @@
+// git: b37be1040003ed37f64c82a0ab2c9a6372721a2c
+//  https://github.com/way-edges/way-edges/blob/master/doc/config/widgets/slider.md
+//  https://github.com/ogios/dots/blob/master/way-edges/config.kdl
+//
+
+
+// workspace 切换
+workspace {
+  ignore-exclusive
+  edge "left"
+  position "bottom"
+  layer "overlay"
+  monitor "DP-3"
+  thickness 30
+  length "30%"
+  hover-color "#FFA726"
+  active-increase 0.2
+  focus-color "#F4511E"
+  default-color "#333333"
+  focused-only
+  preset "niri" {
+    // preserve-empty
+  }
+}
+
+slide {
+  pinnable 
+  pin-with-key
+  ignore-exclusive
+  edge "right"
+  monitor "DP-3"
+  layer "overlay"
+  position "bottom"
+  margins {
+    bottom "30%"
+  }
+  preview-size 3
+  thickness 30
+  border-width 3
+  length "15.0%"
+  radius 10
+  obtuse-angle 90
+  fg-color "#00E676"
+  bg-color "#616161"
+  border-color "#18A558"
+  fg-text-color "#fffa"
+  bg-text-color "#fffa"
+  redraw-only-on-internal-update
+  preset "speaker"
+}
+
+slide {
+  pinnable 
+  // pin-with-key
+  ignore-exclusive
+  edge "right"
+  monitor "DP-3"
+  layer "overlay"
+  position "bottom"
+  margins {
+    bottom "15%"
+  }
+  preview-size 9
+  thickness 30
+  border-width 3
+  length "12.5%"
+  radius 10
+  obtuse-angle 90
+  fg-color "#BD93F9cc"
+  bg-color "#0000"
+  border-color "#BD93F9"
+  fg-text-color "#fffa"
+  bg-text-color "#fffa"
+  redraw-only-on-internal-update
+  preset "microphone"
+}
+
