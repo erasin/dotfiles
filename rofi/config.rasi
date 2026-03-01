@@ -1,0 +1,160 @@
+@theme "arc-dark"
+
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    icon-theme: "Papirus";
+    terminal: "alacritty";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    sidebar-mode: true;
+    display-drun: " 🚀 ";
+    display-run: " ⮕ ";
+    display-window: " 🪟 ";
+}
+
+* {
+    bg-col: #1e1e2e;
+    bg-col-light: #2a2a3e;
+    border-col: #45475a;
+    selected-col: #313244;
+    blue: #89b4fa;
+    fg-col: #cdd6f4;
+    fg-col-dark: #bac2de;
+    accent: #f5c2e7;
+
+    background-color: @bg-col;
+    separatorcolor: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    width: 600px;
+    border: 2px;
+    border-color: @border-col;
+    border-radius: 12px;
+    background-color: @bg-col;
+    padding: 20px;
+}
+
+mainbox {
+    background-color: @bg-col;
+    children: [inputbar, listview];
+    spacing: 15px;
+    padding: 0;
+    border: 0;
+}
+
+inputbar {
+    background-color: @bg-col-light;
+    border-color: @border-col;
+    border: 2px;
+    border-radius: 8px;
+    padding: 12px;
+    children: [prompt, entry];
+    spacing: 10px;
+}
+
+prompt {
+    background-color: transparent;
+    text-color: @blue;
+    enabled: true;
+    padding: 0 8px;
+}
+
+entry {
+    background-color: transparent;
+    text-color: @fg-col;
+    placeholder-color: @fg-col-dark;
+    placeholder: "搜索...";
+    blink: true;
+    padding: 0;
+}
+
+listview {
+    background-color: transparent;
+    columns: 1;
+    lines: 8;
+    fixed-height: false;
+    border: 0;
+    padding: 0;
+    spacing: 5px;
+}
+
+element {
+    background-color: transparent;
+    text-color: @fg-col;
+    orientation: horizontal;
+    border-radius: 8px;
+    padding: 10px;
+    spacing: 10px;
+    cursor: pointer;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg-col;
+}
+
+element selected.normal {
+    background-color: @selected-col;
+    text-color: @accent;
+    border: 0;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg-col;
+}
+
+element-icon {
+    background-color: transparent;
+    size: 28px;
+    margin: 0 8px 0 0;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0;
+}
+
+scrollbar {
+    enabled: true;
+    background-color: @bg-col-light;
+    handle-color: @border-col;
+    handle-width: 8px;
+    border-radius: 4px;
+    padding: 0;
+}
+
+message {
+    background-color: transparent;
+    border: 0;
+    padding: 10px;
+    margin: 0;
+}
+
+textbox {
+    background-color: @bg-col-light;
+    text-color: @fg-col;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+error-message {
+    background-color: @bg-col;
+    text-color: @accent;
+    border: 2px;
+    border-color: @accent;
+    border-radius: 12px;
+    padding: 20px;
+}
