@@ -24,24 +24,21 @@ workspace {
 }
 
 slide {
-  pinnable 
+  pinnable
   pin-with-key
   ignore-exclusive
-  edge "right"
-  monitor "DP-3"
+  edge "top"
+  monitor "*"
   layer "overlay"
-  position "bottom"
-  margins {
-    bottom "30%"
-  }
-  preview-size 3
-  thickness 30
+  position "left"
+  preview-size 9
+  thickness 40
   border-width 3
-  length "15.0%"
+  length "12.5%"
   radius 10
   obtuse-angle 90
-  fg-color "#00E676"
-  bg-color "#616161"
+  fg-color "#18A558cc"
+  bg-color "#0000"
   border-color "#18A558"
   fg-text-color "#fffa"
   bg-text-color "#fffa"
@@ -50,18 +47,18 @@ slide {
 }
 
 slide {
-  pinnable 
-  // pin-with-key
+  pinnable
+  pin-with-key
   ignore-exclusive
-  edge "right"
-  monitor "DP-3"
+  edge "top"
+  monitor "*"
   layer "overlay"
-  position "bottom"
+  position "left"
   margins {
-    bottom "15%"
+    left "12.5%"
   }
   preview-size 9
-  thickness 30
+  thickness 40
   border-width 3
   length "12.5%"
   radius 10
@@ -74,4 +71,3 @@ slide {
   redraw-only-on-internal-update
   preset "microphone"
 }
-

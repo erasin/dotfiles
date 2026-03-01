@@ -2,14 +2,22 @@
 
 本文档包含 Niri 窗口管理器的配置说明和推荐的生态组件。
 
+## 快速开始
+
+1. **启用服务**：查看 [Systemd 服务管理](#systemd-服务管理) 了解如何管理随 Niri 启动的服务
+2. **安装组件**：根据需要安装状态栏、通知、剪贴板等组件
+3. **配置服务**：创建相应的 systemd 服务以自动启动
+
 ---
 
 ## 目录
 
+- [Systemd 服务管理](#systemd-服务管理)
 - [锁屏](#锁屏)
 - [状态栏](#状态栏)
 - [壁纸](#壁纸)
 - [通知](#通知)
+- [空闲管理](#空闲管理)
 - [启动器](#启动器)
 - [剪贴板](#剪贴板)
 - [截屏与录制](#截屏与录制)
@@ -17,6 +25,133 @@
 - [其他工具](#其他工具)
 - [Electron 应用](#electron-应用)
 - [参考链接](#参考链接)
+
+---
+
+## Systemd 服务管理
+
+### niri.service.wants
+
+`niri.service.wants` 目录用于存放随 Niri 启动的用户服务。当 Niri 会话启动时，systemd 会自动启动该目录下的所有服务。
+
+**当前启用的服务：**
+
+| 服务 | 功能 | 配置文件 |
+|------|------|----------|
+| `waybar.service` | Waybar 状态栏 | 系统默认 |
+| `mako.service` | Mako 通知守护进程 | 系统默认 |
+| `cliphist.service` | 剪贴板历史管理 | 自定义配置 |
+| `swayidle.service` | 空闲管理（自动锁屏/息屏） | 自定义配置 |
+| `wayedges.service` | 边缘扩展按钮 | 自定义配置 |
+
+### 服务配置示例
+
+#### cliphist.service
+
+剪贴板历史管理服务。
+
+```ini
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/wl-paste --watch cliphist store
+Restart=on-failure
+```
+
+#### swayidle.service
+
+空闲管理服务，自动息屏和锁屏。
+
+```ini
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/swayidle -w \
+  timeout 601 'niri msg action power-off-monitors' \
+  timeout 600 'swaylock -f' \
+  before-sleep 'swaylock -f'
+Restart=on-failure
+```
+
+**说明：**
+- 600 秒（10 分钟）后锁屏
+- 601 秒后息屏
+- 系统睡眠前锁屏
+
+#### wayedges.service
+
+边缘扩展按钮服务。
+
+```ini
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/home/erasin/.cargo/bin/way-edges daemon
+Restart=on-failure
+Environment=RUST_LOG=error
+```
+
+### 服务管理命令
+
+```bash
+# 查看所有服务状态
+systemctl --user status niri.service.wants/*
+
+# 启用服务（创建符号链接）
+ln -s /usr/lib/systemd/user/waybar.service ~/.config/systemd/user/niri.service.wants/
+
+# 启用自定义服务
+ln -s ~/.config/systemd/user/swayidle.service ~/.config/systemd/user/niri.service.wants/
+
+# 禁用服务（删除符号链接）
+rm ~/.config/systemd/user/niri.service.wants/waybar.service
+
+# 重启服务
+systemctl --user restart waybar
+
+# 查看服务日志
+journalctl --user -u waybar -f
+```
+
+### 创建自定义服务
+
+1. 创建服务文件：
+
+```bash
+mkdir -p ~/.config/systemd/user
+vim ~/.config/systemd/user/my-service.service
+```
+
+2. 服务文件模板：
+
+```ini
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/path/to/your/program
+Restart=on-failure
+
+[Install]
+WantedBy=niri.service
+```
+
+3. 启用服务：
+
+```bash
+ln -s ~/.config/systemd/user/my-service.service ~/.config/systemd/user/niri.service.wants/
+```
 
 ---
 
@@ -71,14 +206,46 @@ pacman -S eww
 - [eww guide](https://dharmx.is-a.dev/eww-powermenu/)
 
 
-### wayedge
+### wayedges
 
-wayedge 边缘扩展按钮
+Wayland 边缘扩展按钮，在屏幕边缘添加可交互按钮。
 
-- https://github.com/way-edges/way-edges
-- `~/dotfiles/way-edges/` 配置文件 
-- `~/dotfiles/systemd/user/wayedges.service`
- 用户桌面服务配置
+```bash
+# 安装（AUR）
+yay -S way-edges
+```
+
+创建 systemd 服务：
+
+```bash
+cd ~/.config/systemd/user
+touch wayedges.service
+ln -s ~/.config/systemd/user/wayedges.service ~/.config/systemd/user/niri.service.wants/
+```
+
+服务配置：
+
+```ini
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/way-edges daemon
+Restart=on-failure
+Environment=RUST_LOG=error
+```
+
+**配置文件位置：**
+- `~/dotfiles/way-edges/config.kdl`
+
+**功能：**
+- 工作区切换按钮
+- 音量/亮度滑块
+- 自定义边缘操作
+
+相关链接：[way-edges](https://github.com/way-edges/way-edges)
 
 ---
 
@@ -192,6 +359,64 @@ pacman -S dunst
 
 ---
 
+## 空闲管理
+
+### Swayidle
+
+空闲管理守护进程，用于自动锁屏、息屏等操作。
+
+```bash
+# 安装
+pacman -S swayidle
+```
+
+创建 systemd 服务：
+
+```bash
+cd ~/.config/systemd/user
+touch swayidle.service
+ln -s ~/.config/systemd/user/swayidle.service ~/.config/systemd/user/niri.service.wants/
+```
+
+服务配置示例：
+
+```ini
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/swayidle -w \
+  timeout 300 'niri msg action power-off-monitors' \
+  timeout 600 'swaylock -f' \
+  before-sleep 'swaylock -f'
+Restart=on-failure
+```
+
+**常用配置：**
+
+```bash
+# 5 分钟后息屏
+timeout 300 'niri msg action power-off-monitors'
+
+# 10 分钟后锁屏
+timeout 600 'swaylock -f'
+
+# 系统睡眠前锁屏
+before-sleep 'swaylock -f'
+
+# 锁屏时暂停媒体播放
+lock 'playerctl pause'
+
+# 解锁时恢复媒体播放
+unlock 'playerctl play'
+```
+
+相关链接：[swayidle](https://github.com/swaywm/swayidle)
+
+---
+
 ## 启动器
 
 ### Rofi Wayland
@@ -227,6 +452,45 @@ pacman -S wl-clipboard
 ```bash
 pacman -S cliphist
 ```
+
+创建 systemd 服务以自动启动：
+
+```bash
+cd ~/.config/systemd/user
+touch cliphist.service
+ln -s ~/.config/systemd/user/cliphist.service ~/.config/systemd/user/niri.service.wants/
+```
+
+服务配置：
+
+```ini
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/wl-paste --watch cliphist store
+Restart=on-failure
+```
+
+**使用方法：**
+
+```bash
+# 查看剪贴板历史
+cliphist list
+
+# 选择并复制历史记录
+cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
+
+# 清空历史
+cliphist wipe
+
+# 删除特定条目
+cliphist delete
+```
+
+相关链接：[cliphist](https://github.com/sentriz/cliphist)
 
 ---
 
@@ -321,7 +585,20 @@ Electron 应用在 Wayland 下需要特殊参数启用原生支持。
 
 ## 参考链接
 
-- [Niri 官方 systemd 配置示例](https://github.com/YaLTeR/niri/wiki/Example-systemd-Setup)
-- [Sway i3 迁移指南](https://github.com/swaywm/sway/wiki/i3-Migration-Guide)
+### 官方文档
+- [Niri 官方 Wiki](https://github.com/YaLTeR/niri/wiki)
+- [Niri 配置示例](https://github.com/YaLTeR/niri/wiki/Example-systemd-Setup)
+- [Niri GitHub](https://github.com/YaLTeR/niri)
+
+### Wayland 生态
 - [Arch Linux Wayland 文档](https://wiki.archlinux.org/title/Wayland)
-- [Tokyo 主题配置参考](https://github.com/rxyhn/tokyo/tree/main/config/eww)
+- [Sway i3 迁移指南](https://github.com/swaywm/sway/wiki/i3-Migration-Guide)
+- [Are We Wayland Yet?](https://arewewaylandyet.com/)
+
+### 配置参考
+- [Tokyo 主题配置](https://github.com/rxyhn/tokyo/tree/main/config/eww)
+- [Niri 配置集合](https://github.com/YaLTeR/niri/wiki/Configuration-Examples)
+
+### Systemd 服务
+- [Systemd 用户服务](https://wiki.archlinux.org/title/Systemd/User)
+- [Graphical Session Target](https://systemd.io/DESKTOP_ENVIRONMENTS/)

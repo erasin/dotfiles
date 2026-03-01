@@ -28,8 +28,8 @@ slide {
   pin-with-key
   ignore-exclusive
   edge "left"
-  position "bottom"
-  monitor "DP-3"
+  position "top"
+  monitor "eDP-1" "eDP-2"
   layer "overlay"
   margins {
     top "20%"
