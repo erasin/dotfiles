@@ -253,7 +253,7 @@ language-servers = [
   "vscode-html-language-server",
   "emmet-language-server",
   "tailwindcss-ls",
-  "hx-lsp",
+  { name = "hx-lsp", except-features = ["document-colors"] },
   "harper-ls",
   "lsp-ai",
 ]

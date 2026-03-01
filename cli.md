@@ -32,6 +32,7 @@
 - helix [github](https://github.com/helix-editor/helix) helix 模态编辑器
 - mdbook [github](https://github.com/azerupi/mdBook) 文档生成工具
 - lazygit [github](https://github.com/jesseduffield/lazygit) git tui
+- gitui [github](https://github.com/gitui-org/gitui) gitui 用于日志查看
 - wt worktrunk [github](https://github.com/max-sixty/worktrunk) 用于管理 git 树的cli ,设计为AI
 - just ~~make~~ [github](https://github.com/casey/just) [book](https://just.systems/man/zh/) 
 - rmpc [github](https://github.com/mierak/rmpc) mpd client
@@ -62,6 +63,7 @@
 
 - espanso [github](https://github.com/espanso/espanso)
 
+- mdr [github]() markdown tui reader 阅读器
 - mmdf [github](https://github.com/1jehuang/mermaid-rs-renderer) 转换 mermaid uml 为图片 png 
 
 - bun ~~npm~~

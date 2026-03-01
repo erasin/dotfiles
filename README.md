@@ -14,6 +14,11 @@
 - [hyprlock](https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/) 锁屏
 - ~~[swaylock](https://github.com/swaywm/swaylock) 锁屏~~
 
+## firewall
+
+- ufw
+
+
 **Terminal**
 
 - [zsh](https://github.com/zsh-users/zsh) shell

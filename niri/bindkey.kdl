@@ -6,7 +6,7 @@ binds {
 
     // 运行程序的快捷键建议: 终端、应用启动器、锁屏
     Mod+T hotkey-overlay-title="打开终端" { spawn "alacritty"; } // kitty | alacritty
-    Mod+Space hotkey-overlay-title="程序" { spawn "anyrun"; } // fuzzel
+    Mod+Space hotkey-overlay-title="程序" { spawn "fuzzel"; } // fuzzel
     Super+Alt+L hotkey-overlay-title="锁屏" { spawn "swaylock"; } //swaylock
     Mod+E hotkey-overlay-title="文件" { spawn "nautilus"; }
     Mod+Tab hotkey-overlay-title="切换" { spawn "~/.config/niri/scripts/switch-window.sh"; }
