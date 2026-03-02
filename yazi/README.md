@@ -7,3 +7,6 @@
 ```
 ya pkg update
 ```
+
+
+yay -s ueberzugpp
