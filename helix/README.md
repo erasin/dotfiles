@@ -29,6 +29,7 @@ cargo install --path helix-term
 | [#13206](https://github.com/helix-editor/helix/pull/13206) | 单词补全 |
 | [#12275](https://github.com/helix-editor/helix/pull/12275) | 语法符号选择器 |
 | [#5768](https://github.com/helix-editor/helix/pull/5768) | 文件目录树 |
+| [#14544](https://github.com/helix-editor/helix/pull/14544) | 文件变动 |
 
 ### 自定义功能
 

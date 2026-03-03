@@ -76,3 +76,6 @@
 - docxx 终端阅读doc `cargo i`
 - tunein-cli 终端radio `cargo i`
 
+## soft
+
+- zedis
