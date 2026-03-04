@@ -28,13 +28,14 @@ Set-PSReadLineOption -Colors @{
    "Error"     = [ConsoleColor]::Red
 }
 
-# 设置 Vim 为默认编辑器
+# 设置 hx/Vim 为默认编辑器
 $env:EDITOR = "hx"
 $env:VISUAL = "hx"
 Set-PSReadLineOption -EditMode Vi
 
 starship init powershell | Invoke-Expression
 zoxide init powershell | Out-String | Invoke-Expression
+atuin init powershell | Out-String | Invoke-Expression
 fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 # alias

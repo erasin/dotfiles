@@ -70,16 +70,34 @@ New-Item -ItemType SymbolicLink -Path "~/AppData/Roaming/helix" -Target "D:\eras
 New-Item -ItemType SymbolicLink -Path "~/AppData/Roaming/Zed" -Target "D:\erasin\dotfiles\Zed"
 ```
 
-```powershell
-# 自动转换 LF CRLF
-git config --global core.autocrlf ture 
+**git**
+
+```bash
 git config --global core.excudesfile ~/.gitignore_global
 git config --global gui.encoding utf-8
 ```
 
+**Line Ending** , windows(CRLF) 和linux(LF)
+
+```bash
+# git 自动转换 LF CRLF, 存在 git 中 为 LF, 转为 CRLF 
+git config --global core.autocrlf ture 
+```
+
+新项目使用 **LF**
+
+> 大多编辑器已经在windows 下支持 LF
+
+```bash
+git config core.autocrlf input 
+git config core.eol lf
+# or
+git config --global core.autocrlf input 
+```
+
 **使用CLI**
 
-    安装软件后需要从配置环境变量。
+安装软件后需要从配置环境变量。
 
 ```powershell
 # 环境
