@@ -36,3 +36,18 @@ fi
 # 中文环境
 sudo dnf install -y langpacks-zh_CN glibc-langpack-zh
 ```
+
+## exe 无法执行
+
+WSL2 修复 binfmt_misc 配置
+
+Fedora 
+
+```bash
+sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /usr/lib/binfmt.d/WSLInterop.conf'
+sudo systemctl unmask systemd-binfmt.service
+sudo systemctl restart systemd-binfmt
+sudo systemctl mask systemd-binfmt.service 
+```
+
+重启 `wsl --shutdown`
