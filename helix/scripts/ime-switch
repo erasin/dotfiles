@@ -270,8 +270,8 @@ elif [[ $(uname) == "Linux" ]]; then
     # Windows WSL 
     if [[ -n $WSL_DISTRO_NAME ]]; then
         case $action in 
-            0) cmd.exe /c "D:\\erasin\\bin\\win-ime-switch.exe en" ;;
-            *) cmd.exe /c "D:\\erasin\\bin\\win-ime-switch.exe --toggle" ;;
+            0) win-ime-switch.exe en ;;
+            *) win-ime-switch.exe --toggle ;;
         esac
     fi
  
