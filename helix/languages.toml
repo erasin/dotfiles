@@ -4,7 +4,7 @@
 
 # ==================== 语法高亮 Grammar ====================
 # [use-grammars]
-# only = []  # 只加载指定语言 grammar
+# only = ["lua"]  # 只加载指定语言 grammar
 
 # ==================== AI 语言服务器 ====================
 # lsp-ai: https://github.com/SilasMarvin/lsp-ai

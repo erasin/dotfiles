@@ -57,7 +57,7 @@
 - bandwhich 带宽查看
 
 - delta git diff
-
+  - ~deff~
 - tokei 代码统计
 - kondo [github](https://github.com/tbillington/kondo) 清理 target;,node_modules,build 等等
 

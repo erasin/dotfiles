@@ -50,7 +50,7 @@ rainbow-brackets = true
 
 # ==================== 软换行 ====================
 [editor.soft-wrap]
-enable = true
+# enable = true
 # max-wrap = 20          # 最大换行次数
 # max-indent-retain = 40 # 保持缩进的最大列
 # wrap-indicator = "↪ " # 换行指示符
