@@ -48,33 +48,7 @@ size = 13.0
 # normal = { family = "JetBrains Mono", style="SemiBold"}
 normal = { family = "JetNerdMono", style="SemiBold"}
 # normal = { family = "MapleNerdMono"}
-# 使用 fontconfigs 支持多种字体
-# /etc/fonts/fonts.conf 或者 ~/.config/fontconfig/fonts.conf 
-# 添加字体后，使用 fc-cache -fv 刷新字体，fc-list 或者 fc-match 检查字体
-#
-# <match target="pattern">
-#     <test qual="any" name="family">
-#         <string>JetNerdMono</string>
-#     </test>
-#     <edit name="family" mode="assign" binding="same">
-#         <string>JetBrains Mono</string>
-#         <string>Symbols Nerd Font Mono</string>
-#         <string>HarmonyOS Sans SC</string>
-#         <string>monospace</string>
-#     </edit>
-# </match>
-#
-# <match target="pattern">
-#     <test qual="any" name="family">
-#         <string>MapleNerdMono</string>
-#     </test>
-#     <edit name="family" mode="assign" binding="same">
-#         <string>MapleMono</string>
-#         <string>Symbols Nerd Font Mono</string>
-#         <string>HarmonyOS Sans SC</string>
-#     </edit>
-# </match>
-
+# 
 # glyph_offset = { x = 0, y = 1 }
 # offset = { x = 0, y = 2 }
  

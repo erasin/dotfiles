@@ -64,24 +64,41 @@ font:
 
 ### linux 下字体配置
 
-配置文件 `.config/fontconfig/fonts.conf`
 
-下面是 mono 字体的配置处理，这样可以临时解决在 alacritty 中的其他的字体的配置，比如中文字体和图标字体以及其他的补充字体，以便正确显示所需的字体。 
+使用 fontconfigs 支持多种字体，
+配置 `/etc/fonts/fonts.conf` 或者 `~/.config/fontconfig/fonts.conf `
+添加字体后，使用 `fc-cache -fv` 刷新字体，`fc-list` 或者 `fc-match` 检查字体
+
+
+下面是自定义字体的配置处理，这样可以临时解决在 alacritty 中的其他的字体的配置，比如中文字体和图标字体以及其他的补充字体，以便正确显示所需的字体。 
 
 ```xml
 <match target="pattern">
-  <test qual="any" name="family">
-    <!-- 这里是 mono 处理 -->
-  	<string>mono</string>
-  </test>
-  <edit name="family" mode="assign" binding="same">
-  	<string>JetBrains Mono</string>
-  	<string>Noto Sans CJK SC</string>
-  	<string>Symbols Nerd Font Mono</string>
-  	<string>monospace</string>
-  </edit>
+    <test qual="any" name="family">
+        <string>JetNerdMono</string>
+    </test>
+    <edit name="family" mode="assign" binding="same">
+        <string>JetBrains Mono</string>
+        <string>Symbols Nerd Font Mono</string>
+        <string>HarmonyOS Sans SC</string>
+        <string>monospace</string>
+    </edit>
+</match>
+<match target="pattern">
+    <test qual="any" name="family">
+        <string>MapleNerdMono</string>
+    </test>
+    <edit name="family" mode="assign" binding="same">
+        <string>MapleMono</string>
+        <string>Symbols Nerd Font Mono</string>
+        <string>HarmonyOS Sans SC</string>
+    </edit>
 </match>
 ```
+
+
+
+
 
 ### 主题配置
 
