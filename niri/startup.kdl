@@ -1,11 +1,13 @@
+// 使用 ~/.config/systemd/user/niri.service.wants 创建 ln 服务链接
+
 // 输入法
 spawn-at-startup "fcitx5" "-d"
 // xwayland
 
 // spawn-at-startup "waybar"
-spawn-at-startup "way-edges" "daemon"
-// spawn-at-startup "uair --quite"
+// spawn-at-startup "way-edges" "daemon" // --> systemd user
 
 // 壁纸
-// spawn-at-startup "eww daemon"，已经定义了 systemd
+// spawn-at-startup "eww daemon" // --> systemd user
 spawn-at-startup "swww img ~/Pictures/wallpaper/ws11.jpg"
+

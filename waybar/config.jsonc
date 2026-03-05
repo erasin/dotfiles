@@ -35,7 +35,7 @@
   ],
 
   // ==================== 左侧模块 ====================
-  
+
   // 系统菜单
   "custom/arch": {
     "format": "",
@@ -392,14 +392,15 @@
   "custom/logout": {
     "format": "",
     "tooltip": false,
-    "menu": "on-click",
-    "menu-file": "$HOME/.config/waybar/power_menu.xml",
-    "menu-actions": {
-      "lock": "niri msg action spawn -- swaylock",
-      "logout": "niri msg action quit",
-      "suspend": "systemctl suspend",
-      "shutdown": "systemctl poweroff",
-      "reboot": "systemctl reboot"
-    }
+    "on-click": "niri msg action spawn -- eww open --toggle powermenu"
+    // "menu": "on-click"
+    // "menu-file": "$HOME/.config/waybar/power_menu.xml",
+    // "menu-actions": {
+    //   "lock": "niri msg action spawn -- swaylock",
+    //   "logout": "niri msg action quit",
+    //   "suspend": "systemctl suspend",
+    //   "shutdown": "systemctl poweroff",
+    //   "reboot": "systemctl reboot"
+    // }
   }
 }
