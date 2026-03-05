@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Day name script
+date '+%A'

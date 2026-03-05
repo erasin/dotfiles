@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Window Title script for Niri / Hyprland / Sway
+
+if command -v niri &>/dev/null; then
+    niri msg --format json focused-window | jaq -r '.title // "Desktop"'
+elif command -v hyprctl &>/dev/null; then
+    hyprctl activewindow -j | jaq -r '.title // "Desktop"'
+elif command -v swaymsg &>/dev/null; then
+    swaymsg -t get_tree | jaq -r '.. | select(.type?) | select(.type=="con" or .type=="floating_con") | select(.focused) | .name // "Desktop"'
+else
+    echo "Desktop"
+fi

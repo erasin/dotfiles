@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Simple date script
+date '+%m/%d'

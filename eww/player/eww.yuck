@@ -191,10 +191,13 @@
     :class "player" 
     :space-evenly false
     :spacing 0
-    (box 
-      :class "player-art" 
-      :style "background-image: url('${music-art}')"
-      )
+    (box
+      :class "player-art-bg"
+      (box 
+        :class "player-art" 
+        :style "background-image: url('${music-art}')"
+        )
+    )
     (box 
       :space-evenly false 
       :orientation "v" 

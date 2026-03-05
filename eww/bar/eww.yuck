@@ -1,0 +1,196 @@
+;; Bar Variables ;;
+
+(defvar workspace-buttons "[\"一\", \"二\", \"三\", \"四\", \"五\", \"六\", \"七\", \"八\", \"九\"]")
+
+(defpoll workspace :interval "1s" "../scripts/Workspace current")
+(defpoll workspaces :interval "1s" "../scripts/Workspace list")
+(defpoll window-title :interval "1s" "../scripts/WindowTitle")
+
+(defpoll time :interval "1s" "../scripts/Time")
+(defpoll date-str :interval "1s" "../scripts/Date")
+(defpoll day :interval "1h" "../scripts/Day")
+
+(defpoll volume :interval "1s" "../scripts/Volume --get")
+(defpoll volume-icon :interval "1s" "../scripts/VolumeIcon")
+(defpoll mute-status :interval "1s" "pamixer --get-mute")
+
+(defpoll net-status :interval "3s" "../scripts/Network --status")
+(defpoll net-icon :interval "3s" "../scripts/Network --icon")
+(defpoll net-name :interval "10s" "../scripts/Network --name")
+
+(defpoll battery :interval "10s" "../scripts/Battery get_battery")
+(defpoll battery-icon :interval "10s" "../scripts/Battery get_icon")
+(defpoll battery-status :interval "10s" "../scripts/Battery get_status")
+
+(defpoll cpu-usage :interval "2s" "../scripts/CpuUsage")
+(defpoll ram-usage :interval "2s" "../scripts/RamUsage")
+
+;; Workspaces Widget ;;
+(defwidget workspaces []
+  (box
+    :class "workspaces"
+    :orientation "h"
+    :space-evenly true
+    :halign "start"
+    (for ws in workspace-buttons
+      (button
+        :class {workspaces == ws ? "workspace-button active" : "workspace-button"}
+        :onclick { "../scripts/Workspace goto ${ws}" }
+        ws))))
+
+;; Window Title Widget ;;
+(defwidget window-title []
+  (label
+    :class "window-title"
+    :text window-title
+    :limit-width 40
+    :xalign 0
+    :halign "start"))
+
+;; Clock Widget ;;
+(defwidget clock []
+  (box
+    :class "clock"
+    :orientation "h"
+    :spacing 8
+    (label
+      :class "time"
+      :text time)
+    (label
+      :class "date"
+      :text " ${date}")))
+
+;; Volume Widget ;;
+(defwidget volume-widget []
+  (eventbox
+    :cursor "pointer"
+    :onclick "../scripts/Volume --toggle"
+    :onscroll "../scripts/VolumeScroll {}"
+    (box
+      :class "volume"
+      :orientation "h"
+      :spacing 6
+      (label
+        :class "volume-icon"
+        :text volume-icon)
+      (label
+        :class "volume-level"
+        :text "${volume}%"))))
+
+;; Network Widget ;;
+(defwidget network []
+  (eventbox
+    :cursor "pointer"
+    :onclick "OpenApps --netmanager &"
+    (box
+      :class {net-status != "Offline" ? "network connected" : "network disconnected"}
+      :orientation "h"
+      :spacing 6
+      (label
+        :class "network-icon"
+        :text net-icon)
+      (label
+        :class "network-name"
+        :text {net-status != "Offline" ? net-name : "Offline"}
+        :limit-width 12))))
+
+;; Battery Widget ;;
+(defwidget battery-widget []
+  (box
+    :class {battery-status == "Charging" ? "battery charging" : "battery"}
+    :orientation "h"
+    :spacing 6
+    (label
+      :class "battery-icon"
+      :text battery-icon)
+    (label
+      :class "battery-level"
+      :text "${battery}%")))
+
+;; System Stats Widget ;;
+(defwidget system-stats []
+  (box
+    :class "system-stats"
+    :orientation "h"
+    :spacing 12
+    
+    (box
+      :class "cpu"
+      :orientation "h"
+      :spacing 4
+      (label
+        :class "cpu-icon"
+        :text "󰍛")
+      (label
+        :class "cpu-value"
+        :text "${cpu-usage}%"))
+    
+    (box
+      :class "ram"
+      :orientation "h"
+      :spacing 4
+      (label
+        :class "ram-icon"
+        :text "")
+      (label
+        :class "ram-value"
+        :text "${ram-usage}%"))))
+
+;; Power Button ;;
+(defwidget power-button []
+  (eventbox
+    :cursor "pointer"
+    :onclick "eww open --toggle powermenu"
+    (box
+      :class "power-button"
+      "⏻")))
+
+;; Main Bar ;;
+(defwidget bar []
+  (box
+    :class "bar"
+    :orientation "h"
+    :space-evenly false
+    
+    ;; Left Section
+    (box
+      :class "bar-left"
+      :orientation "h"
+      :spacing 12
+      :halign "start"
+      :hexpand true
+      (workspaces)
+      (window-title))
+    
+    ;; Center Section
+    (box
+      :class "bar-center"
+      :orientation "h"
+      :halign "center"
+      (clock))
+    
+    ;; Right Section
+    (box
+      :class "bar-right"
+      :orientation "h"
+      :spacing 12
+      :halign "end"
+      (system-stats)
+      (volume-widget)
+      (network)
+      (battery-widget)
+      (power-button))))
+
+;; Bar Window ;;
+(defwindow bar
+  :monitor 0
+  :geometry (geometry
+              :x "0%"
+              :y "0%"
+              :width "100%"
+              :height "40px"
+              :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :wm-ignore false
+  (bar))

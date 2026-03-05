@@ -1,169 +1,196 @@
 .launchermenu {
   font-family: "Symbols Nerd Font Mono", "JetBrains Mono Medium";
-  background: $bg;
+  background: $bg3;
   border-radius: 1.2rem;
-  margin: 0.8rem 0.8rem;
-  min-width: 28rem;
+  margin: 1rem;
+  min-width: 29rem;
+  border: 1px solid $border;
+  box-shadow: 0 8px 32px $shadow, 0 0 0 1px $border-alt;
 }
 
 .min {
-  font-size: 1.3rem;
-  padding: 0 0.9rem;
+  font-size: 1.4rem;
+  padding: 0 1rem;
   color: $red;
-}
-
-.min:hover {
-  color: $magenta;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: $magenta;
+    text-shadow: 0 0 12px rgba($magenta, 0.6);
+  }
 }
 
 .usercard {
-  background-color: $bg-alt;
-  border-radius: 0.5rem;
+  background: rgba($bg-alt, 0.6);
+  border-radius: 0.8rem;
+  border: 1px solid $border-alt;
+  box-shadow: 0 2px 12px $shadow-light;
 }
 
 .face {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  min-height: 65px;
-  min-width: 65px;
-  //border: .2rem solid $bg;
-  border-radius: 100%;
-  box-shadow: 0 0 7px 1px rgba($fg, 0.3);
-  margin: 10px -8px 10px 10px;
+  min-height: 70px;
+  min-width: 70px;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px $shadow, 0 0 0 2px $border;
+  margin: 12px -8px 12px 12px;
 }
 
 .user-host {
   color: $fg;
   font-family: Cartograph CF;
-  font-weight: Normal;
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 1.05rem;
+  text-shadow: 0 1px 4px $shadow-light;
 }
 
 .host {
-  color: $fg;
+  color: $fg-alt;
   font-family: Cartograph CF;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  text-shadow: 0 1px 4px $shadow-light;
 }
 
 .uptime {
-  color: $fg;
+  color: $fg-dim;
   font-family: Cartograph CF;
-  font-size: 0.7rem;
-  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  margin-top: 0.6rem;
 }
 
 .btn-info {
-  font-size: 1.2rem;
-  color: $fg;
-  padding: 0 0.6rem;
-}
-
-.btn-info:hover {
-  text-shadow: 0 0 2px $fg;
+  font-size: 1.25rem;
+  color: $fg-alt;
+  padding: 0 0.7rem;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    text-shadow: 0 0 12px rgba($fg, 0.5);
+  }
 }
 
 .launcher-pfp-label {
-  font-weight: Bold;
+  font-weight: 600;
   font-size: 1rem;
 }
 
 .pacman {
-  background-color: $bg-alt;
-  padding: 0.8rem;
-  border-radius: 0.5rem;
+  background: rgba($bg-alt, 0.6);
+  padding: 1rem;
+  border-radius: 0.8rem;
   color: $fg;
+  border: 1px solid $border-alt;
+  box-shadow: 0 2px 12px $shadow-light;
 
   .pacman-icon {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: $yellow;
+    text-shadow: 0 2px 8px rgba($yellow, 0.3);
   }
 
   .pacman-info {
-    font-weight: Bold;
+    font-weight: 600;
     font-size: 1rem;
   }
 
   .pacman-updates {
-    font-weight: Bold;
+    font-weight: 600;
     font-size: 1rem;
+    color: $fg-alt;
   }
 }
 
 .fetch {
-  background-color: $bg-alt;
-  padding: 0.8rem 2rem 0.8rem 1rem;
-  border-radius: 0.5rem;
+  background: rgba($bg-alt, 0.6);
+  padding: 1rem 2.2rem 1rem 1.2rem;
+  border-radius: 0.8rem;
   color: $fg;
+  border: 1px solid $border-alt;
+  box-shadow: 0 2px 12px $shadow-light;
 
   .arch-icon {
-    font-size: 3rem;
+    font-size: 3.2rem;
     color: $archicon;
+    text-shadow: 0 4px 16px rgba($archicon, 0.4);
   }
 }
 
 .os-icon {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: $archicon;
 }
 
 .pkgs-icon {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: $yellow;
 }
 
 .wm-icon {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: $magenta;
 }
 
 .os-text,
 .pkgs-text,
 .wm-text {
-  font-weight: Bold;
+  font-weight: 600;
   font-size: 1rem;
+  color: $fg-alt;
 }
 
 .weatherbox {
-  background-color: $bg-alt;
-  border-radius: 0.5rem;
-  padding: 0.8rem;
+  background: rgba($bg-alt, 0.6);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  border: 1px solid $border-alt;
 }
 
 .weathericon {
-  padding: 0 0.8rem;
-  border-radius: 0.5rem;
-  margin-left: 0.6rem;
-  background-color: $bg-alt;
-  font-size: 1.5rem;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  margin-left: 0.8rem;
+  background: rgba($bg-alt, 0.6);
+  font-size: 1.6rem;
+  border: 1px solid $border-alt;
 }
 
 .weatherdesc {
-  font-size: 1.75rem;
-  font-weight: Bold;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: $fg;
+  text-shadow: 0 2px 8px $shadow-light;
 }
 
 .weathertemp {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.6rem;
+  font-weight: 700;
   color: $fg;
+  text-shadow: 0 2px 8px $shadow-light;
 }
 
 .weathercity {
-  font-size: 0.9rem;
-  margin-top: 0.2rem;
-  color: $fg;
-  font-weight: Bold;
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+  color: $fg-alt;
+  font-weight: 600;
 }
 
 .tools-main {
-  padding: 0.4rem 0.6rem;
+  padding: 0.5rem 0.7rem;
 }
 
 .tools-box {
-  font-size: 1.4rem;
-  border-radius: 100%;
-  background-color: $bg-alt;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  background: rgba($bg-alt, 0.6);
+  border: 1px solid $border-alt;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba($bg-highlight, 0.8);
+  }
 }
 
 .wifi-btn {
@@ -171,7 +198,7 @@
 }
 
 .wifi-no-btn {
-  color: $black;
+  color: $fg-dim;
 }
 
 .bluetooth-btn {
@@ -179,23 +206,23 @@
 }
 
 .bluetooth-no-btn {
-  color: $black;
+  color: $fg-dim;
 }
 
 .airplane-btn {
-  color: $blue;
+  color: $cyan;
 }
 
 .airplane-no-btn {
-  color: $black;
+  color: $fg-dim;
 }
 
 .redshift-btn {
-  color: $blue;
+  color: $orange;
 }
 
 .redshift-no-btn {
-  color: $black;
+  color: $fg-dim;
 }
 
 .term-btn {
@@ -203,50 +230,53 @@
 }
 
 .game-btn {
-  color: $blue;
+  color: $magenta;
 }
 
 .game-no-btn {
-  color: $black;
+  color: $fg-dim;
 }
 
 .info-btn {
-  font-size: 1.1rem;
-  color: $fg;
+  font-size: 1.15rem;
+  color: $fg-alt;
 }
 
 .progress {
-  background-color: $bg-alt;
-  padding: 0.7rem 0.7rem;
-  border-radius: 1rem;
+  background: rgba($bg-alt, 0.6);
+  padding: 0.9rem;
+  border-radius: 1.2rem;
+  border: 1px solid $border-alt;
+  box-shadow: 0 2px 12px $shadow-light;
 
   circular-progress {
-    background-color: $black;
+    background-color: rgba($black, 0.3);
 
     &.cpu {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       color: $green;
     }
 
     &.ram {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       color: $blue;
     }
 
     &.disk {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       color: $magenta;
     }
   }
 
   .icon {
-    font-size: 2.2rem;
-    font-size: 1rem;
-    padding: 1.1rem;
+    font-size: 1.1rem;
+    padding: 1.2rem;
+    color: $fg-alt;
   }
 }
 
 .temp {
-  font-size: 2rem;
-  color: $magenta;
+  font-size: 2.2rem;
+  color: $orange;
+  text-shadow: 0 2px 8px rgba($orange, 0.3);
 }

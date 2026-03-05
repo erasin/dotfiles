@@ -1,137 +1,157 @@
 .player {
   font-family: "Symbols Nerd Font Mono", "JetBrains Mono";
-  /* background-color: $bg; */
-  /* background: $bg2; */
+  /* background: $bg3; */
   padding: 0.8rem;
-  min-height: 12rem;
-  /* border: 0.2rem solid rgba(158, 158, 158, 0.5); */
-  border-radius: 1.2rem;
+  min-height: 13.2rem;
+  /* border-radius: 1.2rem; */
+  /* border: 1px solid $border; */
+  /* box-shadow: 0 8px 24px $shadow, 0 0 0 1px $border-alt; */
+
+  .player-art-bg {
+    background: linear-gradient(-135deg, rgba($bg-highlight, 0.85), rgba($bg-alt, 0.95), );
+    background-color: $bg-alt;
+    border-radius: 10rem 1.2rem 1.6rem 10rem;
+  }
 
   .player-art {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    box-shadow: 0 0 0.3rem black;
-    border-radius: 1.1rem;
-    min-width: 13.2rem;
-    min-height: 13.2rem;
+    box-shadow: 0 0 0.5rem $shadow, 0 0 0 1px $border;
+    border-radius: 8rem;
+    min-width: 15.2rem;
+    min-height: 15.2rem;
+    /* margin-right: 0.5rem; */
   }
 
   .player-info {
     min-width: 16rem;
     border-radius: 0 1.2rem 1.2rem 0;
-    /* background: $bg-alt; */
-    background: linear-gradient(to right, rgb($bg, 1), rgba(#455A64, 1.8));
-    box-shadow: 0 0 0.3rem black;
-
-    padding: 0.65rem;
-    padding-left: 1rem;
+    background: linear-gradient(-135deg, rgba($bg-alt, 0.95), rgba($bg-highlight, 0.85));
+    box-shadow: 0 4px 8px $shadow, inset 0 0 0 1px $border-alt;
+    padding: 1.2rem 1.2rem;
 
     .player-shuffle,
     .player-loop {
       font-size: 1rem;
-      text-shadow: 0 0 0.2rem black;
+      text-shadow: 0 2px 4px $shadow;
     }
 
     .spotify-icon {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: $green;
-      text-shadow: 0 0 0.2rem black;
+      text-shadow: 0 2px 8px rgba($green, 0.4);
     }
 
     .mpd-icon {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: $magenta;
-      text-shadow: 0 0 0.2rem black;
+      text-shadow: 0 2px 8px rgba($magenta, 0.4);
     }
 
     .player-title {
       font-style: italic;
       font-family: Cartograph CF;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: bold;
       color: $fg;
-      text-shadow: 0 0 0.5rem rgba($color: $bg-alt, $alpha: 0.5);
+      text-shadow: 0 2px 8px $shadow;
+      margin-bottom: 0.3rem;
     }
 
     .player-artist {
       font-family: JetBrainsMono NF;
-      font-weight: bolder;
-      font-size: 0.8rem;
-      color: $fg;
-      text-shadow: 0 0 0.5rem rgba($color: $bg-alt, $alpha: 0.5);
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: $fg-alt;
+      text-shadow: 0 1px 4px $shadow-light;
+      margin-bottom: 0.2rem;
     }
 
     .player-album {
       font-family: JetBrainsMono NF;
-      font-weight: bolder;
-      font-size: 0.8rem;
-      color: $fg;
-      text-shadow: 0 0 0.5rem rgba($color: $bg-alt, $alpha: 0.5);
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: $fg-dim;
+      text-shadow: 0 1px 4px $shadow-light;
     }
 
     .player-time {
       font-style: italic;
       font-family: Cartograph CF;
-      font-size: 0.8rem;
-      color: $fg;
-      text-shadow: 0 0 0.5rem rgba($color: $bg-alt, $alpha: 0.5);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: $fg-alt;
     }
 
     .player-bar scale trough highlight {
       all: unset;
-      background-image: linear-gradient(to right,
-          darken($color: $green, $amount: 15%),
-          $green );
-      border-radius: 2rem;
+      background-image: linear-gradient(to right, $cyan, $blue);
+      border-radius: 1rem;
+      box-shadow: 0 0 8px rgba($blue, 0.4);
     }
 
     .player-bar scale trough {
       all: unset;
-      background-color: rgba($fg, 0.3);
-      box-shadow: 0px 0px 2px 1px rgba(black, 0.5);
+      background-color: rgba($fg, 0.2);
+      box-shadow: 0 2px 8px $shadow-light, inset 0 0 0 1px $border-alt;
       border-radius: 1rem;
-      min-height: 0.35rem;
-      margin: 0rem 0.2rem 0.2rem 0rem;
+      min-height: 0.4rem;
+      margin: 0.3rem 0.2rem 0.4rem 0;
     }
 
     .player-position {
       font-size: 0.9rem;
       font-weight: 500;
-      color: $fg;
+      color: $fg-alt;
     }
   }
 
   .min {
     font-family: "JetBrainsMono Nerd Font";
-    font-size: 1.1rem;
-    padding: 0 0.9rem;
+    font-size: 1.2rem;
+    padding: 0 1rem;
     color: $red;
-  }
+    transition: all 0.2s ease;
 
-  .min:hover {
-    color: $magenta;
+    &:hover {
+      color: $magenta;
+      text-shadow: 0 0 12px rgba($magenta, 0.6);
+    }
   }
 
   .player-controls {
-    padding: 0rem 0.7rem 0rem 1rem;
+    padding: 0rem 1.2rem 0rem 1.2rem;
     border-radius: 1rem;
+    background: rgba($bg, 0.3);
 
     .player-toggle {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       color: $fg;
+
+      &:hover {
+        color: $blue;
+        text-shadow: 0 0 16px rgba($blue, 0.5);
+      }
     }
 
     .player-previous,
     .player-next {
-      font-size: 0.8rem;
-      color: $fg;
+      font-size: 1rem;
+      color: $fg-alt;
+
+      &:hover {
+        color: $cyan;
+        text-shadow: 0 0 12px rgba($cyan, 0.5);
+      }
     }
 
     button {
-      &:hover {
-        color: $magenta;
-      }
+      transition: all 0.2s ease;
+
+      &:hover {}
+
+      &:active {}
     }
   }
 }

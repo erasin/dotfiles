@@ -1,20 +1,35 @@
+// 导入颜色变量
+@import "colors.scss";
+
 * {
   all: unset;
+  font-family: "Symbols Nerd Font Mono", "JetBrains Mono", "Noto Sans";
 }
 
+// 背景层
 background {
   background-color: transparent;
 }
 
+// 工具提示样式
 tooltip {
-  background-color: #14171c;
-  color: #b8bfe5;
-  font-family: Inconsolata SemiCondensed Medium;
-  font-weight: Bold;
-  font-size: 1rem;
+  background-color: $bg-alt;
+  color: $fg;
+  border: 1px solid $border;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px $shadow;
 }
 
-@import "colors.scss";
+// 全局过渡效果
+button, eventbox {
+  transition: all 0.2s ease;
+}
+
+// 导入组件样式
+@import "bar/eww.scss";
 @import "player/eww.scss";
 @import "powermenu/eww.scss";
 @import "calendar/eww.scss";

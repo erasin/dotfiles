@@ -1,18 +1,28 @@
 .color-picker {
   font-family: "Symbols Nerd Font Mono", "JetBrains Mono";
-  /* background-color: $bg; */
-  background: $bg2;
-  padding: 0.6rem;
-  min-height: 12rem;
+  background: $bg3;
+  padding: 1rem;
+  min-height: 13rem;
   border-radius: 1.2rem;
+  border: 1px solid $border;
+  box-shadow: 0 8px 24px $shadow, 0 0 0 1px $border-alt;
 
   .color-chooser {
-    background: $bg;
+    background: rgba($bg-alt, 0.6);
+    border-radius: 0.8rem;
+    border: 1px solid $border-alt;
+    box-shadow: 0 2px 12px $shadow-light;
   }
 
   .close {
-    font-size: 1.1rem;
-    padding: 0 0.9rem;
+    font-size: 1.2rem;
+    padding: 0 1rem;
     color: $red;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: $magenta;
+      text-shadow: 0 0 12px rgba($magenta, 0.6);
+    }
   }
 }

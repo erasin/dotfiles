@@ -1,55 +1,84 @@
 .pomodoro {
   font-family: "Symbols Nerd Font Mono", "JetBrains Mono";
-  padding: 0.5rem;
+  padding: 0.6rem;
+  border: 1px solid $border;
+  box-shadow: 0 8px 24px $shadow;
+  border-radius: 1rem;
 
-  /* border: 0.2rem solid rgba(158, 158, 158, 0.5); */
   .body {
-    border-radius: 0.8rem;
-    background: $bg-alt;
-    padding: 0.5rem;
-    box-shadow: 0 0 0.2rem black;
+    border-radius: 0.9rem;
+    background: rgba($bg-alt, 0.85);
+    padding: 0.8rem;
+    box-shadow: 0 4px 16px $shadow-light, inset 0 0 0 1px $border-alt;
+  }
+
+  .pomodoro-header {
+    background: rgba($bg, 0.3);
+    border-radius: 0.6rem;
+    padding: 0.4rem 0.8rem;
+    margin-bottom: 0.5rem;
   }
 
   .pomodoro-name {
     font-style: italic;
     font-family: Cartograph CF;
-    font-size: 1.1rem;
-    font-weight: bold;
+    font-size: 1.15rem;
+    font-weight: 700;
     color: $fg;
-    text-shadow: 0 0 0.5rem rgba($color: $bg-alt, $alpha: 0.5);
+    text-shadow: 0 2px 8px $shadow;
   }
 
 
   .pomodoro-progress {
+    background: rgba($black, 0.2);
+    border-radius: 50%;
+    padding: 0.5rem;
+    border: 2px solid $border-alt;
+    box-shadow: 0 4px 16px $shadow-light;
+    transition: all 0.3s ease;
+    
+    &:hover {
+    }
+
     &.pomodoro-paused {
-      color: red;
+      color: $red;
+      border-color: rgba($red, 0.3);
+      box-shadow: 0 4px 16px rgba($red, 0.2);
     }
 
     &.pomodoro-resumed {
-      color: green;
+      color: $green;
+      border-color: rgba($green, 0.3);
+      box-shadow: 0 4px 16px rgba($green, 0.2);
     }
   }
 
   .pomodoro-time {
     font-family: JetBrainsMono NF;
-    font-weight: bolder;
-    font-size: 1.8rem;
+    font-weight: 700;
+    font-size: 2rem;
     color: $fg;
-    text-shadow: 0 0 0.5rem rgba($color: $bg-alt, $alpha: 0.5);
+    text-shadow: 0 2px 12px $shadow;
   }
 
   .pomodoro-value {
     font-family: JetBrainsMono NF;
-    font-weight: bolder;
-    font-size: 1.0rem;
+    font-weight: 700;
+    font-size: 1.1rem;
     color: $green;
-    text-shadow: 0 0 0.5rem rgba($color: $bg-alt, $alpha: 0.5);
+    text-shadow: 0 2px 8px rgba($green, 0.3);
   }
 
 
   .close {
-    font-size: 1.1rem;
-    padding: 0 0.9rem;
+    font-size: 1.2rem;
+    padding: 0 1rem;
     color: $red;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: $magenta;
+      text-shadow: 0 0 12px rgba($magenta, 0.6);
+    }
   }
 }

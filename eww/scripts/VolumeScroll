@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Volume Scroll handler
+# Called by eww onscroll event
+
+if [ "$1" = "up" ]; then
+    ../scripts/Volume --inc
+elif [ "$1" = "down" ]; then
+    ../scripts/Volume --dec
+fi

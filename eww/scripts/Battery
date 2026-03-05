@@ -1,0 +1,105 @@
+#!/bin/bash
+
+# Battery status script
+# Usage: Battery <command>
+
+# 检查是否有电池
+BATTERY_PATH="/sys/class/power_supply"
+
+if [ ! -d "$BATTERY_PATH" ]; then
+    case "$1" in
+        get_battery) echo "100" ;;
+        get_icon) echo "󰚥" ;;
+        get_status) echo "Charging" ;;
+    esac
+    exit 0
+fi
+
+# 查找电池设备
+BATTERY=$(ls "$BATTERY_PATH" | grep -i bat | head -n 1)
+
+if [ -z "$BATTERY" ]; then
+    case "$1" in
+        get_battery) echo "100" ;;
+        get_icon) echo "󰚥" ;;
+        get_status) echo "Charging" ;;
+    esac
+    exit 0
+fi
+
+BATTERY_INFO="$BATTERY_PATH/$BATTERY"
+
+get_battery_level() {
+    if [ -f "$BATTERY_INFO/capacity" ]; then
+        cat "$BATTERY_INFO/capacity"
+    else
+        echo "100"
+    fi
+}
+
+get_battery_status() {
+    if [ -f "$BATTERY_INFO/status" ]; then
+        cat "$BATTERY_INFO/status"
+    else
+        echo "Unknown"
+    fi
+}
+
+get_battery_icon() {
+    level=$(get_battery_level)
+    status=$(get_battery_status)
+    
+    if [ "$status" = "Charging" ]; then
+        if [ "$level" -lt 20 ]; then
+            echo "󰢟"
+        elif [ "$level" -lt 40 ]; then
+            echo "󰢜"
+        elif [ "$level" -lt 60 ]; then
+            echo "󰂆"
+        elif [ "$level" -lt 80 ]; then
+            echo "󰂏"
+        else
+            echo "󰂋"
+        fi
+    else
+        if [ "$level" -eq 100 ]; then
+            echo "󰁹"
+        elif [ "$level" -ge 90 ]; then
+            echo "󰂂"
+        elif [ "$level" -ge 80 ]; then
+            echo "󰂁"
+        elif [ "$level" -ge 70 ]; then
+            echo "󰂀"
+        elif [ "$level" -ge 60 ]; then
+            echo "󰁿"
+        elif [ "$level" -ge 50 ]; then
+            echo "󰁾"
+        elif [ "$level" -ge 40 ]; then
+            echo "󰁽"
+        elif [ "$level" -ge 30 ]; then
+            echo "󰁼"
+        elif [ "$level" -ge 20 ]; then
+            echo "󰁻"
+        elif [ "$level" -ge 10 ]; then
+            echo "󰁺"
+        else
+            echo "󰂎"
+        fi
+    fi
+}
+
+case "$1" in
+    get_battery)
+        get_battery_level
+        ;;
+    get_icon)
+        get_battery_icon
+        ;;
+    get_status)
+        get_battery_status
+        ;;
+    *)
+        echo "Usage: Battery {get_battery|get_icon|get_status}"
+        exit 1
+        ;;
+esac

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Volume Icon script
+# Returns appropriate icon based on volume level
+
+volume=$(../scripts/Volume --get)
+
+if [ "$volume" = "muted" ] || [ "$volume" -eq 0 ]; then
+    echo "󰝟"
+elif [ "$volume" -lt 30 ]; then
+    echo "󰕿"
+elif [ "$volume" -lt 70 ]; then
+    echo "󰖀"
+else
+    echo "󰕾"
+fi

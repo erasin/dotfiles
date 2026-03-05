@@ -1,15 +1,40 @@
-// Eww colors for Emilia rice
+// Eww colors - Tokyo Night Theme Enhanced
+// 主色调
 $bg: #1a1b26;
-$bg-alt: #222330;
+$bg-alt: #24283b;
+$bg-highlight: #414868;
 $fg: #c0caf5;
-$black: #414868;
-$lightblack: #262831;
+$fg-alt: #a9b1d6;
+$fg-dim: #565f89;
+
+// 基础色
+$black: #15161e;
+$lightblack: #1f2335;
+$white: #c0caf5;
+
+// 强调色
 $red: #f7768e;
-$blue: #7aa2f7;
-$cyan: #7dcfff;
-$magenta: #bb9af7;
 $green: #9ece6a;
 $yellow: #e0af68;
-$archicon: #0f94d2;
+$blue: #7aa2f7;
+$magenta: #bb9af7;
+$cyan: #7dcfff;
+$orange: #ff9e64;
 
-$bg2: rgba(33, 33, 33, 0.5);
+// 特殊色
+$archicon: #0f94d2;
+$purple: #9d7cd8;
+$teal: #1abc9c;
+
+// 半透明背景
+$bg2: rgba(26, 27, 38, 0.85);
+$bg3: rgba(36, 40, 59, 0.9);
+
+// 阴影
+$shadow: rgba(0, 0, 0, 0.35);
+$shadow-light: rgba(0, 0, 0, 0.15);
+$glow: rgba(122, 162, 247, 0.2);
+
+// 边框
+$border: rgba(65, 72, 104, 0.4);
+$border-alt: rgba(192, 202, 245, 0.1);

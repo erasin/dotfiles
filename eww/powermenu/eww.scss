@@ -1,44 +1,60 @@
 window>.powermenu {
-  margin: 0.5rem;
-  background-color: $bg;
+  margin: 0.8rem;
+  background: $bg3;
+  border-radius: 0.8rem;
+  border: 1px solid $border;
+  box-shadow: 0 8px 24px $shadow;
 }
 
 .powermenu {
   font-family: "Symbols Nerd Font Mono", "JetBrains Mono Medium";
-  font-size: 2.5rem;
-  padding: 0.3rem;
-  border-radius: 0.5rem;
+  font-size: 2.8rem;
+  padding: 0.5rem;
+  border-radius: 0.8rem;
 
   &.shutdown {
-    color: rgba(211, 47, 47, 1.0);
+    color: $red;
+    text-shadow: 0 0 16px rgba($red, 0.4);
   }
 
   &.reboot {
     color: $green;
+    text-shadow: 0 0 16px rgba($green, 0.4);
   }
 
   &.lock {
     color: $yellow;
+    text-shadow: 0 0 16px rgba($yellow, 0.4);
   }
 
   &.suspend {
-    color: rgba(244, 81, 30, 1.0);
+    color: $orange;
+    text-shadow: 0 0 16px rgba($orange, 0.4);
   }
 
   &.exit {
     color: $magenta;
+    text-shadow: 0 0 16px rgba($magenta, 0.4);
   }
 
   &.close {
-    color: lightgreen;
+    color: $teal;
+    text-shadow: 0 0 16px rgba($teal, 0.4);
   }
 
   button {
-    background-color: $bg-alt;
-    padding: 1.2rem;
+    background: rgba($bg-alt, 0.6);
+    padding: 1.3rem;
+    border-radius: 0.6rem;
+    transition: all 0.2s ease;
+    border: 1px solid $border-alt;
 
     &:hover {
-      background-color: lighten($color: $bg-alt, $amount: 4%);
+      background: rgba($bg-highlight, 0.8);
+      border-color: rgba($fg, 0.2);
+    }
+    
+    &:active {
     }
   }
 }

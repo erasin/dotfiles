@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# CPU Usage script
+
+# 使用 top 或 mpstat 获取 CPU 使用率
+if command -v mpstat &>/dev/null; then
+    # 使用 mpstat
+    idle=$(mpstat 1 1 | awk '/Average/ {print $NF}')
+    used=$(echo "100 - $idle" | bc)
+    echo "${used%.*}"
+elif command -v top &>/dev/null; then
+    # 使用 top
+    cpu=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+    echo "${cpu%.*}"
+else
+    # 使用 /proc/stat
+    read -r cpu user nice system idle iowait irq softirq steal guest guest_nice < <(head -n 1 /proc/stat)
+    total=$((user + nice + system + idle + iowait + irq + softirq + steal))
+    usage=$((100 * (total - idle) / total))
+    echo "$usage"
+fi

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# RAM Usage script
+
+# 使用 free 命令
+if command -v free &>/dev/null; then
+    ram=$(free | grep Mem | awk '{printf "%.0f", ($3 / $2) * 100}')
+    echo "$ram"
+else
+    # 使用 /proc/meminfo
+    mem_total=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+    mem_available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+    mem_used=$((mem_total - mem_available))
+    ram=$((100 * mem_used / mem_total))
+    echo "$ram"
+fi

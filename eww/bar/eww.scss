@@ -1,0 +1,262 @@
+// Bar Styles - Tokyo Night Theme
+
+.bar {
+  font-family: "Symbols Nerd Font Mono", "JetBrains Mono";
+  background: rgba($bg, 0.85);
+  border-bottom: 1px solid $border;
+  box-shadow: 0 2px 16px $shadow;
+  padding: 0 1rem;
+}
+
+// Left Section
+.bar-left {
+  padding: 0 0.5rem;
+}
+
+// Center Section
+.bar-center {
+  padding: 0 1rem;
+}
+
+// Right Section
+.bar-right {
+  padding: 0 0.5rem;
+}
+
+// Workspaces
+.workspaces {
+  padding: 0 0.3rem;
+  
+  .workspace-button {
+    font-size: 1.1rem;
+    color: $fg-dim;
+    padding: 0.4rem 0.6rem;
+    margin: 0 0.2rem;
+    border-radius: 0.4rem;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: $fg-alt;
+      background: rgba($fg, 0.1);
+    }
+    
+    &.active {
+      color: $blue;
+      background: rgba($blue, 0.15);
+      font-weight: 600;
+      text-shadow: 0 0 12px rgba($blue, 0.4);
+    }
+  }
+}
+
+// Window Title
+.window-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: $fg-alt;
+  padding: 0 0.5rem;
+  margin-left: 0.5rem;
+  text-shadow: 0 1px 4px $shadow-light;
+}
+
+// Clock
+.clock {
+  background: rgba($bg-alt, 0.6);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid $border-alt;
+  box-shadow: 0 2px 8px $shadow-light;
+  
+  .time {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $fg;
+    text-shadow: 0 2px 8px $shadow-light;
+  }
+  
+  .date {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: $fg-alt;
+    text-shadow: 0 1px 4px $shadow-light;
+  }
+}
+
+// Volume
+.volume {
+  background: rgba($bg-alt, 0.4);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid $border-alt;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba($bg-alt, 0.7);
+    border-color: rgba($cyan, 0.3);
+    box-shadow: 0 0 12px rgba($cyan, 0.2);
+  }
+  
+  .volume-icon {
+    font-size: 1.1rem;
+    color: $cyan;
+    text-shadow: 0 2px 8px rgba($cyan, 0.3);
+  }
+  
+  .volume-level {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $fg-alt;
+  }
+}
+
+// Network
+.network {
+  background: rgba($bg-alt, 0.4);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid $border-alt;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba($bg-alt, 0.7);
+  }
+  
+  &.connected {
+    border-color: rgba($blue, 0.2);
+    
+    &:hover {
+      border-color: rgba($blue, 0.4);
+      box-shadow: 0 0 12px rgba($blue, 0.2);
+    }
+    
+    .network-icon {
+      color: $blue;
+      text-shadow: 0 2px 8px rgba($blue, 0.3);
+    }
+  }
+  
+  &.disconnected {
+    border-color: rgba($red, 0.2);
+    
+    &:hover {
+      border-color: rgba($red, 0.4);
+      box-shadow: 0 0 12px rgba($red, 0.2);
+    }
+    
+    .network-icon {
+      color: $red;
+      text-shadow: 0 2px 8px rgba($red, 0.3);
+    }
+  }
+  
+  .network-icon {
+    font-size: 1.1rem;
+  }
+  
+  .network-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: $fg-alt;
+  }
+}
+
+// Battery
+.battery {
+  background: rgba($bg-alt, 0.4);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid $border-alt;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba($bg-alt, 0.7);
+    border-color: rgba($green, 0.3);
+    box-shadow: 0 0 12px rgba($green, 0.2);
+  }
+  
+  &.charging {
+    border-color: rgba($yellow, 0.3);
+    
+    &:hover {
+      border-color: rgba($yellow, 0.5);
+      box-shadow: 0 0 12px rgba($yellow, 0.2);
+    }
+    
+    .battery-icon {
+      color: $yellow;
+      text-shadow: 0 2px 8px rgba($yellow, 0.3);
+    }
+  }
+  
+  .battery-icon {
+    font-size: 1.1rem;
+    color: $green;
+    text-shadow: 0 2px 8px rgba($green, 0.3);
+  }
+  
+  .battery-level {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $fg-alt;
+  }
+}
+
+// System Stats
+.system-stats {
+  background: rgba($bg-alt, 0.4);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid $border-alt;
+  
+  .cpu, .ram {
+    transition: all 0.2s ease;
+    
+    &:hover {
+    }
+  }
+  
+  .cpu-icon {
+    font-size: 1rem;
+    color: $green;
+    text-shadow: 0 2px 8px rgba($green, 0.3);
+  }
+  
+  .cpu-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $fg-alt;
+  }
+  
+  .ram-icon {
+    font-size: 1rem;
+    color: $magenta;
+    text-shadow: 0 2px 8px rgba($magenta, 0.3);
+  }
+  
+  .ram-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $fg-alt;
+  }
+}
+
+// Power Button
+.power-button {
+  font-size: 1.3rem;
+  color: $red;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  background: rgba($bg-alt, 0.4);
+  border: 1px solid $border-alt;
+  transition: all 0.2s ease;
+  text-shadow: 0 2px 8px rgba($red, 0.3);
+  
+  &:hover {
+    background: rgba($red, 0.15);
+    border-color: rgba($red, 0.4);
+    box-shadow: 0 0 16px rgba($red, 0.3);
+  }
+  
+  &:active {
+  }
+}

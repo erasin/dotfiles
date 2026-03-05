@@ -1,45 +1,53 @@
 .date {
-  background-color: $bg2;
+  background: $bg3;
   color: $fg;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid $border;
+  box-shadow: 0 8px 24px $shadow, 0 0 0 1px $border-alt;
 }
 
 .timebox {
-  margin: 1.2rem 3.5rem 0 3.5rem;
+  margin: 1.5rem 4rem 0 4rem;
 
   .time-container {
     .content {
       font-family: JetBrainsMono NF;
-      font-weight: Bolder;
-      font-size: 3.6rem;
+      font-weight: 700;
+      font-size: 4rem;
       color: $fg;
+      text-shadow: 0 4px 16px $shadow;
     }
 
     .divider {
-      margin: 0.2rem 15px;
-      padding: 0px 1px;
-      background: linear-gradient($red, $magenta, $blue, $cyan);
+      margin: 0.4rem 18px;
+      padding: 0px 2px;
+      background: linear-gradient(180deg, $red, $magenta, $blue, $cyan);
+      border-radius: 2px;
+      box-shadow: 0 0 12px rgba($magenta, 0.4);
     }
   }
 
   .date-container {
     font-family: Inconsolata SemiCondensed Medium;
-    font-weight: Bold;
-    font-size: 1rem;
-    color: $fg;
-    margin: 5px 0;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: $fg-alt;
+    margin: 8px 0;
+    text-shadow: 0 2px 4px $shadow-light;
   }
 }
 
 .cal-box {
   font-family: JetBrainsMono;
-  font-weight: Bold;
-  font-size: 0.9rem;
-  border-radius: 0.5rem;
-  padding: 0 1rem 0.2rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 0.8rem;
+  padding: 0.8rem 1.2rem 0.4rem;
   color: $fg;
-  background-color: $bg-alt;
-  margin: 0.9rem 0.6rem 0.9rem 0.6rem;
+  background: rgba($bg-alt, 0.7);
+  margin: 1rem 0.8rem;
+  border: 1px solid $border-alt;
+  box-shadow: 0 2px 12px $shadow-light;
 
   &>* {
     border: solid 0px transparent;
@@ -48,21 +56,27 @@
   &.highlight {
     padding: 10rem;
   }
-
 }
 
 calendar:selected {
   color: $magenta;
   font-weight: bold;
+  background-color: rgba($magenta, 0.15);
+  border-radius: 0.4rem;
 }
 
 calendar.header {
-  color: $magenta;
+  color: $blue;
   font-weight: bold;
+  font-size: 1rem;
 }
 
 calendar.button {
-  color: $fg;
+  color: $fg-alt;
+  
+  &:hover {
+    color: $cyan;
+  }
 }
 
 calendar.highlight {
@@ -71,5 +85,5 @@ calendar.highlight {
 }
 
 calendar:indeterminate {
-  color: $red;
+  color: rgba($fg-dim, 0.5);
 }
