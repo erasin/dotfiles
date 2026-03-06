@@ -5,6 +5,12 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+# wsl 中启用 ssh-agent
+if [[ -n $WSL_DISTRO_NAME ]]; then
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_rsa
+fi
+
 # https://github.com/akinomyoga/ble.sh
 if [ -f ~/.local/share/blesh/ble.sh ]; then
     source -- ~/.local/share/blesh/ble.sh
