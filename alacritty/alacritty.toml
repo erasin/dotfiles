@@ -2,6 +2,7 @@
 import = [
   "themes/oneDark.toml",
   "keymaps/tmux_keymap.toml",
+  "font.toml"
 ]
 
 [debug]
@@ -11,8 +12,8 @@ log_level = "Warn"
 save_to_clipboard = true
 
 [env]
-# TERM = "xterm-256color"
-TERM = "wezterm"
+TERM = "xterm-256color"
+# TERM = "wezterm"
 
 [mouse]
 hide_when_typing = true
@@ -38,25 +39,6 @@ multiplier = 3
 animation = "Linear"
 duration = 0
 
-# [colors]
-# draw_bold_text_with_bright_colors = true
-
-[font]
-# ../fontconfig/font.conf
-size = 13.0
-# normal = { family = "JetBrains Mono"}
-# normal = { family = "JetBrains Mono", style="SemiBold"}
-normal = { family = "JetNerdMono", style="SemiBold"}
-# normal = { family = "MapleNerdMono"}
-# 
-# glyph_offset = { x = 0, y = 1 }
-# offset = { x = 0, y = 2 }
- 
-# OS X only: use thin stroke font rendering. Thin strokes are suitable
-# for retina displays, but for non-retina you probably want this set to
-# false.
-# use_thin_strokes: true
- 
 [keyboard]
 bindings = [
   { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
