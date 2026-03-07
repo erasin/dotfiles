@@ -1,9 +1,11 @@
-.launchermenu {
+// Dashboard 样式 - Tokyo Night 主题
+
+.dashboard {
   font-family: "Symbols Nerd Font Mono", "JetBrains Mono Medium";
   background: $bg3;
   border-radius: 1.2rem;
   margin: 1rem;
-  min-width: 29rem;
+  padding: 1.5rem;
   border: 1px solid $border;
   box-shadow: 0 8px 32px $shadow, 0 0 0 1px $border-alt;
 }
@@ -20,11 +22,13 @@
   }
 }
 
+// 用户卡片
 .usercard {
   background: rgba($bg-alt, 0.6);
   border-radius: 0.8rem;
   border: 1px solid $border-alt;
   box-shadow: 0 2px 12px $shadow-light;
+  padding: 0.8rem;
 }
 
 .face {
@@ -71,11 +75,7 @@
   }
 }
 
-.launcher-pfp-label {
-  font-weight: 600;
-  font-size: 1rem;
-}
-
+// Pacman 更新
 .pacman {
   background: rgba($bg-alt, 0.6);
   padding: 1rem;
@@ -88,11 +88,6 @@
     font-size: 1.3rem;
     color: $yellow;
     text-shadow: 0 2px 8px rgba($yellow, 0.3);
-  }
-
-  .pacman-info {
-    font-weight: 600;
-    font-size: 1rem;
   }
 
   .pacman-updates {
@@ -140,17 +135,21 @@
   color: $fg-alt;
 }
 
-.weatherbox {
+// 天气
+.weatherboxfull {
   background: rgba($bg-alt, 0.6);
   border-radius: 0.8rem;
-  padding: 1rem;
   border: 1px solid $border-alt;
+  padding: 0.8rem;
+}
+
+.weatherbox {
+  background: transparent;
 }
 
 .weathericon {
   padding: 0.8rem;
   border-radius: 0.8rem;
-  margin-left: 0.8rem;
   background: rgba($bg-alt, 0.6);
   font-size: 1.6rem;
   border: 1px solid $border-alt;
@@ -177,6 +176,7 @@
   font-weight: 600;
 }
 
+// 系统工具
 .tools-main {
   padding: 0.5rem 0.7rem;
 }
@@ -217,31 +217,12 @@
   color: $fg-dim;
 }
 
-.redshift-btn {
-  color: $orange;
-}
-
-.redshift-no-btn {
-  color: $fg-dim;
-}
-
-.term-btn {
-  color: $blue;
-}
-
-.game-btn {
-  color: $magenta;
-}
-
-.game-no-btn {
-  color: $fg-dim;
-}
-
 .info-btn {
   font-size: 1.15rem;
   color: $fg-alt;
 }
 
+// 系统进度条
 .progress {
   background: rgba($bg-alt, 0.6);
   padding: 0.9rem;
@@ -279,4 +260,197 @@
   font-size: 2.2rem;
   color: $orange;
   text-shadow: 0 2px 8px rgba($orange, 0.3);
+}
+
+// 时钟组件
+.clock-box {
+  background: rgba($bg-alt, 0.6);
+  border-radius: 0.8rem;
+  border: 1px solid $border-alt;
+  padding: 1.5rem;
+  min-width: 280px;
+}
+
+.time-hour,
+.time-min {
+  font-size: 4rem;
+  font-weight: 700;
+  color: $blue;
+  font-family: "JetBrains Mono";
+  text-shadow: 0 2px 12px rgba($blue, 0.3);
+}
+
+.time-sep {
+  font-size: 4rem;
+  font-weight: 700;
+  color: $fg-alt;
+}
+
+.date-display {
+  font-size: 1.1rem;
+  color: $fg-alt;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+// 音乐组件
+.music-box {
+  background: rgba($bg-alt, 0.6);
+  border-radius: 0.8rem;
+  border: 1px solid $border-alt;
+  padding: 1.2rem;
+  min-width: 280px;
+}
+
+.music-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $fg;
+  margin-bottom: 0.3rem;
+}
+
+.music-artist {
+  font-size: 0.9rem;
+  color: $fg-alt;
+  margin-bottom: 0.8rem;
+}
+
+.music-controls {
+  margin-top: 0.5rem;
+}
+
+.music-btn {
+  font-size: 1.5rem;
+  color: $fg-alt;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: $fg;
+    text-shadow: 0 0 12px rgba($fg, 0.5);
+  }
+  
+  &.play {
+    font-size: 1.8rem;
+    color: $green;
+    
+    &:hover {
+      text-shadow: 0 0 12px rgba($green, 0.5);
+    }
+  }
+}
+
+// 应用快捷方式
+.apps-box {
+  background: rgba($bg-alt, 0.6);
+  border-radius: 0.8rem;
+  border: 1px solid $border-alt;
+  padding: 1rem;
+}
+
+.app-btn {
+  font-size: 2rem;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+  background: rgba($bg, 0.4);
+  border: 1px solid $border-alt;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 12px $shadow;
+  }
+  
+  &.firefox { color: #FF7139; }
+  &.telegram { color: #0088CC; }
+  &.discord { color: #7289DA; }
+  &.terminal { color: $green; }
+  &.files { color: $yellow; }
+  &.code { color: $blue; }
+}
+
+// 链接快捷方式
+.links-box {
+  background: rgba($bg-alt, 0.6);
+  border-radius: 0.8rem;
+  border: 1px solid $border-alt;
+  padding: 1rem;
+}
+
+.link-btn {
+  font-size: 2rem;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    
+    box-shadow: 0 4px 12px $shadow;
+  }
+  
+  &.github { 
+    background: #24292E;
+    color: $white;
+  }
+  &.reddit { 
+    background: #E46231;
+    color: $white;
+  }
+  &.twitter { 
+    background: #61AAD6;
+    color: $white;
+  }
+  &.youtube { 
+    background: #DF584E;
+    color: $white;
+  }
+}
+
+// 电源按钮
+.power-box {
+  background: rgba($bg-alt, 0.6);
+  border-radius: 0.8rem;
+  border: 1px solid $border-alt;
+  padding: 1rem;
+}
+
+.power-btn {
+  font-size: 2rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.6rem;
+  background: rgba($bg, 0.4);
+  border: 1px solid $border-alt;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    
+    box-shadow: 0 4px 12px $shadow;
+  }
+  
+  &.logout { 
+    color: $red;
+    &:hover {
+      background: rgba($red, 0.2);
+      text-shadow: 0 0 12px rgba($red, 0.5);
+    }
+  }
+  &.sleep { 
+    color: $green;
+    &:hover {
+      background: rgba($green, 0.2);
+      text-shadow: 0 0 12px rgba($green, 0.5);
+    }
+  }
+  &.reboot { 
+    color: $yellow;
+    &:hover {
+      background: rgba($yellow, 0.2);
+      text-shadow: 0 0 12px rgba($yellow, 0.5);
+    }
+  }
+  &.poweroff { 
+    color: $blue;
+    &:hover {
+      background: rgba($blue, 0.2);
+      text-shadow: 0 0 12px rgba($blue, 0.5);
+    }
+  }
 }

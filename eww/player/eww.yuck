@@ -195,7 +195,7 @@
       :class "player-art-bg"
       (box 
         :class "player-art" 
-        :style "background-image: url('${music-art}')"
+        :style {music-art == "" ? "background-image: url(assets/player.webp)" : "background-image: url(${music-art})"}
         )
     )
     (box 
