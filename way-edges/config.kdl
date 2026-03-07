@@ -1,4 +1,4 @@
-// git: b37be1040003ed37f64c82a0ab2c9a6372721a2c
+// git: 8c938d3ac9f60e2b7ecb601a6b90862937d44a95
 //  https://github.com/way-edges/way-edges/blob/master/doc/config/widgets/slider.md
 //  https://github.com/ogios/dots/blob/master/way-edges/config.kdl
 //
@@ -16,64 +16,70 @@ workspace {
   monitor "DP-3"
   thickness 30
   length "30%"
-  hover-color "#FFA726"
   active-increase 0.2
-  focus-color "#F4511E"
+  gap 5
+  active-color "#00000000"
   default-color "#333333"
+  focus-color "#F4511E"
+  hover-color "#FFA726"
+   // border-radius 8
+  // border-width 3
   focused-only
   preset "niri" {
     // preserve-empty
   }
 }
 
-slide {
+// 音量
+slider {
   pinnable
   pin-with-key
   ignore-exclusive
-  edge "right"
   monitor "*"
   layer "overlay"
-  position "bottom"
-  margins{
-    bottom "5%"
-  }
-  preview-size 9
-  thickness 40
-  border-width 3
-  length "12.5%"
-  radius 10
-  obtuse-angle 90
-  fg-color "#18A558cc"
-  bg-color "#0000"
-  border-color "#18A558"
-  fg-text-color "#fffa"
-  bg-text-color "#fffa"
-  redraw-only-on-internal-update
-  preset "speaker"
-}
-
-slide {
-  pinnable
-  pin-with-key
-  ignore-exclusive
   edge "right"
-  monitor "*"
-  layer "overlay"
   position "bottom"
   margins {
-    bottom "17.5%"
+    bottom "30.0%"
   }
-  preview-size 9
-  thickness 40
+  preview-size 0 // 提示部分
+  thickness 35
   border-width 3
-  length "12.5%"
-  radius 10
+  length "15%"
+  radius 25
   obtuse-angle 90
-  fg-color "#BD93F9cc"
-  bg-color "#0000"
-  border-color "#BD93F9"
-  fg-text-color "#fffa"
-  bg-text-color "#fffa"
+  fg-color "#00E676"
+  bg-color "#616161"
+  border-color "#00E676"
+  fg-text-color "#616161"
+  bg-text-color "#00E676"
   redraw-only-on-internal-update
   preset "microphone"
+}
+
+// 音频输入
+slider {
+  pinnable
+  pin-with-key
+  ignore-exclusive
+  monitor "*"
+  layer "overlay"
+  edge "right"
+  position "bottom"
+  margins{
+    bottom "13%"
+  }
+  preview-size 0 
+  thickness 35
+  border-width 3
+  length "15%"
+  radius 25
+  obtuse-angle 90
+  fg-color "#FF6E40"
+  bg-color "#616161"
+  border-color "#FF6E40"
+  fg-text-color "#616161"
+  bg-text-color "#FF6E40"
+  redraw-only-on-internal-update
+  preset "speaker"
 }
