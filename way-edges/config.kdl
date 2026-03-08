@@ -54,7 +54,7 @@ slider {
   fg-text-color "#616161"
   bg-text-color "#00E676"
   redraw-only-on-internal-update
-  preset "microphone"
+  preset "speaker"
 }
 
 // 音频输入
@@ -81,5 +81,5 @@ slider {
   fg-text-color "#616161"
   bg-text-color "#FF6E40"
   redraw-only-on-internal-update
-  preset "speaker"
+  preset "microphone"
 }
