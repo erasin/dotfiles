@@ -7,18 +7,18 @@
   /* border: 1px solid $border; */
   /* box-shadow: 0 8px 24px $shadow, 0 0 0 1px $border-alt; */
 
-  .player-art-bg {
-    background: linear-gradient(-135deg, rgba($bg-highlight, 0.85), rgba($bg-alt, 0.95), );
-    background-color: $bg-alt;
-    border-radius: 10rem 1.2rem 1.6rem 10rem;
-  }
+  /* .player-art-bg { */
+  /* background: linear-gradient(-135deg, rgba($bg-highlight, 0.85), rgba($bg-alt, 0.95), ); */
+  /* background-color: $bg-alt; */
+  /* border-radius: 10rem 1.2rem 1.6rem 10rem; */
+  /* } */
 
   .player-art {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     box-shadow: 0 0 0.5rem $shadow, 0 0 0 1px $border;
-    border-radius: 8rem;
+    border-radius: 2rem 1rem 1rem 5rem;
     min-width: 15.2rem;
     min-height: 15.2rem;
     /* margin-right: 0.5rem; */
@@ -63,7 +63,7 @@
       font-family: JetBrainsMono NF;
       font-weight: 600;
       font-size: 0.85rem;
-      color: $fg-alt;
+      color: $cyan;
       text-shadow: 0 1px 4px $shadow-light;
       margin-bottom: 0.2rem;
     }
@@ -72,7 +72,7 @@
       font-family: JetBrainsMono NF;
       font-weight: 600;
       font-size: 0.85rem;
-      color: $fg-dim;
+      color: $fg-alt;
       text-shadow: 0 1px 4px $shadow-light;
     }
 
