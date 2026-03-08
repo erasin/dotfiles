@@ -43,7 +43,7 @@ slider {
     bottom "30.0%"
   }
   preview-size 0 // 提示部分
-  thickness 35
+  thickness 32
   border-width 3
   length "15%"
   radius 25
@@ -70,7 +70,7 @@ slider {
     bottom "13%"
   }
   preview-size 0 
-  thickness 35
+  thickness 32
   border-width 3
   length "15%"
   radius 25

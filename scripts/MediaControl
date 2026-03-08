@@ -1,362 +1,332 @@
-#!/bin/sh
+#!/usr/bin/env bash
+#
+# MediaControl - 媒体播放控制脚本
+# 支持 playerctl 和 mpc 两种后端
 
-# ╔╦╗ ╦ ╦ ╔═╗ ╦ ╔═╗
-# ║║║ ║ ║ ╚═╗ ║ ║  
-# ╩ ╩ ╚═╝ ╚═╝ ╩ ╚═╝
+set -euo pipefail
+IFS=$'\n\t'
 
-# author	Niraj
-# github	niraj998
+readonly COVER="/tmp/cover.png"
+readonly FALLBACK_COVER="${HOME}/.config/eww/assets/fallback.png"
+readonly MPD_DIR="${HOME}/Music"
 
-# ┌─┐┌─┐┌┐┌┌─┐┬┌─┐┬ ┬┬─┐┌─┐┌┬┐┬┌─┐┌┐┌┌─┐
-# │  │ ││││├┤ ││ ┬│ │├┬┘├─┤ │ ││ ││││└─┐
-# └─┘└─┘┘└┘└  ┴└─┘└─┘┴└─┴ ┴ ┴ ┴└─┘┘└┘└─┘
+readonly CONTROL="${CONTROL:-MPD}"
+readonly OPTION="${1:-}"
+readonly PARAM="${2:-}"
 
-
-
-# uncomment your music players below.
-# 
-# systemctl --user start playerctld
-# Control=$(playerctl -l | rg -v 'firefox' | head -n 1)
-# 
-# use mpd-mpris
-Control="MPD"
-# [ -n "$(pgrep amberol)" ] && Control="io.bassi.Amberol"
-# [ -n "$(pgrep spotify)" ] && Control="spotify"
-# [ -n "$(pgrep rhythmbox)" ] && Control="rhythmbox"
-# [ -n "$(pgrep audacious)" ] && Control="audacious"
-# [ -n "$(pgrep clementine)" ] && Control="clementine"
-# [ -n "$(pgrep strawberry)" ] && Control="strawberry"
-
-# saves covers here
-Cover=/tmp/cover.png
-# if cover not found in metadata use this instead
-bkpCover=~/.config/eww/assets/fallback.png
-# mpd music directory
-mpddir=~/Music
-
-# ┌─┐┬  ┌─┐┬ ┬┌─┐┬─┐┌─┐┌┬┐┬    ┌─┐┌─┐┬─┐┬┌─┐┌┬┐┌─┐
-# ├─┘│  ├─┤└┬┘├┤ ├┬┘│   │ │    └─┐│  ├┬┘│├─┘ │ └─┐
-# ┴  ┴─┘┴ ┴ ┴ └─┘┴└─└─┘ ┴ ┴─┘  └─┘└─┘┴└─┴┴   ┴ └─┘
-
-########################## Title ##########################
-title() {
-title=$(playerctl --player=$Control metadata --format {{title}})
-[ -z "$title" ] && title="Nothing Playing"
-echo "$title"
+init_cover() {
+    mkdir -p "$(dirname "${COVER}")" 2>/dev/null || true
 }
 
-########################## Artist ##########################
-artist() {
-artist=$(playerctl --player=$Control metadata --format {{artist}})
-[ -z "$artist" ] && artist="Offline"
-echo "$artist"
+get_metadata() {
+    local key="$1"
+    playerctl --player="${CONTROL}" metadata --format "{{${key}}}" 2>/dev/null || echo ""
 }
 
-########################## Album ##########################
-album() {
-album=$(playerctl --player=$Control metadata --format {{album}})
-[ -z "$album" ] && album="Album"
-echo "$album"
+get_status() {
+    playerctl --player="${CONTROL}" status 2>/dev/null || echo "Stopped"
 }
 
-########################## Status ##########################
-status() {
-status=$(playerctl --player=$Control status)
-[ -z "$status" ] && status="Stopped"
-echo "$status"
+mpd_current() {
+    mpc current -f "%${1}%" 2>/dev/null || echo ""
 }
 
-########################## Time ##########################
-position() {
-time=$(playerctl --player=$Control position --format "{{ duration(position) }}")
-[ -z "$time" ] && time="0:00"
-echo "$time"
+mpd_status() {
+    mpc status 2>/dev/null | head -2 | tail -1 | cut -c2-7 || echo ""
 }
 
-positions() {
-positions=$(playerctl --player="$Control" position | sed 's/..\{6\}$//')
-echo "${positions:-0}"
+do_next() {
+    case "${CONTROL}" in
+        MPD) mpc -q next ;;
+        *)   playerctl --player="${CONTROL}" next ;;
+    esac
 }
 
-shuffle() {
-case $1 in
-		toggle) playerctl --player="$Control" shuffle toggle ;;
-		on) playerctl --player="$Control" shuffle on;;
-		off) playerctl --player="$Control" shuffle off;;
-		*) ;;
-		esac 
-	
-shuffle=$(playerctl --player="$Control" shuffle)
-echo "${shuffle:-Off}"
+do_previous() {
+    case "${CONTROL}" in
+        MPD) mpc -q prev ;;
+        *)   playerctl --player="${CONTROL}" previous ;;
+    esac
 }
 
-########################## Length ##########################
-length() {
-length=$(playerctl --player=$Control metadata --format "{{ duration(mpris:length) }}")
-[ -z "$length" ] && length="0:00"
-echo "$length"
+do_toggle() {
+    case "${CONTROL}" in
+        MPD) mpc -q toggle ;;
+        *)   playerctl --player="${CONTROL}" play-pause ;;
+    esac
 }
 
-lengths(){
-lengths=$(playerctl --player="$Control" metadata mpris:length | sed 's/.\{6\}$//')
-echo "${lengths:-0}"
+do_stop() {
+    case "${CONTROL}" in
+        MPD) mpc -q stop ;;
+        *)   playerctl --player="${CONTROL}" stop ;;
+    esac
 }
 
-########################## trackNumber ##########################
-playlist() {
-playlist=$(playerctl --player=$Control metadata xesam:trackNumber)
-[ -z "$playlist" ] && playlist="0"
-echo "$playlist"
+get_title() {
+    local title
+    case "${CONTROL}" in
+        MPD) title=$(mpd_current title) ;;
+        *)   title=$(get_metadata title) ;;
+    esac
+    echo "${title:-Nothing Playing}"
 }
 
-########################## Cover ##########################
-cover() {
-albumart="$(playerctl --player=$Control metadata mpris:artUrl | sed -e 's/open.spotify.com/i.scdn.co/g')"
-[ $(playerctl --player=$Control metadata mpris:artUrl) ] && curl -s "$albumart" --output $Cover || cp $bkpCover $Cover 
-echo "$Cover"
+get_artist() {
+    local artist
+    case "${CONTROL}" in
+        MPD) artist=$(mpd_current artist) ;;
+        *)   artist=$(get_metadata artist) ;;
+    esac
+    echo "${artist:-Offline}"
 }
 
-########################## Statusicon ##########################
-statusicon() {
-icon=""
-[ $(playerctl --player=$Control status) = "Playing" ] && icon=""
-[ $(playerctl --player=$Control status) = "Paused" ] && icon=""
-echo "$icon"
+get_album() {
+    local album
+    case "${CONTROL}" in
+        MPD) album=$(mpd_current album) ;;
+        *)   album=$(get_metadata album) ;;
+    esac
+    echo "${album:-Album}"
 }
 
-loop(){
-case $1 in
-		none) playerctl --player="$Control" loop none ;;
-		playlist) playerctl --player="$Control" loop playlist ;;
-		track) playerctl --player="$Control" loop track ;;
-		*) ;;
-		esac 
-	
-loop=$(playerctl --player="$Control" loop)
-echo "${loop:-Off}"
+get_status_icon() {
+    local status icon
+    case "${CONTROL}" in
+        MPD) status=$(mpd_status) ;;
+        *)   status=$(get_status) ;;
+    esac
+
+    case "${status}" in
+        *playing*|*playin*) icon="" ;;
+        *paused*)            icon="" ;;
+        *)                   icon="" ;;
+    esac
+    echo "${icon}"
 }
 
-########################## Lyrics ##########################
-# lyric-next tui https://github.com/erasin/lyrics-next
-lyrics() {
-	win_id=$(niri msg --json windows | jaq -r '.[] | select(.title=="Lyric").id')
-	if [ -z $win_id ];then
-		niri msg action spawn --  alacritty -T "Lyrics" -e lyrics-next
-	fi
-# Title=$(playerctl --player=$Control metadata --format {{title}})
-# Artist=$(playerctl --player=$Control metadata --format {{artist}})
-# URL="https://api.lyrics.ovh/v1/$Artist/$Title"
-# lyrics=$(curl -s "$( echo "$URL" | sed s/" "/%20/g | sed s/"&"/%26/g | sed s/,/%2C/g | sed s/-/%2D/g)" | jaq '.lyrics' )
-# [ "$lyrics" = "null" ] && lyrics=$( curl -s --get "https://makeitpersonal.co/lyrics" --data-urlencode "artist=$Artist" --data-urlencode "title=$Title")
-# printf "$lyrics" | less
+get_position() {
+    local time
+    case "${CONTROL}" in
+        MPD) time=$(mpc status %currenttime% 2>/dev/null) ;;
+        *)   time=$(playerctl --player="${CONTROL}" position --format "{{ duration(position) }}" 2>/dev/null) ;;
+    esac
+    echo "${time:-0:00}"
 }
 
-json(){
-	echo -e "{\"text\":\"$(statusicon) $(artist)-$(title)\", \"class\":\"custom-player\",\"alt\":\"$($Control)\"}"
+get_position_sec() {
+    local time
+    case "${CONTROL}" in
+        MPD) time=$(mpc status %currenttime% 2>/dev/null | awk -F: '{print ($1 * 60) + $2}') ;;
+        *)   time=$(playerctl --player="${CONTROL}" position 2>/dev/null | sed 's/..\{6\}$//') ;;
+    esac
+    echo "${time:-0}"
 }
 
-# ┌┬┐┌─┐┌┬┐  ┌─┐┌─┐┬─┐┬┌─┐┌┬┐┌─┐
-# │││├─┘ ││  └─┐│  ├┬┘│├─┘ │ └─┐
-# ┴ ┴┴  ─┴┘  └─┘└─┘┴└─┴┴   ┴ └─┘
-
-########################## Title ##########################
-mpctitle() {
-title=$(mpc -f %title% current)
-[ -z "$title" ] && title="Nothing Playing"
-echo "$title"
+get_length() {
+    local length
+    case "${CONTROL}" in
+        MPD) length=$(mpc status %totaltime% 2>/dev/null) ;;
+        *)   length=$(playerctl --player="${CONTROL}" metadata --format "{{ duration(mpris:length) }}" 2>/dev/null) ;;
+    esac
+    echo "${length:-0:00}"
 }
 
-########################## Artist ##########################
-mpcartist() {
-artist=$(mpc -f %artist% current)
-[ -z "$artist" ] && artist="Offline"
-echo "$artist"
+get_length_sec() {
+    local length
+    case "${CONTROL}" in
+        MPD) length=$(mpc status %totaltime% 2>/dev/null | awk -F: '{print ($1 * 60) + $2}') ;;
+        *)   length=$(playerctl --player="${CONTROL}" metadata mpris:length 2>/dev/null | sed 's/.\{6\}$//') ;;
+    esac
+    echo "${length:-0}"
 }
 
-########################## Album ##########################
-mpcalbum() {
-album=$(mpc -f %album% current)
-[ -z "$album" ] && album="Album" 
-echo "$album"
+get_percent() {
+    local perc
+    case "${CONTROL}" in
+        MPD) perc=$(mpc status %percenttime% 2>/dev/null) ;;
+        *)   perc="0" ;;
+    esac
+    echo "${perc:-0}"
 }
 
-########################## Cover ##########################
-mpccover() {
-ffmpeg -i "$mpddir"/"$(mpc current -f %file%)" "${Cover}" -y || cp $bkpCover $Cover
-echo "$Cover" && exit
+get_playlist_pos() {
+    local pos all
+    case "${CONTROL}" in
+        MPD)
+            pos=$(mpc status %songpos% 2>/dev/null)
+            all=$(mpc status %length% 2>/dev/null)
+            echo "${pos:-0}/${all:-0}"
+            ;;
+        *)
+            pos=$(playerctl --player="${CONTROL}" metadata xesam:trackNumber 2>/dev/null)
+            echo "${pos:-0}"
+            ;;
+    esac
 }
 
-########################## Time ##########################
-mpcposition() {
-time=$(mpc status %currenttime%)
-[ -z "$time" ] && time="0:00"
-echo "$time"
-}
-mpcpositions() {
-time=$(mpc status %currenttime% | awk -F: '{print ($1 * 60) + $2}')
-[ -z "$time" ] && time="-0"
-echo "$time"
-}
-########################## Length ##########################
-mpclength() {
-length=$(mpc status %totaltime%)
-[ -z "$length" ] && length="0:00" 
-echo "$length"
-}
-mpclengths() {
-length=$(mpc status %totaltime% | awk -F: '{print ($1 * 60) + $2}')
-[ -z "$length" ] && length="-0" 
-echo "$length"
+get_shuffle() {
+    local shuffle
+    case "${CONTROL}" in
+        MPD)
+            shuffle=$(mpc status 2>/dev/null | sed -n '3s/.*random: \([^ ]*\).*/\1/p' | sed 's/.*/\u&/')
+            ;;
+        *)
+            shuffle=$(playerctl --player="${CONTROL}" shuffle 2>/dev/null)
+            ;;
+    esac
+    echo "${shuffle:-Off}"
 }
 
-########################## Icon ##########################
-mpcicon() {
-status=$(mpc status | head -2 | tail -1 | cut -c2-7 )
-icon=""
-[ "$status" = "playin" ] && icon=""
-[ "$status" = "paused" ] && icon=""
-echo "$icon"
+do_shuffle() {
+    case "${CONTROL}" in
+        MPD)
+            case "${PARAM}" in
+                toggle) mpc random ;;
+                on)     mpc random on ;;
+                off)    mpc random off ;;
+            esac
+            ;;
+        *)
+            playerctl --player="${CONTROL}" shuffle "${PARAM}" 2>/dev/null || true
+            ;;
+    esac
+    get_shuffle
 }
 
-########################## Status ##########################
-mpcstatus() {
-stat=$(mpc status | head -2 | tail -1 | cut -c2-7 )
-status="Stopped"
-[ "$stat" = "playin" ] && status="Playing"
-[ "$stat" = "paused" ] && status="Paused"
-echo "$status"
+get_loop() {
+    local loop
+    case "${CONTROL}" in
+        MPD)
+            loop=$(mpc status 2>/dev/null | sed -n '3s/.*repeat: \([^ ]*\).*/\1/p' | sed 's/.*/\u&/')
+            ;;
+        *)
+            loop=$(playerctl --player="${CONTROL}" loop 2>/dev/null)
+            ;;
+    esac
+    echo "${loop:-Off}"
 }
 
-########################## Percent ##########################
-mpcperc() {
-perc=$(mpc status %percenttime%)
-[ -z "$perc" ] && perc="0" 
-echo "$perc"
+do_loop() {
+    case "${CONTROL}" in
+        MPD)
+            case "${PARAM}" in
+                none)     mpc repeat ;;
+                playlist) mpc repeat ;;
+                track)    mpc repeat ;;
+            esac
+            ;;
+        *)
+            playerctl --player="${CONTROL}" loop "${PARAM}" 2>/dev/null || true
+            ;;
+    esac
+    get_loop
 }
 
-########################## Playlist ##########################
-mpcsongpos() {
-pos=$(mpc status %songpos%)
-allsongs=$(mpc status %length%)
-playlist="$pos/$allsongs"
-[ -z "$pos" ] && playlist="0/0"
-echo "$playlist"
+get_cover() {
+    case "${CONTROL}" in
+        MPD)
+            local file
+            file=$(mpc current -f %file% 2>/dev/null)
+            if [[ -n "${file}" ]]; then
+                ffmpeg -i "${MPD_DIR}/${file}" "${COVER}" -y 2>/dev/null || cp "${FALLBACK_COVER}" "${COVER}"
+            else
+                cp "${FALLBACK_COVER}" "${COVER}"
+            fi
+            ;;
+        *)
+            local art_url
+            art_url=$(playerctl --player="${CONTROL}" metadata mpris:artUrl 2>/dev/null)
+            if [[ -n "${art_url}" ]]; then
+                art_url="${art_url//open.spotify.com/i.scdn.co}"
+                curl -s "${art_url}" --output "${COVER}" 2>/dev/null || cp "${FALLBACK_COVER}" "${COVER}"
+            else
+                cp "${FALLBACK_COVER}" "${COVER}"
+            fi
+            ;;
+    esac
+    echo "${COVER}"
 }
 
-mpcshuffle(){
-case $1 in
-		toggle) mpc random ;;
-		on) mpc random on ;;
-		off) mpc random off ;;
-		*) ;;
-		esac 
-
-shuffle=$(mpc status | sed -n '3s/.*random: \([^ ]*\).*/\1/p' | sed 's/.*/\u&/')
-echo "${shuffle:-Off}"
+show_cover() {
+    get_cover | xargs feh 2>/dev/null || true
 }
 
-mpcloop(){
-loop=$(mpc status | sed -n '3s/.*repeat: \([^ ]*\).*/\1/p' | sed 's/.*/\u&/')
-echo "${loop:-Off}"
+get_json() {
+    local icon status
+    icon=$(get_status_icon)
+    status=$(get_status)
+    echo "{\"text\":\"${icon} $(get_artist)-$(get_title)\", \"class\":\"custom-player\",\"alt\":\"${CONTROL}\"}"
 }
 
-########################## Lyrics ##########################
-mpclyrics() {
-Title=$(mpc -f %title% current)
-Artist=$(mpc -f %artist% current)
-URL="https://api.lyrics.ovh/v1/$Artist/$Title"
-lyrics=$(curl -s "$( echo "$URL" | sed s/" "/%20/g | sed s/"&"/%26/g | sed s/,/%2C/g | sed s/-/%2D/g)" | jaq '.lyrics' )
-[ "$lyrics" = "null" ] && lyrics=$( curl -s --get "https://makeitpersonal.co/lyrics" --data-urlencode "artist=$Artist" --data-urlencode "title=$Title")
-printf "$lyrics" | less
+show_lyrics() {
+    local win_id
+    win_id=$(niri msg --json windows 2>/dev/null | jaq -r '.[] | select(.title=="Lyric").id' 2>/dev/null) || return
+    if [[ -z "${win_id}" ]]; then
+        alacritty -T "Lyrics" -e lyrics-next &
+    fi
 }
 
-# ┬ ┬┌─┐┬  ┌─┐
-# ├─┤├┤ │  ├─┘
-# ┴ ┴└─┘┴─┘┴  
-
-doc() {
-echo "Usage:
-  music [Options]
+show_help() {
+    cat <<EOF
+Usage:
+  media [Options]
 
 Options:
-  --previous    previous song
-  --next        next song
-  --toggle      toggle between play-pause song
-  --stop        stop song
-  --title       shows title of current song
-  --album       shows album of current song
-  --artist      shows artist of current song
-  --status      music status (playing/paused/stopped)
-  --statusicon  music status icons (playing/paused/stopped)
-  --cover       saves cover and shows location to cover of current song
-  --showcover   opens cover using feh
-  --time       shows current time of song
-  --length      shows length of song
-  --percent     shows percent song
-  --playlist    shows playlist position of current song
-  --shuffle
-  --loop
-  --lyrics      shows lyrics
-  --help        show help"
+  --previous      previous song
+  --next          next song
+  --toggle        toggle between play-pause song
+  --stop          stop song
+  --title         shows title of current song
+  --album         shows album of current song
+  --artist        shows artist of current song
+  --status        music status
+  --statusicon    music status icons
+  --cover         saves cover and shows location
+  --showcover     opens cover using feh
+  --position      shows current time of song
+  --positions     shows current time in seconds
+  --length        shows length of song
+  --lengths       shows length in seconds
+  --percent       shows percent song
+  --playlist      shows playlist position
+  --shuffle       shuffle control
+  --loop          loop control
+  --lyrics        show lyrics window
+  --json          show json status
+  --help          show this help
+EOF
 }
 
-# ┌─┐┌─┐┌┬┐┬┌─┐┌┐┌┌─┐
-# │ │├─┘ │ ││ ││││└─┐
-# └─┘┴   ┴ ┴└─┘┘└┘└─┘
+main() {
+    init_cover
 
-case $Control in
-	MPD)
-	case $1 in 
-		--next)       mpc -q next ;;
-		--previous)   mpc -q prev ;;
-		--toggle)     mpc -q toggle ;;
-		--stop)       mpc -q stop ;;
-		--title)      mpctitle  ;;
-		--artist)     mpcartist  ;;
-		--album)      mpcalbum ;;
-		--status)     mpcstatus ;;
-		--statusicon) mpcicon ;;
-		--player)     echo "$Control" ;;
-		--cover)      mpccover ;;
-		--showcover)  mpccover | xargs feh ;;
-		--position)   mpcposition ;;
-		--positions)  mpcpositions  ;;
-		--length)     mpclength ;;
-		--lengths)    mpclengths ;;
-		--percent)    mpcperc ;;
-		--playlist)   mpcsongpos ;;
-		--shuffle)    mpcshuffle $2 ;;
-		--loop)       mpcloop $2 ;;
-		--lyrics)     lyrics ;;
-		--json)       json ;; 
-		*)          doc ;;
-	esac
-	;;
-	*)
-	case $1 in 
-		--next)       playerctl --player=$Control next ;;
-		--previous)   playerctl --player=$Control previous ;;
-		--toggle)     playerctl --player=$Control play-pause ;;
-		--stop)       playerctl --player=$Control stop ;;
-		--title)      title ;;
-		--artist)     artist ;;
-		--album)      album ;;
-		--status)     status ;;
-		--statusicon) statusicon ;;
-		--player)     echo "$Control" ;;
-		--cover)      cover ;;
-		--showcover)  cover | xargs feh  ;;
-		--position)   position  ;;
-		--positions)  positions  ;;
-		--length)     length  ;;
-		--lengths)    lengths  ;;
-		--percent)    echo "0" ;;
-		--playlist)   playlist ;;
-		--shuffle)    shuffle $2 ;;
-		--loop)       loop $2 ;;
-		--lyrics)     lyrics ;;
-		--json)       json ;; 
-		*)          doc ;;
-	esac
-esac 2>/dev/null
+    case "${OPTION}" in
+        --next)          do_next ;;
+        --previous)      do_previous ;;
+        --toggle)        do_toggle ;;
+        --stop)          do_stop ;;
+        --title)         get_title ;;
+        --artist)        get_artist ;;
+        --album)         get_album ;;
+        --status)        get_status ;;
+        --statusicon)    get_status_icon ;;
+        --player)        echo "${CONTROL}" ;;
+        --cover)         get_cover ;;
+        --showcover)     show_cover ;;
+        --position)      get_position ;;
+        --positions)     get_position_sec ;;
+        --length)        get_length ;;
+        --lengths)       get_length_sec ;;
+        --percent)       get_percent ;;
+        --playlist)      get_playlist_pos ;;
+        --shuffle)       do_shuffle ;;
+        --loop)          do_loop ;;
+        --lyrics)        show_lyrics ;;
+        --json)          get_json ;;
+        --help|-h)      show_help ;;
+        *)               show_help ;;
+    esac
+}
 
+main "$@"
