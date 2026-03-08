@@ -1,6 +1,7 @@
 
 ## soft
 
+- euphonica mpd gitk client
 - zeditor
 - zedis
 
