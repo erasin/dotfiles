@@ -7,7 +7,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 readonly COVER="/tmp/cover.png"
-readonly FALLBACK_COVER="${HOME}/.config/eww/assets/fallback.png"
+readonly FALLBACK_COVER="${HOME}/Music/cover.png"
 readonly MPD_DIR="${HOME}/Music"
 
 readonly CONTROL="${CONTROL:-MPD}"

@@ -170,6 +170,10 @@ pacman -S swaylock
 
 ---
 
+## 小部件
+
+[quickshell](https://github.com/quickshell-mirror/quickshell)
+
 ## 状态栏
 
 ### Waybar

@@ -1,6 +1,20 @@
 
 ## soft
 
+- https://danklinux.com/ DMG 现代wayland desktop
+  yay -S dms-shell-bin
+  systemctl --user enable dms
+
+- quickshell https://github.com/quickshell-mirror/quickshell
+- cliphist https://github.com/sentriz/cliphist
+- wl-clipboard https://github.com/bugaevc/wl-clipboard
+- dgop https://github.com/AvengeMedia/dgop
+- dsearch https://github.com/AvengeMedia/danksearch
+   systemctl --user enable --now dsearch.service
+- matugen https://github.com/InioX/matugen 调色板
+
+- qtmultimedia 声音反馈
+
 - euphonica mpd gitk client
 - zeditor
 - zedis

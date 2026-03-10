@@ -1,5 +1,7 @@
 alias hxs='hx-scm -c ~/.config/helix/test.toml'
 
+alias par='paru'
+
 alias ls='eza --icons $@'
 alias ll='eza --all --header --group --long --git --time-style=long-iso --icons $@'
 alias lltree='eza --tree --level=2 --all --long --git --icons $@'
