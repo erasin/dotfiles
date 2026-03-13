@@ -7,8 +7,7 @@ fi
 
 # wsl 中启用 ssh-agent
 if [[ -n $WSL_DISTRO_NAME ]]; then
-    eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/id_rsa
+    [[ -f ~/dotfiles/windows/wsl.sh ]] && source ~/dotfiles/windows/wsl.sh   
 fi
 
 # https://github.com/akinomyoga/ble.sh
