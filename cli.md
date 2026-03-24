@@ -23,6 +23,8 @@
 
 - fastfetch 显示系统信息
 
+- ufw 防火墙
+
 - starship [github](https://github.com/starship/starship) [home](https://github.com/starship/starship) 替代shell "prompt"
 - Zoxide [github](https://github.com/ajeetdsouza/zoxide) z 快速跳转(cd) 替代
 - atuin [github](https://github.com/ellie/atuin) 快速查询历史命令工具

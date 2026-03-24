@@ -1,7 +1,3 @@
-(include "bar/eww.yuck")
 (include "player/eww.yuck")
 (include "powermenu/eww.yuck")
 (include "calendar/eww.yuck")
-(include "color-picker/eww.yuck")
-(include "dashboard/eww.yuck")
-(include "pomodoro/eww.yuck")

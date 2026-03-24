@@ -2,6 +2,8 @@
 
 本文档包含 Niri 窗口管理器的配置说明和推荐的生态组件。
 
+- <https://github.com/niri-wm/awesome-niri>
+
 ## 快速开始
 
 1. **启用服务**：查看 [Systemd 服务管理](#systemd-服务管理) 了解如何管理随 Niri 启动的服务

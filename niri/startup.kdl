@@ -4,10 +4,11 @@
 spawn-at-startup "fcitx5" "-d"
 // xwayland
 
-// spawn-at-startup "waybar"
-// spawn-at-startup "way-edges" "daemon" // --> systemd user
+spawn-at-startup "waybar"
+spawn-at-startup "way-edges daemon" // --> systemd user
 
 // 壁纸
-// spawn-at-startup "eww daemon" // --> systemd user
-spawn-at-startup "swww img ~/Pictures/wallpaper/ws11.jpg"
+spawn-at-startup "eww daemon" // --> systemd user
 
+spawn-at-startup "swww-daemon" // --> systemd user
+spawn-at-startup "swww img ~/Pictures/wallpaper/ws11.jpg"
