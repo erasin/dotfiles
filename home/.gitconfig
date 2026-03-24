@@ -1,0 +1,109 @@
+[user]
+	email = erasinoo@gmail.com
+	name = Erasin
+
+[core]
+	excludesfile = /home/erasin/.gitignore_global
+	pager = delta
+	quotepath = false 
+	editor = hx
+
+[pager]
+    diff = delta
+    show = delta
+    log = delta
+    blame = delta
+    grep = delta
+    reflog = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    dark = true
+    features = decorations
+    line-numbers = true
+    # side-by-side = true
+    whitespace-error-style = 22 reverse
+	navigate = true  # use n and N to move between diff sections
+
+[delta "interactive"]
+    keep-plus-minus-markers = false
+
+[delta "decorations"]
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax
+
+[i18n]  
+    commitencoding = utf-8  
+    # log编码  
+[svn]  
+    pathnameencoding = utf-8  
+    # 支持中文路径  
+    
+[log]
+	date = format:%w %Y-%m-%d %H:%M:%S
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+
+[pull]
+	rebase = false
+
+[merge]
+	conflictstyle = diff3
+#     tool = meld
+
+# [mergetool "meld"]
+#     # Choose one of these two lines (not both!) explained below.
+#     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+#     # cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+
+# [diff]
+# 	colorMoved = default
+# 	tool = meld
+# [difftool]
+#     prompt = false
+# [difftool "meld"]
+#     cmd = meld "$LOCAL" "$REMOTE"
+
+[init]
+	defaultBranch = main
+
+[alias]
+	lg = log --graph --pretty=format:'%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset'
+	lga = log --graph --date=short --pretty=format:'%C(auto)%h %d %s (%Cgreen%an%Creset) %Cblue%ad%Creset' --all
+# [difftool "sourcetree"]
+# 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+# 	path = 
+# [mergetool "sourcetree"]
+# 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+# 	trustExitCode = true
+# [commit]
+# 	template = /Users/erasin/.stCommitMsg
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[safe]
+	directory = /opt/flutter
+
+[gui]
+	encoding = utf-8
+	fontui = -family \"Noto Sans CJK SC\" -size 11 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"JetBrains Mono\" -size 11 -weight normal -slant roman -underline 0 -overstrike 0
+	spellingdictionary = none
+[http]
+	proxy = http://127.0.0.1:7890
+[https]
+	proxy = http://127.0.0.1:7890

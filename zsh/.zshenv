@@ -197,6 +197,7 @@ if [[ $(uname) == "Linux" ]]; then
   # AMD ROCM
   ROCm_PATH=/opt/rocm/bin
   export OLLAMA_GPU_OVERHEAD=1000
+  export OLLAMA_API_BASE_URL=http://127.0.0.1:11434
 
   # for ollama, pytorch AI框架
   export HSA_OVERRIDE_GFX_VERSION=10.30
