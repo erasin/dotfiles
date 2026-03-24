@@ -452,6 +452,7 @@ language-servers = [
 # auto-format = true
 # text-width = 80
 # soft-wrap = { enable = true, wrap-at-text-width = true }
+soft-wrap = { enable = true }
 
 # ==================== LaTeX ====================
 [[language]]
