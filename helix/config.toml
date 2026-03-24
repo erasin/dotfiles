@@ -134,7 +134,7 @@ workspace-diagnostics = ["warning", "error"]
 # 快捷键: Space + e 打开
 [editor.explorer]
 position = "left"    # left/right
-column-width = 22    # 列宽度
+column-width = 25    # 列宽度
 
 # ==================== 图标配置 ====================
 # [#12369] Icons v2
