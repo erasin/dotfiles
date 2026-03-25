@@ -1,12 +1,12 @@
-# Cargo 
+# export RUSTUP_DIST_SERVER="https://rsproxy.cn"
+# export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
+# curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh
 
-在使用 rsproxy 的时候，search 会出现提示 `crates-io` 问题，这里添加默认处理。
 
-```toml 
+# 在使用 rsproxy 的时候，search 会出现提示 `crates-io` 问题，这里添加默认处理。
 [registry]
 default = "crates-io"
 
-# https://rsproxy.cn/
 [source.crates-io]
 replace-with = 'rsproxy-sparse'
 [source.rsproxy]
@@ -17,4 +17,3 @@ registry = "sparse+https://rsproxy.cn/index/"
 index = "https://rsproxy.cn/crates.io-index"
 [net]
 git-fetch-with-cli = true
-```
