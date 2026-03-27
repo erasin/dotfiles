@@ -3,8 +3,11 @@ if [[ -z $WSL_DISTRO_NAME ]]; then
 fi
 
 # wsl 中启用 ssh-agent
-if [[ -z "$SSH_AUTH_SOCK" ]]; then
+if ! pgrep -x ssh-agent > /dev/null; then
     eval "$(ssh-agent -s)"
+fi
+
+if ! ssh-add -l &>/dev/null; then
     [[ -f ~/.ssh/id_ed25519 ]] && ssh-add ~/.ssh/id_ed25519
     [[ -f ~/.ssh/id_rsa ]] && ssh-add ~/.ssh/id_rsa
 fi
