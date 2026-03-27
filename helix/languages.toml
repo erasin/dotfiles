@@ -671,3 +671,19 @@ source = { git = "https://github.com/chaoswn/tree-sitter-goctl", rev = "49c43532
 # [[grammar]]
 # name = "tpl5"
 # source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "185cef710b24211f8fe45455ad47e2e653dd224e" }
+
+# ==================== BSN (Bevy Scene Notation) ====================
+[[language]]
+name = "bsn"
+scope = "source.bsn"
+injection-regex = "bsn"
+file-types = ["bsn"]
+roots = []
+auto-format = false
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "bsn"
+source = { git = "https://github.com/erasin/tree-sitter-bsn/", rev = "7393b4fce0816eb366123b41e08fc200b5e003a9" }
