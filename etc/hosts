@@ -1,0 +1,88 @@
+# 国内广告域名屏蔽列表
+# 更新时间: 2026-03-27
+
+# 百度系
+127.0.0.1 cpro.baidu.com
+127.0.0.1 cpro.baidustatic.com
+127.0.0.1 union.baidu.com
+127.0.0.1 pos.baidu.com
+127.0.0.1 du.baidu.com
+127.0.0.1 hm.baidu.com
+127.0.0.1 cl2.baidu.com
+127.0.0.1 nsclick.baidu.com
+127.0.0.1 abtest.baidu.com
+127.0.0.1 wangmeng.baidu.com
+
+# 腾讯系
+127.0.0.1 sdk.e.qq.com
+127.0.0.1 gdt.qq.com
+127.0.0.1 qzs.qq.com
+127.0.0.1 a.app.qq.com
+127.0.0.1 mmg.qq.com
+127.0.0.1 vad.qq.com
+127.0.0.1 e.qq.com
+127.0.0.1 c.isdspeed.qq.com
+127.0.0.1 pingfore.qq.com
+127.0.0.1 stats.qq.com
+127.0.0.1 pingma.qq.com
+
+# 阿里系
+127.0.0.1 alimama.com
+127.0.0.1 alimama.cn
+127.0.0.1 tanx.com
+127.0.0.1 tanx.cn
+127.0.0.1 union.alibaba.com
+127.0.0.1 acs4baidu.com
+127.0.0.1 almond.uc.cn
+127.0.0.1 adv.uc.cn
+
+# 360系
+127.0.0.1 union.360.cn
+127.0.0.1 e.360.cn
+127.0.0.1 stat.360.cn
+
+# 搜狐系
+127.0.0.1 images.sohu.com
+127.0.0.1 ads.sohu.com
+127.0.0.1 union.sohu.com
+
+# 新浪系
+127.0.0.1 ads.sina.com.cn
+127.0.0.1 union.sina.com.cn
+127.0.0.1 ad.dpool.sina.com.cn
+
+# 视频网站
+127.0.0.1 vid.atm.youku.com
+127.0.0.1 valf.atm.youku.com
+127.0.0.1 v.admaster.com.cn
+127.0.0.1 vqq-adconfig.v.qq.com
+127.0.0.1 afp.qiyi.com
+127.0.0.1 ad.iqiyi.com
+
+# 穿山甲
+127.0.0.1 api-access.pangle.cn
+127.0.0.1 pangolin.snssdk.com
+127.0.0.1 ads-sg.pangle.cn
+
+# 快手
+127.0.0.1 api-ad.e.kuaishou.com
+127.0.0.1 ad.kuaishou.com
+
+# 通用广告联盟
+127.0.0.1 doubleclick.net
+127.0.0.1 googleadservices.com
+127.0.0.1 googlesyndication.com
+127.0.0.1 googletagmanager.com
+127.0.0.1 admaster.com
+127.0.0.1 adapi.com
+127.0.0.1 adclick.com
+127.0.0.1 adserving.com
+127.0.0.1 adserver.com
+
+# 统计服务
+127.0.0.1 umeng.com
+127.0.0.1 msg.umeng.com
+127.0.0.1 uop.umeng.com
+127.0.0.1 growingio.com
+127.0.0.1 talkingdata.com
+127.0.0.1 sensordata.cn
