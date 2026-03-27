@@ -1,0 +1,62 @@
+# This is the yaml configuration file for dnsproxy with minimal working
+# configuration, all the options available can be seen with ./dnsproxy --help.
+# To use it within dnsproxy specify the --config-path=/<path-to-config.yaml>
+# option.  Any other command-line options specified will override the values
+# from the config file.
+---
+ratelimit-subnet-len-ipv4: 24
+ratelimit-subnet-len-ipv6: 64
+udp-buf-size: 0
+
+# 引导 DNS（用于解析上游 DoH 服务器域名）
+bootstrap:
+  - "180.184.1.1:53" #
+  - "223.5.5.5:53" # 阿里 DNS（国内快）
+  - "114.114.114.114:53" # 114 DNS
+  - "2400:3200::1:53" # 阿里 DNS IPv6
+
+# 监听所有局域网接口的 53 端口
+listen-addrs:
+  - "0.0.0.0"
+  - "::"
+listen-ports:
+  - 53
+
+# 加密上游（国内+国际组合）
+upstream:
+  # AdGuard DNS（默认过滤广告、追踪器、恶意软件）
+  - "https://dns.adguard.com/dns-query"
+  - "tls://dns.adguard.com"
+
+  # 备用：Cloudflare 安全 DNS（仅过滤恶意软件）
+  # - "https://security.cloudflare-dns.com/dns-query"
+
+  - "https://223.5.5.5/dns-query" # 阿里 DoH（国内快）
+  - "https://doh.pub/dns-query" # DNSPod DoH
+  - "https://cloudflare-dns.com/dns-query" # Cloudflare DoH（备用）
+  - "tls://1.1.1.1" # Cloudflare DoT
+
+# 上游策略：并发请求，取最快响应
+upstream-mode: "parallel"
+
+# 缓存配置
+cache: true
+cache-size: 131072 # 128MB
+cache-min-ttl: 60
+cache-max-ttl: 86400
+
+# 性能配置
+max-go-routines: 1024 # 最大并发数
+timeout: "5s" # 超时时间
+
+# 安全配置
+ratelimit: 0 # 局域网内不限速（根据需要调整）
+edns-client-subnet: true # 启用 EDNS Client Subnet，优化 CDN 调度
+
+# hosts-file: "/etc/hosts"
+
+# 多 hosts 文件配置
+hosts-file-enabled: true
+hosts-files:
+  - "/etc/dnsproxy/hosts/ad-block.hosts"
+  - "/etc/hosts"
