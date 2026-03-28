@@ -1,0 +1,17 @@
+# /usr/lib/systemd/system/ratholes.service
+# systemctl enable rathole.service --now
+[Unit]
+Description=Rathole Server Service
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=5s
+LimitNOFILE=1048576
+
+# with root
+ExecStart=/usr/local/bin/rathole -s /etc/rathole/ratholes.toml
+
+[Install]
+WantedBy=multi-user.target

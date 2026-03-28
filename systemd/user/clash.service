@@ -5,7 +5,7 @@ After=network-online.target
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/bin/clash -d /home/erasin/.config/clash
+ExecStart=/usr/bin/clash -d %h/.config/clash
 
 [Install]
 WantedBy=multi-user.target

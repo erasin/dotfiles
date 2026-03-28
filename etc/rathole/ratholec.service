@@ -1,0 +1,16 @@
+# %h/.config/systemd/user/ratholec.service
+# systemctl --user enable ratholec --now
+[Unit]
+Description=Rathole Client Service
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=5s
+LimitNOFILE=1048576
+
+ExecStart=%h/.cargo/bin/rathole -c %h/rathole/ratholec_work.toml
+
+[Install]
+WantedBy=multi-user.target

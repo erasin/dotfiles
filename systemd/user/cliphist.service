@@ -6,3 +6,6 @@ Requisite=graphical-session.target
 [Service]
 ExecStart=/usr/bin/wl-paste --watch cliphist store
 Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

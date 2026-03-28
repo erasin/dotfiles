@@ -6,3 +6,6 @@ Requisite=graphical-session.target
 [Service]
 ExecStart=swww-daemon
 Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

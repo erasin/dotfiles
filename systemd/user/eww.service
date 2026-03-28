@@ -4,9 +4,8 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=%h/.cargo/bin/way-edges daemon
+ExecStart=%h/.cargo/bin/eww daemon
 Restart=on-failure
-Environment=RUST_LOG=error
 
 [Install]
 WantedBy=graphical-session.target
