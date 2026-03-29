@@ -180,6 +180,7 @@ json5 = ""
 "cjs" = { glyph = "", color = "#6CA8D8" }
 "mjs" = { glyph = "", color = "#6CA8D8" }
 "cts" = { glyph = "", color = "#6CA8D8" }
+"qml" = { glyph = "", color = "#A3C448" }
 
 # 诊断图标
 [icons.diagnostic]
