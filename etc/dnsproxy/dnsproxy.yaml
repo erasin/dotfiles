@@ -58,5 +58,5 @@ edns-client-subnet: true # 启用 EDNS Client Subnet，优化 CDN 调度
 # 多 hosts 文件配置
 hosts-file-enabled: true
 hosts-files:
-  - "/etc/dnsproxy/hosts/ad-block.hosts"
+  - "/etc/dnsproxy/ad-block.hosts"
   - "/etc/hosts"

@@ -10,7 +10,7 @@ Restart=on-failure
 RestartSec=5s
 LimitNOFILE=1048576
 
-ExecStart=%h/.cargo/bin/rathole -c %h/rathole/ratholec_work.toml
+ExecStart=%h/.cargo/bin/rathole -c %h/rathole/ratholec.toml
 
 [Install]
 WantedBy=multi-user.target
