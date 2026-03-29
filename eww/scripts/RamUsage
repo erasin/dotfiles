@@ -4,7 +4,7 @@
 
 # 使用 free 命令
 if command -v free &>/dev/null; then
-    ram=$(free | grep Mem | awk '{printf "%.0f", ($3 / $2) * 100}')
+    ram=$(free | awk 'NR==2 {printf "%.0f", ($3 / $2) * 100}')
     echo "$ram"
 else
     # 使用 /proc/meminfo

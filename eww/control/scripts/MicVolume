@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# 麦克风/输入音量控制脚本
+
+get_input_volume() {
+    pamixer --source 0 --get-volume 2>/dev/null || echo "0"
+}
+
+get_input_mute() {
+    pamixer --source 0 --get-mute 2>/dev/null && echo "true" || echo "false"
+}
+
+toggle_input_mute() {
+    pamixer --source 0 --toggle-mute 2>/dev/null
+    if [[ $(get_input_mute) == "true" ]]; then
+        dunstify -u low -h string:x-dunst-stack-tag:micvol "Microphone" "Muted"
+    else
+        dunstify -u low -h string:x-dunst-stack-tag:micvol "Microphone" "Unmuted"
+    fi
+}
+
+set_input_volume() {
+    pamixer --source 0 --set-volume "$1" 2>/dev/null
+}
+
+case "$1" in
+    --get) get_input_volume ;;
+    --mute) toggle_input_mute ;;
+    --set) set_input_volume "${2:-50}" ;;
+    --ismute) get_input_mute ;;
+    *) echo "Usage: $0 [--get|--mute|--set <0-100>|--ismute]" ;;
+esac

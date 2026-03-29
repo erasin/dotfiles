@@ -24,15 +24,13 @@ tooltip {
 }
 
 // 全局过渡效果
-button, eventbox {
+button,
+eventbox {
   transition: all 0.2s ease;
 }
 
 // 导入组件样式
-@import "bar/eww.scss";
 @import "player/eww.scss";
 @import "powermenu/eww.scss";
 @import "calendar/eww.scss";
-@import "color-picker/eww.scss";
-@import "dashboard/eww.scss";
-@import "pomodoro/eww.scss";
+@import "control/eww.scss";

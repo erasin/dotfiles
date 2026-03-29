@@ -1,3 +1,4 @@
 (include "player/eww.yuck")
 (include "powermenu/eww.yuck")
 (include "calendar/eww.yuck")
+(include "control/eww.yuck")

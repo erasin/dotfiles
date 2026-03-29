@@ -1,0 +1,254 @@
+#!/usr/bin/env bash
+# 媒体控制脚本 - 支持 Spotify 和 MPD
+
+# 获取当前播放器
+get_player() {
+    if pgrep -x spotify > /dev/null; then
+        echo "spotify"
+    elif pgrep -x mpd > /dev/null; then
+        echo "mpd"
+    else
+        echo "none"
+    fi
+}
+
+# 获取播放器元数据
+get_metadata() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify metadata --format "{{${1}}}"
+            ;;
+        mpd)
+            mpc --format "%${1}%" "$1"
+            ;;
+        *)
+            echo ""
+            ;;
+    esac
+}
+
+# 获取当前播放状态
+get_status() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify status
+            ;;
+        mpd)
+            mpc status | head -n 1
+            ;;
+        *)
+            echo "Stopped"
+            ;;
+    esac
+}
+
+# 播放/暂停
+toggle() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify play-pause
+            ;;
+        mpd)
+            mpc toggle
+            ;;
+    esac
+}
+
+# 上一首
+previous() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify previous
+            ;;
+        mpd)
+            mpc prev
+            ;;
+    esac
+}
+
+# 下一首
+next() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify next
+            ;;
+        mpd)
+            mpc next
+            ;;
+    esac
+}
+
+# 获取专辑封面路径
+get_cover() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            local cover_url=$(playerctl -p spotify metadata mpris:artUrl 2>/dev/null)
+            if [[ -n "$cover_url" ]]; then
+                echo "$cover_url"
+            else
+                echo ""
+            fi
+            ;;
+        mpd)
+            mpc -f %file% | head -n 1 | xargs -I {} dirname ~/.config/mpd/albums/{}/*.jpg 2>/dev/null | head -n 1
+            ;;
+        *)
+            echo ""
+            ;;
+    esac
+}
+
+# 获取专辑封面（本地文件）
+get_cover_local() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            local cover_url=$(playerctl -p spotify metadata mpris:artUrl 2>/dev/null)
+            if [[ "$cover_url" =~ ^file:// ]]; then
+                echo "${cover_url#file://}"
+            elif [[ -n "$cover_url" ]]; then
+                # 下载到临时文件
+                local tmp_cover="/tmp/spotify_cover_$$.jpg"
+                curl -s "$cover_url" -o "$tmp_cover" 2>/dev/null
+                echo "$tmp_cover"
+            else
+                echo ""
+            fi
+            ;;
+        mpd)
+            mpc -f %file% | head -n 1 | xargs -I {} find ~/.config/mpd/albums/{} -name "*.jpg" 2>/dev/null | head -n 1
+            ;;
+        *)
+            echo ""
+            ;;
+    esac
+}
+
+# 获取播放位置
+get_position() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify position | awk '{print int($1/1000000)}'
+            ;;
+        mpd)
+            mpc status | grep -oP '\([0-9]+:[0-9]+\)' | head -n 1 | tr -d '()' | awk -F: '{print $1*60+$2}'
+            ;;
+        *)
+            echo "0"
+            ;;
+    esac
+}
+
+# 获取总时长
+get_length() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify metadata mpris:length | awk '{print int($1/1000000)}'
+            ;;
+        mpd)
+            mpc status | grep -oP '[0-9]+:[0-9]+ / [0-9]+:[0-9]+' | awk -F/ '{print $2}' | awk -F: '{print $1*60+$2}'
+            ;;
+        *)
+            echo "0"
+            ;;
+    esac
+}
+
+# 获取 shuffle 状态
+get_shuffle() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify shuffle
+            ;;
+        mpd)
+            mpc shuffle | grep -q "shuffle: on" && echo "On" || echo "Off"
+            ;;
+        *)
+            echo "Off"
+            ;;
+    esac
+}
+
+# 切换 shuffle
+toggle_shuffle() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify shuffle
+            ;;
+        mpd)
+            mpc shuffle
+            ;;
+    esac
+}
+
+# 获取循环状态
+get_loop() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify loop
+            ;;
+        mpd)
+            mpc repeat | grep -q "repeat: on" && echo "Playlist" || echo "None"
+            ;;
+        *)
+            echo "None"
+            ;;
+    esac
+}
+
+# 切换循环
+toggle_loop() {
+    local player=$(get_player)
+    
+    case "$player" in
+        spotify)
+            playerctl -p spotify loop
+            ;;
+        mpd)
+            mpc repeat
+            ;;
+    esac
+}
+
+# 执行命令
+case "$1" in
+    --player) get_player ;;
+    --title) get_metadata title ;;
+    --artist) get_metadata artist ;;
+    --album) get_metadata album ;;
+    --cover) get_cover_local ;;
+    --status) get_status ;;
+    --toggle) toggle ;;
+    --previous) previous ;;
+    --next) next ;;
+    --position) get_position ;;
+    --positions) get_position ;;
+    --length) get_length ;;
+    --lengths) get_length ;;
+    --shuffle) get_shuffle ;;
+    --loop) get_loop ;;
+    *) echo "Usage: $0 [--player|--title|--artist|--album|--cover|--status|--toggle|--previous|--next|--position|--length|--shuffle|--loop]" ;;
+esac

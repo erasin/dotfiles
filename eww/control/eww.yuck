@@ -1,0 +1,138 @@
+;; Control Panel Widget
+
+(defpoll net-status :interval "5s" `$HOME/.config/eww/control/scripts/NetworkInfo --status`)
+(defpoll net-icon :interval "5s" `$HOME/.config/eww/control/scripts/NetworkInfo --icon`)
+(defpoll net-has-eth :interval "10s" `$HOME/.config/eww/control/scripts/NetworkInfo --has-eth`)
+(defpoll net-eth-name :interval "10s" `$HOME/.config/eww/control/scripts/NetworkInfo --eth-name`)
+(defpoll net-eth-ip4 :interval "10s" `$HOME/.config/eww/control/scripts/NetworkInfo --eth-ip4`)
+(defpoll net-eth-ip6 :interval "10s" `$HOME/.config/eww/control/scripts/NetworkInfo --eth-ip6`)
+(defpoll net-has-wifi :interval "10s" `$HOME/.config/eww/control/scripts/NetworkInfo --has-wifi`)
+(defpoll net-wifi-name :interval "10s" `$HOME/.config/eww/control/scripts/NetworkInfo --wifi-name`)
+(defpoll net-wifi-ip4 :interval "10s" `$HOME/.config/eww/control/scripts/NetworkInfo --wifi-ip4`)
+(defpoll net-wifi-ip6 :interval "10s" `$HOME/.config/eww/control/scripts/NetworkInfo --wifi-ip6`)
+(defpoll bt-status :interval "3s" `$HOME/.config/eww/control/scripts/BluetoothInfo --name`)
+(defpoll bt-icon :interval "3s" `$HOME/.config/eww/control/scripts/BluetoothInfo --icon`)
+(defpoll volume :interval "2s" `pamixer --get-volume`)
+(defpoll mic-vol :interval "2s" `pamixer --source 0 --get-volume`)
+(defpoll cpu :interval "3s" `$HOME/.config/eww/scripts/CpuUsage`)
+(defpoll gpu :interval "3s" `$HOME/.config/eww/control/scripts/GpuInfo --usage`)
+(defpoll mem :interval "5s" `$HOME/.config/eww/scripts/RamUsage`)
+(defpoll disk :interval "10s" `$HOME/.config/eww/control/scripts/DiskInfo --percent`)
+
+
+(defwidget net-panel
+  (box :orientation "v" :spacing 2 :halign "center"
+
+    (eventbox :cursor "pointer"
+      (button 
+        :onclick "bash -c 'XDG_CURRENT_DESKTOP=GNOME gnome-control-center network'"
+        (label :class "mod-title" :text "网络")))
+
+    (label :class "mod-status" :text net-status)
+
+    (box :orientation "v" :spacing 2
+      (label :class "net-type" :text "eth: ${net-eth-name} ${net-eth-ip4} ${net-eth-ip6}" )
+      (label :class "net-type" :text "wifi: ${net-wifi-name} ${net-wifi-ip4} ${net-wifi-ip6}" )
+    )     
+  )
+)
+
+(defwidget bluetooth-panel []
+  (eventbox :cursor "pointer" :class "mod bt-mod"
+    :onclick "niri msg action spawn -- blueman-manager"
+
+    (box :orientation "v" :spacing 4 :halign "center"
+
+      (box :orientation "h" :spacing 6
+        (label :class "mod-icon" :text bt-icon)
+        (label :class "mod-title" :text "蓝牙")
+      )
+
+      (label :class "mod-status" :text bt-status)
+    )
+  )
+)
+
+(defwidget vol-panel []
+  (box :class "mod vol-mod" :orientation "v" :spacing 6
+    (box :orientation "h" :spacing 6
+      (label :class "mod-icon" :text "🔊")
+      (label :class "mod-title" :text "音量")
+    )
+
+    (box :orientation "v" :spacing 2
+      (box :orientation "h" :spacing 4
+        (label :class "vol-label" :text "输出")
+        (label :class "vol-val" :text "${volume}%"))
+      (scale :class "vol-scale" :value {volume + 0} :min 0 :max 100
+        :orientation "h" :hexpand true
+        :onchange "pamixer --set-volume {}")
+    )
+
+    (box :orientation "v" :spacing 2
+      (box :orientation "h" :spacing 4
+        (label :class "vol-label" :text "输入")
+        (label :class "vol-val" :text "${mic-vol}%"))
+      (scale :class "vol-scale" :value {mic-vol + 0} :min 0 :max 100
+        :orientation "h" :hexpand true
+        :onchange "pamixer --source 0 --set-volume {}")
+    )
+  )
+)
+
+(defwidget sys-panel []
+  (box :class "mod sys-mod" :orientation "v" :spacing 6
+
+    (box :orientation "h" :spacing 6
+      (label :class "mod-icon" :text "📊")
+      (label :class "mod-title" :text "系统信息"))
+
+    (box :orientation "v" :spacing 4
+      (box :orientation "h" :spacing 8
+        (label :class "sys-label" :text "CPU")
+        (progress :class "sys-progress" :value {cpu + 0} :orientation "h" :hexpand true))
+      (box :orientation "h" :spacing 8
+        (label :class "sys-label" :text "GPU")
+        (progress :class "sys-progress" :value {gpu + 0} :orientation "h" :hexpand true))
+      (box :orientation "h" :spacing 8
+        (label :class "sys-label" :text "内存")
+        (progress :class "sys-progress" :value {mem + 0} :orientation "h" :hexpand true))
+      (box :orientation "h" :spacing 8
+        (label :class "sys-label" :text "磁盘")
+        (progress :class "sys-progress" :value {disk + 0} :orientation "h" :hexpand true))
+    )
+  )
+)
+
+
+(defwidget control-panel []
+  (box
+    :class "control-panel"
+    :orientation "v"
+    :spacing 12
+
+    (box
+      :class "top-row"
+      :orientation "h"
+      :spacing 12
+      (net-panel)
+      (bluetooth-panel)
+    )
+
+    (box
+      :class "bottom-row"
+      :orientation "h"
+      :spacing 12
+      (vol-panel)
+      (sys-panel)
+    )
+  )
+)
+
+(defwindow control-panel
+    :monitor 0
+    :geometry (geometry :x "50%" :y "50%" :width "500px" :height "320px" :anchor "center")
+    :wm-ignore false
+    :stacking "overlay"
+    :focusable false
+  (control-panel))

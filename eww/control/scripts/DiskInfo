@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# 磁盘信息获取脚本
+
+get_disk_info() {
+    local disk_path="${2:-/}"
+    local info=""
+
+    case "$1" in
+        --used)
+            df -h "$disk_path" | awk 'NR==2 {print $3}'
+            ;;
+        --total)
+            df -h "$disk_path" | awk 'NR==2 {print $2}'
+            ;;
+        --percent)
+            df -h "$disk_path" | awk 'NR==2 {print $5}' | tr -d '%'
+            ;;
+        --mount)
+            df -h | awk 'NR==2 {print $6}'
+            ;;
+        *)
+            # 默认返回使用百分比
+            df -h "$disk_path" | awk 'NR==2 {print $5}'
+            ;;
+    esac
+}
+
+# 主硬盘信息（根分区）
+case "$1" in
+    --used) get_disk_info --used "/" ;;
+    --total) get_disk_info --total "/" ;;
+    --percent) get_disk_info --percent "/" ;;
+    --home-used)
+        if [[ -d /home ]]; then
+            get_disk_info --used "/home"
+        else
+            echo "0"
+        fi
+        ;;
+    --home-total)
+        if [[ -d /home ]]; then
+            get_disk_info --total "/home"
+        else
+            echo "0"
+        fi
+        ;;
+    --home-percent)
+        if [[ -d /home ]]; then
+            get_disk_info --percent "/home"
+        else
+            echo "0"
+        fi
+        ;;
+    *)
+        echo "Usage: $0 [--used|--total|--percent|--home-used|--home-total|--home-percent]"
+        ;;
+esac

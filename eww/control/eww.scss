@@ -1,0 +1,104 @@
+// Control Panel - 美化样式
+
+@import '../colors.scss';
+
+.control-panel {
+  background: $bg2;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.mod {
+  background: $bg-alt;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.net-mod,
+.bt-mod {
+  min-width: 10px;
+}
+
+.mod-icon {
+  font-size: 20px;
+}
+
+.mod-title {
+  font-size: 14px;
+  color: $fg;
+  font-weight: bold;
+}
+
+.mod-status {
+  font-size: 12px;
+  color: $fg-dim;
+}
+
+.net-type {
+  font-size: 10px;
+  color: $cyan;
+  min-width: 12px;
+}
+
+.net-name {
+  font-size: 11px;
+  color: $fg-alt;
+}
+
+.net-ip {
+  font-size: 10px;
+  color: $fg-dim;
+  margin-left: 4px;
+}
+
+.vol-mod {
+  min-width: 140px;
+}
+
+.vol-label {
+  font-size: 12px;
+  color: $blue;
+}
+
+.vol-val {
+  font-size: 12px;
+  color: $fg-alt;
+  margin-left: 8px;
+}
+
+scale.vol-scale {
+  min-height: 20px;
+}
+
+scale.vol-scale trough {
+  background: $red;
+  border-radius: 4px;
+  min-height: 8px;
+}
+
+scale.vol-scale trough highlight {
+  background: $cyan;
+  border-radius: 4px;
+}
+
+.sys-mod {
+  min-width: 160px;
+}
+
+.sys-label {
+  font-size: 12px;
+  color: $blue;
+  min-width: 32px;
+}
+
+.sys-progress progressbar>trough {
+  background: $bg-highlight;
+  border-radius: 4px;
+  min-height: 8px;
+}
+
+.sys-progress progressbar>progress {
+  background: linear-gradient(90deg, $cyan, $blue);
+  border-radius: 4px;
+  min-height: 8px;
+}

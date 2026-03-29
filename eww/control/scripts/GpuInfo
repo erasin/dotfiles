@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# GPU 信息获取脚本
+
+get_gpu_info() {
+    local gpu_usage=""
+    local gpu_mem=""
+    local gpu_temp=""
+    local gpu_name=""
+
+    # NVIDIA GPU
+    if command -v nvidia-smi &>/dev/null; then
+        gpu_name=$(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -n1)
+        gpu_usage=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader 2>/dev/null | head -n1 | tr -d ' %')
+        gpu_mem=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader 2>/dev/null | head -n1 | awk '{print int($1/1024)}')
+        gpu_temp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader 2>/dev/null | head -n1)
+        gpu_mem_total=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader 2>/dev/null | head -n1 | awk '{print int($1/1024)}')
+    # AMD GPU (ROCm)
+    elif command -v rocm-smi &>/dev/null; then
+        gpu_name=$(rocm-smi --showproductname 2>/dev/null | grep "GPU" | awk '{print $NF}')
+        gpu_usage=$(rocm-smi --showuse 2>/dev/null | grep -oP ':\s*\K\d+' | head -1)
+        gpu_temp=$(rocm-smi --showtemp 2>/dev/null | grep "GPU" | awk '{print $3}' | tr -d 'C')
+    # Intel GPU
+    elif [[ -d /sys/class/drm/card0 ]]; then
+        gpu_name="Intel Graphics"
+        if [[ -f /sys/class/drm/card0/device/gpu_busy_percent ]]; then
+            gpu_usage=$(cat /sys/class/drm/card0/device/gpu_busy_percent 2>/dev/null)
+        fi
+    fi
+
+    case "$1" in
+        --name) echo "${gpu_name:-Unknown}" ;;
+        --usage) echo "${gpu_usage:-0}" ;;
+        --mem) echo "${gpu_mem:-0}" ;;
+        --mem-total) echo "${gpu_mem_total:-0}" ;;
+        --temp) echo "${gpu_temp:-0}" ;;
+        *) echo "Usage: $0 [--name|--usage|--mem|--mem-total|--temp]" ;;
+    esac
+}
+
+get_gpu_info "$1"

@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# 网络信息获取脚本
+
+is_online() {
+    ping -c 1 -W 1 archlinux.org &>/dev/null
+}
+
+get_network_info() {
+    eth_name="" eth_ip4="" eth_ip6=""
+    wifi_name="" wifi_ip4="" wifi_ip6=""
+    eth_connected=false
+    wifi_connected=false
+
+    while IFS= read -r line; do
+        dev_type=$(echo "$line" | awk -F: '{print $2}')
+        dev_name=$(echo "$line" | awk -F: '{print $1}')
+        conn_name=$(nmcli -t -f DEVICE,CONNECTION dev status | awk -F: -v dev="$dev_name" '$1 == dev {print $2}')
+
+        if [[ "$dev_type" == "ethernet" ]]; then
+            eth_name="$conn_name"
+            eth_ip4=$(ip -4 addr show "$dev_name" 2>/dev/null | awk '/inet / {print $2}' | cut -d'/' -f1 | head -1)
+            eth_ip6=$(ip -6 addr show "$dev_name" 2>/dev/null | awk '/global/ {print $2}' | cut -d'/' -f1 | head -1)
+            eth_connected=true
+        elif [[ "$dev_type" == "wifi" ]]; then
+            wifi_name="$conn_name"
+            wifi_ip4=$(ip -4 addr show "$dev_name" 2>/dev/null | awk '/inet / {print $2}' | cut -d'/' -f1 | head -1)
+            wifi_ip6=$(ip -6 addr show "$dev_name" 2>/dev/null | awk '/global/ {print $2}' | cut -d'/' -f1 | head -1)
+            wifi_connected=true
+        fi
+    done < <(nmcli -t -f DEVICE,TYPE,STATE dev status | awk -F: '$3 == "connected" && $1 != "lo" && $2 ~ /^(ethernet|wifi)$/')
+
+    if $eth_connected && $wifi_connected; then
+        STATUS="Ethernet + WiFi"
+        ICON="󰈀+󰖩"
+    elif $eth_connected; then
+        STATUS="${eth_name:-Ethernet}"
+        ICON="󰈀"
+    elif $wifi_connected; then
+        STATUS="${wifi_name:-WiFi}"
+        ICON="󰖩"
+    else
+        STATUS="Offline"
+        ICON="󰖪"
+    fi
+}
+
+get_network_info
+
+case "$1" in
+    --status)    echo "$STATUS" ;;
+    --icon)      echo "$ICON" ;;
+    --eth-name)  echo "${eth_name:-以太网}" ;;
+    --eth-ip4)   echo "${eth_ip4:-无 IPv4}" ;;
+    --eth-ip6)   echo "${eth_ip6:-无 IPv6}" ;;
+    --wifi-name) echo "${wifi_name:-无 WiFi}" ;;
+    --wifi-ip4)  echo "${wifi_ip4:-无 IPv4}" ;;
+    --wifi-ip6)  echo "${wifi_ip6:-无 IPv6}" ;;
+    --has-eth)   $eth_connected && echo "true" || echo "false" ;;
+    --has-wifi)  $wifi_connected && echo "true" || echo "false" ;;
+    *)           echo "Usage: $0 [--status|--icon|--eth-*|--wifi-*|--has-*]" ;;
+esac
