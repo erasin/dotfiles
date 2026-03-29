@@ -162,8 +162,8 @@ cj = ""
 yml = ""
 yaml = ""
 conf = ""
-kdl = ""
-Makefile = ""
+"kdl" = { glyph = "", color = "#E3971D" }
+"Makefile" = { glyph = "", color = "#2196F3" }
 ron = "󰔘"
 db = ""
 sql = "󰆼"
@@ -174,6 +174,12 @@ json5 = ""
 "lrc" = "󰨖"
 "env" = ""
 "hurl" = { glyph = "", color = "#DE3163" }
+"yuck" = { glyph = "󰇥", color = "#E3971D" }
+"session" = "󰛤"
+"bsn" = { glyph = "", color = "#2196F3" }
+"cjs" = { glyph = "", color = "#6CA8D8" }
+"mjs" = { glyph = "", color = "#6CA8D8" }
+"cts" = { glyph = "", color = "#6CA8D8" }
 
 # 诊断图标
 [icons.diagnostic]
