@@ -1,1 +1,0 @@
-(node (identifier) @definition.type)

@@ -411,9 +411,9 @@ nonstandardSymbol = ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|
 special = { "import" = "require" }
 
 # 自定义 Lua Grammar (支持更多语法)
-[[grammar]]
-name = "lua"
-source = { git = "https://github.com/erasin/tree-sitter-lua", rev = "0158ad30769a3fcf7f40dcaaa94509023ff7fea6" }
+# [[grammar]]
+# name = "lua"
+# source = { git = "https://github.com/erasin/tree-sitter-lua", rev = "0158ad30769a3fcf7f40dcaaa94509023ff7fea6" }
 
 # ==================== Git ====================
 [[language]]
