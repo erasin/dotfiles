@@ -30,6 +30,16 @@ if [[ -f ${HOME}/dotfiles/tokens/gemini ]]; then
   export GEMINI_API_KEY=$(cat ${HOME}/dotfiles/tokens/gemini)
 fi
 
+if [[ -f ${HOME}/dotfiles/tokens/minimax ]]; then
+  export MINIMAX_API_KEY=$(cat ${HOME}/dotfiles/tokens/minimax)
+
+  export OPENAI_BASE_URL=https://api.minimaxi.com/v1
+  export OPENAI_API_KEY=${MINIMAX_API_KEY}
+
+  export ANTHROPIC_BASE_URL=https://api.minimaxi.com/anthropic
+  export ANTHROPIC_API_KEY=${MINIMAX_API_KEY}
+fi
+
 # ======= rust ========
 CARGO_PATH=${HOME}/.cargo/bin
 # export RUSTC_WRAPPER=sccache
@@ -87,6 +97,8 @@ if [[ $(uname) == "Darwin" ]]; then
   export PNPM_HOME="/Users/erasin/Library/pnpm"
 fi
 
+# 正确的官方配置
+export BUN_INSTALL="${HOME}/.bun"
 BUN_BIN=${HOME}/.bun/bin
 
 # ======= java =========
@@ -139,9 +151,9 @@ fi
 export PATH=$CARGO_PATH:\
 $LOCAL_PATH:\
 $GOPATH_BIN:\
+$BUN_BIN:\
 $NPM_PREFIX/bin:\
 $PNPM_HOME:\
-$BUN_BIN:\
 $RUBY_PATH:\
 $ROCm_PATH:\
 $LLDB_VSCODE_PATH:\
