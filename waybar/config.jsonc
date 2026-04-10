@@ -350,7 +350,7 @@
   "custom/wallpaper": {
     "format": "󰸉",
     "tooltip-format": "切换壁纸",
-    "on-click": "swww img $(fd -a -e png -e jpg -e webp -g \"*\" $HOME/Pictures/wallpaper | shuf -n1) --transition-fps=244 --transition-type=random --transition-duration=1"
+    "on-click": "awww img $(fd -a -e png -e jpg -e webp -g \"*\" $HOME/Pictures/wallpaper | shuf -n1) --transition-fps=244 --transition-type=random --transition-duration=1"
   },
 
   // 系统托盘

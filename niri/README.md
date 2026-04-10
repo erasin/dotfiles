@@ -290,21 +290,23 @@ Restart=on-failure
 
 相关链接：[swaybg](https://github.com/swaywm/swaybg)
 
-### Swww
+### Awww
+
+> swww -> awww
 
 动态壁纸程序，支持动画。
 
 ```bash
 # 安装
-pacman -S swww
+pacman -S awww
 ```
 
 创建 systemd 服务：
 
 ```bash
 cd ~/.config/systemd/user
-touch swww.service
-ln -s ~/.config/systemd/user/swww.service ~/.config/systemd/user/niri.service.wants/
+touch awww.service
+ln -s ~/.config/systemd/user/awww.service ~/.config/systemd/user/niri.service.wants/
 ```
 
 服务配置：
@@ -316,14 +318,14 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=swww-daemon
+ExecStart=awww-daemon
 Restart=on-failure
 ```
 
 Niri 配置中启动：
 
 ```kdl
-spawn-at-startup "swww img ~/Pictures/wallpaper/a1.jpg"
+spawn-at-startup "awww img ~/Pictures/wallpaper/a1.jpg"
 ```
 
 相关链接：[swww](https://github.com/LGFae/swww)

@@ -16,11 +16,6 @@ window-rule {
     }
 }
 
-// window-rule {
-//     match is-active=false app-id="Alacritty"
-//     opacity 0.9
-// }
-
 window-rule {
     match app-id="wlroots"
     open-maximized true
@@ -148,3 +143,11 @@ layer-rule {
     match namespace="^notifications$"
     block-out-from "screencast"
 }
+
+// Set the overview wallpaper on the backdrop.
+layer-rule {
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
+}
+
+
