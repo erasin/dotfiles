@@ -22,18 +22,34 @@ binds {
 
     // PipeWire & WirePlumber 的音量键映射
     // allow-when-locked=true 属性使锁屏时也可触发
-    XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" "&& ~/.config/niri/scripts/wp-vol.sh";
-    }
-    XF86AudioLowerVolume allow-when-locked=true {
-        spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" "&& ~/.config/niri/scripts/wp-vol.sh";
-    }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" "&& ~/.config/niri/scripts/wp-vol.sh"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" "&& ~/.config/niri/scripts/wp-vol.sh"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" "&& ~/.config/niri/scripts/wp-vol.sh"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle" "&& ~/.config/niri/scripts/wp-vol.sh"; }
+
     XF86AudioPlay        allow-when-locked=true { spawn "playerctl" "play-pause"; }
     XF86AudioPause       allow-when-locked=true { spawn "playerctl" "play-pause" ; }
     XF86AudioNext        allow-when-locked=true { spawn "playerctl" "next"; }
 
+
+    // noctalia shell {{------------------
+    // qs -c noctalia-shell ipc show
+
+    // Core Noctalia binds
+    // Mod+Space { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    // Mod+S { spawn-sh "qs -c noctalia-shell ipc call controlCenter toggle"; }
+    // Mod+Comma { spawn-sh "qs -c noctalia-shell ipc call settings toggle"; }
+
+    // Audio & Brightness
+    // XF86AudioRaiseVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    // XF86AudioLowerVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    // XF86AudioMute { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+    // XF86MonBrightnessUp { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    // XF86MonBrightnessDown { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+
+    // ---------------------}}
+   
     // XF86AudioMute { spawn "bash" "-c" "pactl set-sink-mute @DEFAULT_SINK@ toggle && notify-send -c \"system\" \" $(pactl get-sink-mute @DEFAULT_SINK@)\""; }
     // XF86AudioRaiseVolume { spawn "bash" "-c" "pactl set-sink-volume @DEFAULT_SINK@ +5%  && notify-send -c \"system\" \" $(pactl get-sink-volume @DEFAULT_SINK@ | head -1 | tr -s ' ' | cut -d ' ' -f1,5)\""; }
     // XF86AudioLowerVolume { spawn "bash" "-c" "pactl set-sink-volume @DEFAULT_SINK@ -5%  && notify-send -c \"system\" \" $(pactl get-sink-volume @DEFAULT_SINK@ | head -1 | tr -s ' ' | cut -d ' ' -f1,5)\""; }

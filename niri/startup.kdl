@@ -4,7 +4,7 @@
 spawn-at-startup "fcitx5" "-d"
 // xwayland
 
-// spawn-at-startup "waybar"
+// spawn-at-startup "waybar" // --> systemed user
 // spawn-at-startup "way-edges daemon" // --> systemd user
 
 // 壁纸
@@ -13,4 +13,5 @@ spawn-at-startup "fcitx5" "-d"
 // spawn-at-startup "awww-daemon" // --> systemd user
 // spawn-at-startup "awww img ~/Pictures/wallpaper/ws11.jpg"
 
-spawn-at-startup "qs" "-c" "noctalia-shell"
+// 使用 quickshell noctalia-shell
+// spawn-at-startup "qs" "-c" "noctalia-shell"
