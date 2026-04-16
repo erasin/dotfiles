@@ -1,0 +1,13 @@
+# ============================================
+# 1. CPython 代理配置 - 加速 `uv python install`
+# ============================================
+# 使用腾讯云 CNB 同步源，国内高速下载 Python 解释器
+python-install-mirror = "https://cnb.cool/astral-sh/python-build-standalone/-/releases/download/"
+
+# ============================================
+# 2. PyPI 源配置 - 加速 `uv add` / `uv pip install`
+# ============================================
+# 清华源（稳定可靠，推荐）
+[[index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true

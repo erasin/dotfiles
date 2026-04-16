@@ -15,7 +15,7 @@
 | 工具 | 链接 | 说明 |
 |------|------|------|
 | fastfetch | [github](https://github.com/fastfetch-cli/fastfetch) | 显示系统信息 |
-| ufw | | 防火墙 |
+| firewalld | | 防火墙 |
 | matugen | [github](https://github.com/InioX/matugen) | 调色板生成工具 |
 | qtmultimedia | | 声音反馈 |
 

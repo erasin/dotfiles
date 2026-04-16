@@ -80,8 +80,8 @@ alias colorChoose='osascript -e "tell application \"Visual\ Studio\ Code\" \n ch
 # 进程
 alias psg="ps auxw | rg "
 alias psptree="ps auxwwwf"
-alias openports='netstat -nape --inet'
-alias netport='netstat -ntlp'              # opening ports 端口
+alias openports='ss -nape --inet'
+alias netport='ss -ntlp'              # opening ports 端口
 
 alias iconvgu='iconv -f gbk -t utf8 '
 alias datetime="date +'%Y-%m-%dT%H:%M:%SZ'"
