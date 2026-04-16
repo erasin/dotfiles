@@ -15,6 +15,7 @@
 ## 目录
 
 - [Systemd 服务管理](#systemd-服务管理)
+- [sddm](#sddm-登陆)
 - [锁屏](#锁屏)
 - [状态栏](#状态栏)
 - [壁纸](#壁纸)
@@ -154,6 +155,58 @@ WantedBy=niri.service
 ```bash
 ln -s ~/.config/systemd/user/my-service.service ~/.config/systemd/user/niri.service.wants/
 ```
+
+---
+
+## SDDM 登陆
+
+### 安装
+
+```bash
+pacman -S sddm
+```
+
+### SilentSDDM 主题
+
+简洁的 SDDM 主题。
+
+```bash
+# 安装 AUR 包
+yay -S sddm-silent-theme
+```
+
+或手动克隆：
+
+```bash
+git clone https://github.com/uiriansan/SilentSDDM.git /usr/share/sddm/themes/SilentSDDM
+```
+
+### 配置
+
+编辑 `/etc/sddm.conf`：
+
+```ini
+[General]
+InputMethod=none
+Numlock=on
+
+[Theme]
+Current=SilentSDDM
+CursorTheme=Bibata-Modern-Ice
+Font=Noto Sans CJK SC
+
+[Users]
+MaximumUid=60506
+MinimumUid=1000
+```
+
+### 设置默认启动
+
+```bash
+systemctl set-default sddm.service
+```
+
+相关链接：[SilentSDDM](https://github.com/uiriansan/SilentSDDM)
 
 ---
 
