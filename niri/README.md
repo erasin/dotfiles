@@ -160,6 +160,8 @@ ln -s ~/.config/systemd/user/my-service.service ~/.config/systemd/user/niri.serv
 
 ## SDDM 登陆
 
+sddm 会占用 ":0" 运行 X11, niri xwayland 需要使用 ":1"  配置
+
 ### 安装
 
 ```bash

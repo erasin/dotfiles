@@ -23,13 +23,15 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // 省略客户端装饰
 prefer-no-csd
 
-// 兼容处理
+// 兼容处理 , sddm 会占用 ":0" , gdm 不需要
 // niri msg action spawn xwayland-satellite
-spawn-at-startup "xwayland-satellite"
+// spawn-at-startup "xwayland-satellite" ":1"
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous
+// 
+// niri 25 已经自动启动 xwayland-satellite, 不需要手动启用
 // 环境变量覆盖
 environment {
-    DISPLAY ":0"
+    DISPLAY ":1"
 }
 
 // 鼠标
