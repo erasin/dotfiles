@@ -231,6 +231,9 @@ pacman -S swaylock
 
 [quickshell](https://github.com/quickshell-mirror/quickshell)
 
+- [noctalia-shell](https://github.com/noctalia-dev/noctalia-shell)
+- [dms-shell](https://github.com/AvengeMedia/DankMaterialShell)
+
 ## 状态栏
 
 ### Waybar
@@ -481,6 +484,8 @@ unlock 'playerctl play'
 ---
 
 ## 启动器
+
+- [anyrun](https://github.com/anyrun-org/anyrun)
 
 ### Rofi Wayland
 

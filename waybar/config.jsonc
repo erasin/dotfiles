@@ -21,6 +21,7 @@
 
   "modules-right": [
     "custom/weather",
+    "cava",
     "pulseaudio",
     "bluetooth",
     "network",
@@ -349,14 +350,18 @@
   // 壁纸
   "custom/wallpaper": {
     "format": "󰸉",
-    "tooltip-format": "切换壁纸",
-    "on-click": "awww img $(fd -a -e png -e jpg -e webp -g \"*\" $HOME/Pictures/wallpaper | shuf -n1) --transition-fps=244 --transition-type=random --transition-duration=1"
+    "tooltip-format": "左键:随机壁纸\n右键:选择壁纸(预览)",
+    "on-click": "$HOME/.config/waybar/scripts/wallpaper.sh random",
+    "on-click-right": "$HOME/.config/waybar/scripts/wallpaper.sh anyrun"
   },
 
   // 系统托盘
   "tray": {
     "icon-size": 21,
-    "spacing": 5
+    "spacing": 5,
+    "icons": {
+      // "blueman": "bluetooth"
+    }
   },
 
   // 时钟

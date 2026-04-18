@@ -1,5 +1,5 @@
 # Helix 语言服务器与语言配置
-# https://docs.helix-editor.com/language-configuration.html
+# https://docs.helix-editor.com/languages.html
 # 参考: https://github.com/helix-editor/helix/blob/master/languages.toml
 
 # ==================== 语法高亮 Grammar ====================

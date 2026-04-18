@@ -85,7 +85,16 @@ alias netport='ss -ntlp'              # opening ports 端口
 
 alias iconvgu='iconv -f gbk -t utf8 '
 alias datetime="date +'%Y-%m-%dT%H:%M:%SZ'"
+alias ts="date +%s"
 alias touchmd="touch `date +'%Y%m%d-%H%M.md'`"
+
+function tsfmt() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: tsfmt <timestamp>"
+        return 1
+    fi
+    date -d "@${1}" "+%Y-%m-%d %H:%M:%S"
+}
 alias stnote="hx `date +'%Y%m%d-%H%M.md'`"
 alias bynote="touch `date +'%Y%m%d-%H%M.md'`;hx `date +'%Y%m%d-%H%M.md'`"
 alias wgetweb="wget -r -np -nd -k -p"   #下载网站某目录
@@ -123,10 +132,10 @@ alias skcd='cd "$(sk)"'
 
 function proxy-set() {
     
-    export http_proxy="http://127.0.0.1:7890"       # 或者使用小写
-    export HTTP_PROXY="http://127.0.0.1:7890"       # 或者使用大写 (有些工具认大写)
-    export https_proxy="http://127.0.0.1:7890"      # HTTPS 通常也用 http:// 协议指向代理地址
-    export HTTPS_PROXY="http://127.0.0.1:7890"
+    export http_proxy="http://192.168.31.133:7890"       # 或者使用小写
+    export HTTP_PROXY="http://192.168.31.133:7890"       # 或者使用大写 (有些工具认大写)
+    export https_proxy="http://192.168.31.133:7890"      # HTTPS 通常也用 http:// 协议指向代理地址
+    export HTTPS_PROXY="http://192.168.31.133:7890"
 
     export no_proxy="localhost,127.0.0.1,192.168.31.0/16,10.0.0.0/8,.example.com" # 根据你的网络修改
     export NO_PROXY="localhost,127.0.0.1,192.168.31.0/16,10.0.0.0/8,.example.com"

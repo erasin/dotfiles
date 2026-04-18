@@ -1,0 +1,64 @@
+Config(
+    x: Fraction(0.5),
+    y: Fraction(0.2),
+
+    width: Absolute(800),
+
+    height: Absolute(1),
+
+    hide_icons: false,
+
+    ignore_exclusive_zones: false,
+
+    layer: Overlay,
+
+    hide_plugin_info: true,
+
+    close_on_click: false,
+
+    show_results_immediately: true,
+
+    // max_entries: None,
+
+    plugins: [
+        "libapplications.so",
+        // "libsymbols.so",
+        "librink.so",
+        "libshell.so",
+        // "libtranslate.so",
+        "libdictionary.so",
+        "libwebsearch.so",
+        // "libkidex.so",
+        "libniri_focus.so",
+        // "libstdin.so",
+        "libactions.so",
+    ],
+
+    keybinds: [
+        Keybind(
+            key: "Return",
+            action: Select,
+        ),
+        Keybind(
+            key: "Up",
+            action: Up,
+        ),
+        Keybind(
+            key: "Down",
+            action: Down,
+        ),
+        Keybind(
+            key: "ISO_Left_Tab",
+            action: Up,
+            shift: true,
+        ),
+        Keybind(
+            key: "Tab",
+            action: Down,
+        ),
+        Keybind(
+            key: "Escape",
+            action: Close,
+        ),
+    ],
+)

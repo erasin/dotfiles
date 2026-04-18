@@ -1,3 +1,9 @@
 [[language]]
 name = "yaml"
 indent = { tab-width = 4, unit = "\t" }
+
+[[language]]
+name = "css"
+language-servers = [
+  { name = "vscode-css-language-server" , except-features = [ "inlay-hints", "diagnostics"] },
+]

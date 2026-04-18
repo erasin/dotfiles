@@ -83,3 +83,61 @@ slider {
   redraw-only-on-internal-update
   preset "microphone"
 }
+
+
+// ----- btn ---------
+
+// // left
+// btn  {
+//   ignore-exclusive
+//   edge "bottom"
+//   position "left"
+//   monitor "*"
+//   layer "overlay"
+//   margins {
+//     left "25%"
+//   }
+//   thickness 20
+//   length "15%"
+//   color "#4FC3F7"
+//   event-map {
+//     mouse-left "niri msg action focus-column-left"
+//   }
+// }
+
+// // center
+// btn  {
+//   ignore-exclusive
+//   edge "bottom"
+//   position "left"
+//   monitor "*"
+//   layer "overlay"
+//   margins {
+//     left "42.5%"
+//   }
+//   thickness 20
+//   length "15%"
+//   color "#FFA726"
+//   event-map {
+//     mouse-left "niri msg --json focused-window | jaq -r '.id' | xargs -I {} niri msg action center-window --id {}"
+//   }
+// }
+
+
+// // right
+// btn  {
+//   ignore-exclusive
+//   edge "bottom"
+//   position "right"
+//   monitor "*"
+//   layer "overlay"
+//   margins {
+//     right "25%"
+//   }
+//   thickness 20
+//   length "15%"
+//   color "#4FC3F7"
+//   event-map {
+//     mouse-left "niri msg action focus-column-right"
+//   }
+// }

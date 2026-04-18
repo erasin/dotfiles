@@ -2,3 +2,4 @@ tokens
 *.bak
 php
 /etc
+niri/dms

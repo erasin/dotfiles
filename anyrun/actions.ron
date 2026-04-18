@@ -1,0 +1,48 @@
+
+Config(
+  enable_power_actions: false,
+  custom_actions: [
+    (
+      title: "Lock 锁屏",
+      command: "niri msg action spawn -- swaylock",
+      description: "锁屏 Lock the session screen",
+      icon: "system-lock-screen",
+      confirm: true,
+    ),
+    (
+      title: "Log out 登出",
+      command: "niri msg action quit",
+      description: "Terminate the session",
+      icon: "system-log-out",
+      confirm: true,
+    ),
+    (
+      title: "Power off 关机",
+      command: "systemctl poweroff || poweroff",
+      description: "Shut down the system",
+      icon: "system-shutdown",
+      confirm: true,
+    ),
+    (
+      title: "Reboot 重启",
+      command: "systemctl reboot || reboot",
+      description: "Restart the system",
+      icon: "system-reboot",
+      confirm: true,
+    ),
+    (
+      title: "Suspend 挂起睡眠",
+      command: "systemctl suspend || pm-suspend",
+      description: "Suspend the system to RAM",
+      icon: "system-suspend",
+      confirm: true,
+    ),
+    (
+      title: "Hibernate 休眠",
+      command: "systemctl hibernate || pm-hibernate",
+      description: "Suspend the system to disk",
+      icon: "system-suspend-hibernate",
+      confirm: true,
+    ),
+  ],
+)

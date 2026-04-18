@@ -1,0 +1,14 @@
+Config(
+  desktop_actions: true,
+
+  max_entries: 5,
+
+  hide_description: false,
+
+  // preprocess_exec_script: Some("/home/user/.local/share/anyrun/preprocess_application_command.sh")
+
+  terminal: Some(Terminal(
+    command: "alacritty",
+    args: "-e {}",
+  )),
+)

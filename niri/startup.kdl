@@ -4,6 +4,8 @@
 spawn-at-startup "fcitx5" "-d"
 // xwayland
 
+spawn-at-startup "anyrun" "daemon" // --> systemed user
+
 // spawn-at-startup "waybar" // --> systemed user
 // spawn-at-startup "way-edges daemon" // --> systemd user
 
