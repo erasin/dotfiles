@@ -1,0 +1,37 @@
+// 截图保存路径 niri 自带的截图
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// 省略客户端装饰
+prefer-no-csd
+
+// 兼容处理 , sddm 会占用 ":0" , gdm 不需要
+// niri msg action spawn xwayland-satellite
+// spawn-at-startup "xwayland-satellite" ":1"
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous
+//
+// niri 25 已经自动启动 xwayland-satellite, 不需要手动启用
+// 环境变量覆盖
+environment {
+    DISPLAY ":1"
+    GSK_RENDERER "gl" // gtk4
+}
+
+// 鼠标
+cursor {
+    // xcursor-theme "breeze_cursors"
+    // xcursor-size 48
+    hide-when-typing // 键入时候自动隐藏
+    hide-after-inactive-ms 10000 // n毫秒后自动隐藏
+}
+
+// 剪贴板
+clipboard { }
+
+// 隐藏热键帮助
+hotkey-overlay {
+    skip-at-startup
+}
+
+// 切换事件
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Switch-Events
+switch-events { }

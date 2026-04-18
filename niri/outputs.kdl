@@ -1,0 +1,9 @@
+// 先使用 `niri msg outputs` 检查输出名称和支持的modes
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+output "DP-3" {
+    // off
+    mode "2560x1440@119.998"
+    // scale 1.2
+    transform "normal"
+    // position x=1280 y=0
+}

@@ -1,0 +1,6 @@
+// Workspace Named
+// 空间命名
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Named-Workspaces
+workspace "def"
+workspace "dev"
+workspace "writer"
