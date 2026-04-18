@@ -1,0 +1,16 @@
+[Unit]
+Description=OpenCode Web Service
+Documentation=https://opencode.ai
+
+[Service]
+Type=simple
+# User=%i
+WorkingDirectory=%h/Documents/inkos-books/
+# Environment="INKOS_PROJECT_ROOT=%h/Documents/inkos-books/"
+ExecStart=%h/.npm-global/bin/inkos studio --port 8081
+# ExecStart=%h/.local/share/pnpm/inkos studio --port 8081 --books %h/Documents/inkos-books
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

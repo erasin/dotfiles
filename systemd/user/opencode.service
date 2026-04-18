@@ -1,0 +1,18 @@
+[Unit]
+Description=OpenCode Server
+
+[Service]
+Type=simple
+ExecStart=%h/.bun/bin/opencode serve --port 4095
+Environment="PATH=/home/erasin/.cargo/bin:/home/erasin/.local/bin:/home/erasin/.golang/bin:/home/erasin/.bun/bin:/home/erasin/.npm-global/bin:/home/erasin/.local/share/pnpm:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/rocm/bin:/usr/lib/rustup/bin"
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+
+
+
+
+
