@@ -57,6 +57,18 @@ window-rule {
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
+window-rule {
+    match app-id="Alacritty|kitty|ghostty"
+    opacity 0.9
+
+    background-effect {
+        xray true
+        blur true
+        noise 0.05
+        saturation 3
+    }
+}
+
 // picker for helix editor
 window-rule {
     match app-id="Alacritty|kitty" title="yazi-picker"
@@ -74,6 +86,10 @@ window-rule {
     default-floating-position x=32 y=50 relative-to="bottom-right"
     default-column-width { proportion 0.15; }
     default-window-height { proportion 0.3; }
+
+    shadow {
+        on
+    }
 }
 
 // 取色器
@@ -137,17 +153,22 @@ window-rule {
     }
 }
 
-// layer 规则 录制遮挡
-// Block out mako notifications from screencasts.
-layer-rule {
-    match namespace="^notifications$"
-    block-out-from "screencast"
+// Blur the background behind pop-up menus in Nautilus.
+window-rule {
+    match app-id="Nautilus"
+    match app-id="firefox"
+
+    popups {
+        // Matches the default libadwaita pop-up corner radius.
+        geometry-corner-radius 15
+
+        // Note: it'll look better to set background opacity
+        // through your GTK theme CSS and not here.
+        // This is just an example that makes it look obvious.
+        opacity 0.85
+
+        background-effect {
+            blur true
+        }
+    }
 }
-
-// Set the overview wallpaper on the backdrop.
-layer-rule {
-  match namespace="^noctalia-overview*"
-  place-within-backdrop true
-}
-
-

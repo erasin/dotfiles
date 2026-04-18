@@ -1,6 +1,9 @@
 # Niri 配置参考
 
-本文档包含 Niri 窗口管理器的配置说明和推荐的生态组件。
+[niri](https://github.com/niri-wm/niri)
+
+> niri version 9e5716a9dbf7dbf9622a95a5bd23a898867759c6 (2026-04-18)
+> 开发版本支持 blur , background-effect
 
 - <https://github.com/niri-wm/awesome-niri>
 

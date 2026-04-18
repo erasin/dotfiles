@@ -12,8 +12,9 @@ window {
 }
 
 box.main {
+  /* niri layer background effect */
+  /* margin: 10px; */
   padding: 5px;
-  margin: 10px;
   border-radius: 10px;
   border: 2px solid @accent;
   background-color: @bg-color;

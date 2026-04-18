@@ -30,8 +30,21 @@ clipboard { }
 // 隐藏热键帮助
 hotkey-overlay {
     skip-at-startup
+    // hide-not-bound
 }
 
 // 切换事件
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Switch-Events
 switch-events { }
+
+config-notification {
+    disable-failed
+}
+
+blur {
+    // off
+    passes 3
+    offset 3.0
+    noise 0.02
+    saturation 1.5
+}

@@ -13,6 +13,7 @@ include "layout.kdl"
 include "animations.kdl"
 include "binds.kdl"
 include "window.kdl"
+include "layer.kdl"
 
 // dms
 // include "dms/windowrules.kdl"
