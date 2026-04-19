@@ -3,7 +3,7 @@
 	name = Erasin
 
 [core]
-	excludesfile = /home/erasin/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	pager = delta
 	quotepath = false 
 	editor = hx

@@ -243,6 +243,7 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "w" = { r = ":reload", c = ":config-reload" }  # 重新加载
 "." = "file_picker_in_current_buffer_directory" # 当前目录文件选择
 "n" = "signature_help"    # 函数签名帮助
+"E" = "file_explorer"
 
 # ==================== 外部程序集成 ====================
 [keys.normal.space.o]
