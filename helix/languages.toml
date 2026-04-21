@@ -32,6 +32,11 @@
 [language-server.hx-lsp]
 command = "hx-lsp"
 
+# =================================================
+# merge-ls https://github.com/shaleh/merge-conflict-assistant
+[language-server.merge-ls]
+command = "merge-conflict-assistant"
+
 # ==================== 拼写检查 ====================
 # Harper: https://github.com/Automattic/harper
 # https://writewithharper.com/docs/integrations/language-server#Dictionaries
