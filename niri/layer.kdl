@@ -1,3 +1,6 @@
+// 获取 layers 信息
+// niri msg layers
+
 
 // layer 规则 录制遮挡
 // Block out mako notifications from screencasts.
@@ -7,9 +10,13 @@ layer-rule {
 }
 
 // Set the overview wallpaper on the backdrop.
+// mod-o
 layer-rule {
-  match namespace="^noctalia-overview*"
-  place-within-backdrop true
+    match namespace="^noctalia-overview*"
+    match namespace="^wallpaper$"
+    // match namespace="^awww-daemon$"
+
+    place-within-backdrop true
 }
 
 // Make fuzzel semitransparent.

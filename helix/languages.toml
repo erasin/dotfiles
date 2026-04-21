@@ -183,12 +183,13 @@ locale = "zh-CN"
 
 [language-server.typescript-language-server.config.typescript.inlayHints]
 includeInlayEnumMemberValueHints = true
-includeInlayFunctionLikeReturnTypeHints = false
+includeInlayFunctionLikeReturnTypeHints = true
 includeInlayFunctionParameterTypeHints = true
 includeInlayParameterNameHints = "all"
 includeInlayParameterNameHintsWhenArgumentMatchesName = false
-includeInlayPropertyDeclarationTypeHints = true
-includeInlayVariableTypeHints = true
+includeInlayPropertyDeclarationTypeHints = false
+includeInlayVariableTypeHints = false
+includeInlayVariableTypes.filter = {"regex" = "^(Promise)$", "action" = "hide"}
 
 [language-server.typescript-language-server.config.javascript.inlayHints]
 includeInlayEnumMemberValueHints = true
@@ -196,8 +197,8 @@ includeInlayFunctionLikeReturnTypeHints = false
 includeInlayFunctionParameterTypeHints = true
 includeInlayParameterNameHints = "all"
 includeInlayParameterNameHintsWhenArgumentMatchesName = false
-includeInlayPropertyDeclarationTypeHints = true
-includeInlayVariableTypeHints = true
+includeInlayPropertyDeclarationTypeHints = false
+includeInlayVariableTypeHints = false
 
 # Svelte
 [[language]]

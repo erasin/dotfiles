@@ -5,6 +5,7 @@ layout {
     always-center-single-column // 单列居中
     // empty-workspace-above-first // 第一个空间留空
     center-focused-column "never" // 焦点窗口居中
+    // background-color "#333333"
 
     // 预设列宽，使用 (Mod+R) 按照顺序变动
     preset-column-widths {
@@ -65,13 +66,13 @@ layout {
         hide-when-single-tab // 单窗口隐藏
         place-within-column  // 内部放置
         gap 5                // 间距
-        width 5              // 宽度
+        width 8              // 宽度
         length total-proportion=0.5 // 总长度比例
         position "left"      // 位置 left, right, top, bottom
         gaps-between-tabs 2  // 选项卡间隔
         corner-radius 8      // 圆角
-        // active-color "red"
-        // inactive-color "gray"
+        active-color "#3949AB"
+        inactive-color "gray"
         // active-gradient from="#80c8ff" to="#bbddff" angle=45
         // inactive-gradient from="#505050" to="#808080" angle=45  relative-to="workspace-view"
     }
@@ -79,7 +80,7 @@ layout {
     insert-hint {
         // off
         color "#ffc87f80"
-        // gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to="workspace-view"
+        gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to="workspace-view"
     }
 
     // 屏幕边距设为0，最大化利用空间（可根据喜好调整）

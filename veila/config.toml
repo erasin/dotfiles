@@ -1,0 +1,97 @@
+# https://naurissteins.com/veila/docs/configuration
+
+
+# default, seceda, normandy, diagonal
+# theme = "skyline"
+
+[background]
+mode = "file"
+path = "/home/erasin/Pictures/wallpaper/red-haired-serenity-anime-art-in-4k-backiee-4K.jpg"
+blur_radius = 12
+dim_strength = 34
+# tint = "rgba(25, 100, 100, 0.2)"
+# tint_opacity = 1
+
+
+[lock]
+acquire_timeout_seconds = 5
+auto_reload_config = true
+auto_reload_debounce_ms = 250
+log_to_file = false
+log_file_path = "/home/erasin/.local/state/veila/veilad.log"
+auth_backoff_base_ms = 750
+auth_backoff_max_seconds = 12
+show_username = true
+user_hint = "Password"
+avatar_path = "/home/erasin/Pictures/cat.png"
+
+[weather]
+enabled = true
+location = "HangZhou"
+refresh_minutes = 15
+unit = "celsius"
+
+# [battery]
+# enabled = true
+# refresh_seconds = 30
+
+[now_playing]
+include_players = ["mpd-mpris"]
+exclude_players = ["Firefox", "Chromium"]
+
+[visuals.clock]
+enabled = true
+# font_weight = 600
+format = "12h"
+# style = "standard"
+# alignment = "top-center"
+# # color = "#FFFFFF"
+# opacity = 40
+# size = 12
+
+[visuals.date]
+enabled = true
+font_family = "Geom"
+# font_weight = 600
+# color = "#FFFFFF"
+# opacity = 50
+size = 6
+
+[visuals.weather]
+enabled = true
+# temperature_color = "#FFFFFF"
+# location_color = "#D6E3FF"
+# temperature_size = 6
+# location_size = 3
+# icon_size = 40
+# opacity = 50
+# left_offset = 12
+# bottom_offset = -6
+# horizontal_padding = 48
+# bottom_padding = 48
+# alignment = "left"
+
+
+[visuals.now_playing]
+enabled = true
+fade_duration_ms = 320
+opacity = 72
+title_color = "#FFFFFF"
+artist_color = "#FFFFFF"
+artwork_size = 44
+artwork_radius = 8
+# right_padding = 52
+# bottom_padding = 56
+
+[visuals.now_playing.background]
+enabled = true
+mode = "solid"
+color = "#000000"
+opacity = 34
+blur_radius = 12
+radius = 18
+padding_x = 18
+padding_y = 12
+border_color = "#D282D2"
+border_opacity = 0
+border_width = 0

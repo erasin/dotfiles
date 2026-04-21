@@ -4,7 +4,7 @@ Config(
   custom_actions: [
     (
       title: "Lock 锁屏",
-      command: "niri msg action spawn -- swaylock",
+      command: "niri msg action spawn -- veila lock",
       description: "锁屏 Lock the session screen",
       icon: "system-lock-screen",
       confirm: true,

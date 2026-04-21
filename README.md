@@ -12,7 +12,8 @@
 - [hypridle](https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/) idle 空闲管理守护进程
 - [swayidle]()
 - [hyprlock](https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/) 锁屏
-- ~~[swaylock](https://github.com/swaywm/swaylock) 锁屏~~
+- [swaylock](https://github.com/swaywm/swaylock) 锁屏
+- [veila](https://github.com/naurissteins/Veila) 锁屏
 
 ## firewall
 

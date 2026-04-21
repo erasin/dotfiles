@@ -71,6 +71,8 @@ Restart=on-failure
 
 空闲管理服务，自动息屏和锁屏。
 
+> swaylock -f  -> veila lock
+
 ```ini
 [Unit]
 PartOf=graphical-session.target
@@ -216,6 +218,19 @@ systemctl set-default sddm.service
 ---
 
 ## 锁屏
+
+### veila
+
+- [veila](https://github.com/naurissteins/Veila)
+- https://naurissteins.com/veila/docs/configuration
+
+```bash
+# 锁定
+veila lock
+
+# service
+systemctl --user enable --now veilad.service
+```
 
 ### Swaylock
 

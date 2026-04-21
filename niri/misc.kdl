@@ -37,6 +37,7 @@ hotkey-overlay {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Switch-Events
 switch-events { }
 
+
 config-notification {
     disable-failed
 }
@@ -48,3 +49,67 @@ blur {
     noise 0.02
     saturation 1.5
 }
+
+// mod+o
+// 缩放 hot cornner
+overview {
+    zoom 0.25
+    backdrop-color "#333333"
+}
+
+// hot cornner 快捷角落 
+gestures {
+    dnd-edge-view-scroll {
+        trigger-width 30
+        delay-ms 100
+        max-speed 1500
+    }
+
+    dnd-edge-workspace-switch {
+        trigger-height 50
+        delay-ms 100
+        max-speed 1500
+    }
+
+    hot-corners {
+        // off
+        top-left
+        // top-right
+        // bottom-left
+        // bottom-right
+    }
+}
+
+// alt-tab
+// https://niri-wm.github.io/niri/Configuration%3A-Recent-Windows.html#overview
+recent-windows {
+    // off
+    debounce-ms 750
+
+    open-delay-ms 150
+
+    highlight {
+        active-color "#999999ff"
+        urgent-color "#ff9999ff"
+        padding 30
+        corner-radius 10
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+
+    binds {
+        Alt+Tab         { next-window; }
+        Alt+Shift+Tab   { previous-window; }
+        Alt+grave       { next-window     filter="app-id"; }
+        Alt+Shift+grave { previous-window filter="app-id"; }
+
+        Mod+Tab         { next-window; }
+        Mod+Shift+Tab   { previous-window; }
+        Mod+grave       { next-window     filter="app-id"; }
+        Mod+Shift+grave { previous-window filter="app-id"; }
+    }
+}
+
