@@ -1,3 +1,12 @@
+# ssh-agent
+# systemctl --user enable ssh-agent.service
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [ ! -f "$SSH_AUTH_SOCK" ]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+
 # ==== BY SELF ===
 export TERM_THEME=dark
 
@@ -20,9 +29,6 @@ export LANG_ALL=zh_CN.UTF-8
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
     export MOZ_ENABLE_WAYLAND=1
 fi
-
-# 使用远程的时候，禁用 gnome-keyring 
-# export SSH_AUTH_SOCK=
 
 # ===== AI ======
 # https://aistudio.google.com/app/

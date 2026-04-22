@@ -21,3 +21,9 @@ zsh 的加载 `$ZDOTDIR` 目录下的一系列文件, `$ZDOTDIR` 未设定的时
 ZDOTDIR=${HOME}/.config/zsh
 . $ZDOTDIR/.zshenv
 ```
+
+## ssh-agent
+
+```bash
+systemctl --user enable ssh-agent.service
+```
