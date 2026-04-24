@@ -1,0 +1,23 @@
+# https://ghostty.org/docs/config/reference
+
+font-family = "JetBrains Mono SemiBold"
+font-family = "Symbols Nerd Font Mono"
+font-family = "HarmonyOS Sans Semibold"
+font-family = "Noto Sans CJK JP"
+font-size = 13
+
+# font-codepoint-map = U+E5FA-U+E6B7,U+E700-U+E8EF,U+ED00-U+F2FF,U+E200-U+E2A9,U+F0001-U+F1AF0,U+E300-U+E3E3,U+F400-U+F533,U+2665,U+26A1,U+E0A0-U+E0A2,U+E0B0-U+E0B3,U+E0A3,U+E0B4-U+E0C8,U+E0CA,U+E0CC-U+E0D7,U+23FB-U+23FE,U+2B58,U+F300-U+F375,U+E000-U+E00A,U+EA60-U+EC1E="Symbols Nerd Font Mono"
+# font-codepoint-map = U+4E00-U+9FFF,U+3400-U+4DBF,U+20000-U+2A6DF,U+2A700-U+2B73F,U+2B740-U+2B81F,U+2B820-U+2CEAF,U+F900-U+FAFF,U+2F800-U+2FA1F="HarmonyOS Sans SC"
+# font-codepoint-map = U+3040-U+309F,U+30A0-U+30FF,U+FF00-U+FFEF="Noto Sans CJK JP"
+
+
+# https://ghostty.org/docs/config/keybind/reference
+
+keybind = ctrl+n=new_window
+keybind = ctrl+t=new_tab
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = ctrl+0=reset_font_size
+keybind = ctrl+x=close_surface
+keybind = ctrl+-=new_split:right
+keybind = ctrl+_=new_split:down

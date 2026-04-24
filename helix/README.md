@@ -150,7 +150,7 @@ cargo install --path helix-term
 
 ### 推荐终端
 
-- **Linux/MacOS**: [Alacritty](https://github.com/alacritty/alacritty), [Kitty](https://github.com/kovidgoyal/kitty) 
+- **Linux/MacOS**: [Alacritty](https://github.com/alacritty/alacritty), [Ghostty](https://ghostty.org)
 - **Windows**: [Windows Terminal](https://github.com/microsoft/terminal)
 
 ### 真彩支持

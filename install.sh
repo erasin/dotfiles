@@ -8,7 +8,7 @@ ln -s ~/dotfiles/fontconfig ~/.config/fontconfig
 ln -s ~/dotfiles/fuzzel ~/.config/fuzzel
 ln -s ~/dotfiles/helix ~/.config/helix
 ln -s ~/dotfiles/hypr ~/.config/hypr
-ln -s ~/dotfiles/kitty ~/.config/kitty
+ln -s ~/dotfiles/ghostty ~/.config/ghostty
 ln -s ~/dotfiles/Makefile ~/.config/Makefile
 ln -s ~/dotfiles/mako ~/.config/mako
 ln -s ~/dotfiles/neofetch ~/.config/neofetch

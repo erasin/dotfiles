@@ -27,7 +27,7 @@
   .player-info {
     min-width: 16rem;
     border-radius: 0 1.2rem 1.2rem 0;
-    background: linear-gradient(-135deg, rgba($bg-alt, 0.95), rgba($bg-highlight, 0.85));
+    background: linear-gradient(-135deg, $bg-alt, $bg-highlight);
     box-shadow: 0 4px 8px $shadow, inset 0 0 0 1px $border-alt;
     padding: 1.2rem 1.2rem;
 

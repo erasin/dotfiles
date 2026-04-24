@@ -132,10 +132,10 @@ alias skcd='cd "$(sk)"'
 
 function proxy-set() {
     
-    export http_proxy="http://192.168.31.133:7890"       # 或者使用小写
-    export HTTP_PROXY="http://192.168.31.133:7890"       # 或者使用大写 (有些工具认大写)
-    export https_proxy="http://192.168.31.133:7890"      # HTTPS 通常也用 http:// 协议指向代理地址
-    export HTTPS_PROXY="http://192.168.31.133:7890"
+    export http_proxy="http://127.0.0.1:7890"       # 或者使用小写
+    export HTTP_PROXY="http://127.0.0.1:7890"       # 或者使用大写 (有些工具认大写)
+    export https_proxy="http://127.0.0.1:7890"      # HTTPS 通常也用 http:// 协议指向代理地址
+    export HTTPS_PROXY="http://127.0.0.1:7890"
 
     export no_proxy="localhost,127.0.0.1,192.168.31.0/16,10.0.0.0/8,.example.com" # 根据你的网络修改
     export NO_PROXY="localhost,127.0.0.1,192.168.31.0/16,10.0.0.0/8,.example.com"
@@ -164,10 +164,7 @@ function proxy-unset() {
 
 
 function hxa() {
-    # env -u WAYLAND_DISPLAY
     nohup  alacritty -T ${PWD##*/} --config-file ${HOME}/.config/alacritty/hx.toml --working-directory $(pwd) -e hx -w $(pwd) $@ > /dev/null >&1 &
-    # nohup kitty --title $(pwd) --working-directory $(pwd) hx -w $(pwd) $@ > /dev/null >&1 &
-    # nohup wezterm start --cwd $(pwd) -- hx $@ > /dev/null >&1 &
 }
 
 function ala() {
@@ -200,14 +197,6 @@ function theme-dark() {
 
     # aichat
     sd "light_theme: true" "light_theme: false" ${HOME}/dotfiles/aichat/config.yaml
-
-    # kitty
-    if command -v kitten &> /dev/null; then
-        if [ "${KITTY_WINDOW_ID}" ]; then
-            kitten theme "One Half Dark"
-        fi
-        sd "^text_composition_strategy"  "# text_composition_strategy" ${HOME}/dotfiles/kitty/kitty.conf
-    fi
     
     export TERM_THEME="dark"
 }
@@ -238,14 +227,6 @@ function theme-light() {
     # aichat
     sd "light_theme: false" "light_theme: true" ${HOME}/dotfiles/aichat/config.yaml
 
-    # kitty
-    if command -v kitten &> /dev/null; then
-        if [ "${KITTY_WINDOW_ID}" ]; then
-            kitten theme "One Half Light"
-        fi
-        sd "# text_composition_strategy"  "text_composition_strategy" ${HOME}/dotfiles/kitty/kitty.conf
-    fi
-
     export TERM_THEME="light"
 }
 
@@ -273,14 +254,6 @@ if [[ $(uname) == "Linux" ]]; then
     alias open='xdg-open $1 &> /dev/null'
     alias spi='sonic-pi-tool'
     alias web='epiphany'
-fi
-
-# kitty
-if [[ "$TERM" = "xterm-kitty" ]]; then
-    alias ssh="kitty +kitten ssh"
-    alias diff="kitty +kitten diff"
-    alias icat="kitty +kitten icat"
-    alias clip="kitty +kitten clipboard"
 fi
 
 # MacOS

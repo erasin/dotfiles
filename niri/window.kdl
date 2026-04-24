@@ -9,6 +9,11 @@ window-rule {
     draw-border-with-background false // 支持窗口透明无背景，关联layout 的 focus-ring 和 border
 }
 
+// window-rule {
+//   match is-focused=false
+//   opacity 0.7
+// }
+
 // 浮动未激活透明处理
 window-rule {
     match is-floating=true is-active=false
@@ -60,7 +65,8 @@ window-rule {
 }
 
 window-rule {
-    match app-id="Alacritty|kitty|ghostty"
+    match app-id="Alacritty|ghostty|ghostty"
+
     opacity 0.85
 
     background-effect {
@@ -71,9 +77,9 @@ window-rule {
 
 // picker for helix editor
 window-rule {
-    match app-id="Alacritty|kitty" title="yazi-picker"
-    match app-id="Alacritty|kitty" title="scooter-picker"
-    match app-id="Alacritty|kitty" title="lazygit-picker"
+    match app-id="Alacritty|ghostty" title="yazi-picker"
+    match app-id="Alacritty|ghostty" title="scooter-picker"
+    match app-id="Alacritty|ghostty" title="lazygit-picker"
     open-floating true
     default-column-width { proportion 0.6; }
     default-window-height { proportion 0.6; }
@@ -81,7 +87,7 @@ window-rule {
 
 // 歌词窗口浮动左下角
 window-rule {
-    match app-id="Alacritty|kitty" title="Lyrics"
+    match app-id="Alacritty|ghostty" title="Lyrics"
     open-floating true
     default-floating-position x=32 y=50 relative-to="bottom-right"
     default-column-width { proportion 0.15; }
@@ -158,6 +164,15 @@ window-rule {
     match app-id="Nautilus"
     match app-id="firefox"
 
+    // draw-border-with-background false
+
+    // opacity 0.85
+
+    // background-effect {
+    //     xray true
+    //     blur true
+    // }
+
     popups {
         // Matches the default libadwaita pop-up corner radius.
         geometry-corner-radius 15
@@ -165,7 +180,7 @@ window-rule {
         // Note: it'll look better to set background opacity
         // through your GTK theme CSS and not here.
         // This is just an example that makes it look obvious.
-        opacity 0.85
+        opacity 0.80
 
         background-effect {
             blur true

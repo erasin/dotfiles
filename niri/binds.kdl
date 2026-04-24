@@ -5,7 +5,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // 运行程序的快捷键建议: 终端、应用启动器、锁屏
-    Mod+T hotkey-overlay-title="打开终端" { spawn "alacritty"; } // kitty | alacritty
+    Mod+T hotkey-overlay-title="打开终端" { spawn "alacritty"; } // ghostty | alacritty
     Mod+N hotkey-overlay-title="控制面板" { spawn "eww open --toggle control-panel"; }
     // Mod+Space hotkey-overlay-title="程序" { spawn "fuzzel"; } // fuzzel
     Mod+Space hotkey-overlay-title="程序" { spawn "anyrun"; } // fuzzel

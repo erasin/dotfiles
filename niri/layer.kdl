@@ -11,21 +11,23 @@ layer-rule {
 
 // Set the overview wallpaper on the backdrop.
 // mod-o
-layer-rule {
-    match namespace="^noctalia-overview*"
-    match namespace="^wallpaper$"
-    // match namespace="^awww-daemon$"
+// layer-rule {
+//     match namespace="^noctalia-overview*"
+//     match namespace="^wallpaper$"
+//     // match namespace="^awww-daemon$"
 
-    place-within-backdrop true
-}
+//     place-within-backdrop true
+// }
 
 // Make fuzzel semitransparent.
 layer-rule {
     match namespace="^launcher$"
     match namespace="^anyrun$"
-    opacity 0.9   
+
+    opacity 0.9
 
     geometry-corner-radius 10
+    
     shadow {
         on
     }
