@@ -286,6 +286,8 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 # ]
 "e" = ":sh bash ~/.config/helix/scripts/yazi-picker.sh"
 
+"t" = ":sh bash ~/.config/helix/scripts/hx-sh"
+
 # ==================== 插入模式快捷键 ====================
 [keys.insert]
 # Tab 智能缩进

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 #
 # ime-switch
+#
+# ln -s ~/dotfiles/helix/scripts/ime-switch ~/.local/bin/
+# 
 # 为 helix/vim 提供自动切换输入法
 # esc 调用脚本切换为英文
 # insert 自动返回为记录输入法

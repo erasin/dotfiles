@@ -4,6 +4,8 @@
 #
 # 使用场景：Godot 等外部编辑器调用此脚本在 helix 中打开文件
 #
+# ln -s ~/dotfiles/helix/scripts/hx-open ~/.local/bin/
+#
 # hx-open {project} {file}:{line}:{col}
 #
 # 参数：
@@ -15,8 +17,6 @@
 #   hx-open /path/to/project scene.tscn:10:5
 #   hx-open scene.tscn:20        # 无项目路径时向上查找 .git
 #   hx-open -v /project file.gd  # 竖直拆分
-
-set -e
 
 vertical=false
 project_path=""
@@ -88,6 +88,14 @@ else
   project_path=$(realpath "$project_path")
 fi
 
+# 检查 tmux 是否存在
+if ! tmux list-sessions 2>/dev/null | grep -q .; then
+  # tmux 不存在，创建新 Alacritty 并在其中启动 tmux 会话
+  session_name=$(basename "$project_path")
+  alacritty -T "hx-$session_name" -e tmux new-session -A -s "$session_name" "hx -w '$project_path' '$file_spec'" &
+  exit 0
+fi
+
 # 查找项目中已运行的 helix 实例
 # 优先查找项目根目录完全匹配的 hx，其次是子目录中的 hx
 find_hx_pane() {
@@ -119,8 +127,10 @@ if [ -n "$target_pane" ]; then
   # 切换到目标 pane 所在的窗口
   tmux select-window -t "$(tmux display-message -p -t "$target_pane" '#{window_id}')"
 else
-  # 未找到，创建新窗口
-  tmux new-window -c "$project_path" "hx -w '$project_path' '$file_spec'"
-  # 聚焦到新建的窗口
-  tmux select-window -t :-
+  # 未找到 helix，创建新窗口并启动 hx
+  # hx 在 shell 中运行，退出后保持 shell
+  new_win=$(tmux new-window -c "$project_path" -P -F '#{window_id}')
+  tmux send-keys -t "$new_win" "hx -w '$project_path' '$file_spec'; exec bash" Enter
+  # 聚焦到新窗口
+  tmux select-window -t "$new_win"
 fi
