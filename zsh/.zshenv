@@ -101,8 +101,7 @@ if [[ $(uname) == "Darwin" ]]; then
     export ANDROID_HOME=${HOME}/Library/Android/sdk
     export NDK_HOME=${ANDROID_HOME}/ndk/25.1.8937393
 
-    export PNPM_HOME="/Users/erasin/Library/pnpm"
-    export BUN_INSTALL="${HOME}/.bun"
+    export PNPM_HOME="${HOME}/Library/pnpm"
 
     export HELIX_RUNTIME=/Applications/helix/runtime
 
