@@ -270,4 +270,13 @@ binds {
     // 关闭显示器。再次打开需要任何输入
     // 如移动鼠标或按任何键
     Mod+Shift+P { power-off-monitors; }
+
+
+    // // # 录屏相关
+    Mod+Shift+C { set-dynamic-cast-window; }
+    Mod+Shift+M { set-dynamic-cast-monitor; }
+    Mod+Shift+X { clear-dynamic-cast-target; }
+    
+    // # 其他调试或工具快捷键 (可选)
+    // # Mod+Shift+Ctrl+T { toggle-debug-tint; }
 }

@@ -175,7 +175,7 @@ window-rule {
 
     popups {
         // Matches the default libadwaita pop-up corner radius.
-        geometry-corner-radius 15
+        geometry-corner-radius 16
 
         // Note: it'll look better to set background opacity
         // through your GTK theme CSS and not here.
@@ -186,4 +186,10 @@ window-rule {
             blur true
         }
     }
+}
+
+window-rule {
+    match app-id="clash-verge"
+
+    block-out-from "screencast"
 }

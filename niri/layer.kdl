@@ -6,7 +6,10 @@
 // Block out mako notifications from screencasts.
 layer-rule {
     match namespace="^notifications$"
+
     block-out-from "screencast"
+    // // 对底层录屏工具生效
+    // block-out-from "screen-capture"
 }
 
 // Set the overview wallpaper on the backdrop.
@@ -47,7 +50,7 @@ layer-rule {
 
     // Properties that apply continuously.
     // opacity 0.9
-    block-out-from "screencast"
+    // block-out-from "screencast"
     // block-out-from "screen-capture"
 
     shadow {

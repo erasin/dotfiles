@@ -15,5 +15,10 @@ include "binds.kdl"
 include "window.kdl"
 include "layer.kdl"
 
+// debug {
+//     preview-render "screencast"  // 或者 "screen-capture"
+// }
+
 // dms
 // include "dms/windowrules.kdl"
+
