@@ -3,6 +3,11 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
+# 添加自定义路径到 PATH
+$env:Path += ";$env:USERPROFILE\.bun\bin"
+$env:Path += ";$env:USERPROFILE\AppData\Local\Programs\Zed\bin"
+$env:Path += ";D:\erasin\bin"
+
 # PowerShell 5: black text bg 
 # https://github.com/microsoft/terminal/issues/18624
 # https://learn.microsoft.com/en-us/windows/terminal/troubleshooting#black-lines-in-powershell-51-6x-70
