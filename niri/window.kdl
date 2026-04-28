@@ -67,11 +67,11 @@ window-rule {
 window-rule {
     match app-id="Alacritty|ghostty|ghostty"
 
-    opacity 0.85
+    opacity 0.88
 
     background-effect {
-        xray true
         blur true
+        xray true
     }
 }
 

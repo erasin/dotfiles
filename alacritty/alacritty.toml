@@ -1,7 +1,7 @@
 [general]
 import = [
   "themes/oneDark.toml",
-  "keymaps/tmux_keymap.toml",
+  # "keymaps/tmux_keymap.toml",  # 临时禁用测试
   "font.toml"
 ]
 

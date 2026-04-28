@@ -32,6 +32,10 @@
 [language-server.hx-lsp]
 command = "hx-lsp"
 
+[language-server.hx-lsp.config]
+markdown = true
+
+
 # =================================================
 # merge-ls https://github.com/shaleh/merge-conflict-assistant
 [language-server.merge-ls]
