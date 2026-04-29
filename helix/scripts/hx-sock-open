@@ -191,6 +191,7 @@ main() {
     local socket
     if ! socket=$(find_workspace "$project_path" 2>/dev/null); then
         err "项目 $project_path 中没有找到 helix socket"
+        alacritty -T "hx" -e hx -w "$project_path" "$file" &
         exit 1
     fi
 
