@@ -31,7 +31,7 @@ export GOPROXY=https://goproxy.cn,direct
 export GOSUMDB=sum.golang.org
 export GOPATH=${HOME}/.golang
 GOPATH_BIN=${HOME}/.golang/bin
-export GOROOT=/usr/lib/go
+export GOROOT=$(go env GOROOT)
 
 # ==== JavaScript ====
 NPM_BIN="${HOME}/.npm-global/bin"
