@@ -1,45 +1,45 @@
 . $ZDOTDIR/alias.sh
 
-# export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
-# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# if type brew &>/dev/null; then
-#   FPATH=$HOME/.config/zsh-completions:$(brew --prefix)/share/zsh-completions:$FPATH
-#   autoload -Uz compinit && compinit
-# fi
-
-# source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-# source /usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-
-# plugins=(
-#   zsh-autosuggestions
-#   zsh-completions
-#   zsh-history-substring-search
-#   zsh-syntax-highlighting
-# )
-
-
 # zsh plugin
 if [[ $(uname) == "Linux" ]]; then
-  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-  source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
+  if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+  elif [[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  fi
+
+  if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+  elif [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  fi
+
+  if [[ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+  fi
 
   autoload -Uz compinit && compinit
-
-  # . $HOME/.rye/env
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
-  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
   # if type brew &>/dev/null; then
   #   FPATH=$HOME/.config/zsh-completions:$(brew --prefix)/share/zsh-completions:$FPATH
   #   autoload -Uz compinit && compinit
   # fi
+  
+  if [[ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  fi
 
-  source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-  source /usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+  if [[ -f /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+  fi
+
+  if [[ -f /usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
+    source /usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+  fi
 fi
 
 # cursor bug
@@ -61,8 +61,9 @@ eval "$(atuin init zsh)"
 preexec() { print -Pn "\e]0;$1 - zsh\a" }  
 
 if [[ $(uname) == "Linux" ]]; then
-  [[ -f ${HOME}/.config/broot/launcher/bash/br ]] && source ${HOME}/.config/broot/launcher/bash/br
+  if [[ -f ${HOME}/.config/broot/launcher/bash/br ]]; then
+    source ${HOME}/.config/broot/launcher/bash/br
+  fi
   # source /usr/share/nvm/init-nvm.sh
 fi
 
-HF_ENDPOINT=https://hf-mirror.com

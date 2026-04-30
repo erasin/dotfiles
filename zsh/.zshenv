@@ -153,6 +153,7 @@ fi
 export HF_ENDPOINT=https://hf-mirror.com
 
 # ==== 其他配置 ====
+export HF_ENDPOINT=https://hf-mirror.com
 export STEEL_HOME=${HOME}/.steel
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export GLICOL_CLI_SAMPLES_PATH=${HOME}/Development/github/glicol/js/assets
