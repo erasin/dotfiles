@@ -34,7 +34,7 @@ GOPATH_BIN=${HOME}/.golang/bin
 export GOROOT=/usr/lib/go
 
 # ==== JavaScript ====
-NPM_PREFIX="${HOME}/.local/share/pnpm"
+NPM_BIN="${HOME}/.npm-global/bin"
 export PNPM_HOME=${HOME}/.local/share/pnpm
 export BUN_INSTALL="${HOME}/.bun"
 BUN_BIN=${HOME}/.bun/bin
@@ -121,7 +121,7 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 fi
 
 # ==== PATH 构建 (重要: $PATH 放开头) ====
-export PATH=$PATH:$CARGO_PATH:$LOCAL_BIN:$GOPATH_BIN:$BUN_BIN:$NPM_PREFIX:$PNPM_HOME:$RUBY_PATH:$CANGJIE_BIN_PATH:$CANGJIE_TOOL_BIN_PATH:$CANGJIE_USER_PATH:$HDC_HOME:$HARMONY_CLI_PATH:$LLDB_VSCODE_PATH:$HARMONY_GN_PATH
+export PATH=$CARGO_PATH:$LOCAL_BIN:$GOPATH_BIN:$BUN_BIN:$NPM_BIN:$PATH:$RUBY_PATH:$CANGJIE_BIN_PATH:$CANGJIE_TOOL_BIN_PATH:$CANGJIE_USER_PATH:$HDC_HOME:$HARMONY_CLI_PATH:$LLDB_VSCODE_PATH:$HARMONY_GN_PATH
 
 if [[ $(uname) == "Linux" ]]; then
     export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ROCm_PATH
