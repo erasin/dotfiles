@@ -143,7 +143,11 @@ if [[ -f ${HOME}/dotfiles/tokens/minimax ]]; then
     export OPENAI_BASE_URL=https://api.minimaxi.com/v1
     export OPENAI_API_KEY=${MINIMAX_API_KEY}
     export ANTHROPIC_BASE_URL=https://api.minimaxi.com/anthropic
-    export ANTHROPIC_API_KEY=${MINIMAX_API_KEY}
+    export ANTHROPIC_AUTH_TOKEN=${MINIMAX_API_KEY}
+fi
+
+if [[ -f ${HOME}/dotfiles/tokens/bailian ]]; then
+    export BAILIAN_API_KEY=$(cat ${HOME}/dotfiles/tokens/bailian)
 fi
 
 if [[ -f ${HOME}/dotfiles/tokens/huggingface ]]; then
@@ -153,7 +157,6 @@ fi
 export HF_ENDPOINT=https://hf-mirror.com
 
 # ==== 其他配置 ====
-export HF_ENDPOINT=https://hf-mirror.com
 export STEEL_HOME=${HOME}/.steel
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export GLICOL_CLI_SAMPLES_PATH=${HOME}/Development/github/glicol/js/assets
