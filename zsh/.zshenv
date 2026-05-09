@@ -1,14 +1,18 @@
 # ssh-agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [ ! -f "$SSH_AUTH_SOCK" ]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+
+if [[ -f ${XDG_RUNTIME_DIR}ssh-agent.env ]]; then
+    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+        ssh-agent -t 1h > "${XDG_RUNTIME_DIR}ssh-agent.env"
+    fi
+    if [ ! -f "$SSH_AUTH_SOCK" ]; then
+        source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+    fi
 fi
 
 # ==== 通用配置 ====
 export TERM_THEME=dark
 export TERM=xterm-256color
+export COLORTERM=truecolor
 export EDITOR=hx
 export SYSTEM_EDITOR=hx
 export LANG=zh_CN.UTF-8
