@@ -89,6 +89,11 @@
 | hexyl | [github](https://github.com/sharkdp/hexyl) | 十六进制查看 |
 | svgbob | [github](https://github.com/ivanceras/svgbobrus) | ASCII 转图片 |
 
+
+https://github.com/yfedoseev/pdf_oxide  pdf 提取
+cargo install pdf_oxide_cli
+cargo install pdf_oxide_mcp
+
 ## JSON/YAML 处理
 
 | 工具 | 链接 | 说明 |
