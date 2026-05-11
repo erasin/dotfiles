@@ -1,12 +1,8 @@
 # ssh-agent
 
-if [[ -f ${XDG_RUNTIME_DIR}ssh-agent.env ]]; then
-    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-        ssh-agent -t 1h > "${XDG_RUNTIME_DIR}ssh-agent.env"
-    fi
-    if [ ! -f "$SSH_AUTH_SOCK" ]; then
-        source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-    fi
+# systemctl --user enable ssh-agent.service
+if [[ -S ${XDG_RUNTIME_DIR}/ssh-agent.socket ]]; then
+    export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 fi
 
 # ==== 通用配置 ====
