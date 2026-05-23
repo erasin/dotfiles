@@ -16,6 +16,11 @@ environment {
     GSK_RENDERER "gl" // gtk4
 }
 
+// xwayland-satellite {
+//     // off
+//     path "xwayland-satellite"
+// }
+
 // 鼠标
 cursor {
     // xcursor-theme "breeze_cursors"
@@ -25,7 +30,9 @@ cursor {
 }
 
 // 剪贴板
-clipboard { }
+clipboard {
+    // disable-primary
+}
 
 // 隐藏热键帮助
 hotkey-overlay {
@@ -53,8 +60,16 @@ blur {
 // mod+o
 // 缩放 hot cornner
 overview {
-    zoom 0.25
-    backdrop-color "#333333"
+    zoom 0.35
+    backdrop-color "#333333"   
+
+    workspace-shadow {
+        // off
+        softness 40
+        spread 10
+        offset x=0 y=10
+        color "#00000050"
+    }
 }
 
 // hot cornner 快捷角落 
@@ -89,9 +104,9 @@ recent-windows {
     open-delay-ms 150
 
     highlight {
-        active-color "#999999ff"
+        active-color "#8c8c8cff"
         urgent-color "#ff9999ff"
-        padding 30
+        padding 20
         corner-radius 10
     }
 

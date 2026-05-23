@@ -13,10 +13,10 @@ random_wallpaper() {
     fi
 }
 
-anyrun_wallpaper() {
+fuzzel_wallpaper() {
     local selected
     selected=$(fd -a -e png -e jpg -e webp -g "*" "$WALLPAPER_DIR" | \
-        anyrun --plugins libstdin.so --hide-icons --show-results-immediately 2>/dev/null | head -1)
+        fuzzel --dmenu --lines=10 2>/dev/null | head -1)
 
     if [[ -n "$selected" ]]; then
         awww img "$selected" --transition-fps="$TRANSITION_FPS" --transition-type=random --transition-duration="$TRANSITION_DURATION"
@@ -27,8 +27,8 @@ case "$1" in
     random)
         random_wallpaper
         ;;
-    anyrun)
-        anyrun_wallpaper
+    fuzzel)
+        fuzzel_wallpaper
         ;;
     *)
         random_wallpaper

@@ -28,7 +28,7 @@
     "custom/temperature",
     "custom/clipboard",
     "custom/colorpicker",
-    "custom/gsconnect",
+    "custom/sotto",
     "group/tools",
     "tray",
     "clock",
@@ -301,6 +301,17 @@
     "on-click": "gjs -m /usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/gsconnect-preferences"
   },
 
+  // sotto 服务
+  "custom/sotto": {
+    "format": "{}",
+    "return-type": "json",
+    "interval": 5,
+    "exec": "$HOME/.config/waybar/scripts/sotto.sh status",
+    "tooltip-format": "sotto 服务\n状态: {status}",
+    "on-click": "$HOME/.config/waybar/scripts/sotto.sh toggle",
+    "tooltip": true
+  },
+
   // 工具组
   "group/tools": {
     "orientation": "inherit",
@@ -311,6 +322,7 @@
     },
     "modules": [
       "custom/recorder",
+      "custom/gsconnect",
       "custom/unmount",
       "idle_inhibitor",
       "custom/wallpaper"
@@ -352,7 +364,7 @@
     "format": "󰸉",
     "tooltip-format": "左键:随机壁纸\n右键:选择壁纸(预览)",
     "on-click": "$HOME/.config/waybar/scripts/wallpaper.sh random",
-    "on-click-right": "$HOME/.config/waybar/scripts/wallpaper.sh anyrun"
+    "on-click-right": "$HOME/.config/waybar/scripts/wallpaper.sh fuzzel"
   },
 
   // 系统托盘

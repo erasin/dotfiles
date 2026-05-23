@@ -85,6 +85,7 @@ if [[ $(uname) == "Linux" ]]; then
     export OLLAMA_API_BASE_URL=http://127.0.0.1:11434
     export HSA_OVERRIDE_GFX_VERSION=10.30
     export HIP_VISIBLE_DEVICES=0
+    export GGML_VULKAN=1
 
     # Other
     export GRAVEYARD=$HOME/.local/share/Trash
@@ -130,7 +131,7 @@ if [[ $(uname) == "Darwin" ]]; then
     export PATH=$PATH:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:${ANDROID_HOME}/emulator
 fi
 
-# ==== FPATH ====
+# ==== FPATH for zsh completion ====
 export FPATH=$FPATH:${HOME}/.config/zsh/functions
 
 # ==== API Keys / Tokens ====
@@ -140,6 +141,7 @@ fi
 
 if [[ -f ${HOME}/dotfiles/tokens/minimax ]]; then
     export MINIMAX_API_KEY=$(cat ${HOME}/dotfiles/tokens/minimax)
+    export MINIMAX_CN_API_KEY=$MINIMAX_API_KEY
     export OPENAI_BASE_URL=https://api.minimaxi.com/v1
     export OPENAI_API_KEY=${MINIMAX_API_KEY}
     export ANTHROPIC_BASE_URL=https://api.minimaxi.com/anthropic

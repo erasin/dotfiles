@@ -108,6 +108,8 @@ cargo install pdf_oxide_mcp
 | rmpc | [github](https://github.com/mierak/rmpc) | MPD 客户端 |
 | euphonica | [github](https://github.com/htkhiem/euphonica) | MPD Gitk 客户端 |
 
+pw-record --rate=16000 --channels=1 /tmp/test.wav 语音录制
+
 ## 文档阅读
 
 | 工具 | 链接 | 说明 |

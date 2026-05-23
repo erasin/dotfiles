@@ -45,6 +45,7 @@
 #language,
 #custom-clipboard,
 #custom-gsconnect,
+#custom-sotto,
 #custom-unmount,
 #tray,
 #custom-recorder,
@@ -85,9 +86,10 @@
 #custom-window-center,
 #custom-window-float,
 #custom-window-tabbed,
-#custom-gsconnect,
 #custom-media,
+#custom-gsconnect,
 #custom-unmount,
+#custom-sotto,
 #custom-colorpicker,
 #custom-wallpaper,
 #bluetooth,
@@ -233,6 +235,19 @@
 #custom-recorder.recording {
   color: #ff5555;
   animation: blink 1.5s infinite;
+}
+
+/* ==================== sotto 语音输入 ==================== */
+#custom-sotto {
+  font-size: 16px;
+}
+
+#custom-sotto.active {
+  color: #ff5555;
+}
+
+#custom-sotto.inactive {
+  /* color: #00ff00; */
 }
 
 /* ==================== 动画 ==================== */

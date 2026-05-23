@@ -52,6 +52,7 @@ fi
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
+eval "$(wt config shell init zsh)"
 # eval "$(direnv hook zsh)"
 # eval "$(fnm env --use-on-cd --shell zsh)"
 
