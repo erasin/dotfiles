@@ -190,6 +190,42 @@ hx-sh htop
 
 ---
 
+### hx-socket
+
+通过 Unix 域套接字向 Helix 实例发送命令，用于外部工具与编辑器通信，无需激活编辑器窗口。
+
+**原理：**
+
+- 在可信任工作区的 `.helix/helix.sock` 创建 Unix 套接字监听
+- 启动时自动清理旧套接字，关闭时自动删除
+- 不受信任的工作区禁用以防安全风险
+- 禁止的命令：`write`、`write!`、`write-all`、`write-quit`、`run-shell-command`
+
+**使用：**
+
+```bash
+# 打开文件
+echo ":open /path/to/file.rs:10:5" | socat - UNIX-CONNECT /path/to/project/.helix/helix.sock
+
+# 保存并退出
+echo ":wq" | socat - UNIX-CONNECT /path/to/project/.helix/helix.sock
+
+# 查找替换
+echo ":%s/foo/bar/g" | socat - UNIX-CONNECT .helix/helix.sock
+```
+
+**集成示例（Godot）：**
+
+```bash
+# godot-socket.sh — 通过 socket 打开文件
+SOCKET=$(find "$1" -maxdepth 3 -path '*/\.helix/helix.sock' 2>/dev/null | head -1)
+if [ -n "$SOCKET" ]; then
+    echo ":o $2" | socat - "UNIX-CONNECT:$SOCKET"
+fi
+```
+
+---
+
 ## 语言支持
 
 ### 支持的语言

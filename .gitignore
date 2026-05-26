@@ -1,5 +1,5 @@
 tokens
 *.bak
 php
-/etc
+etc
 niri/dms
