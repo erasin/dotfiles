@@ -28,19 +28,19 @@ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 ## window
 
-| key | -r  | cmd             | 说明           | tmux 默认键 |
-| --- | --- | --------------- | -------------- | ----------- |
-| c   |     | new-window      | 新建窗口       | c           |
-| w   |     | list-windows    | 窗口列表       | w           |
-| e   | yes | set-option      | 切换状态栏显示 | -           |
-| C-h | yes | previous-window | 上一个窗口     | p           |
-| C-l | yes | next-window     | 下一个窗口     | n           |
-| C-j | yes | swap-window -1  | 窗口序号前移   | -           |
-| C-k | yes | swap-window +1  | 窗口序号后移   | -           |
-| .   | yes | command-prompt  | 交换窗口序号   | .           |
-| ,   |     | command-prompt  | 重命名窗口     | ,           |
-| Tab |     | last-window     | 最后的窗口     | l           |
-| 0-9 |     | select-window   | 切换到指定窗口 | 0-9         |
+| key | -r  | cmd             | 说明             | tmux 默认键 |
+| --- | --- | --------------- | ---------------- | ----------- |
+| c   |     | new-window      | 新建窗口(继承当前目录) | c           |
+| w   |     | list-windows    | 窗口列表         | w           |
+| e   | yes | set-option      | 切换状态栏显示   | -           |
+| C-h | yes | previous-window | 上一个窗口       | p           |
+| C-l | yes | next-window     | 下一个窗口       | n           |
+| C-j | yes | swap-window -1  | 窗口序号前移     | -           |
+| C-k | yes | swap-window +1  | 窗口序号后移     | -           |
+| .   | yes | command-prompt  | 交换窗口序号     | .           |
+| ,   |     | command-prompt  | 重命名窗口       | ,           |
+| Tab |     | last-window     | 最后的窗口       | l           |
+| 0-9 |     | select-window   | 切换到指定窗口   | 0-9         |
 
 ## pane
 
@@ -56,10 +56,16 @@ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 | J   | yes | resize-pane -D  | 向下扩充窗格    | M-Down      |
 | K   | yes | resize-pane -U  | 向上扩充窗格    | M-Up        |
 | L   | yes | resize-pane -R  | 向右扩充窗格    | M-Right     |
-| >   |     | swap-pane -D    | 窗格向后交换    | }           |
-| <   |     | swap-pane -U    | 窗格向前交换    | {           |
-| f   | yes | resize-pane -Z  | 最大化/还原窗格 | z           |
-| x   |     | kill-pane       | 关闭窗格        | x           |
+| >   |     | swap-pane -D    | 窗格向后交换      | }           |
+| <   |     | swap-pane -U    | 窗格向前交换      | {           |
+| f   | yes | resize-pane -Z  | 最大化/还原窗格   | z           |
+| x   |     | kill-pane       | 关闭窗格          | x           |
+| M-Left |   | select-pane -L  | 切换到左侧窗格(无前缀) | Left   |
+| M-Down |   | select-pane -D  | 切换到下方窗格(无前缀) | Down   |
+| M-Up   |   | select-pane -U  | 切换到上方窗格(无前缀) | Up     |
+| M-Right|   | select-pane -R  | 切换到右侧窗格(无前缀) | Right  |
+| s   |     | synchronize-panes on  | 同步输入开启  | -           |
+| S   |     | synchronize-panes off | 同步输入关闭  | -           |
 
 ## copy mode (vi)
 
