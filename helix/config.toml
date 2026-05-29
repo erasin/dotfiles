@@ -3,12 +3,12 @@
 
 # 使用自定义发布版本
 # https://github.com/erasin/helix
-# theme = "onedark_local"
+theme = "onedark_local"
 
-# #14356
-[theme]
-dark = "onedark_local"
-light = "onelight_local"
+# #14356 Mode 2031
+# [theme]
+# dark = "onedark_local"
+# light = "onelight_local"
 
 [editor]
 # ==================== 基础显示 ====================

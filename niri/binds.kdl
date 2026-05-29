@@ -57,6 +57,8 @@ binds {
     // XF86MonBrightnessDown { spawn "bash" "-c" "brightnessctl -c backlight set 1- && notify-send -c \"system\" \" Brightness: $(brightnessctl -m | cut -d',' -f4)\""; }
     // XF86MonBrightnessUp { spawn "bash" "-c" "brightnessctl -c backlight set +1 && notify-send -c \"system\" \" Brightness: $(brightnessctl -m | cut -d',' -f4)\""; }
 
+    Mod+B hotkey-overlay-title="切换暗/亮" { spawn "bash" "-c" "~/.config/niri/scripts/toggle-color-scheme.sh"; }
+
     Mod+O repeat=false { toggle-overview; }
 
     Mod+Q repeat=false { close-window; }
