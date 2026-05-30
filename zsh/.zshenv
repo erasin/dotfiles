@@ -5,6 +5,10 @@ if [[ -S ${XDG_RUNTIME_DIR}/ssh-agent.socket ]]; then
     export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 fi
 
+if [[ -f ${HOME}/dotfiles/tokens/token.sh ]]; then
+    . ${HOME}/dotfiles/tokens/token.sh
+fi
+
 # ==== 通用配置 ====
 export TERM_THEME=dark
 export TERM=xterm-256color
@@ -137,34 +141,6 @@ fi
 
 # ==== FPATH for zsh completion ====
 export FPATH=$FPATH:${HOME}/.config/zsh/functions
-
-# ==== API Keys / Tokens ====
-if [[ -f ${HOME}/dotfiles/tokens/gemini ]]; then
-    export GEMINI_API_KEY=$(cat ${HOME}/dotfiles/tokens/gemini)
-fi
-
-if [[ -f ${HOME}/dotfiles/tokens/opencode ]]; then
-    export OPENCODE_API_KEY=$(cat ${HOME}/dotfiles/tokens/opencode)
-fi
-
-if [[ -f ${HOME}/dotfiles/tokens/minimax ]]; then
-    export MINIMAX_API_KEY=$(cat ${HOME}/dotfiles/tokens/minimax)
-    export MINIMAX_CN_API_KEY=$MINIMAX_API_KEY
-    export OPENAI_BASE_URL=https://api.minimaxi.com/v1
-    export OPENAI_API_KEY=${MINIMAX_API_KEY}
-    export ANTHROPIC_BASE_URL=https://api.minimaxi.com/anthropic
-    export ANTHROPIC_AUTH_TOKEN=${MINIMAX_API_KEY}
-fi
-
-if [[ -f ${HOME}/dotfiles/tokens/bailian ]]; then
-    export BAILIAN_API_KEY=$(cat ${HOME}/dotfiles/tokens/bailian)
-fi
-
-if [[ -f ${HOME}/dotfiles/tokens/huggingface ]]; then
-    export HUGGINGFACE_TOKEN=$(cat $HOME/dotfiles/tokens/huggingface)
-fi
-
-export HF_ENDPOINT=https://hf-mirror.com
 
 # ==== 其他配置 ====
 export STEEL_HOME=${HOME}/.steel
