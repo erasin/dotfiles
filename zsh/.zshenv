@@ -39,6 +39,10 @@ export PNPM_HOME=${HOME}/.local/share/pnpm
 export BUN_INSTALL="${HOME}/.bun"
 BUN_BIN=${HOME}/.bun/bin
 
+if [[ -f ${HOME}/dotfiles/tokens/npm ]]; then
+    export NPM_TOKEN=$(cat ${HOME}/dotfiles/tokens/npm)
+fi
+
 # ==== Java ====
 if [[ $(uname) == "Linux" ]]; then
     export JAVA_HOME=/usr/lib/jvm/default
@@ -137,6 +141,10 @@ export FPATH=$FPATH:${HOME}/.config/zsh/functions
 # ==== API Keys / Tokens ====
 if [[ -f ${HOME}/dotfiles/tokens/gemini ]]; then
     export GEMINI_API_KEY=$(cat ${HOME}/dotfiles/tokens/gemini)
+fi
+
+if [[ -f ${HOME}/dotfiles/tokens/opencode ]]; then
+    export OPENCODE_API_KEY=$(cat ${HOME}/dotfiles/tokens/opencode)
 fi
 
 if [[ -f ${HOME}/dotfiles/tokens/minimax ]]; then
